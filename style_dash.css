@@ -1,0 +1,59 @@
+#content {
+  height:38em;
+  width:82em;
+  float:left;
+}
+
+#left {
+  height:38em;
+  width:55em;
+  float:left;
+}
+
+#right {
+  height:38em;
+  width:27em;
+  float:left;
+}
+
+#row_USA {
+  height:19em;
+  width:56em;
+  float:left;
+}
+
+#row_Irvine {
+  height:19em;
+  width:56em;
+  float:left;
+}
+
+#visitsVolume {
+  height:19em;
+  width:27em;
+  float:left;
+}
+
+#avgVisitDuration {
+  height:19em;
+  width:27em;
+  float:left;
+}
+
+#visitsPerSource {
+  height:19em;
+  width:27em;
+  float:left;
+}
+
+#bouncesPerSource {
+  height:19em;
+  width:27em;
+  float:left;
+}
+
+#bouncesPerSource {
+  height:19em;
+  width:27em;
+  float:left;
+}

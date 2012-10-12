@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<html>
+<head>
+   <title>Google Shop Dashboard</title>
+   <link rel="stylesheet" type="text/css" href="style_dash.css" />
+   <!--
+    <script src="http://code.google.com/p/analytics-api-samples/source/browse/trunk/src/reporting/javascript/ez-ga-dash/gadash-1.0.js"></script>
+   -->
+   <script src="https://www.google.com/jsapi"></script>
+   <script src="gadash-1.0.js"></script>
+   <script src="https://apis.google.com/js/client.js?onload=gadashInit"></script>
+   <script src="G_Shop_dashboard1.js"></script>
+</head>
+
+
+<body>
+
+  <!-- Add Google Analytics authorization button -->
+  <button id="authorize-button" style="visibility: hidden">Authorize Analytics</button>
+  <div id='content'>
+     <div id='left'>
+        <div id='row_USA'>
+           <div id='visitsVolume'></div>
+           <div id='visitsPerSource'></div>
+        </div>
+        <div id='row_Irvine'>
+           <div id='bouncesPerSource'></div>
+           <div id='bounceRatePerSource'></div>
+        </div>
+     </div>
+     <div id='right'>
+        <div id='avgVisitDuration'></div>
+     </div>
+  </div>
+</body>
+</html>
