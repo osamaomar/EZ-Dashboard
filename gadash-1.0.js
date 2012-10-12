@@ -803,3 +803,82 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
  * Make GaBarChart a subclass of Chart class using chaining inheritance
  */
 gadash.GaBarChart.prototype = new gadash.Chart();
+
+
+
+/*
+* Adding Column chart wrapper
+*/
+gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
+
+   this.config = {};
+   this.set({
+         'type': 'ColumnChart',
+         'divContainer': div,
+         'query': {
+             'ids': ids,
+             'metrics': metrics,
+             'dimensions': 'ga:date'
+          },
+          'chartOptions': {
+             height: 300,
+             width: 450,
+             title: 'Demo',
+             curveType: 'function'
+          }
+       })
+       .set(opt_config);
+
+   //Default value for date is set to the last 30 days
+   //if opt_config has no end-date, no start-date, and no last-n-days
+   if (!this.config.query['end-date'] &&
+      !this.config.query['start-date'] &&
+      !this.config['last-n-days']) {
+         this.set({'last-n-days': 30});
+   }
+};
+
+/**
+ * Make GaColumnChart a subclass of Chart class using chaining inheritance
+ */
+gadash.GaColumnChart.prototype = new gadash.Chart();
+
+/**
+ * Making an AREA chart
+ */
+gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
+    
+   this.config = {};
+   this.set({
+         'type': 'AreaChart',
+         'divContainer': div,
+         'query': {
+             'ids': ids,
+             'metrics': metrics,
+             'dimensions': 'ga:date'
+          },
+          'chartOptions': {
+             height: 350,
+             width: 400,
+             title: 'Demo',
+             curveType: 'function',
+             pointSize: 5,
+             hAxis: {title: 'Time/Date',  titleTextStyle: {color: '#FF0000'}},
+             vAxis: {title: 'Seconds', titleTextStyle: {color: '#FF0000'}, gridlines: {count: 2}}
+          }
+       })
+       .set(opt_config);
+          
+   //Default value for date is set to the last 30 days 
+   //if opt_config has no end-date, no start-date, and no last-n-days
+   if(!this.config.query['end-date'] &&
+      !this.config.query['start-date'] &&
+      !this.config['last-n-days']){
+         this.set({'last-n-days': 30});   
+   }          
+};
+
+/**
+ * Make GaAreaChart a subclass of Chart class using chaining inheritance
+ */
+gadash.GaAreaChart.prototype = new gadash.Chart();  
