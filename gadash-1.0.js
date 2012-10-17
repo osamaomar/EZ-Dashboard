@@ -645,7 +645,8 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              title: 'Demo',
              curveType: 'function',
 			 pointSize: 5,
-			 hAxis:{format:'MMM d'}
+			 vAxis:{gridlines:{color:'transparent'}},
+			 hAxis:{format:'MMM d', gridlines:{color:'transparent'}}
           }
        })
        .set(opt_config);
