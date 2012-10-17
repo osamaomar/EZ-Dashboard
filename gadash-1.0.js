@@ -645,7 +645,8 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              title: 'Demo',
              curveType: 'function',
 			 pointSize: 5,
-			 hAxis:{format:'MMM d'}
+			 vAxis:{gridlines:{color:'transparent'}},
+			 hAxis:{format:'MMM d', gridlines:{color:'transparent'}}
           }
        })
        .set(opt_config);
@@ -847,8 +848,8 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              title: 'Demo',
              curveType: 'function',
              pointSize: 5,
-             hAxis: {format: 'MMM d', gridlines: {logScale: 'false '}},
-             vAxis: {title: 'Seconds', titleTextStyle: {color: '#0000FF'}, gridlines: {logScale: 'true'}}
+             hAxis: {format: 'MMM d',gridlines:{color:'transparent'}},
+             vAxis: {title: 'Seconds', titleTextStyle: {color: '#0000FF'},gridlines:{color:'transparent'}}
           }
        })
        .set(opt_config);
