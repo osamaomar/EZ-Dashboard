@@ -116,10 +116,28 @@
                                          'title':'Average Visit Duration in the United States'
                                        }
                                      }
-                                 ).render();  
+                                 ).render(); 
+    /**
+    * Insert a column chart wrapper
+    * Uses chart wrapper: GaColumnChart
+    */ 
+    var div = 'column';
+    var chartVisitDurationColumn = new gadash.GaColumnChart( div, ids, metrics,
+                                     {'last-n-days': 15,
+                                      'query':{
+                                         'dimensions':'ga:date',
+                                         'filters':'ga:country==United States',
+                                         'sort': '-ga:date'
+                                       },
+                                      'chartOptions':{
+                                         'height': 420,
+                                         'title':'Average Visit Duration in the United States'
+                                       }
+                                     }
+                                 ).render();
 
      var div = 'areachart';
-     var chartVisitDuration2 = new gadash.GaAreaChart( div, ids, metrics,
+     var chartVisitDurationArea = new gadash.GaAreaChart( div, ids, metrics,
                                       {'last-n-days': 15,
                                        'query':{
                                           'dimensions':'ga:date',

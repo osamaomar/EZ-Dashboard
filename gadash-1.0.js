@@ -844,7 +844,25 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
 gadash.GaColumnChart.prototype = new gadash.Chart();
 
 /**
- * Making an AREA chart
+ * Bar Chart Wrapper
+ * gadash.GaBarChart is a subclass of gadash.Chart
+ * GaBarChart declares a configuration object as its super class Chart and
+ * attributes default setting specific to line charts. The 3 first parameters
+ * have for purpose to complete the default setting.
+ * A optianal configuration object is passed as a paramter and can override
+ * or supplement properties of the configuration object.
+ * Essential default values for GaAreaChart objects are:
+ *     for the dimensions: 'ga:date',
+ *     for the time: 'last-n-days': 30 if opt_config does not specify the entries.
+ * @param {String} div - contains the <div> tag id value to indicate where
+ *     the chart should appear on a webpage.
+ * @param {String} ids - contains the TABLE_ID to access analytics data.
+ * @param {String} metrics - contains the type of metrics to be used in chart.
+ * @param {?Object} opt_config - Contains all configuration variables
+ *     of a Chart object. This parameter is passed by value, and a deep
+ *     copy is made. Once set, the original object can be modified and
+ *     it will not affect this object.
+ * @constructor
  */
 gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
     
@@ -858,13 +876,16 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              'dimensions': 'ga:date'
           },
           'chartOptions': {
-             height: 350,
-             width: 400,
+             height: 400,
+             width: 500,
              title: 'Demo',
              curveType: 'function',
-             pointSize: 5,
-             hAxis: {title: 'Time/Date',  titleTextStyle: {color: '#FF0000'}},
-             vAxis: {title: 'Seconds', titleTextStyle: {color: '#FF0000'}, gridlines: {count: 2}}
+             pointSize: 6,
+             lineWidth: 4,
+             areaOpacity: 0.2,
+             colors: ['#5599ff'],
+             hAxis: {titleTextStyle: {color: '#FF0000'}, gridlines: {color:'#ffffff'}},
+             vAxis: {title: 'Seconds', titleTextStyle: {color: '#FF0000'}}
           }
        })
        .set(opt_config);
