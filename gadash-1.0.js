@@ -864,18 +864,15 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              width: 500,
              title: 'Demo',
              curveType: 'function',
-<<<<<<< HEAD
              pointSize: 6,
              lineWidth: 4,
-             areaOpacity: 0.2,
-             colors: ['#5599ff'],
-             hAxis: {titleTextStyle: {color: '#FF0000'}, gridlines: {color:'#ffffff'}},
-             vAxis: {title: 'Seconds', titleTextStyle: {color: '#FF0000'}}
-=======
-             pointSize: 5,
-             hAxis: {format: 'MMM d', gridlines: {logScale: 'false '}},
-             vAxis: {title: 'Seconds', titleTextStyle: {color: '#0000FF'}, gridlines: {logScale: 'true'}}
->>>>>>> 5887c298e7d76f59695fd20795de2d0428f31b34
+             areaOpacity: 0.1,
+             legend: {position: 'top', alignment: 'start'},
+             colors: ['#058dc7'], // old: #5599ff
+             hAxis: {format: 'MMM d', gridlines: {count: 3, color:'transparent', logScale: 'false'}, baselineColor: 'transparent'},
+             vAxis: {title: 'Seconds', titleTextStyle: {color: '#0000FF'}, gridlines: {color: '#efefef', logScale: 'true', count: 3},
+              textPosition: 'in'}
+// >>>>>>> 5887c298e7d76f59695fd20795de2d0428f31b34
           }
        })
        .set(opt_config);
