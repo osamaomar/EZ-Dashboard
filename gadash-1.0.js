@@ -327,6 +327,8 @@ gadash.Chart.prototype.defaultOnError = function(message) {
 gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   var dataTable = gadash.util.getDataTable(resp, this.config.type);
   var chart = gadash.util.getChart(this.config.divContainer, this.config.type);
+  var dateFormatter = new google.visualization.DateFormat({ pattern: "MMM d" });
+  dateFormatter.format(dataTable, 0);
   gadash.util.draw(chart, dataTable, this.config.chartOptions);
 };
 
@@ -605,25 +607,6 @@ gadash.util.getType = function(value) {
 };
 
 
-/****************************************************************************
- ****************************************************************************
- *ADDED CODE: Wrappers for Line Chart
- *                         Pie Chart
- *                         Bar Chart
- ****************************************************************************
- ****************************************************************************/
-
-/**
- * @author
- * Laurent Jacquot, laurent1jacquot@gmail.com
- * Nick Mihailovski, api.nickm@gmail.com
- *
- * @fileoverview
- * These added functions are designed to create an easier way to build chart
- * Gby wrapping the Chart object. As a result, the code is easier to develop
- * and maintain.
- */
-
 /**
  * Line Chart Wrapper:
  * gadash.GaLineChart is a subclass of gadash.Chart
@@ -661,7 +644,8 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              width: 450,
              title: 'Demo',
              curveType: 'function',
-			 pointSize: 5
+			 pointSize: 5,
+			 hAxis:{format:'MMM d'}
           }
        })
        .set(opt_config);
@@ -880,12 +864,18 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              width: 500,
              title: 'Demo',
              curveType: 'function',
+<<<<<<< HEAD
              pointSize: 6,
              lineWidth: 4,
              areaOpacity: 0.2,
              colors: ['#5599ff'],
              hAxis: {titleTextStyle: {color: '#FF0000'}, gridlines: {color:'#ffffff'}},
              vAxis: {title: 'Seconds', titleTextStyle: {color: '#FF0000'}}
+=======
+             pointSize: 5,
+             hAxis: {format: 'MMM d', gridlines: {logScale: 'false '}},
+             vAxis: {title: 'Seconds', titleTextStyle: {color: '#0000FF'}, gridlines: {logScale: 'true'}}
+>>>>>>> 5887c298e7d76f59695fd20795de2d0428f31b34
           }
        })
        .set(opt_config);

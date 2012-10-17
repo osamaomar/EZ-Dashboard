@@ -107,7 +107,6 @@
     var chartVisitDuration = new gadash.GaBarChart( div, ids, metrics,
                                      {'last-n-days': 15,
                                       'query':{
-                                         'dimensions':'ga:date',
                                          'filters':'ga:country==United States',
                                          'sort': '-ga:date'
                                        },
