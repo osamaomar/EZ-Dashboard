@@ -660,14 +660,7 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             curveType: 'function',
-			 pointSize: 6,
-			 lineWidth: 4,
-             areaOpacity: 0.1,
-			 legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-			 hAxis:{format:'MMM d', gridlines:{color:'transparent'}, baselineColor: 'transparent'},
-			 vAxis:{gridlines:{color: '#efefef', logScale: 'true', count: 3},textPosition: 'in'}
+             curveType: 'function'
           }
        })
        .set(opt_config);
@@ -719,15 +712,7 @@ gadash.GaAreaChart = function( div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             curveType: 'function',
-             pointSize: 6,
-             lineWidth: 4,
-             areaOpacity: 0.1,
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             hAxis: {format: 'MMM d', gridlines: {count: 3, color:'transparent'}, baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
-              textPosition: 'in'}
+             curveType: 'function'
           }
        })
        .set(opt_config);
@@ -778,14 +763,7 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-			 enableInteractivity:'false',
-			 pieSliceText:'none',
-             curveType: 'function',
-			 legend:{position: 'right',
-					 textStyle: {color: 'blue', fontSize: 12},
-					 alignment:'center',
-					 pieSliceText:'none'
-			 }
+             curveType: 'function'
           }
        })
        .set(opt_config);

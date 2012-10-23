@@ -1,60 +1,149 @@
 #content {
-  height:38em;
-  width:82em;
+  height:95em;
+  width:85em;
   float:left;
 }
 
-#left {
-  height:38em;
-  width:55em;
+#row_Header {
+  height:6em;
+  width:85em;
   float:left;
 }
 
-#right {
-  height:38em;
-  width:27em;
+.images {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.header {
+  height:6em;
+  width:28em;
   float:left;
 }
 
-#row_USA {
+H1 {
+  color:#058dc7;
+  text-align:center
+}
+  
+#row_Line {
   height:19em;
-  width:56em;
+  width:85em;
   float:left;
 }
 
-#row_Irvine {
+#Line_before {
   height:19em;
-  width:56em;
+  width:28em;
   float:left;
 }
 
-#visitsVolume {
+#Line_now {
   height:19em;
-  width:27em;
+  width:28em;
   float:left;
 }
 
-#avgVisitDuration {
+#Line_goal {
   height:19em;
-  width:27em;
+  width:28em;
   float:left;
 }
 
-#visitsPerSource {
+#row_Area {
   height:19em;
-  width:27em;
+  width:85em;
   float:left;
 }
 
-#bouncesPerSource {
+#Area_before {
   height:19em;
-  width:27em;
+  width:28em;
   float:left;
 }
 
-#bouncesPerSource {
+#Area_now {
   height:19em;
-  width:27em;
+  width:28em;
+  float:left;
+}
+
+#Area_goal {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#row_Pie {
+  height:19em;
+  width:85em;
+  float:left;
+}
+
+#Pie_before {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#Pie_now {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#Pie_goal {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#row_Bar {
+  height:19em;
+  width:85em;
+  float:left;
+}
+
+#Bar_before {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#Bar_now {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#Bar_goal {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#row_Column {
+  height:19em;
+  width:85em;
+  float:left;
+}
+
+#Column_before {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#Column_now {
+  height:19em;
+  width:28em;
+  float:left;
+}
+
+#Column_goal {
+  height:19em;
+  width:28em;
   float:left;
 }
 
