@@ -43,7 +43,7 @@
 
 
 /**
- *Namespace for util object. Contains lots of library utilities.
+ * Namespace for util object. Contains lots of library utilities.
  */
  gadash.util = gadash.util || {};
 
@@ -250,7 +250,7 @@ gadash.Chart.prototype.render = function() {
  */
 gadash.Chart.prototype.renderFunction = function() {
 
-
+  //Update the start and end dates based on last n days.
   if (this.config['last-n-days']) {
     this.config.query['end-date'] = gadash.util.lastNdays(0);
     this.config.query['start-date'] =
@@ -329,7 +329,7 @@ gadash.Chart.prototype.defaultOnError = function(message) {
 gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   var dataTable = gadash.util.getDataTable(resp, this.config.type);
   var chart = gadash.util.getChart(this.config.divContainer, this.config.type);
-  var dateFormatter = new google.visualization.DateFormat({ pattern: "MMM d" });
+  var dateFormatter = new google.visualization.DateFormat({ pattern: 'MMM d' });
   dateFormatter.format(dataTable, 0);
   gadash.util.draw(chart, dataTable, this.config.chartOptions);
 };
@@ -341,7 +341,7 @@ gadash.Chart.prototype.defaultOnSuccess = function(resp) {
  * @param {?String} opt_chartType - The chart type. Provides a hint on
  *     how to parse the API results into a data table.
  * @return {Object} data - A Google DataTable object populated
- *with the GA response data.
+ * with the GA response data.
  * @constructor
  */
 gadash.util.getDataTable = function(resp, opt_chartType) {
@@ -581,7 +581,7 @@ gadash.util.extend = function(from, to) {
 /**
  * Returns the native type (class property) of this object.
  * General idea grabbed from here:
- *http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
+ * http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
  * Per ECMA-262:
  *
  *     15.2.4.2 Object.prototype.toString ( )
@@ -609,16 +609,18 @@ gadash.util.getType = function(value) {
 };
 
 
- /**
-  * Check the date of a wrapper
-  * if opt_config has no end-date, no start-date, and no last-n-days
-  * the default value for date is set to the last 30 days
-  */
+/**
+ * Check the date of a wrapper
+ * if opt_config has no end-date, no start-date, and no last-n-days
+ * the default value for date is set to the last 30 days
+ * @param {Object} config The config object to set inside this object.
+ * @return {Boolean} true or false.
+ */
 gadash.util.checkDate = function(config) {
-   if(!config.query['end-date'] &&
-      !config.query['start-date'] &&
-      !config['last-n-days']){
-         return true;   
+   if (!config.query['end-date'] &&
+       !config.query['start-date'] &&
+       !config['last-n-days']) {
+         return true;
    }
    return false;
 };
@@ -628,13 +630,12 @@ gadash.util.checkDate = function(config) {
  * Line Chart Wrapper:
  * gadash.GaLineChart is a subclass of gadash.Chart
  * GaLineChart declares a configuration object as its super class Chart and
- * attributes default setting specific to line charts. The 3 first parameters
- * have for purpose to complete the default setting.
- * A optianal configuration object is passed as a paramter and can override
+ * attributes default setting specific to line charts.
+ * A optional configuration object is passed as a paramter and can override
  * or supplement properties of the configuration object.
- * Essential default value for GaLineChart objects are:
+ * Following default values are used for this object:
  *     for the dimensions: 'ga:date',
- *     for the time: 'last-n-days': 30.
+ *     for the start time / date range: 'last-n-days': 30.
  * @param {String} div - contains the <div> tag id value to indicate where
  *     the chart should appear on a webpage.
  * @param {String} ids - contains the TABLE_ID to access analytics data.
@@ -664,14 +665,14 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-	if(gadash.util.checkDate(this.config)){
-		this.set({'last-n-days': 30});
-	}
+    if (gadash.util.checkDate(this.config)) {
+         this.set({'last-n-days': 30});
+    }
 };
 
 
 /**
- * Make GaLineChart a subclass of Chart class using chaining inheritance
+ * Make GaLineChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaLineChart.prototype = new gadash.Chart();
 
@@ -680,13 +681,13 @@ gadash.GaLineChart.prototype = new gadash.Chart();
  * Area Chart Wrapper
  * gadash.GaAreaChart is a subclass of gadash.Chart
  * GaAreaChart declares a configuration object as its super class Chart and
- * attributes default setting specific to line charts. The 3 first parameters
- * have for purpose to complete the default setting.
- * A optianal configuration object is passed as a paramter and can override
+ * attributes default setting specific to line charts.
+ * A optional configuration object is passed as a paramter and can override
  * or supplement properties of the configuration object.
- * Essential default values for GaAreaChart objects are:
+ * Following default values are used for this object:
  *     for the dimensions: 'ga:date',
- *     for the time: 'last-n-days': 30 if opt_config does not specify the entries.
+ *     for the start time / date range: 'last-n-days': 30 if opt_config does
+ *         not specify the entries.
  * @param {String} div - contains the <div> tag id value to indicate where
  *     the chart should appear on a webpage.
  * @param {String} ids - contains the TABLE_ID to access analytics data.
@@ -697,8 +698,8 @@ gadash.GaLineChart.prototype = new gadash.Chart();
  *     it will not affect this object.
  * @constructor
  */
-gadash.GaAreaChart = function( div, ids, metrics, opt_config) {
-    
+gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
+
    this.config = {};
    this.set({
          'type': 'AreaChart',
@@ -716,28 +717,27 @@ gadash.GaAreaChart = function( div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-	if(gadash.util.checkDate(this.config)){
-		this.set({'last-n-days': 30});
-	}
+    if (gadash.util.checkDate(this.config)) {
+        this.set({'last-n-days': 30});
+    }
 };
 
 /**
- * Make GaAreaChart a subclass of Chart class using chaining inheritance
+ * Make GaAreaChart a subclass of Chart class using chaining inheritance.
  */
-gadash.GaAreaChart.prototype = new gadash.Chart(); 
+gadash.GaAreaChart.prototype = new gadash.Chart();
 
 
 /**
  * Pie Chart Wrapper
  * gadash.GaPieChart is a subclass of gadash.Chart
  * GaPieChart declares a configuration object as its super class Chart and
- * attributes default setting specific to pie charts. The 3 first parameters
- * have for purpose to complete the default setting.
- * A optianal configuration object is passed as a paramter and can override
+ * attributes default setting specific to pie charts.
+ * A optional configuration object is passed as a paramter and can override
  * or supplement properties of the configuration object.
- * Essential default value for GaPieChart objects are:
+ * Following default values are used for this object:
  *     for the dimensions: 'ga:source',
- *     for the time: 'last-n-days': 30.
+ *     for the start time / date range: 'last-n-days': 30.
  * @param {String} div - contains the <div> tag id value to indicate where
  *     the chart should appear on a webpage.
  * @param {String} ids - contains the TABLE_ID to access analytics data.
@@ -767,14 +767,14 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-	if(gadash.util.checkDate(this.config)){
-		this.set({'last-n-days': 30});
-	}
+    if (gadash.util.checkDate(this.config)) {
+        this.set({'last-n-days': 30});
+    }
 };
 
 
 /**
- * Make GaPieChart a subclass of Chart class using chaining inheritance
+ * Make GaPieChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaPieChart.prototype = new gadash.Chart();
 
@@ -783,13 +783,12 @@ gadash.GaPieChart.prototype = new gadash.Chart();
  * Bar Chart Wrapper
  * gadash.GaBarChart is a subclass of gadash.Chart
  * GaBarChart declares a configuration object as its super class Chart and
- * attributes default setting specific to line charts. The 3 first parameters
- * have for purpose to complete the default setting.
- * A optianal configuration object is passed as a paramter and can override
+ * attributes default setting specific to line charts.
+ * A optional configuration object is passed as a paramter and can override
  * or supplement properties of the configuration object.
- * Essential default value for GaBarChart objects are:
+ * Following default values are used for this object:
  *     for the dimensions: 'ga:date',
- *     for the time: 'last-n-days': 30.
+ *     for the start time / date range: 'last-n-days': 30.
  * @param {String} div - contains the <div> tag id value to indicate where
  *     the chart should appear on a webpage.
  * @param {String} ids - contains the TABLE_ID to access analytics data.
@@ -818,30 +817,28 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-	if(gadash.util.checkDate(this.config)){
-		this.set({'last-n-days': 30});
-	}
+    if (gadash.util.checkDate(this.config)) {
+        this.set({'last-n-days': 30});
+    }
 };
 
 
 /**
- * Make GaBarChart a subclass of Chart class using chaining inheritance
+ * Make GaBarChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaBarChart.prototype = new gadash.Chart();
-
 
 
 /**
  * Bar Column Wrapper
  * gadash.GaColumnChart is a subclass of gadash.Chart
  * GaColumnChart declares a configuration object as its super class Chart and
- * attributes default setting specific to line charts. The 3 first parameters
- * have for purpose to complete the default setting.
- * A optianal configuration object is passed as a paramter and can override
+ * attributes default setting specific to line charts.
+ * A optional configuration object is passed as a paramter and can override
  * or supplement properties of the configuration object.
- * Essential default value for GaColumnChart objects are:
+ * Following default values are used for this object:
  *     for the dimensions: 'ga:date',
- *     for the time: 'last-n-days': 30.
+ *     for the start time / date range: 'last-n-days': 30.
  * @param {String} div - contains the <div> tag id value to indicate where
  *     the chart should appear on a webpage.
  * @param {String} ids - contains the TABLE_ID to access analytics data.
@@ -871,12 +868,12 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-	if(gadash.util.checkDate(this.config)){
-		this.set({'last-n-days': 30});
-	}
+    if (gadash.util.checkDate(this.config)) {
+        this.set({'last-n-days': 30});
+    }
 };
 
 /**
- * Make GaColumnChart a subclass of Chart class using chaining inheritance
+ * Make GaColumnChart a subclass of Chart class using chaining inheritance.
  */
-gadash.GaColumnChart.prototype = new gadash.Chart(); 
+gadash.GaColumnChart.prototype = new gadash.Chart();
