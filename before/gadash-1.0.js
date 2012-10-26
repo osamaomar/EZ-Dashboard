@@ -613,16 +613,14 @@ gadash.util.getType = function(value) {
  * Check the date of a wrapper
  * if opt_config has no end-date, no start-date, and no last-n-days
  * the default value for date is set to the last 30 days
- * @param {Object} config The config object to set inside this object.
- * @return {Boolean} true or false.
+ * @param {Object} chart - contains an instance of a chart object.
  */
-gadash.util.checkDate = function(config) {
-   if (!config.query['end-date'] &&
-       !config.query['start-date'] &&
-       !config['last-n-days']) {
-         return true;
+gadash.util.checkDate = function(chart) {
+   if (!chart.config.query['end-date'] &&
+       !chart.config.query['start-date'] &&
+       !chart.config['last-n-days']) {
+          chart.set({'last-n-days': 30});
    }
-   return false;
 };
 
 
@@ -665,9 +663,7 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-    if (gadash.util.checkDate(this.config)) {
-         this.set({'last-n-days': 30});
-    }
+   gadash.util.checkDate(this);
 };
 
 
@@ -717,9 +713,7 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-    if (gadash.util.checkDate(this.config)) {
-        this.set({'last-n-days': 30});
-    }
+   gadash.util.checkDate(this);
 };
 
 /**
@@ -767,9 +761,7 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-    if (gadash.util.checkDate(this.config)) {
-        this.set({'last-n-days': 30});
-    }
+   gadash.util.checkDate(this);
 };
 
 
@@ -817,9 +809,7 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-    if (gadash.util.checkDate(this.config)) {
-        this.set({'last-n-days': 30});
-    }
+   gadash.util.checkDate(this);
 };
 
 
@@ -868,9 +858,7 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(opt_config);
-    if (gadash.util.checkDate(this.config)) {
-        this.set({'last-n-days': 30});
-    }
+   gadash.util.checkDate(this);
 };
 
 /**
