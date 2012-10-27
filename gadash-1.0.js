@@ -827,10 +827,17 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
              'dimensions': 'ga:date'
           },
           'chartOptions': {
-             height: 300,
-             width: 450,
+             height: 450,
+             width: 600,
              title: 'Demo',
-             curveType: 'function'
+             curveType: 'function',
+             vAxis: {gridlines: {},
+		
+                   },
+	        hAxis: {gridlines: {},
+	        minValue : 0
+                   }
+
           }
        })
        .set(opt_config);
@@ -877,10 +884,19 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
              'dimensions': 'ga:date'
           },
           'chartOptions': {
-             height: 300,
-             width: 450,
+             height: 400,
+             width: 600,
              title: 'Demo',
-             curveType: 'function'
+             curveType: 'function',
+		 vAxis: {gridlines: {},
+		   minValue : 0,
+
+                   },
+	        hAxis: {gridlines: {},
+		format: 'MMM d' 
+		
+
+                   }
           }
        })
        .set(opt_config);
