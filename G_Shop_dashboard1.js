@@ -148,34 +148,4 @@
                                           'title':'Average Visit Duration in the United States'
                                         }
                                       }
-                                  ).render();
-
-    /*
-    * Putting in a geochart
-    * options static
-    */ 
-
-    google.load('visualization', '1', {'packages': ['geochart']});
-     google.setOnLoadCallback(drawRegionsMap);
-
-      function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable([
-          ['Country', 'METRIC'],
-          ['Germany', 200],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700]
-        ]);
-
-        var options = {
-          height: 460,
-          width: 675,
-          colorAxis: {minValue:0, colors: ['#aabbff', '0033aa']}
-        };
-
-        var chart = new google.visualization.GeoChart(document.getElementById('geomap'));
-        chart.draw(data, options);
-    };
-                            
+                                  ).render();            

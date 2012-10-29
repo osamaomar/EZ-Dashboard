@@ -30,7 +30,7 @@
 
 
 // Loads the core chart and table from the Google Visualization.
-google.load('visualization', '1', {'packages': ['corechart', 'table']});
+google.load('visualization', '1', {'packages': ['corechart', 'table'], 'language':'en'});
 
 
 // Create namespace for this library if not already created.
@@ -755,6 +755,8 @@ gadash.GaPieChart.prototype = new gadash.Chart();
  *     it will not affect this object.
  * @constructor
  */
+
+ 
 gadash.GaBarChart = function(div, ids, metrics, opt_config) {
    this.config = {};
    this.set({
@@ -769,7 +771,9 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             curveType: 'function'
+             curveType: 'function',
+             vAxis: {format:'MMM d'},
+             hAxis: {gridlines: {color: '#efefef'}}
           }
        })
        .set(opt_config);
@@ -809,7 +813,10 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             curveType: 'function'
+             curveType: 'function',
+             legend: {position: 'in'},
+             hAxis: {format: 'MMM d', gridlines: {count: 3}},
+             vAxis: {gridlines: {color: '#efefef'}}
           }
        })
        .set(opt_config);
@@ -870,7 +877,7 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              areaOpacity: 0.1,
              legend: {position: 'top', alignment: 'start'},
              colors: ['#058dc7'], // old: #5599ff
-             hAxis: {format: 'MMM d', gridlines: {count: 3, color:'transparent', logScale: 'false'}, baselineColor: 'transparent'},
+             hAxis: {format: 'MMM d', gridlines: {count: 2, color:'transparent', logScale: 'false'}, baselineColor: 'transparent', maxValue: 3},
              vAxis: {title: 'Seconds', titleTextStyle: {color: '#0000FF'}, gridlines: {color: '#efefef', logScale: 'true', count: 3},
               textPosition: 'in'}
 // >>>>>>> 5887c298e7d76f59695fd20795de2d0428f31b34
