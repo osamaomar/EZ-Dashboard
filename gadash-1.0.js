@@ -828,6 +828,7 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
           },
           'chartOptions': {
              height: 450,
+            colors: ['#058dc7'],
              width: 600,
              title: 'Demo',
              curveType: 'function',
@@ -886,6 +887,7 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
           'chartOptions': {
              height: 400,
              width: 600,
+            colors: ['#058dc7'],
              title: 'Demo',
              curveType: 'function',
 		 vAxis: {gridlines: {},
