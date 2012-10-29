@@ -328,6 +328,7 @@ gadash.Chart.prototype.defaultOnError = function(message) {
  */
 gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   var dataTable = gadash.util.getDataTable(resp, this.config.type);
+  console.log(dataTable);//TESTING
   var chart = gadash.util.getChart(this.config.divContainer, this.config.type);
   var dateFormatter = new google.visualization.DateFormat({ pattern: 'MMM d' });
   dateFormatter.format(dataTable, 0);
@@ -761,7 +762,6 @@ gadash.GaAreaChart.prototype = new gadash.Chart();
  * @constructor
  */
 gadash.GaPieChart = function(div, ids, metrics, opt_config) {
-
    this.config = {};
    this.set({
          'type': 'PieChart',
@@ -776,7 +776,7 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
              width: 450,
              title: 'Demo',
              enableInteractivity: 'false',
-             pieSliceText: 'none',
+//             pieSliceText: 'none',
              curveType: 'function',
              legend: {position: 'right',
                       textStyle: {color: 'blue', fontSize: 12},

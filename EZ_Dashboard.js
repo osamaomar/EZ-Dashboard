@@ -75,7 +75,7 @@
                                          'sort': '-ga:visitBounceRate'
                                        },
                                       'chartOptions':{
-                                         'title':'Bounces Rate per source in Irvine'
+                                         'title':'Bounces Rate per source'
                                        }
                                      }
                                  ).render(); 
