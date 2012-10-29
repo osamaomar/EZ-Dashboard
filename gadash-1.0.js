@@ -646,9 +646,10 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              width: 450,
              title: 'Demo',
              curveType: 'function',
-			 pointSize: 5,
-			 vAxis:{gridlines:{color:'transparent'}},
-			 hAxis:{format:'MMM d', gridlines:{color:'transparent'}}
+             colors: ['#058dc7'],
+      			 pointSize: 5,
+      			 vAxis:{gridlines:{color:'transparent'}},
+      			 hAxis:{format:'MMM d', gridlines:{color:'transparent'}}
           }
        })
        .set(opt_config);
@@ -705,17 +706,22 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-			 enableInteractivity:'false',
-			 //tooltip:{showInTooltip: 'false'},
-			 //tooltip:{trigger: 'none'},
-			 //tooltip:{text:'none'},
-			 pieSliceText:'none',
+      			 enableInteractivity:'false',
+             slices: {
+                0: {color:'#058dc7'}, 
+                1: {color:'#ff3300'},
+                2: {color:'#50B432'}
+              },
+      			 //tooltip:{showInTooltip: 'false'},
+      			 //tooltip:{trigger: 'none'},
+      			 //tooltip:{text:'none'},
+      			 pieSliceText:'none',
              curveType: 'function',
-			 legend:{position: 'right',
-					 textStyle: {color: 'blue', fontSize: 12},
-					 alignment:'center',
-					 pieSliceText:'none'
-			 }
+      			 legend:{position: 'right',
+      					 textStyle: {color: 'blue', fontSize: 12},
+      					 alignment:'center',
+      					 pieSliceText:'none'
+      			 }
           }
        })
        .set(opt_config);
