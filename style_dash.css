@@ -1,60 +1,41 @@
 #content {
-  height:38em;
-  width:82em;
+  height:95em;
+  width:85em;
   float:left;
 }
 
-#left {
-  height:38em;
-  width:55em;
+#row_Header {
+  height:8em;
+  width:85em;
   float:left;
 }
 
-#right {
-  height:38em;
-  width:27em;
+.images {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.header {
+  height:8em;
+  width:28em;
   float:left;
 }
 
-#row_USA {
+H1, H3 {
+  color:#058dc7;
+  text-align:center
+}
+
+.chart {
   height:19em;
-  width:56em;
+  width:28em;
   float:left;
-}
+}  
 
-#row_Irvine {
+.row {
   height:19em;
-  width:56em;
-  float:left;
-}
-
-#visitsVolume {
-  height:19em;
-  width:27em;
-  float:left;
-}
-
-#avgVisitDuration {
-  height:19em;
-  width:27em;
-  float:left;
-}
-
-#visitsPerSource {
-  height:19em;
-  width:27em;
-  float:left;
-}
-
-#bouncesPerSource {
-  height:19em;
-  width:27em;
-  float:left;
-}
-
-#bouncesPerSource {
-  height:19em;
-  width:27em;
+  width:85em;
   float:left;
 }
 
