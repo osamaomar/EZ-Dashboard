@@ -761,7 +761,7 @@ gadash.GaAreaChart.prototype = new gadash.Chart();
  *     it will not affect this object.
  * @constructor
  */
-gadash.GaPieChart = function(div, ids, metrics, opt_config) {
+gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
    this.config = {};
    this.set({
          'type': 'PieChart',
@@ -769,7 +769,7 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
          'query': {
              'ids': ids,
              'metrics': metrics,
-             'dimensions': 'ga:source'
+             'dimensions': dimensions
           },
           'chartOptions': {
              height: 300,
