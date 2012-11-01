@@ -656,11 +656,20 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              'metrics': metrics,
              'dimensions': 'ga:date'
           },
-          'chartOptions': {
+         'chartOptions': {
              height: 300,
              width: 450,
              title: 'Demo',
-             curveType: 'function'
+             curveType: 'function',
+             pointSize: 6,
+             lineWidth: 4,
+             areaOpacity: 0.1,
+             legend: {position: 'top', alignment: 'start'},
+             colors: ['#058dc7'],
+             hAxis: {format: 'MMM d', gridlines: {color: 'transparent'},
+                    baselineColor: 'transparent'},
+             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
+                    textPosition: 'in'}
           }
        })
        .set(opt_config);
@@ -706,11 +715,20 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              'metrics': metrics,
              'dimensions': 'ga:date'
           },
-          'chartOptions': {
+            'chartOptions': {
              height: 300,
              width: 450,
              title: 'Demo',
-             curveType: 'function'
+             curveType: 'function',
+             pointSize: 6,
+             lineWidth: 4,
+             areaOpacity: 0.1,
+             legend: {position: 'top', alignment: 'start'},
+             colors: ['#058dc7'],
+             hAxis: {format: 'MMM d', gridlines: {count: 3,
+                     color: 'transparent'}, baselineColor: 'transparent'},
+             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
+                     textPosition: 'in'}
           }
        })
        .set(opt_config);
@@ -758,8 +776,14 @@ gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             curveType: 'function'
-          }
+             enableInteractivity: 'false',
+             pieSliceText: 'none',
+             curveType: 'function',
+             legend: {position: 'right',
+                      textStyle: {color: 'blue', fontSize: 12},
+                      alignment: 'center',
+                      pieSliceText: 'none'
+             }
        })
        .set(opt_config);
    gadash.util.checkDate(this);
@@ -805,8 +829,11 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
           'chartOptions': {
              height: 300,
              width: 450,
+             colors: ['#058dc7'],
              title: 'Demo',
-             curveType: 'function'
+             curveType: 'function',
+             vAxis: {gridlines: {}},
+             hAxis: {gridlines: {}, minValue: 0 }
           }
        })
        .set(opt_config);
@@ -855,7 +882,9 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             curveType: 'function'
+             curveType: 'function',
+             vAxis: {gridlines: {}, minValue: 0},
+             hAxis: {gridlines: {}, format: 'MMM d'}
           }
        })
        .set(opt_config);
