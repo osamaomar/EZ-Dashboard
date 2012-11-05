@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 // Copyright 2012 Google Inc. All Rights Reserved.
