@@ -708,9 +708,12 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
              title: 'Demo',
       			 enableInteractivity:'false',
              slices: {
-                0: {color:'#058dc7'}, 
-                1: {color:'#ff3300'},
-                2: {color:'#50B432'}
+                0: {color:'#058dc7'},   //light blue
+                1: {color:'#EC561B'},
+                2: {color:'#50B432'},
+                3: {color:'#990099'},
+                4: {color:'#109618'},
+                5: {color:'#3366CC'}    //darker blue
               },
       			 //tooltip:{showInTooltip: 'false'},
       			 //tooltip:{trigger: 'none'},
@@ -882,7 +885,7 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              width: 500,
              title: 'Demo',
              curveType: 'function',
-             pointSize: 6,
+             pointSize: 7,
              lineWidth: 4,
              areaOpacity: 0.1,
              legend: {position: 'top', alignment: 'start'},
