@@ -42,8 +42,9 @@
     */
     var div='visitsPerSource';
     var metrics='ga:visits';
+    var dimensions='ga:date';
     
-    var chartVisitsSource = new gadash.GaPieChart( div, ids, metrics,
+    var chartVisitsSource = new gadash.GaPieChart( div, ids, metrics, dimensions,
                                      {'last-n-days': 5,
                                       'query':{
                                          'filters':'ga:country==United States',
@@ -62,8 +63,10 @@
     */
     var div='bouncesPerSource';
     var metrics='ga:bounces';
+    var dimensions='ga:date';
+
     
-    var chartBouncesSource = new gadash.GaPieChart( div, ids, metrics,
+    var chartBouncesSource = new gadash.GaPieChart( div, ids, metrics, dimensions,
                                      {'last-n-days': 5,
                                       'query':{
                                          'filters':'ga:city==Irvine',
@@ -82,8 +85,10 @@
     */
     var div='bounceRatePerSource';
     var metrics='ga:visitBounceRate';
+    var dimensions='ga:date';
+
     
-    var chartBounceRateSource = new gadash.GaPieChart( div, ids, metrics,
+    var chartBounceRateSource = new gadash.GaPieChart( div, ids, metrics,dimensions,
                                      {'last-n-days': 5,
                                       'query':{
                                          'dimensions':'ga:source',

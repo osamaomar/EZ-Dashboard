@@ -22,6 +22,7 @@
  * Daniel Nguyen, danielnuwin@gmail.com
  * Nick Mihailovski, api.nickm@gmail.com
  * Laurent Jacquot, laurent1jacquot@gmail.com
+ * Osama Ahmad, ooahmad@gmail.com
  *
  * @fileoverview
  * This library is designed to create an easier way to build a custom
@@ -610,7 +611,7 @@ gadash.util.getType = function(value) {
 
 
 /**
- * Check the date of a wrapper
+ * Checks the date of a wrapper.
  * if opt_config has no end-date, no start-date, and no last-n-days
  * the default value for date is set to the last 30 days
  * @param {Object} chart - contains an instance of a chart object.
@@ -620,13 +621,13 @@ gadash.util.checkDate = function(chart) {
        !chart.config.query['start-date'] &&
        !chart.config['last-n-days']) {
           chart.set({'last-n-days': 30});
-   }
+    }
 };
 
 
 /**
- * Line Chart Wrapper:
- * gadash.GaLineChart is a subclass of gadash.Chart
+ * Line Chart Wrapper
+ * gadash.GaLineChart is a subclass of gadash.Chart.
  * GaLineChart declares a configuration object as its super class Chart and
  * attributes default setting specific to line charts.
  * A optional configuration object is passed as a paramter and can override
@@ -656,8 +657,9 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              'dimensions': 'ga:date'
           },
           'chartOptions': {
-             height: 300,
-             width: 450,
+             height: 450,
+             width: 600,
+             fontSize: 12, 
              title: 'Demo',
              curveType: 'function'
           }
@@ -706,8 +708,9 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              'dimensions': 'ga:date'
           },
           'chartOptions': {
-             height: 300,
-             width: 450,
+              height: 450,
+             width: 600,
+             fontSize: 12, 
              title: 'Demo',
              curveType: 'function'
           }
@@ -730,19 +733,19 @@ gadash.GaAreaChart.prototype = new gadash.Chart();
  * A optional configuration object is passed as a paramter and can override
  * or supplement properties of the configuration object.
  * Following default values are used for this object:
- *     for the dimensions: 'ga:source',
  *     for the start time / date range: 'last-n-days': 30.
  * @param {String} div - contains the <div> tag id value to indicate where
  *     the chart should appear on a webpage.
  * @param {String} ids - contains the TABLE_ID to access analytics data.
  * @param {String} metrics - contains the type of metrics to be used in chart.
+ * @param {String} dimensions - contains the dimensions to be used in chart.
  * @param {?Object} opt_config - Contains all configuration variables
  *     of a Chart object. This parameter is passed by value, and a deep
  *     copy is made. Once set, the original object can be modified and
  *     it will not affect this object.
  * @constructor
  */
-gadash.GaPieChart = function(div, ids, metrics, opt_config) {
+gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
 
    this.config = {};
    this.set({
@@ -751,11 +754,12 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
          'query': {
              'ids': ids,
              'metrics': metrics,
-             'dimensions': 'ga:source'
+        'dimensions': dimensions
           },
           'chartOptions': {
-             height: 300,
-             width: 450,
+             height: 450,
+             width: 600,
+             fontSize: 12, 
              title: 'Demo',
              curveType: 'function'
           }
@@ -773,7 +777,7 @@ gadash.GaPieChart.prototype = new gadash.Chart();
 
 /**
  * Bar Chart Wrapper
- * gadash.GaBarChart is a subclass of gadash.Chart
+ * gadash.GaBarChart is a subclass of gadash.Chart.
  * GaBarChart declares a configuration object as its super class Chart and
  * attributes default setting specific to line charts.
  * A optional configuration object is passed as a paramter and can override
@@ -802,8 +806,9 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
              'dimensions': 'ga:date'
           },
           'chartOptions': {
-             height: 300,
-             width: 450,
+             height: 450,
+             width: 600,
+             fontSize: 12, 
              title: 'Demo',
              curveType: 'function'
           }
@@ -821,7 +826,7 @@ gadash.GaBarChart.prototype = new gadash.Chart();
 
 /**
  * Bar Column Wrapper
- * gadash.GaColumnChart is a subclass of gadash.Chart
+ * gadash.GaColumnChart is a subclass of gadash.Chart.
  * GaColumnChart declares a configuration object as its super class Chart and
  * attributes default setting specific to line charts.
  * A optional configuration object is passed as a paramter and can override
@@ -851,8 +856,9 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
              'dimensions': 'ga:date'
           },
           'chartOptions': {
-             height: 300,
-             width: 450,
+             height: 450,
+             width: 600,
+             fontSize: 12, 
              title: 'Demo',
              curveType: 'function'
           }
