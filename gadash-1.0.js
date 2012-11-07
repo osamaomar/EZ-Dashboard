@@ -67,6 +67,8 @@ gadash.SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
  */
 gadash.commandQueue = [];
 
+gadash.dTable = {};
+
 
 /**
  * Callback executed once the Google APIs Javascript client library has loaded.
@@ -328,13 +330,108 @@ gadash.Chart.prototype.defaultOnError = function(message) {
  */
 gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   var dataTable = gadash.util.getDataTable(resp, this.config.type);
-  console.log(dataTable.getRowProperties(1));//TESTING
+  gadash.dTable = dataTable;
+  console.log(gadash.dTable.toJSON());
+  console.log(gadash.dTable.getValue(0,0));
+  var isStrDate = new String(gadash.dTable.getValue(0,0));
+  if( gadash.dTable.getColumnType(0) == 'string' &&
+      gadash.dTable.getValue(0,0).substring(0,2) != '20') {
+     new gadash.util.buildPieLegend;
+  }
+  else if( isStrDate.substring(0,2) == '20' && isStrDate.length == 8){
+      gadash.util.convertToMMMd();
+  }
   var chart = gadash.util.getChart(this.config.divContainer, this.config.type);
   var dateFormatter = new google.visualization.DateFormat({ pattern: 'MMM d' });
   dateFormatter.format(dataTable, 0);
   gadash.util.draw(chart, dataTable, this.config.chartOptions);
 };
 
+/**
+IN PROCESS
+JSON
+{"cols":[{"id":"","label":"Source","pattern":"","type":"string"},
+         {"id":"","label":"Visit Bounce Rate","pattern":"","type":"number"}],
+ "rows":[{"c":[{"v":"coolmaterial.com","f":null},{"v":100,"f":null}]},
+         {"c":[{"v":"google","f":null},{"v":29.41,"f":null}]},
+		 {"c":[{"v":"(direct)","f":null},{"v":25,"f":null}]},
+		 {"c":[{"v":"bing","f":null},{"v":0,"f":null}]}],
+		 "p":null}
+*/
+gadash.util.convertToMMMd = function() {
+   var numberOfRows = gadash.dTable.getNumberOfRows();
+   for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+      gadash.dTable.setValue(
+         rowIndex,0,gadash.util.stringDateToString(
+            gadash.dTable.getValue(rowIndex,0)
+         )
+      );
+   }
+}
+
+gadash.util.stringDateToString = function(date) {
+  if( date.length == 8) {
+     var month = date.substring(4, 6);
+     switch (month) {
+        case '01': month = 'Jan'
+	               break;
+        case '02': month = 'Feb'
+                   break;
+        case '03': month = 'Mar'
+                   break;
+        case '04': month = 'Apr'
+                   break;
+        case '05': month = 'May'
+                   break;
+        case '06': month = 'Jun'
+                   break;
+        case '07': month = 'Jul'
+                   break;
+        case '08': month = 'Aug'
+                   break;
+        case '09': month = 'Sep'
+                   break;
+        case '10': month = 'Oct'
+                   break;
+        case '11': month = 'Nov'
+                   break;
+        case '12': month = 'Dec'
+                   break;
+     }
+	 var day = date.substring(6, 8);
+     if (day < 10) {
+        day = day.substring(1, 2);
+     }
+     return month + ' ' + day;
+  }
+  return 'Error: this is not a date';
+}
+
+
+gadash.util.buildPieLegend = function() {
+   var numberOfRows = gadash.dTable.getNumberOfRows();
+   var rawDataSlices = new Array();
+   var percentSlices = new Array();
+   var rawDataTotal = 0;
+   
+   for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+      rawDataTotal += rawDataSlices[rowIndex] = gadash.dTable.getValue(rowIndex,1);
+   }
+   
+   for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+      percentSlices[rowIndex] = Math.round(( rawDataSlices[rowIndex] * 100 / rawDataTotal) * Math.pow(10,2))/Math.pow(10,2);;
+	  gadash.dTable.setValue(rowIndex,0,( percentSlices[rowIndex] + "% " + 
+	                                      gadash.dTable.getValue(rowIndex,0) + '\n' + 
+                                          gadash.dTable.getValue(rowIndex,1) + ' ' +
+                                          gadash.dTable.getColumnLabel(1)))
+   }
+
+   //TESTING
+   console.log("-Test:");
+   for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+      console.log( percentSlices[rowIndex]);
+   }
+}
 
 /**
  * Creates a DataTable object using a GA response.
@@ -762,6 +859,7 @@ gadash.GaAreaChart.prototype = new gadash.Chart();
  * @constructor
  */
 gadash.GaPieChart = function(div, ids, metrics, opt_config) {
+
    this.config = {};
    this.set({
          'type': 'PieChart',
@@ -779,7 +877,7 @@ gadash.GaPieChart = function(div, ids, metrics, opt_config) {
              pieSliceText: 'none',
              curveType: 'function',
              legend: {position: 'right',
-                      textStyle: {color: 'blue', fontSize: 12},
+                      textStyle: {bold: 'true', fontSize: 13},
                       alignment: 'center',
                       pieSliceText: 'none'
              }
