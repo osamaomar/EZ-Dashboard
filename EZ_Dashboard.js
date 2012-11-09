@@ -66,11 +66,12 @@
     *Uses the pie chart wrapper: GaPieChart
     */
     var div='Pie_now';
-    var metrics='ga:visitBounceRate';  
-    var chartBounceRateSource = new gadash.GaPieChart( div, ids, metrics,
+    var metrics='ga:visitBounceRate';
+	var dimensions='ga:source';
+	
+    var chartBounceRateSource = new gadash.GaPieChart( div, ids, metrics, dimensions,
                                      {'last-n-days': 5,
                                       'query':{
-                                         'dimensions':'ga:source',
                                          'filters':'ga:city==Irvine',
                                          'sort': '-ga:visitBounceRate'
                                        },
@@ -90,8 +91,7 @@
     var chartVisitDuration = new gadash.GaBarChart( div, ids, metrics,
                                      {'last-n-days': 6,
                                       'query':{
-                                         'filters':'ga:country==United States',
-                                         'sort': '-ga:date'
+                                         'filters':'ga:country==United States'
                                        },
                                       'chartOptions':{
                                          'title':'Average Visit Duration in the United States'
@@ -108,9 +108,7 @@
     var chartVisitDurationColumn = new gadash.GaColumnChart( div, ids, metrics,
                                      {'last-n-days': 6,
                                       'query':{
-                                         'dimensions':'ga:date',
-                                         'filters':'ga:country==United States',
-                                         'sort': '-ga:date'
+                                         'filters':'ga:country==United States'
                                        },
                                       'chartOptions':{
                                          'title':'Average Visit Duration in the United States'

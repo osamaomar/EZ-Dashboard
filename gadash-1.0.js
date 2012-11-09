@@ -332,14 +332,15 @@ gadash.Chart.prototype.defaultOnError = function(message) {
 gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   var dataTable = gadash.util.getDataTable(resp, this.config.type);
   gadash.dTable = dataTable;
-  console.log(gadash.dTable.toJSON());
-  console.log(gadash.dTable.getValue(0,0));
   var isStrDate = new String(gadash.dTable.getValue(0,0));
+/*
   if( gadash.dTable.getColumnType(0) == 'string' &&
       gadash.dTable.getValue(0,0).substring(0,2) != '20') {
      new gadash.util.buildPieLegend;
   }
-  else if( isStrDate.substring(0,2) == '20' && isStrDate.length == 8){
+  else */
+  var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
+  if( isStrDate.search(datePattern) == 0){
       gadash.util.convertToMMMd();
   }
   var chart = gadash.util.getChart(this.config.divContainer, this.config.type);
@@ -348,17 +349,12 @@ gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   gadash.util.draw(chart, dataTable, this.config.chartOptions);
 };
 
+
 /**
-IN PROCESS
-JSON
-{"cols":[{"id":"","label":"Source","pattern":"","type":"string"},
-         {"id":"","label":"Visit Bounce Rate","pattern":"","type":"number"}],
- "rows":[{"c":[{"v":"coolmaterial.com","f":null},{"v":100,"f":null}]},
-         {"c":[{"v":"google","f":null},{"v":29.41,"f":null}]},
-		 {"c":[{"v":"(direct)","f":null},{"v":25,"f":null}]},
-		 {"c":[{"v":"bing","f":null},{"v":0,"f":null}]}],
-		 "p":null}
-*/
+ * Take the first column of the dataTable and change its values to dates 
+ * in a String format composed of 3 letters representing the month followed
+ * by a space and 1 or 2 digits representing the day of the month
+ */
 gadash.util.convertToMMMd = function() {
    var numberOfRows = gadash.dTable.getNumberOfRows();
    for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
@@ -370,8 +366,17 @@ gadash.util.convertToMMMd = function() {
    }
 }
 
+
+/**
+ * Convert a String composed of 8 digits representing a date into a String   
+ * composed of 3 letters representing the month followed by a space and 
+ * 1 or 2 digits representing the day of the month
+ * @param {String} date - 8 digits in the following format: YYYYMMDD
+ * @return {String} date - in the format: MMM D
+ */
 gadash.util.stringDateToString = function(date) {
-  if( date.length == 8) {
+  var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
+  if( date.search(datePattern) == 0) {
      var month = date.substring(4, 6);
      switch (month) {
         case '01': month = 'Jan'
@@ -403,36 +408,11 @@ gadash.util.stringDateToString = function(date) {
      if (day < 10) {
         day = day.substring(1, 2);
      }
-     return month + ' ' + day;
+     date = month + ' ' + day;
   }
-  return 'Error: this is not a date';
+  return date;
 }
 
-
-gadash.util.buildPieLegend = function() {
-   var numberOfRows = gadash.dTable.getNumberOfRows();
-   var rawDataSlices = new Array();
-   var percentSlices = new Array();
-   var rawDataTotal = 0;
-   
-   for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
-      rawDataTotal += rawDataSlices[rowIndex] = gadash.dTable.getValue(rowIndex,1);
-   }
-   
-   for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
-      percentSlices[rowIndex] = Math.round(( rawDataSlices[rowIndex] * 100 / rawDataTotal) * Math.pow(10,2))/Math.pow(10,2);;
-	  gadash.dTable.setValue(rowIndex,0,( percentSlices[rowIndex] + "% " + 
-	                                      gadash.dTable.getValue(rowIndex,0) + '\n' + 
-                                          gadash.dTable.getValue(rowIndex,1) + ' ' +
-                                          gadash.dTable.getColumnLabel(1)))
-   }
-
-   //TESTING
-   console.log("-Test:");
-   for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
-      console.log( percentSlices[rowIndex]);
-   }
-}
 
 /**
  * Creates a DataTable object using a GA response.
@@ -814,7 +794,7 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              'metrics': metrics,
              'dimensions': 'ga:date'
           },
-            'chartOptions': {
+         'chartOptions': {
              height: 300,
              width: 450,
              title: 'Demo',
@@ -877,14 +857,13 @@ gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
              width: 450,
              title: 'Demo',
              fontSize: 12, 
-             enableInteractivity: 'false',
-             pieSliceText: 'none',
              curveType: 'function',
              legend: {position: 'right',
                       textStyle: {bold: 'true', fontSize: 13},
                       alignment: 'center',
                       pieSliceText: 'none'
              }
+          }
        })
        .set(opt_config);
    gadash.util.checkDate(this);
@@ -925,17 +904,21 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
          'query': {
              'ids': ids,
              'metrics': metrics,
-             'dimensions': 'ga:date'
+             'dimensions': 'ga:date',
+             'sort': '-ga:date'
           },
           'chartOptions': {
              height: 300,
              width: 450,
-             fontSize: 12, 
+             fontSize: 12,
+             legend: {position: 'top', alignment: 'start'},
              colors: ['#058dc7'],
              title: 'Demo',
              curveType: 'function',
-             vAxis: {gridlines: {}},
-             hAxis: {gridlines: {}, minValue: 0 ,  count: 3}
+             hAxis: {gridlines: {color: '#efefef', count: 3},
+                     minValue: 0, baselineColor: 'transparent'},
+             vAxis: {gridlines: {color: 'transparent'}, count: 3,
+                     textPosition: 'in'}
           }
        })
        .set(opt_config);
@@ -978,16 +961,21 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
          'query': {
              'ids': ids,
              'metrics': metrics,
-             'dimensions': 'ga:date'
+             'dimensions': 'ga:date',
+             'sort': 'ga:date'
           },
           'chartOptions': {
              height: 300,
              width: 450,
-             fontSize: 12, 
+             fontSize: 12,
+             legend: {position: 'top', alignment: 'start'},
+             colors: ['#058dc7'],
              title: 'Demo',
              curveType: 'function',
-             vAxis: {gridlines: {}, minValue: 0,  count: 3},
-             hAxis: {gridlines: {}, format: 'MMM d',  count: 3}
+             hAxis: {gridlines: {count: 3, color: 'transparent'},
+                     baselineColor: 'transparent'},
+             vAxis: {gridlines: {color: '#efefef', count: 3},
+                     minValue: 0, textPosition: 'in'}
           }
        })
        .set(opt_config);
