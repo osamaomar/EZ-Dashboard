@@ -68,6 +68,11 @@ gadash.SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
  */
 gadash.commandQueue = [];
 
+
+/**
+ * Hold the DataTable for the creation of charts
+ * @type {DataTable}
+ */
 gadash.dTable = {};
 
 
@@ -332,7 +337,7 @@ gadash.Chart.prototype.defaultOnError = function(message) {
 gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   var dataTable = gadash.util.getDataTable(resp, this.config.type);
   gadash.dTable = dataTable;
-  var isStrDate = new String(gadash.dTable.getValue(0,0));
+  var isStrDate = new String(gadash.dTable.getValue(0, 0));
 /*
   if( gadash.dTable.getColumnType(0) == 'string' &&
       gadash.dTable.getValue(0,0).substring(0,2) != '20') {
@@ -340,7 +345,7 @@ gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   }
   else */
   var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
-  if( isStrDate.search(datePattern) == 0){
+  if (isStrDate.search(datePattern) == 0) {
       gadash.util.convertToMMMd();
   }
   var chart = gadash.util.getChart(this.config.divContainer, this.config.type);
@@ -351,67 +356,67 @@ gadash.Chart.prototype.defaultOnSuccess = function(resp) {
 
 
 /**
- * Take the first column of the dataTable and change its values to dates 
+ * Takes the first column of the dataTable and change its values to dates
  * in a String format composed of 3 letters representing the month followed
  * by a space and 1 or 2 digits representing the day of the month
  */
 gadash.util.convertToMMMd = function() {
    var numberOfRows = gadash.dTable.getNumberOfRows();
-   for( var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+   for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
       gadash.dTable.setValue(
-         rowIndex,0,gadash.util.stringDateToString(
-            gadash.dTable.getValue(rowIndex,0)
+         rowIndex, 0, gadash.util.stringDateToString(
+            gadash.dTable.getValue(rowIndex, 0)
          )
       );
    }
-}
+};
 
 
 /**
- * Convert a String composed of 8 digits representing a date into a String   
- * composed of 3 letters representing the month followed by a space and 
+ * Converts a String composed of 8 digits representing a date into a String
+ * composed of 3 letters representing the month followed by a space and
  * 1 or 2 digits representing the day of the month
- * @param {String} date - 8 digits in the following format: YYYYMMDD
- * @return {String} date - in the format: MMM D
+ * @param {String} date - 8 digits in the following format: YYYYMMDD.
+ * @return {String} date - in the format: MMM D.
  */
 gadash.util.stringDateToString = function(date) {
   var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
-  if( date.search(datePattern) == 0) {
+  if (date.search(datePattern) == 0) {
      var month = date.substring(4, 6);
      switch (month) {
-        case '01': month = 'Jan'
-	               break;
-        case '02': month = 'Feb'
+        case '01': month = 'Jan';
                    break;
-        case '03': month = 'Mar'
+        case '02': month = 'Feb';
                    break;
-        case '04': month = 'Apr'
+        case '03': month = 'Mar';
                    break;
-        case '05': month = 'May'
+        case '04': month = 'Apr';
                    break;
-        case '06': month = 'Jun'
+        case '05': month = 'May';
                    break;
-        case '07': month = 'Jul'
+        case '06': month = 'Jun';
                    break;
-        case '08': month = 'Aug'
+        case '07': month = 'Jul';
                    break;
-        case '09': month = 'Sep'
+        case '08': month = 'Aug';
                    break;
-        case '10': month = 'Oct'
+        case '09': month = 'Sep';
                    break;
-        case '11': month = 'Nov'
+        case '10': month = 'Oct';
                    break;
-        case '12': month = 'Dec'
+        case '11': month = 'Nov';
+                   break;
+        case '12': month = 'Dec';
                    break;
      }
-	 var day = date.substring(6, 8);
+     var day = date.substring(6, 8);
      if (day < 10) {
         day = day.substring(1, 2);
      }
      date = month + ' ' + day;
   }
   return date;
-}
+};
 
 
 /**
@@ -738,7 +743,7 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             fontSize: 12, 
+             fontSize: 12,
              curveType: 'function',
              pointSize: 6,
              lineWidth: 4,
@@ -757,7 +762,7 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
 
 
 /**
- * Make GaLineChart a subclass of Chart class using chaining inheritance.
+ * Makes GaLineChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaLineChart.prototype = new gadash.Chart();
 
@@ -798,7 +803,7 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             fontSize: 12, 
+             fontSize: 12,
              curveType: 'function',
              pointSize: 6,
              lineWidth: 4,
@@ -816,7 +821,7 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
 };
 
 /**
- * Make GaAreaChart a subclass of Chart class using chaining inheritance.
+ * Makes GaAreaChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaAreaChart.prototype = new gadash.Chart();
 
@@ -856,7 +861,7 @@ gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
              height: 300,
              width: 450,
              title: 'Demo',
-             fontSize: 12, 
+             fontSize: 12,
              curveType: 'function',
              legend: {position: 'right',
                       textStyle: {bold: 'true', fontSize: 13},
@@ -871,7 +876,7 @@ gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
 
 
 /**
- * Make GaPieChart a subclass of Chart class using chaining inheritance.
+ * Makes GaPieChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaPieChart.prototype = new gadash.Chart();
 
@@ -927,7 +932,7 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
 
 
 /**
- * Make GaBarChart a subclass of Chart class using chaining inheritance.
+ * Makes GaBarChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaBarChart.prototype = new gadash.Chart();
 
@@ -983,6 +988,6 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
 };
 
 /**
- * Make GaColumnChart a subclass of Chart class using chaining inheritance.
+ * Makes GaColumnChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaColumnChart.prototype = new gadash.Chart();
