@@ -785,7 +785,7 @@ gadash.gviz.pieChart = {
  */
 gadash.gviz.barChart = {
          'type': 'BarChart',
-          'chartOptions': {
+         'chartOptions': {
              legend: {position: 'top', alignment: 'start'},
              colors: ['#058dc7'],
              hAxis: {gridlines: {color: '#efefef', count: 3},
