@@ -48,10 +48,19 @@
  */
  gadash.util = gadash.util || {};
 
+ 
+ /**
+ * Namespace for gviz object. Contains objects on the way charts are
+ * displayed.
+ */
+ gadash.gviz = gadash.gviz || {};
+
+ 
 /**
  * Boolean that checks to see if gapi client is loaded.
  */
 gadash.isLoaded = false;
+
 
 /**
  * Refers to the Google Analytics API scope that the user will need
@@ -626,6 +635,21 @@ gadash.util.checkDate = function(chart) {
 
 
 /**
+ * Object containing default value for the chartOptions object.
+ * This object is used by all five chart wrappers.
+ */
+gadash.gviz.defaultChartOptions = {
+          'chartOptions': {
+             height: 300,
+             width: 450,
+             fontSize: 12,
+             title: 'Demo',
+             curveType: 'function'
+          }
+       };
+
+
+/**
  * Line Chart Wrapper
  * gadash.GaLineChart is a subclass of gadash.Chart.
  * GaLineChart declares a configuration object as its super class Chart and
@@ -655,15 +679,9 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
              'ids': ids,
              'metrics': metrics,
              'dimensions': 'ga:date'
-          },
-          'chartOptions': {
-             height: 450,
-             width: 600,
-             fontSize: 12, 
-             title: 'Demo',
-             curveType: 'function'
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
@@ -706,18 +724,13 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
              'ids': ids,
              'metrics': metrics,
              'dimensions': 'ga:date'
-          },
-          'chartOptions': {
-              height: 450,
-             width: 600,
-             fontSize: 12, 
-             title: 'Demo',
-             curveType: 'function'
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
+
 
 /**
  * Make GaAreaChart a subclass of Chart class using chaining inheritance.
@@ -754,16 +767,10 @@ gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
          'query': {
              'ids': ids,
              'metrics': metrics,
-        'dimensions': dimensions
-          },
-          'chartOptions': {
-             height: 450,
-             width: 600,
-             fontSize: 12, 
-             title: 'Demo',
-             curveType: 'function'
+             'dimensions': dimensions
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
@@ -804,15 +811,9 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
              'ids': ids,
              'metrics': metrics,
              'dimensions': 'ga:date'
-          },
-          'chartOptions': {
-             height: 450,
-             width: 600,
-             fontSize: 12, 
-             title: 'Demo',
-             curveType: 'function'
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
@@ -854,18 +855,13 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
              'ids': ids,
              'metrics': metrics,
              'dimensions': 'ga:date'
-          },
-          'chartOptions': {
-             height: 450,
-             width: 600,
-             fontSize: 12, 
-             title: 'Demo',
-             curveType: 'function'
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
+
 
 /**
  * Make GaColumnChart a subclass of Chart class using chaining inheritance.
