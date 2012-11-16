@@ -35,7 +35,8 @@
     var chartVisitDuration = new gadash.GaLineChart( div, ids, metrics,
                                             {'last-n-days': 5,
 											 'chartOptions':{
-												'title':'Visits over the last 30 days in the United States'
+												'title':'Visits in United States: Last 30 days',
+                        'titleTextStyle': {fontName: 'Arial', fontSize: 15, bold: false}
 											  }
 											}
                                         ).render();
@@ -46,7 +47,7 @@
      *Uses the Area chart wrapper: GaAreaChart
      */
      var div = 'Area_now';
-	 var metrics='ga:avgTimeOnSite';
+	 var metrics='ga:Visits';
      var chartVisitDurationArea = new gadash.GaAreaChart( div, ids, metrics,
                                       {'last-n-days': 9,
                                        'query':{
@@ -55,7 +56,8 @@
                                           'sort': '-ga:date'
                                         },
                                        'chartOptions':{
-                                          'title':'Average Visit Duration in the United States'
+                                          'title':'Visits',
+                                          'titleTextStyle': {fontName: 'Arial', fontSize: 15, bold: false}
                                         }
                                       }
                                   ).render();
@@ -76,7 +78,8 @@
                                          'sort': '-ga:visitBounceRate'
                                        },
                                       'chartOptions':{
-                                         'title':'Bounces Rate per source'
+                                         'title':'Bounce Rate by Source',
+                                         'titleTextStyle': {fontName: 'Arial', fontSize: 15, bold: false}
                                        }
                                      }
                                  ).render(); 
@@ -94,7 +97,8 @@
                                          'filters':'ga:country==United States'
                                        },
                                       'chartOptions':{
-                                         'title':'Average Visit Duration in the United States'
+                                         'title':'Average Visit Duration: United States',
+                                         'titleTextStyle': {fontName: 'Arial', fontSize: 15, bold: false}
                                        }
                                      }
                                  ).render(); 
@@ -111,7 +115,8 @@
                                          'filters':'ga:country==United States'
                                        },
                                       'chartOptions':{
-                                         'title':'Average Visit Duration in the United States'
+                                         'title':'Average Visit Duration: United States',
+                                         'titleTextStyle': {fontName: 'Arial', fontSize: 15, bold: false}
                                        }
                                      }
                                  ).render();
