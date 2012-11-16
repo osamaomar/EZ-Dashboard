@@ -48,14 +48,14 @@
  */
  gadash.util = gadash.util || {};
 
- 
+
  /**
  * Namespace for gviz object. Contains objects on the way charts are
  * displayed.
  */
  gadash.gviz = gadash.gviz || {};
 
- 
+
 /**
  * Boolean that checks to see if gapi client is loaded.
  */
@@ -613,6 +613,70 @@ gadash.util.stringToDate = function(date) {
 
 
 /**
+* Utility method to return the lastNweeks from today in the format yyyy-MM-dd.
+* @param {Number} n The number of weeks in the past from today that we should
+*     return a date. Value of 0 returns today.
+* @return {String} date - The adjusted date value represented as a String.
+*/
+lastNweeks = function(n) {
+ var today = new Date();
+ var before = new Date();
+ n = n * 7;
+
+ before.setDate(today.getDate() - n);
+
+ var year = before.getFullYear();
+
+ var month = before.getMonth() + 1;
+ if (month < 10) {
+   month = '0' + month;
+ }
+
+ var day = before.getDate();
+ if (day < 10) {
+   day = '0' + day;
+ }
+
+return [year, month, day].join('-');
+
+};
+
+/**
+* Utility method to return the lastNmonths from today in the format yyyy-MM-dd.
+* @param {Number} n The number of months in the past from today that we should
+*     return a date. Value of 0 returns today.
+* @return {String} date - The adjusted date value represented as a String.
+*/
+
+lastNmonths = function(n) {
+   var date = new Date();
+
+   if (n <= 0)
+
+   return [date.getFullYear(), date.getMonth() + 1 , date.getDate()].join('-');
+
+  var years = Math.round(n / 12);
+  var months = n % 12;
+
+
+   if (years > 0)
+       date.setFullYear(date.getFullYear() - years);
+
+   if (months > 0) {
+       if (months >= date.getMonth()) {
+           date.setFullYear(date.getFullYear());
+           months = 12 - months;
+           date.setMonth(date.getMonth() + months);
+       } else {
+           date.setMonth(date.getMonth() - months);
+       }
+   }
+
+   return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-');
+};
+
+
+/**
  * Formats the Google Metrics and Dimensions into readable strings
  * Strips away the 'ga' and capitalizes first letter. Also puts a space
  * between any lowercase and capital letters.
@@ -722,7 +786,7 @@ gadash.gviz.defaultChartOptions = {
              fontSize: 12,
              title: 'Demo',
              curveType: 'function',
-			 titleTextStyle: {fontName: 'Arial', fontSize: 15, bold: false}
+             titleTextStyle: {fontName: 'Arial', fontSize: 15, bold: false}
           }
        };
 
@@ -844,7 +908,7 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(gadash.gviz.defaultChartOptions)
-	   .set(gadash.gviz.lineChart)
+       .set(gadash.gviz.lineChart)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
@@ -889,7 +953,7 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(gadash.gviz.defaultChartOptions)
-	   .set(gadash.gviz.areaChart)
+       .set(gadash.gviz.areaChart)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
@@ -976,7 +1040,7 @@ gadash.GaBarChart = function(div, ids, metrics, opt_config) {
           }
        })
        .set(gadash.gviz.defaultChartOptions)
-	   .set(gadash.gviz.barChart)
+       .set(gadash.gviz.barChart)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
