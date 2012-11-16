@@ -48,16 +48,19 @@
  */
  gadash.util = gadash.util || {};
 
+ 
  /**
  * Namespace for gviz object. Contains objects on the way charts are
  * displayed.
  */
  gadash.gviz = gadash.gviz || {};
 
+ 
 /**
  * Boolean that checks to see if gapi client is loaded.
  */
 gadash.isLoaded = false;
+
 
 /**
  * Refers to the Google Analytics API scope that the user will need
@@ -728,6 +731,7 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
    gadash.util.checkDate(this);
 };
 
+
 /**
  * Make GaAreaChart a subclass of Chart class using chaining inheritance.
  */
@@ -857,6 +861,7 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
        .set(opt_config);
    gadash.util.checkDate(this);
 };
+
 
 /**
  * Make GaColumnChart a subclass of Chart class using chaining inheritance.
