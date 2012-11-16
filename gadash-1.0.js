@@ -48,10 +48,19 @@
  */
  gadash.util = gadash.util || {};
 
+ 
+ /**
+ * Namespace for gviz object. Contains objects on the way charts are
+ * displayed.
+ */
+ gadash.gviz = gadash.gviz || {};
+
+ 
 /**
  * Boolean that checks to see if gapi client is loaded.
  */
 gadash.isLoaded = false;
+
 
 /**
  * Refers to the Google Analytics API scope that the user will need
@@ -338,12 +347,6 @@ gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   var dataTable = gadash.util.getDataTable(resp, this.config.type);
   gadash.dTable = dataTable;
   var isStrDate = new String(gadash.dTable.getValue(0, 0));
-/*
-  if( gadash.dTable.getColumnType(0) == 'string' &&
-      gadash.dTable.getValue(0,0).substring(0,2) != '20') {
-     new gadash.util.buildPieLegend;
-  }
-  else */
   var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
   if (isStrDate.search(datePattern) == 0) {
       gadash.util.convertToMMMd();
@@ -709,6 +712,107 @@ gadash.util.checkDate = function(chart) {
 
 
 /**
+ * Object containing default value for the chartOptions object.
+ * This object is used by all five chart wrappers.
+ */
+gadash.gviz.defaultChartOptions = {
+          'chartOptions': {
+             height: 300,
+             width: 450,
+             fontSize: 12,
+             title: 'Demo',
+             curveType: 'function',
+			 titleTextStyle: {fontName: 'Arial', fontSize: 15, bold: false}
+          }
+       };
+
+
+/**
+ * Object containing default value for the Line chart wrapper.
+ */
+gadash.gviz.lineChart = {
+         'type': 'LineChart',
+         'chartOptions': {
+             pointSize: 6,
+             lineWidth: 4,
+             areaOpacity: 0.1,
+             legend: {position: 'top', alignment: 'start'},
+             colors: ['#058dc7'],
+             hAxis: {format: 'MMM d', gridlines: {color: 'transparent'},
+                    baselineColor: 'transparent'},
+             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
+                    textPosition: 'in'}
+          }
+       };
+
+
+/**
+ * Object containing default value for the Area chart wrapper.
+ */
+gadash.gviz.areaChart = {
+         'type': 'AreaChart',
+         'chartOptions': {
+             pointSize: 6,
+             lineWidth: 4,
+             areaOpacity: 0.1,
+             legend: {position: 'top', alignment: 'start'},
+             colors: ['#058dc7'],
+             hAxis: {format: 'MMM d', gridlines: {count: 3,
+                     color: 'transparent'}, baselineColor: 'transparent'},
+             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
+                     textPosition: 'in'}
+          }
+       };
+
+
+/**
+ * Object containing default value for the Pie chart wrapper.
+ */
+gadash.gviz.pieChart = {
+         'type': 'PieChart',
+         'chartOptions': {
+             legend: {position: 'right',
+                      textStyle: {bold: 'true', fontSize: 13},
+                      alignment: 'center',
+                      pieSliceText: 'none'
+             }
+          }
+       };
+
+
+/**
+ * Object containing default value for the bar chart wrapper.
+ */
+gadash.gviz.barChart = {
+         'type': 'BarChart',
+          'chartOptions': {
+             legend: {position: 'top', alignment: 'start'},
+             colors: ['#058dc7'],
+             hAxis: {gridlines: {color: '#efefef', count: 3},
+                     minValue: 0, baselineColor: 'transparent'},
+             vAxis: {gridlines: {color: 'transparent'}, count: 3,
+                     textPosition: 'in'}
+          }
+       };
+
+
+/**
+ * Object containing default value for the Column chart wrapper.
+ */
+gadash.gviz.columnChart = {
+         'type': 'ColumnChart',
+         'chartOptions': {
+             legend: {position: 'top', alignment: 'start'},
+             colors: ['#058dc7'],
+             hAxis: {gridlines: {count: 3, color: 'transparent'},
+                     baselineColor: 'transparent'},
+             vAxis: {gridlines: {color: '#efefef', count: 3},
+                     minValue: 0, textPosition: 'in'}
+          }
+       };
+
+
+/**
  * Line Chart Wrapper
  * gadash.GaLineChart is a subclass of gadash.Chart.
  * GaLineChart declares a configuration object as its super class Chart and
@@ -732,37 +836,22 @@ gadash.GaLineChart = function(div, ids, metrics, opt_config) {
 
    this.config = {};
    this.set({
-         'type': 'LineChart',
          'divContainer': div,
          'query': {
              'ids': ids,
              'metrics': metrics,
              'dimensions': 'ga:date'
-          },
-         'chartOptions': {
-             height: 300,
-             width: 450,
-             title: 'Demo',
-             fontSize: 12,
-             curveType: 'function',
-             pointSize: 6,
-             lineWidth: 4,
-             areaOpacity: 0.1,
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             hAxis: {format: 'MMM d', gridlines: {color: 'transparent'},
-                    baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
-                    textPosition: 'in'}
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
+	   .set(gadash.gviz.lineChart)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
 
 
 /**
- * Makes GaLineChart a subclass of Chart class using chaining inheritance.
+ * Make GaLineChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaLineChart.prototype = new gadash.Chart();
 
@@ -792,36 +881,22 @@ gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
 
    this.config = {};
    this.set({
-         'type': 'AreaChart',
          'divContainer': div,
          'query': {
              'ids': ids,
              'metrics': metrics,
              'dimensions': 'ga:date'
-          },
-         'chartOptions': {
-             height: 300,
-             width: 450,
-             title: 'Demo',
-             fontSize: 12,
-             curveType: 'function',
-             pointSize: 6,
-             lineWidth: 4,
-             areaOpacity: 0.1,
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             hAxis: {format: 'MMM d', gridlines: {count: 3,
-                     color: 'transparent'}, baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
-                     textPosition: 'in'}
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
+	   .set(gadash.gviz.areaChart)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
 
+
 /**
- * Makes GaAreaChart a subclass of Chart class using chaining inheritance.
+ * Make GaAreaChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaAreaChart.prototype = new gadash.Chart();
 
@@ -850,33 +925,22 @@ gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
 
    this.config = {};
    this.set({
-         'type': 'PieChart',
          'divContainer': div,
          'query': {
              'ids': ids,
              'metrics': metrics,
              'dimensions': dimensions
-          },
-          'chartOptions': {
-             height: 300,
-             width: 450,
-             title: 'Demo',
-             fontSize: 12,
-             curveType: 'function',
-             legend: {position: 'right',
-                      textStyle: {bold: 'true', fontSize: 13},
-                      alignment: 'center',
-                      pieSliceText: 'none'
-             }
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
+       .set(gadash.gviz.pieChart)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
 
 
 /**
- * Makes GaPieChart a subclass of Chart class using chaining inheritance.
+ * Make GaPieChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaPieChart.prototype = new gadash.Chart();
 
@@ -904,35 +968,22 @@ gadash.GaPieChart.prototype = new gadash.Chart();
 gadash.GaBarChart = function(div, ids, metrics, opt_config) {
    this.config = {};
    this.set({
-         'type': 'BarChart',
          'divContainer': div,
          'query': {
              'ids': ids,
              'metrics': metrics,
-             'dimensions': 'ga:date',
-             'sort': '-ga:date'
-          },
-          'chartOptions': {
-             height: 300,
-             width: 450,
-             fontSize: 12,
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             title: 'Demo',
-             curveType: 'function',
-             hAxis: {gridlines: {color: '#efefef', count: 3},
-                     minValue: 0, baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: 'transparent'}, count: 3,
-                     textPosition: 'in'}
+             'dimensions': 'ga:date'
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
+	   .set(gadash.gviz.barChart)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
 
 
 /**
- * Makes GaBarChart a subclass of Chart class using chaining inheritance.
+ * Make GaBarChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaBarChart.prototype = new gadash.Chart();
 
@@ -961,33 +1012,21 @@ gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
 
    this.config = {};
    this.set({
-         'type': 'ColumnChart',
          'divContainer': div,
          'query': {
              'ids': ids,
              'metrics': metrics,
-             'dimensions': 'ga:date',
-             'sort': 'ga:date'
-          },
-          'chartOptions': {
-             height: 300,
-             width: 450,
-             fontSize: 12,
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             title: 'Demo',
-             curveType: 'function',
-             hAxis: {gridlines: {count: 3, color: 'transparent'},
-                     baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: '#efefef', count: 3},
-                     minValue: 0, textPosition: 'in'}
+             'dimensions': 'ga:date'
           }
        })
+       .set(gadash.gviz.defaultChartOptions)
+       .set(gadash.gviz.columnChart)
        .set(opt_config);
    gadash.util.checkDate(this);
 };
 
+
 /**
- * Makes GaColumnChart a subclass of Chart class using chaining inheritance.
+ * Make GaColumnChart a subclass of Chart class using chaining inheritance.
  */
 gadash.GaColumnChart.prototype = new gadash.Chart();
