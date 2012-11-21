@@ -48,14 +48,14 @@
  */
  gadash.util = gadash.util || {};
 
- 
+
  /**
  * Namespace for gviz object. Contains objects on the way charts are
  * displayed.
  */
  gadash.gviz = gadash.gviz || {};
 
- 
+
 /**
  * Boolean that checks to see if gapi client is loaded.
  */
@@ -76,13 +76,6 @@ gadash.SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
  * @type {Array}
  */
 gadash.commandQueue = [];
-
-
-/**
- * Hold the DataTable for the creation of charts
- * @type {DataTable}
- */
-gadash.dTable = {};
 
 
 /**
@@ -345,80 +338,8 @@ gadash.Chart.prototype.defaultOnError = function(message) {
  */
 gadash.Chart.prototype.defaultOnSuccess = function(resp) {
   var dataTable = gadash.util.getDataTable(resp, this.config.type);
-  gadash.dTable = dataTable;
-  var isStrDate = new String(gadash.dTable.getValue(0, 0));
-  var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
-  if (isStrDate.search(datePattern) == 0) {
-      gadash.util.convertToMMMd();
-  }
   var chart = gadash.util.getChart(this.config.divContainer, this.config.type);
-  var dateFormatter = new google.visualization.DateFormat({ pattern: 'MMM d' });
-  dateFormatter.format(dataTable, 0);
   gadash.util.draw(chart, dataTable, this.config.chartOptions);
-};
-
-
-/**
- * Takes the first column of the dataTable and change its values to dates
- * in a String format composed of 3 letters representing the month followed
- * by a space and 1 or 2 digits representing the day of the month
- */
-gadash.util.convertToMMMd = function() {
-   var numberOfRows = gadash.dTable.getNumberOfRows();
-   for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
-      gadash.dTable.setValue(
-         rowIndex, 0, gadash.util.stringDateToString(
-            gadash.dTable.getValue(rowIndex, 0)
-         )
-      );
-   }
-};
-
-
-/**
- * Converts a String composed of 8 digits representing a date into a String
- * composed of 3 letters representing the month followed by a space and
- * 1 or 2 digits representing the day of the month
- * @param {String} date - 8 digits in the following format: YYYYMMDD.
- * @return {String} date - in the format: MMM D.
- */
-gadash.util.stringDateToString = function(date) {
-  var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
-  if (date.search(datePattern) == 0) {
-     var month = date.substring(4, 6);
-     switch (month) {
-        case '01': month = 'Jan';
-                   break;
-        case '02': month = 'Feb';
-                   break;
-        case '03': month = 'Mar';
-                   break;
-        case '04': month = 'Apr';
-                   break;
-        case '05': month = 'May';
-                   break;
-        case '06': month = 'Jun';
-                   break;
-        case '07': month = 'Jul';
-                   break;
-        case '08': month = 'Aug';
-                   break;
-        case '09': month = 'Sep';
-                   break;
-        case '10': month = 'Oct';
-                   break;
-        case '11': month = 'Nov';
-                   break;
-        case '12': month = 'Dec';
-                   break;
-     }
-     var day = date.substring(6, 8);
-     if (day < 10) {
-        day = day.substring(1, 2);
-     }
-     date = month + ' ' + day;
-  }
-  return date;
 };
 
 
@@ -542,7 +463,102 @@ gadash.util.getChart = function(id, chartType) {
  *     into the chart.
  */
 gadash.util.draw = function(chart, dataTable, chartOptions) {
+  gadash.util.convertDateFormat(dataTable);
+  gadash.util.createDateFormater(dataTable);
   chart.draw(dataTable, chartOptions);
+};
+
+
+/**
+ * Converts string representing a date with the format YYYYMMDD
+ * @param {Object} dataTable - The Google DataTable object holding
+ *     the response data.
+ */
+gadash.util.convertDateFormat = function(dataTable) {
+  //Stores the first value of the first column of the response data
+  var isStrDate = new String(dataTable.getValue(0, 0));
+
+  //Checks if the string object is representing a date with the format YYYYMMDD
+  var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
+  if (isStrDate.search(datePattern) == 0) {
+      dataTable = gadash.util.convertToMMMd(dataTable);
+  }
+};
+
+
+/**
+ * Creates a date format 'MMM d', which can be call by chart wrappers
+ * @param {Object} dataTable - The Google DataTable object holding
+ *     the response data.
+ */
+gadash.util.createDateFormater = function(dataTable) {
+  var dateFormatter = new google.visualization.DateFormat({pattern: 'MMM d'});
+  dateFormatter.format(dataTable, 0);
+};
+
+
+/**
+ * Takes the first column of the dataTable and change its values to dates
+ * in a String format composed of 3 letters representing the month followed
+ * by a space and 1 or 2 digits representing the day of the month
+ * @param {Object} dTable - The Google DataTable object holding
+ *     the response data.
+ * @return {Object} dTable - A Google DataTable object populated
+ *     with the GA response data and modified string date format.
+ */
+gadash.util.convertToMMMd = function(dTable) {
+   var numberOfRows = dTable.getNumberOfRows();
+   for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+      dTable.setValue(
+         rowIndex, 0, gadash.util.stringDateToString(
+            dTable.getValue(rowIndex, 0)
+         )
+      );
+   }
+   return dTable;
+};
+
+
+/**
+ * Converts a String composed of 8 digits representing a date into a String
+ * composed of 3 letters representing the month followed by a space and
+ * 1 or 2 digits representing the day of the month
+ * @param {String} date - 8 digits in the following format: YYYYMMDD.
+ * @return {String} date - in the format: MMM D.
+ */
+gadash.util.stringDateToString = function(date) {
+  //Checks if the string object is representing a date with the format YYYYMMDD
+  var datePattern = /^(20)\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])$/;
+  if (date.search(datePattern) == 0) {
+      var monthMap = {
+      '01': 'Jan',
+      '02': 'Feb',
+      '03': 'Mar',
+      '04': 'Apr',
+      '05': 'May',
+      '06': 'Jun',
+      '07': 'Jul',
+      '08': 'Aug',
+      '09': 'Sep',
+      '10': 'Oct',
+      '11': 'Nov',
+      '12': 'Dec'
+    };
+
+    //Convert 2 digits representing a month into a 3 letters string
+    var month = date.substring(4, 6);
+    var monthStr = monthMap[month];
+
+    //Convert 2 digits represneting a day into 1 or 2 digits string
+    var day = date.substring(6, 8);
+    if (day < 10) {
+      day = day.substring(1, 2);
+    }
+
+    //Concatenate the resulting month and day separated by a white space
+    date = monthStr + ' ' + day;
+  }
+  return date;
 };
 
 
@@ -716,100 +732,163 @@ gadash.util.checkDate = function(chart) {
  * This object is used by all five chart wrappers.
  */
 gadash.gviz.defaultChartOptions = {
-          'chartOptions': {
-             height: 300,
-             width: 450,
-             fontSize: 12,
-             title: 'Demo',
-             curveType: 'function',
-			 titleTextStyle: {fontName: 'Arial', fontSize: 15, bold: false}
-          }
-       };
+  'chartOptions': {
+    height: 300,
+    width: 450,
+    fontSize: 12,
+    title: 'Demo',
+    curveType: 'function',
+    titleTextStyle: {
+      fontName: 'Arial',
+      fontSize: 15,
+      bold: false
+    }
+  }
+};
 
 
 /**
  * Object containing default value for the Line chart wrapper.
  */
 gadash.gviz.lineChart = {
-         'type': 'LineChart',
-         'chartOptions': {
-             pointSize: 6,
-             lineWidth: 4,
-             areaOpacity: 0.1,
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             hAxis: {format: 'MMM d', gridlines: {color: 'transparent'},
-                    baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
-                    textPosition: 'in'}
-          }
-       };
+  'type': 'LineChart',
+  'chartOptions': {
+    pointSize: 6,
+    lineWidth: 4,
+    areaOpacity: 0.1,
+    legend: {
+      position: 'top',
+      alignment: 'start'
+    },
+    colors: ['#058dc7'],
+    hAxis: {
+      format: 'MMM d',
+      gridlines: {color: 'transparent'},
+      baselineColor: 'transparent'
+    },
+    vAxis: {
+      gridlines: {
+        color: '#efefef',
+        logScale: 'true',
+        count: 3
+      },
+      textPosition: 'in'
+    }
+  }
+};
 
 
 /**
  * Object containing default value for the Area chart wrapper.
  */
 gadash.gviz.areaChart = {
-         'type': 'AreaChart',
-         'chartOptions': {
-             pointSize: 6,
-             lineWidth: 4,
-             areaOpacity: 0.1,
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             hAxis: {format: 'MMM d', gridlines: {count: 3,
-                     color: 'transparent'}, baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: '#efefef', logScale: 'true', count: 3},
-                     textPosition: 'in'}
-          }
-       };
+  'type': 'AreaChart',
+  'chartOptions': {
+    pointSize: 6,
+    lineWidth: 4,
+    areaOpacity: 0.1,
+    legend: {
+      position: 'top',
+      alignment: 'start'
+    },
+    colors: ['#058dc7'],
+    hAxis: {
+      format: 'MMM d',
+      gridlines: {
+        count: 3,
+        color: 'transparent'
+      },
+      baselineColor: 'transparent'
+    },
+    vAxis: {
+      gridlines: {
+        color: '#efefef',
+        logScale: 'true',
+        count: 3
+      },
+      textPosition: 'in'
+    }
+  }
+};
 
 
 /**
  * Object containing default value for the Pie chart wrapper.
  */
 gadash.gviz.pieChart = {
-         'type': 'PieChart',
-         'chartOptions': {
-             legend: {position: 'right',
-                      textStyle: {bold: 'true', fontSize: 13},
-                      alignment: 'center',
-                      pieSliceText: 'none'
-             }
-          }
-       };
+  'type': 'PieChart',
+  'chartOptions': {
+    legend: {
+      position: 'right',
+      textStyle: {
+        bold: 'true',
+        fontSize: 13
+      },
+      alignment: 'center',
+      pieSliceText: 'none'
+    }
+  }
+};
 
 
 /**
  * Object containing default value for the bar chart wrapper.
  */
 gadash.gviz.barChart = {
-         'type': 'BarChart',
-         'chartOptions': {
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             hAxis: {gridlines: {color: '#efefef', count: 3},
-                     minValue: 0, baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: 'transparent'}, count: 3,
-                     textPosition: 'in'}
-          }
-       };
+  'type': 'BarChart',
+  'chartOptions': {
+    legend: {
+      position: 'top',
+      alignment: 'start'
+    },
+    colors: ['#058dc7'],
+    hAxis: {
+      gridlines: {
+        color: '#efefef',
+        count: 3
+      },
+      minValue: 0,
+      baselineColor: 'transparent'
+    },
+    vAxis: {
+      gridlines: {
+        color: 'transparent'
+      },
+      count: 3,
+      textPosition: 'in'
+    }
+  }
+};
 
 
 /**
  * Object containing default value for the Column chart wrapper.
  */
 gadash.gviz.columnChart = {
-         'type': 'ColumnChart',
-         'chartOptions': {
-             legend: {position: 'top', alignment: 'start'},
-             colors: ['#058dc7'],
-             hAxis: {gridlines: {count: 3, color: 'transparent'},
-                     baselineColor: 'transparent'},
-             vAxis: {gridlines: {color: '#efefef', count: 3},
-                     minValue: 0, textPosition: 'in'}
-          }
-       };
+  'type': 'ColumnChart',
+  'chartOptions': {
+    legend: {
+      position: 'top',
+      alignment: 'start'
+    },
+    colors: ['#058dc7'],
+    hAxis: {
+      gridlines: {
+        count: 3,
+        color: 'transparent'
+      },
+      baselineColor: 'transparent'
+    },
+    vAxis: {
+      gridlines: {
+        color: '#efefef',
+        count: 3
+      },
+      minValue: 0,
+      textPosition: 'in'
+    }
+  }
+};
 
 
 /**
@@ -833,19 +912,18 @@ gadash.gviz.columnChart = {
  * @constructor
  */
 gadash.GaLineChart = function(div, ids, metrics, opt_config) {
-
-   this.config = {};
-   this.set({
-         'divContainer': div,
-         'query': {
-             'ids': ids,
-             'metrics': metrics,
-             'dimensions': 'ga:date'
-          }
-       })
-       .set(gadash.gviz.defaultChartOptions)
-	   .set(gadash.gviz.lineChart)
-       .set(opt_config);
+  this.config = {};
+  this.set({
+    'divContainer': div,
+    'query': {
+      'ids': ids,
+      'metrics': metrics,
+      'dimensions': 'ga:date'
+    }
+  })
+  .set(gadash.gviz.defaultChartOptions)
+  .set(gadash.gviz.lineChart)
+  .set(opt_config);
    gadash.util.checkDate(this);
 };
 
@@ -878,20 +956,19 @@ gadash.GaLineChart.prototype = new gadash.Chart();
  * @constructor
  */
 gadash.GaAreaChart = function(div, ids, metrics, opt_config) {
-
-   this.config = {};
-   this.set({
-         'divContainer': div,
-         'query': {
-             'ids': ids,
-             'metrics': metrics,
-             'dimensions': 'ga:date'
-          }
-       })
-       .set(gadash.gviz.defaultChartOptions)
-	   .set(gadash.gviz.areaChart)
-       .set(opt_config);
-   gadash.util.checkDate(this);
+  this.config = {};
+  this.set({
+    'divContainer': div,
+    'query': {
+      'ids': ids,
+      'metrics': metrics,
+      'dimensions': 'ga:date'
+    }
+  })
+  .set(gadash.gviz.defaultChartOptions)
+  .set(gadash.gviz.areaChart)
+  .set(opt_config);
+  gadash.util.checkDate(this);
 };
 
 
@@ -922,20 +999,19 @@ gadash.GaAreaChart.prototype = new gadash.Chart();
  * @constructor
  */
 gadash.GaPieChart = function(div, ids, metrics, dimensions, opt_config) {
-
-   this.config = {};
-   this.set({
-         'divContainer': div,
-         'query': {
-             'ids': ids,
-             'metrics': metrics,
-             'dimensions': dimensions
-          }
-       })
-       .set(gadash.gviz.defaultChartOptions)
-       .set(gadash.gviz.pieChart)
-       .set(opt_config);
-   gadash.util.checkDate(this);
+  this.config = {};
+  this.set({
+    'divContainer': div,
+    'query': {
+      'ids': ids,
+      'metrics': metrics,
+      'dimensions': dimensions
+    }
+  })
+  .set(gadash.gviz.defaultChartOptions)
+  .set(gadash.gviz.pieChart)
+  .set(opt_config);
+  gadash.util.checkDate(this);
 };
 
 
@@ -966,19 +1042,19 @@ gadash.GaPieChart.prototype = new gadash.Chart();
  * @constructor
  */
 gadash.GaBarChart = function(div, ids, metrics, opt_config) {
-   this.config = {};
-   this.set({
-         'divContainer': div,
-         'query': {
-             'ids': ids,
-             'metrics': metrics,
-             'dimensions': 'ga:date'
-          }
-       })
-       .set(gadash.gviz.defaultChartOptions)
-	   .set(gadash.gviz.barChart)
-       .set(opt_config);
-   gadash.util.checkDate(this);
+  this.config = {};
+  this.set({
+    'divContainer': div,
+    'query': {
+      'ids': ids,
+      'metrics': metrics,
+      'dimensions': 'ga:date'
+    }
+  })
+  .set(gadash.gviz.defaultChartOptions)
+  .set(gadash.gviz.barChart)
+  .set(opt_config);
+  gadash.util.checkDate(this);
 };
 
 
@@ -1009,20 +1085,19 @@ gadash.GaBarChart.prototype = new gadash.Chart();
  * @constructor
  */
 gadash.GaColumnChart = function(div, ids, metrics, opt_config) {
-
-   this.config = {};
-   this.set({
-         'divContainer': div,
-         'query': {
-             'ids': ids,
-             'metrics': metrics,
-             'dimensions': 'ga:date'
-          }
-       })
-       .set(gadash.gviz.defaultChartOptions)
-       .set(gadash.gviz.columnChart)
-       .set(opt_config);
-   gadash.util.checkDate(this);
+  this.config = {};
+  this.set({
+    'divContainer': div,
+    'query': {
+      'ids': ids,
+      'metrics': metrics,
+      'dimensions': 'ga:date'
+    }
+  })
+  .set(gadash.gviz.defaultChartOptions)
+  .set(gadash.gviz.columnChart)
+  .set(opt_config);
+  gadash.util.checkDate(this);
 };
 
 
