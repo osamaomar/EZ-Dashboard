@@ -1,0 +1,48 @@
+#content {
+  height:95em;
+  width:85em;
+  float:left;
+}
+
+#row_Header {
+  height:8em;
+  width:85em;
+  float:left;
+}
+
+.images {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.header {
+  height:8em;
+  width:28em;
+  float:left;
+}
+
+H1, H3 {
+  color:#058dc7;
+  text-align:center
+}
+
+.chart {
+  height:19em;
+  width:28em;
+  float:left;
+}  
+
+.row {
+  height:19em;
+  width:85em;
+  float:left;
+}
+
+div{
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+}
