@@ -146,33 +146,7 @@ text-decoration:none;
    text-align: right;
 }
 
-#menu li
-{
-    float: left;
-    margin-right: 0.5em;
-}
-#menu ul
-{
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
-}
 
-#menu a
-{
-    display: block;
-    width: 5em;
-    height:2.5em;
-    color: white;
-    background-color: #000099;
-    text-decoration: none;
-    text-align: center;
-}
-
-#menu a:hover
-{
-    background-color: #6666AA;
-}
 
 #chartholder{
 

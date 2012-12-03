@@ -5,7 +5,7 @@
 
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>		
 <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>		
-<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.min
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom
 .css" media="screen" />
 
 <body>
@@ -14,6 +14,11 @@
 <img src="images/ez-image.png"/></a>
 <div id="header" style="width:100%; background-color:#FFA500;">
 
+<script type='text/javascript'>//<![CDATA[ 
+	$(function(){
+		$('#menu').tabs();
+	});//]]>  
+</script>
 <h1> EZ Dashboard</h1>
 </div>
 
@@ -110,44 +115,45 @@
             <a href="#" id="btnClose">X</a>
          </td>
       </tr>
-         </table><br/>
-     <div id="leftdiv"style="float:left; font-size:25px;"> <center>Preview chart</center> <br/>
+   </table>
+   <br/>
+   <div id="leftdiv"style="float:left; font-size:25px;"> <center>Preview chart</center> <br/>
      	<div id="chartholder" style="float:center;">
-     			<div id="chartholder">
-     						<div id="wrappers1" class="wrappers" >
-				<div class="wrapperheader">
-					<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
-				</div>
-				
-        	</div>	
-
-        </div>
-     			</div>
-
-   </div>
-
-  		  <div style="float:right" id="menu">
-						    <ul>
-						        <li><a href="#">Line</a></li>
-						        <li><a href="#">Pie</a></li>
-						        <li><a href="#">Bar</a></li>
-						        <li><a href="#">Column</a></li>
-						        <li><a href="#">Area</a></li>
-						    </ul>
-
-						    <div>
-						    		<br/><br/><br/><br/><br/>
-						    	osama<br/><br/><br/><br/><br/>
-						    </div>
+     		<div id="chartholder">
+     			<div id="wrappers1" class="wrappers" >
+					<div class="wrapperheader">
+						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
+					</div>
+				</div>	
 			</div>
-<br/>
-<br/>
+     	</div>
+	</div>
+	<div id="menu" style="float:right;width:500px;height:300px">
+	    <ul>
+	        <li><a href="#tabLine">Line</a></li>
+	        <li><a href="#tabPie">Pie</a></li>
+	        <li><a href="#tabBar">Bar</a></li>
+	        <li><a href="#tabColumn">Column</a></li>
+	        <li><a href="#tabArea">Area</a></li>
+	    </ul>
 
-
-
+	    <div id="tabLine">
+	    		<p>this is tab Line</p>
+	    </div>
+	    <div id="tabPie">
+	    		<p>this is tab Pie</p>
+	    </div>
+	    <div id="tabBar">
+	    		<p>this is tab Bar</p>
+	    </div>
+	    <div id="tabColumn">
+	    		<p>this is tab Column</p>
+	    </div>
+	    <div id="tabArea">
+	    		<p>this is tab Area</p>
+	    </div>
+	</div>
 </div>
 
 </body>
-
-
 </html>
