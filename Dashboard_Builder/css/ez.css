@@ -115,12 +115,12 @@ text-decoration:none;
 {
    display: none;
    position: fixed;
-   width: 700px;
-   height: 500px;
+   width: 1100px;
+   height: 650px;
    top: 50%;
    left: 50%;
-   margin-left: -350px;
-   margin-top: -300px;
+   margin-left: -550px;
+   margin-top: -350px;
    background-color: #ffffff;
    border: 1px solid #4D90FE;
    padding: 0px;
@@ -144,4 +144,48 @@ text-decoration:none;
 .align_right
 {
    text-align: right;
+}
+
+#menu li
+{
+    float: left;
+    margin-right: 0.5em;
+}
+#menu ul
+{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+#menu a
+{
+    display: block;
+    width: 5em;
+    height:2.5em;
+    color: white;
+    background-color: #000099;
+    text-decoration: none;
+    text-align: center;
+}
+
+#menu a:hover
+{
+    background-color: #6666AA;
+}
+
+#chartholder{
+
+  width: 300px;
+   height: 300px;
+   position: absolute;
+   left: 50%;
+   top: 50%; 
+   margin-left: -290px;
+   margin-top: -150px;
+}
+
+#leftdiv{
+
+height: 500px;
 }
