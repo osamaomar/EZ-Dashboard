@@ -63,8 +63,23 @@ text-align:center;
 vertical-align:center;
 
 }
+#wrappers1:hover{
+background-color: #FaFaFa ;
+}
+#wrappers2:hover{
+background-color: #FaFaFa ;
+}
+#wrappers3:hover{
+background-color: #FaFaFa ;
+}
+#wrappers4:hover{
+background-color: #FaFaFa ;
+}
+#wrappers5:hover{
+background-color: #FaFaFa ;
+}
 
-.chartcontainer:hover{
+#wrappers6:hover{
 background-color: #FaFaFa ;
 }
 
@@ -120,8 +135,8 @@ width:350px;
 	display:inline-block;
 	color: 	#F0F0F0 ;
 	font-family:arial;
-	font-size:195px;
-	padding:0px 115px;
+	font-size:200px;
+	padding:0px 0px;
 	text-decoration:none;
 	text-shadow:1px 0px 0px #ffffff;
 }
