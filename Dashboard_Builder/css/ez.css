@@ -1,0 +1,136 @@
+html{
+width: 100%;
+}
+
+
+#wrappers1{
+border:5px dashed #DDD;
+border-radius:0px;
+-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+height:250px;
+width:350px;
+text-align:center;
+vertical-align:center;
+
+}
+#wrappers2{
+border:1px dotted;
+border-radius:0px;
+-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+height:250px;
+width:350px;
+text-align:center;
+vertical-align:center;
+
+}
+#wrappers3{
+border:1px dotted;
+border-radius:0px;
+-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+height:250px;
+width:350px;
+text-align:center;
+vertical-align:center;
+
+}
+#wrappers4{
+border:1px dotted;
+border-radius:0px;
+-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+height:250px;
+width:350px;
+text-align:center;
+vertical-align:center;
+
+}
+#wrappers5{
+border:1px dotted;
+border-radius:0px;
+-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+height:250px;
+width:350px;
+text-align:center;
+vertical-align:center;
+
+}
+#wrappers6{
+border:1px dotted;
+border-radius:0px;
+-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+height:250px;
+width:350px;
+text-align:center;
+vertical-align:center;
+
+}
+
+.chartcontainer:hover{
+background-color: #FaFaFa ;
+}
+
+#wrapperlink{
+float:right;
+}
+
+.wrapperheader{
+background-color: #E8E8E8 ;
+height:20px;
+width:350px;
+}
+#finishbutton{
+
+ text-align:center;
+    
+}
+.grabcode {
+	-moz-box-shadow:inset 0px 0px 0px 0px #fce2c1;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #fce2c1;
+	box-shadow:inset 0px 0px 0px 0px #fce2c1;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
+	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color:#ffc477;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:17px 76px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #cc9f52;
+}.grabcode:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
+	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color:#fb9e25;
+}.grabcide:active {
+	position:relative;
+	top:1px;
+}
+
+.add {
+font-size:20px;
+}
+
+.plus {
+	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+	background-color:transparent;
+	display:inline-block;
+	color: 	#F0F0F0 ;
+	font-family:arial;
+	font-size:170px;
+	padding:0px 115px;
+	text-decoration:none;
+	text-shadow:1px 0px 0px #ffffff;
+}
+
+.plus:active {
+	position:relative;
+	top:1px;
+}
