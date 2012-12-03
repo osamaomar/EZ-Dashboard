@@ -189,3 +189,19 @@ text-decoration:none;
 
 height: 500px;
 }
+
+#rightdiv{
+
+ width: 300px;
+   height: 300px;
+   position: absolute;
+   left: 50%;
+   top: 50%; 
+   margin-left: 130px;
+   margin-top: -120px;
+  
+}
+#filter{
+
+font-size: 10px;
+}
