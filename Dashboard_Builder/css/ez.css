@@ -3,69 +3,21 @@ width: 100%;
 }
 
 
-#wrappers1{
-border:1px dotted;
+.wrappers{
+border:5px dashed #DDD;
 border-radius:0px;
 -moz-border-radius:25px; /* Firefox 3.6 and earlier */
 height:250px;
 width:350px;
 text-align:center;
 vertical-align:center;
-
-}
-#wrappers2{
-border:1px dotted;
-border-radius:0px;
--moz-border-radius:25px; /* Firefox 3.6 and earlier */
-height:250px;
-width:350px;
-text-align:center;
-vertical-align:center;
-
-}
-#wrappers3{
-border:1px dotted;
-border-radius:0px;
--moz-border-radius:25px; /* Firefox 3.6 and earlier */
-height:250px;
-width:350px;
-text-align:center;
-vertical-align:center;
-
-}
-#wrappers4{
-border:1px dotted;
-border-radius:0px;
--moz-border-radius:25px; /* Firefox 3.6 and earlier */
-height:250px;
-width:350px;
-text-align:center;
-vertical-align:center;
-
-}
-#wrappers5{
-border:1px dotted;
-border-radius:0px;
--moz-border-radius:25px; /* Firefox 3.6 and earlier */
-height:250px;
-width:350px;
-text-align:center;
-vertical-align:center;
-
-}
-#wrappers6{
-border:1px dotted;
-border-radius:0px;
--moz-border-radius:25px; /* Firefox 3.6 and earlier */
-height:250px;
-width:350px;
-text-align:center;
-vertical-align:center;
+cursor:pointer;
 
 }
 
-.chartcontainer:hover{
-background-color: #FaFaFa ;
+
+.wrappers:hover{
+background-color:#FaFaFa;
 }
 
 #wrapperlink{
@@ -124,9 +76,72 @@ width:350px;
 	padding:0px 115px;
 	text-decoration:none;
 	text-shadow:1px 0px 0px #ffffff;
+	height:150px;
 }
 
 .plus:active {
 	position:relative;
 	top:1px;
+}
+
+.addchart{
+color:#DDD;
+font-size:20px;
+}
+
+a{
+
+text-decoration:none;
+}
+.web_dialog_overlay
+{
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   background: #000000;
+   opacity: .15;
+   filter: alpha(opacity=15);
+   -moz-opacity: .15;
+   z-index: 101;
+   display: none;
+}
+.web_dialog
+{
+   display: none;
+   position: fixed;
+   width: 700px;
+   height: 500px;
+   top: 50%;
+   left: 50%;
+   margin-left: -350px;
+   margin-top: -300px;
+   background-color: #ffffff;
+   border: 1px solid #4D90FE;
+   padding: 0px;
+   z-index: 102;
+   font-family: Verdana;
+   font-size: 10pt;
+}
+.web_dialog_title
+{
+   border-bottom: solid 1px #4D90FE;
+   background-color: #4D90FE;
+   padding: 4px;
+   color: White;
+   font-weight:bold;
+}
+.web_dialog_title a
+{
+   color: White;
+   text-decoration: none;
+}
+.align_right
+{
+   text-align: right;
 }
