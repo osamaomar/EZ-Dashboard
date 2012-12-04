@@ -1,159 +1,191 @@
 <html>
-<link rel="stylesheet" type="text/css" href="css/ez.css" media="screen" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>				
-<script type="text/javascript" src="js/jquery.js"></script>		
+<head>
+	<link rel="stylesheet" type="text/css" href="css/ez.css" media="screen" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>				
+	<script type="text/javascript" src="js/jquery.js"></script>		
 
-<script type="text/javascript" src="js/jquery-1.8.3.js"></script>		
-<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>		
-<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom
-.css" media="screen" />
+	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>		
+	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>		
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom
+	.css" media="screen" />
+
+	<script type='text/javascript'>//<![CDATA[ 
+		$(function(){
+			$('#menu').tabs();
+		});//]]>  
+	</script>
+</head>
 
 <body>
-<a href="#">
-<img src="images/google.png"/>
-<img src="images/ez-image.png"/></a>
-<div id="header" style="width:100%; background-color:#FFA500;">
-
-<script type='text/javascript'>//<![CDATA[ 
-	$(function(){
-		$('#menu').tabs();
-	});//]]>  
-</script>
-<h1> EZ Dashboard</h1>
-</div>
-
-
-<table align="center" style="border-spacing: 15px;">
-	<tr>
-		<td>
-			<div id="wrappers1" class="wrappers" >
-				<div class="wrapperheader">
-					<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
-				</div>
-				<div class="chartcontainer">
-					<a href="#" class="plus">+ </a>
-						<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
-				</div>
-        	</div>
-    	</td>
-    	<td>
-			<div id="wrappers2" class="wrappers" >
-				<div class="wrapperheader">
-					<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
-				</div>
-				<div class="chartcontainer">
-					<a href="#" class="plus">+ </a>
-						<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
-				</div>
-			</div>
-		</td>
-		<td>
-			<div id="wrappers3" class="wrappers" >
-				<div class="wrapperheader">
-					<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
-				</div>
-				<div class="chartcontainer">
-					<a href="#" class="plus">+ </a>
-						<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
-				</div>
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div id="wrappers4" class="wrappers" >
-				<div class="wrapperheader">
-					<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
-				</div>
-				<div class="chartcontainer">
-					<a href="#" class="plus">+ </a>
-						<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
-				</div>
-       	</div>
-    	</td>
-    	<td>
-			<div id="wrappers5" class="wrappers">
-				<div class="wrapperheader">
-					<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
-				</div>
-				<div class="chartcontainer">
-					<a href="#" class="plus">+ </a>
-						<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
-				</div>
-		</div>
-		</td>
-		<td>
-			<div id="wrappers6" class="wrappers" >
-				<div class="wrapperheader">
-					<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
-				</div>
-				<div class="chartcontainer">
-					<a href="#" class="plus">+ </a>
-						<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
-				</div>
-			</div>
-		</td>
-	</tr>
-	</table>
-<br/>
-<br/>
-
-<div id="finishbutton" >
-<a href="#" class="grabcode">Grab Code</a>
-</div>
-      
-    
-<div id="output"></div>
-    
-<div id="overlay" class="web_dialog_overlay"></div>
-    
-<div id="dialog" class="web_dialog">
-   <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
-      <tr>
-         <td class="web_dialog_title">Chart Settings</td>
-         <td class="web_dialog_title align_right">
-            <a href="#" id="btnClose">X</a>
-         </td>
-      </tr>
-   </table>
-   <br/>
-   <div id="leftdiv"style="float:left; font-size:25px;"> <center>Preview chart</center> <br/>
-     	<div id="chartholder" style="float:center;">
-     		<div id="chartholder">
-     			<div id="wrappers1" class="wrappers" >
+	<a href="#">
+		<img src="images/google.png"/>
+		<img src="images/ez-image.png"/>
+	</a>
+	<div id="header" style="width:100%; background-color:#FFA500;">
+		<h1> EZ Dashboard</h1>
+	</div>	
+	<table align="center" style="border-spacing: 15px;">
+		<tr>
+			<td>
+				<div id="wrappers1" class="wrappers" >
 					<div class="wrapperheader">
 						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
 					</div>
-				</div>	
+					<div class="chartcontainer">
+						<a href="#" class="plus">+ </a>
+							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
+					</div>
+	        	</div>
+	    	</td>
+	    	<td>
+				<div id="wrappers2" class="wrappers" >
+					<div class="wrapperheader">
+						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
+					</div>
+					<div class="chartcontainer">
+						<a href="#" class="plus">+ </a>
+							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div id="wrappers3" class="wrappers" >
+					<div class="wrapperheader">
+						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
+					</div>
+					<div class="chartcontainer">
+						<a href="#" class="plus">+ </a>
+							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="wrappers4" class="wrappers" >
+					<div class="wrapperheader">
+						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
+					</div>
+					<div class="chartcontainer">
+						<a href="#" class="plus">+ </a>
+							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
+					</div>
+	       		</div>
+	    	</td>
+	    	<td>
+				<div id="wrappers5" class="wrappers">
+					<div class="wrapperheader">
+						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
+					</div>
+					<div class="chartcontainer">
+						<a href="#" class="plus">+ </a>
+							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
+					</div>
+				</div>
+			</td>
+			<td>
+				<div id="wrappers6" class="wrappers" >
+					<div class="wrapperheader">
+						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
+					</div>
+					<div class="chartcontainer">
+						<a href="#" class="plus">+ </a>
+							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+
+	<div id="finishbutton" >
+		<a href="#" class="grabcode">Grab Code</a>
+	</div>
+      
+    
+	<div id="output"></div>
+	    
+	<div id="overlay" class="web_dialog_overlay"></div>
+    
+	<div id="dialog" class="web_dialog">
+	   <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+	      <tr>
+	         <td class="web_dialog_title">Chart Settings</td>
+	         <td class="web_dialog_title align_right">
+	            <a href="#" id="btnClose">X</a>
+	         </td>
+	      </tr>
+	   </table>
+	   <br/>
+	   <div id="leftdiv"style="float:left; font-size:25px;"> <center>Preview chart</center> <br/>
+	     	<div id="chartholder" style="float:center;">
+	 			<div id="chartholder">
+	 				<div id="wrappers1" class="wrappers" >
+						<div class="wrapperheader">
+							<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
+							<br/>
+						</div>
+					</div>	
+	    			<br/><br/><br/><br/><br/>
+	    			<span style="float:left; font-size:12px;"><a href="#">Cancel</a></span>
+				</div>
+	 		</div>
+		</div>
+	  	<div id="menu" style="float:right;width:500px;height:550px">
+		    <ul>
+		        <li><a href="#tabLine">Line</a></li>
+		        <li><a href="#tabPie">Pie</a></li>
+		        <li><a href="#tabBar">Bar</a></li>
+		        <li><a href="#tabColumn">Column</a></li>
+		        <li><a href="#tabArea">Area</a></li>
+		    </ul>
+
+		    <div id="tabLine">
+		    	<div id="rightdiv">
+					<form>
+						Graph the following metric overtime<br/>
+						<select>
+							<option value="volvo">Volvo</option>
+							<option value="saab">Saab</option>
+							<option value="mercedes">Mercedes</option>
+							<option value="audi">Audi</option>
+						</select><br>
+						
+						Compare with (optional) <br/>
+						<select>
+							<option value="volvo">Volvo</option>
+							<option value="saab">Saab</option>
+							<option value="mercedes">Mercedes</option>
+							<option value="audi">Audi</option>
+						</select><br/><br/>
+
+						Filter this data<br/>
+						<span id ="filter">Add a filter</span><br/><br/>
+
+						Widget Title <br/>
+						<input> </input><br/>
+
+						Link to Report or URL <br/>
+						<input> </input>
+						</form><br/><br/><br/>
+			    			<span id ="add-span" style="float:right; margin:50px;"><a href="#" class="add-button">Add</a></span>
+
+				</div>
 			</div>
-     	</div>
+			<div id="tabPie">
+		    		<p>this is tab Pie</p>
+		    </div>
+		    <div id="tabBar">
+		    		<p>this is tab Bar</p>
+		    </div>
+		    <div id="tabColumn">
+		    		<p>this is tab Column</p>
+		    </div>
+		    <div id="tabArea">
+		    		<p>this is tab Area</p>
+		    </div>
+		</div>
 	</div>
-	<div id="menu" style="float:right;width:500px;height:300px">
-	    <ul>
-	        <li><a href="#tabLine">Line</a></li>
-	        <li><a href="#tabPie">Pie</a></li>
-	        <li><a href="#tabBar">Bar</a></li>
-	        <li><a href="#tabColumn">Column</a></li>
-	        <li><a href="#tabArea">Area</a></li>
-	    </ul>
-
-	    <div id="tabLine">
-	    		<p>this is tab Line</p>
-	    </div>
-	    <div id="tabPie">
-	    		<p>this is tab Pie</p>
-	    </div>
-	    <div id="tabBar">
-	    		<p>this is tab Bar</p>
-	    </div>
-	    <div id="tabColumn">
-	    		<p>this is tab Column</p>
-	    </div>
-	    <div id="tabArea">
-	    		<p>this is tab Area</p>
-	    </div>
-	</div>
-</div>
-
 </body>
 </html>
