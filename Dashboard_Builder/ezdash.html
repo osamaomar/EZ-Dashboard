@@ -1,11 +1,14 @@
 <html>
 <head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/ez.css" media="screen" />
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>				
 	<script type="text/javascript" src="js/jquery.js"></script>		
 
 	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>		
-	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>		
+	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
+
+	
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom
 	.css" media="screen" />
 
@@ -14,6 +17,11 @@
 			$('#menu').tabs();
 		});//]]>  
 	</script>
+	
+	<script type="text/javascript" src="js/gadash-1.0.js"></script>
+	<script src="https://apis.google.com/js/client.js?onload=gadashInit"></script>	
+	<script type="text/javascript" src="js/general.js"></script>		
+
 </head>
 
 <body>
@@ -31,7 +39,7 @@
 					<div class="wrapperheader">
 						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
 					</div>
-					<div class="chartcontainer">
+					<div id="chart1" class="chartcontainer">
 						<a href="#" class="plus">+ </a>
 							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
 					</div>
@@ -123,7 +131,9 @@
 	 			<div id="chartholder">
 	 				<div id="wrappers1" class="wrappers" >
 						<div class="wrapperheader">
-							<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
+							<a id="wrapperlink" href ="#">
+								<img id="edit_chart1" src="images/edit.png"/>
+							</a>
 							<br/>
 						</div>
 					</div>	
@@ -143,6 +153,7 @@
 
 		    <div id="tabLine">
 		    	<div id="rightdiv">
+					<p>this is tab Line</p>
 					<form>
 						Graph the following metric overtime<br/>
 						<select>
@@ -168,16 +179,18 @@
 
 						Link to Report or URL <br/>
 						<input> </input>
-						</form><br/><br/><br/>
-			    			<span id ="add-span" style="float:right; margin:50px;"><a href="#" class="add-button">Add</a></span>
-
+					</form>
+	    			<span id ="add-span" style="float:right; margin:50px;">
+	    				<a href="#" id="add_line" class="add-button">Add</a>
+	    			</span>
 				</div>
 			</div>
 			<div id="tabPie">
-		    		<p>this is tab Pie</p>
+		    	<p>this is tab Pie</p>
 		    </div>
 		    <div id="tabBar">
 		    	<div id="rightdiv">
+					<p>this is tab Bar</p>
 					<form>
 						Graph the following metric overtime<br/>
 						<select>
@@ -203,13 +216,15 @@
 
 						Link to Report or URL <br/>
 						<input> </input>
-						</form><br/><br/><br/>
-			    			<span id ="add-span" style="float:right; margin:50px;"><a href="#" class="add-button">Add</a></span>
-
+					</form>
+	    			<span id ="add-span" style="float:right; margin:50px;">
+	    				<a href="#" class="add-button">Add</a>
+	    			</span>
 				</div>
 		    </div>
 		    <div id="tabColumn">
 		    	<div id="rightdiv">
+					<p>this is tab Column</p>
 					<form>
 						Graph the following metric overtime<br/>
 						<select>
@@ -235,13 +250,15 @@
 
 						Link to Report or URL <br/>
 						<input> </input>
-						</form><br/><br/><br/>
-			    			<span id ="add-span" style="float:right; margin:50px;"><a href="#" class="add-button">Add</a></span>
-
+					</form>
+	    			<span id ="add-span" style="float:right; margin:50px;">
+	    				<a href="#" class="add-button">Add</a>
+	    			</span>
 				</div>
 		    </div>
 		    <div id="tabArea">
 		    	<div id="rightdiv">
+					<p>this is tab Area</p>
 					<form>
 						Graph the following metric overtime<br/>
 						<select>
@@ -267,9 +284,10 @@
 
 						Link to Report or URL <br/>
 						<input> </input>
-						</form><br/><br/><br/>
-			    			<span id ="add-span" style="float:right; margin:50px;"><a href="#" class="add-button">Add</a></span>
-
+					</form>
+	    			<span id ="add-span" style="float:right; margin:50px;">
+	    				<a href="#" class="add-button">Add</a>
+	    			</span>
 				</div>
 		    </div>
 		</div>
