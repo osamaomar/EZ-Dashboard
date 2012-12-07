@@ -161,7 +161,7 @@
 					<p>this is tab Line</p>
 					<form>
 						Graph the following metric overtime<br/>
-						<select>
+						<select id ="lineMetrics">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -229,7 +229,7 @@
 						</select><br><br>
 						
 						Compare with (optional) <br/>
-						<select>
+						<select id ="lineCompare">
 							<option value="volvo">Volvo</option>
 							<option value="saab">Saab</option>
 							<option value="mercedes">Mercedes</option>
@@ -237,16 +237,16 @@
 						</select><br/><br/>
 
 						Filter this data<br/>
-						<span id ="filter">Add a filter</span><br/><br/>
+						<span id ="lineFilter">Add a filter</span><br/><br/>
 
 						Widget Title <br/>
-						<input> </input><br/>
+						<input id ="widgetTitleLine"> </input><br/>
 
 						Link to Report or URL <br/>
-						<input> </input>
+						<input id ="linkURLline"> </input>
 					</form>
 	    			<span id ="add-span" style="float:right; margin:50px;">
-	    				<a href="#" id="add_line" class="add-button">Add</a>
+	    				<a href="#" id="btnAddLine" class="add-button">Add</a>
 	    			</span>
 				</div>
 			</div>
