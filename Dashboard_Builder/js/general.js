@@ -93,24 +93,24 @@ function addLineChart(){
 };
 
 
-function addPieChart(){
+// function addPieChart(){
 
-};
-
-
-function addAreaChart(){
-
-};
+// };
 
 
-function addBarChart(){
+// function addAreaChart(){
 
-};
+// };
 
 
-function addColumnChart(){
+// function addBarChart(){
 
-};
+// };
+
+
+// function addColumnChart(){
+
+// };
 
 
 // function setMenu(){
@@ -123,10 +123,10 @@ function addColumnChart(){
  */
 function initialisation(){
 	addEvent( id_$('btnAddLine'), 'click', addLineChart);
-	addEvent( id_$('btnAddPie'), 'click', addPieChart);
-	addEvent( id_$('btnAddArea'), 'click', addAreaChart);
-	addEvent( id_$('btnAddBar'), 'click', addBarChart);
-	addEvent( id_$('btnAddColumn'), 'click', addColumnChart);
+	// addEvent( id_$('btnAddPie'), 'click', addPieChart);
+	// addEvent( id_$('btnAddArea'), 'click', addAreaChart);
+	// addEvent( id_$('btnAddBar'), 'click', addBarChart);
+	// addEvent( id_$('btnAddColumn'), 'click', addColumnChart);
 
 };
 

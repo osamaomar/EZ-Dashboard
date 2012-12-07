@@ -18,6 +18,7 @@
 		});//]]>  
 	</script>
 	
+    <script src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript" src="js/gadash-1.0.js"></script>
 	<script src="https://apis.google.com/js/client.js?onload=gadashInit"></script>	
 	<script type="text/javascript" src="js/general.js"></script>		
@@ -29,6 +30,10 @@
 		<img src="images/google.png"/>
 		<img src="images/ez-image.png"/>
 	</a>
+
+    <!-- Add Google Analytics authorization button -->
+    <button id="authorize-button">Authorize Analytics</button>
+
 	<div id="header" style="width:100%; background-image:url('images/header BG.png')">
 		<h1><font color="white"><span id="topname">EZ Dashboard</span></font></h1>
 	</div>	
@@ -157,6 +162,7 @@
 					<form>
 						Graph the following metric overtime<br/>
 						<select>
+							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
