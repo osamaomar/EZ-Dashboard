@@ -4,7 +4,9 @@
 	<link rel="stylesheet" type="text/css" href="css/ez.css" media="screen" />
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>				
 	<script type="text/javascript" src="js/jquery.js"></script>		
-
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>		
 	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
 
@@ -15,7 +17,10 @@
 	<script type='text/javascript'>//<![CDATA[ 
 		$(function(){
 			$('#menu').tabs();
-		});//]]>  
+		});//]]>
+		$(function() {
+        	$( "#datepicker" ).datepicker();
+    	});  
 	</script>
 	
 	<script type="text/javascript" src="js/gadash-1.0.js"></script>
@@ -30,8 +35,18 @@
 		<img src="images/ez-image.png"/>
 	</a>
 	<div id="header" style="width:100%; background-image:url('images/header BG.png')">
-		<h1><font color="white"><span id="topname">EZ Dashboard</span></font></h1>
-	</div>	
+		<div>
+			<h1>
+				<font color="white">
+					<span id="topname">EZ Dashboard </span>
+				</font>
+			</h1>
+		</div>
+	</div>
+	<!-- Date Picker -->
+	<div align="right">
+			Date: <input type="text" id="datepicker" /> to <input type="text" id="datepicker" /></div>	
+	<!-- /Date Picker -->
 	<table align="center" style="border-spacing: 15px;">
 		<tr>
 			<td>
@@ -195,7 +210,6 @@
 							<option value="ga:margin">Margin</option>
 							<option value="ga:newVisits">New Visits</option>
 							<option value="ga:organicSearches">Organic Searches</option>
-							<option value="pgDownloadSample">Page Download Sample</option>
 							<option value="ga:pageviews">Pageviews</option>
 							<option value="ga:goalValuePerVisit">Per Visit Goal Value</option>
 							<option value="ga:itemQuantity">Quantity</option>
@@ -224,10 +238,68 @@
 						
 						Compare with (optional) <br/>
 						<select>
-							<option value="volvo">Volvo</option>
-							<option value="saab">Saab</option>
-							<option value="mercedes">Mercedes</option>
-							<option value="audi">Audi</option>
+							<option value="ga:exitRate">% Exit</option>
+							<option value="ga:percentNewVisits">% New Visits</option>
+							<option value="ga:searchExitRate">% Search Exits</option>
+							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
+							<option value="ga:adClicks">AdSense Ads Clicked</option>
+							<option value="ga:CTR">AdSense CTR</option>
+							<option value="ga:CPM">AdSense eCPM</option>
+							<option value="ga:impressions">AdSense Page Impressions</option>
+							<option value="ga:avgDomainLookupTime">Avg. Domain Lookup Time (sec)</option>
+							<option value="ga:avgPageDownloadTime">Avg. Page Download Time (sec)</option>
+							<option value="ga:avgPageLoadTime">Avg. Page Load Time (sec)</option>
+							<option value="ga:avgRedirectionTime">Avg. Redirection Time (sec)</option>
+							<option value="ga:avgServerConnectionTime">Avg. Server Connection Time (sec)</option>
+							<option value="ga:avgServerResponseTime">Avg. Server Response Time (sec)</option>
+							<option value="ga:avgTimeOnPage">Avg. Time on Page</option>
+							<option value="ga:avgTimeOnSite">Avg. Time on Screen</option>
+							<option value="ga:avgUserTimingValue">Avg. User Timing (sec)</option>
+							<option value="ga:avgTimeOnSite">Avg. Visit Duration</option>
+							<option value="ga:visitBounceRate">Bounce Rate</option>
+							<option value="ga:bounces">Bounces</option>
+							<option value="ga:costPerConversion">Cost per Conversion</option>
+							<option value="ga:costPerGoalConversion">Cost per Goal Conversion</option>
+							<option value="ga:costPerTransaction">Cost per Transaction</option>
+							<option value="ga:CPC">CPC</option>
+							<option value="ga:CPM">CPM</option>
+							<option value="ga:CTR">CTR</option>
+							<option value="ga:entrances">Entrances</option>
+							<option value="ga:eventValue">Event Value</option>
+							<option value="ga:exceptions">Exceptions</option>
+							<option value="ga:exits">Exits</option>
+							<option value="ga:goalCompletionsAll">Goal Completions</option>
+							<option value="ga:goalConversionRateAll">Goal Conversion Rate</option>
+							<option value="ga:goalStartsAll">Goal Starts</option>
+							<option value="ga:goalValueAll">Goal Value</option>
+							<option value="ga:impressions">Impressions</option>
+							<option value="ga:margin">Margin</option>
+							<option value="ga:newVisits">New Visits</option>
+							<option value="ga:organicSearches">Organic Searches</option>
+							<option value="ga:pageviews">Pageviews</option>
+							<option value="ga:goalValuePerVisit">Per Visit Goal Value</option>
+							<option value="ga:itemQuantity">Quantity</option>
+							<option value="ga:avgSearchResultViews">Results Pageviews / Search</option>
+							<option value="ga:ROI">ROI</option>
+							<option value="ga:RPC">RPC</option>
+							<option value="ga:searchDepth">Search Depth</option>
+							<option value="ga:searchExits">Search Exits</option>
+							<option value="ga:searchRefinements">Search Refinements</option>
+							<option value="ga:socialActivities">Social Actions</option>
+							<option value="ga:transactionTax">Tax</option>
+							<option value="ga:timeOnPage">Time on Page</option>
+							<option value="ga:goalAbandonRateAll">Total Abandonment Rate</option>
+							<option value="ga:totalEvents">Total Events</option>
+							<option value="ga:searchUniques">Total Unique Searches</option>
+							<option value="ga:transactions">Transactions</option>
+							<option value="ga:uniqueEvents">Unique Events</option>
+							<option value="ga:uniquePageviews">Unique Pageviews</option>
+							<option value="ga:uniquePurchases">Unique Purchases</option>
+							<option value="ga:uniqueSocialInteractions">Unique Social Actions</option>
+							<option value="ga:userTimingValue">User Timing (ms)</option>
+							<option value="ga:visitors">Visitors</option>
+							<option value="ga:visits">Visits</option>
+							<option value="ga:searchVisits">Visits with Search</option>
 						</select><br/><br/>
 
 						Filter this data<br/>
@@ -321,19 +393,135 @@
 					<form>
 						Graph the following metric overtime<br/>
 						<select>
-							<option value="volvo">Volvo</option>
-							<option value="saab">Saab</option>
-							<option value="mercedes">Mercedes</option>
-							<option value="audi">Audi</option>
-						</select><br>
+							<option value="ga:exitRate">% Exit</option>
+							<option value="ga:percentNewVisits">% New Visits</option>
+							<option value="ga:searchExitRate">% Search Exits</option>
+							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
+							<option value="ga:adClicks">AdSense Ads Clicked</option>
+							<option value="ga:CTR">AdSense CTR</option>
+							<option value="ga:CPM">AdSense eCPM</option>
+							<option value="ga:impressions">AdSense Page Impressions</option>
+							<option value="ga:avgDomainLookupTime">Avg. Domain Lookup Time (sec)</option>
+							<option value="ga:avgPageDownloadTime">Avg. Page Download Time (sec)</option>
+							<option value="ga:avgPageLoadTime">Avg. Page Load Time (sec)</option>
+							<option value="ga:avgRedirectionTime">Avg. Redirection Time (sec)</option>
+							<option value="ga:avgServerConnectionTime">Avg. Server Connection Time (sec)</option>
+							<option value="ga:avgServerResponseTime">Avg. Server Response Time (sec)</option>
+							<option value="ga:avgTimeOnPage">Avg. Time on Page</option>
+							<option value="ga:avgTimeOnSite">Avg. Time on Screen</option>
+							<option value="ga:avgUserTimingValue">Avg. User Timing (sec)</option>
+							<option value="ga:avgTimeOnSite">Avg. Visit Duration</option>
+							<option value="ga:visitBounceRate">Bounce Rate</option>
+							<option value="ga:bounces">Bounces</option>
+							<option value="ga:costPerConversion">Cost per Conversion</option>
+							<option value="ga:costPerGoalConversion">Cost per Goal Conversion</option>
+							<option value="ga:costPerTransaction">Cost per Transaction</option>
+							<option value="ga:CPC">CPC</option>
+							<option value="ga:CPM">CPM</option>
+							<option value="ga:CTR">CTR</option>
+							<option value="ga:entrances">Entrances</option>
+							<option value="ga:eventValue">Event Value</option>
+							<option value="ga:exceptions">Exceptions</option>
+							<option value="ga:exits">Exits</option>
+							<option value="ga:goalCompletionsAll">Goal Completions</option>
+							<option value="ga:goalConversionRateAll">Goal Conversion Rate</option>
+							<option value="ga:goalStartsAll">Goal Starts</option>
+							<option value="ga:goalValueAll">Goal Value</option>
+							<option value="ga:impressions">Impressions</option>
+							<option value="ga:margin">Margin</option>
+							<option value="ga:newVisits">New Visits</option>
+							<option value="ga:organicSearches">Organic Searches</option>
+							<option value="ga:pageviews">Pageviews</option>
+							<option value="ga:goalValuePerVisit">Per Visit Goal Value</option>
+							<option value="ga:itemQuantity">Quantity</option>
+							<option value="ga:avgSearchResultViews">Results Pageviews / Search</option>
+							<option value="ga:ROI">ROI</option>
+							<option value="ga:RPC">RPC</option>
+							<option value="ga:searchDepth">Search Depth</option>
+							<option value="ga:searchExits">Search Exits</option>
+							<option value="ga:searchRefinements">Search Refinements</option>
+							<option value="ga:socialActivities">Social Actions</option>
+							<option value="ga:transactionTax">Tax</option>
+							<option value="ga:timeOnPage">Time on Page</option>
+							<option value="ga:goalAbandonRateAll">Total Abandonment Rate</option>
+							<option value="ga:totalEvents">Total Events</option>
+							<option value="ga:searchUniques">Total Unique Searches</option>
+							<option value="ga:transactions">Transactions</option>
+							<option value="ga:uniqueEvents">Unique Events</option>
+							<option value="ga:uniquePageviews">Unique Pageviews</option>
+							<option value="ga:uniquePurchases">Unique Purchases</option>
+							<option value="ga:uniqueSocialInteractions">Unique Social Actions</option>
+							<option value="ga:userTimingValue">User Timing (ms)</option>
+							<option value="ga:visitors">Visitors</option>
+							<option value="ga:visits">Visits</option>
+							<option value="ga:searchVisits">Visits with Search</option>
+						</select><br><br>
 						
 						Compare with (optional) <br/>
 						<select>
-							<option value="volvo">Volvo</option>
-							<option value="saab">Saab</option>
-							<option value="mercedes">Mercedes</option>
-							<option value="audi">Audi</option>
-						</select><br/><br/>
+							<option value="ga:exitRate">% Exit</option>
+							<option value="ga:percentNewVisits">% New Visits</option>
+							<option value="ga:searchExitRate">% Search Exits</option>
+							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
+							<option value="ga:adClicks">AdSense Ads Clicked</option>
+							<option value="ga:CTR">AdSense CTR</option>
+							<option value="ga:CPM">AdSense eCPM</option>
+							<option value="ga:impressions">AdSense Page Impressions</option>
+							<option value="ga:avgDomainLookupTime">Avg. Domain Lookup Time (sec)</option>
+							<option value="ga:avgPageDownloadTime">Avg. Page Download Time (sec)</option>
+							<option value="ga:avgPageLoadTime">Avg. Page Load Time (sec)</option>
+							<option value="ga:avgRedirectionTime">Avg. Redirection Time (sec)</option>
+							<option value="ga:avgServerConnectionTime">Avg. Server Connection Time (sec)</option>
+							<option value="ga:avgServerResponseTime">Avg. Server Response Time (sec)</option>
+							<option value="ga:avgTimeOnPage">Avg. Time on Page</option>
+							<option value="ga:avgTimeOnSite">Avg. Time on Screen</option>
+							<option value="ga:avgUserTimingValue">Avg. User Timing (sec)</option>
+							<option value="ga:avgTimeOnSite">Avg. Visit Duration</option>
+							<option value="ga:visitBounceRate">Bounce Rate</option>
+							<option value="ga:bounces">Bounces</option>
+							<option value="ga:costPerConversion">Cost per Conversion</option>
+							<option value="ga:costPerGoalConversion">Cost per Goal Conversion</option>
+							<option value="ga:costPerTransaction">Cost per Transaction</option>
+							<option value="ga:CPC">CPC</option>
+							<option value="ga:CPM">CPM</option>
+							<option value="ga:CTR">CTR</option>
+							<option value="ga:entrances">Entrances</option>
+							<option value="ga:eventValue">Event Value</option>
+							<option value="ga:exceptions">Exceptions</option>
+							<option value="ga:exits">Exits</option>
+							<option value="ga:goalCompletionsAll">Goal Completions</option>
+							<option value="ga:goalConversionRateAll">Goal Conversion Rate</option>
+							<option value="ga:goalStartsAll">Goal Starts</option>
+							<option value="ga:goalValueAll">Goal Value</option>
+							<option value="ga:impressions">Impressions</option>
+							<option value="ga:margin">Margin</option>
+							<option value="ga:newVisits">New Visits</option>
+							<option value="ga:organicSearches">Organic Searches</option>
+							<option value="ga:pageviews">Pageviews</option>
+							<option value="ga:goalValuePerVisit">Per Visit Goal Value</option>
+							<option value="ga:itemQuantity">Quantity</option>
+							<option value="ga:avgSearchResultViews">Results Pageviews / Search</option>
+							<option value="ga:ROI">ROI</option>
+							<option value="ga:RPC">RPC</option>
+							<option value="ga:searchDepth">Search Depth</option>
+							<option value="ga:searchExits">Search Exits</option>
+							<option value="ga:searchRefinements">Search Refinements</option>
+							<option value="ga:socialActivities">Social Actions</option>
+							<option value="ga:transactionTax">Tax</option>
+							<option value="ga:timeOnPage">Time on Page</option>
+							<option value="ga:goalAbandonRateAll">Total Abandonment Rate</option>
+							<option value="ga:totalEvents">Total Events</option>
+							<option value="ga:searchUniques">Total Unique Searches</option>
+							<option value="ga:transactions">Transactions</option>
+							<option value="ga:uniqueEvents">Unique Events</option>
+							<option value="ga:uniquePageviews">Unique Pageviews</option>
+							<option value="ga:uniquePurchases">Unique Purchases</option>
+							<option value="ga:uniqueSocialInteractions">Unique Social Actions</option>
+							<option value="ga:userTimingValue">User Timing (ms)</option>
+							<option value="ga:visitors">Visitors</option>
+							<option value="ga:visits">Visits</option>
+							<option value="ga:searchVisits">Visits with Search</option>
+						</select><br><br>
 
 						Filter this data<br/>
 						<span id ="filter">Add a filter</span><br/><br/>
