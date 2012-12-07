@@ -92,10 +92,11 @@ function addLineChart(){
 
 
 function addPieChart(){
+	var ids = TABLE_ID;
 	var div='wrappers2';
     var metrics='ga:visitBounceRate';
 	var dimensions='ga:source';
-    var CPie = new gadash.GaPieChart( div, ids, metrics, dimensions,
+    var cPie = new gadash.GaPieChart( div, ids, metrics, dimensions,
                                      {'last-n-days': 5,
                                       'query':{
                                          'filters':'ga:city==Irvine',
@@ -110,9 +111,10 @@ function addPieChart(){
 
 
 function addAreaChart(){
-     var div = 'Wrappers3';
-	 var metrics='ga:avgTimeOnSite';
-     var Carea = new gadash.GaAreaChart( div, ids, metrics,
+     var ids = TABLE_ID;
+     var div = 'wrappers3';
+	 var metrics='ga:visitors';
+     var cArea = new gadash.GaAreaChart( div, ids, metrics,
                                       {'last-n-days': 9,
                                        'query':{
                                           'dimensions':'ga:date',
@@ -128,9 +130,10 @@ function addAreaChart(){
 
 
 function addBarChart(){
+	var ids = TABLE_ID;
 	var div='wrappers4';
     var metrics='ga:avgTimeOnSite';    
-    var Cbar = new gadash.GaBarChart( div, ids, metrics,
+    var cBar = new gadash.GaBarChart( div, ids, metrics,
                                      {'last-n-days': 6,
                                       'query':{
                                          'filters':'ga:country==United States'
@@ -144,8 +147,10 @@ function addBarChart(){
 
 
 function addColumnChart(){
+    var ids = TABLE_ID;
     var div = 'wrappers5';
-    var Ccolumn = new gadash.GaColumnChart( div, ids, metrics,
+    var metrics='ga:avgTimeOnSite'; 
+    var cColumn = new gadash.GaColumnChart( div, ids, metrics,
                                      {'last-n-days': 6,
                                       'query':{
                                          'filters':'ga:country==United States'
