@@ -1,14 +1,7 @@
 /***************
 * for testing
 */
-var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
-var CLIENT_ID = '678812203795.apps.googleusercontent.com';
-var TABLE_ID = 'ga:1174';
 
-gadash.configKeys({
-    'apiKey': API_KEY,
-    'clientId': CLIENT_ID
-});
 
 
 /* 
@@ -172,6 +165,15 @@ function addColumnChart(){
  * Enable to launch or create several events
  */
 function initialisation(){
+	var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
+	var CLIENT_ID = '678812203795.apps.googleusercontent.com';
+	var TABLE_ID = 'ga:1174';
+
+	gadash.configKeys({
+	    'apiKey': API_KEY,
+	    'clientId': CLIENT_ID
+	});
+
 	addEvent( id_$('btnAddLine'), 'click', addLineChart);
 	addEvent( id_$('btnAddPie'), 'click', addPieChart);
 	addEvent( id_$('btnAddArea'), 'click', addAreaChart);

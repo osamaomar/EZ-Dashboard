@@ -166,11 +166,6 @@ $("#wrappers6").click(function (e)
       }
       
    }
-   $("#btnClose").click(function (e)
-      {
-         HideDialog();
-         e.preventDefault();
-      });
 
    function HideDialog()
    {
@@ -253,8 +248,6 @@ $("#wrappers6").click(function (e)
 function addLineChart(){
     var ids = TABLE_ID;
     var div='wrappers1';
-    id_$(div).style.zIndex = 882;
-    id_$(div).style.position = absolute;
     var metrics='ga:visitors';
     var chart = new gadash.GaLineChart( div, ids, metrics,
                                             {'last-n-days': 5,
