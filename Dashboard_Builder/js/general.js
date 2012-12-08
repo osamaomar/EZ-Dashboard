@@ -1,14 +1,7 @@
 /***************
 * for testing
 */
-var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
-var CLIENT_ID = '678812203795.apps.googleusercontent.com';
-var TABLE_ID = 'ga:1174';
 
-gadash.configKeys({
-    'apiKey': API_KEY,
-    'clientId': CLIENT_ID
-});
 
 
 /* 
@@ -80,10 +73,8 @@ function id_$(un_id){
 function addLineChart(){
     var ids = TABLE_ID;
     var div='wrappers1';
-    id_$(div).style.zIndex = 882;
-    id_$(div).style.position = absolute;
     var metrics='ga:visitors';
-    var chart = new gadash.GaLineChart( div, ids, metrics,
+    var CLine = new gadash.GaLineChart( div, ids, metrics,
                                             {'last-n-days': 5,
 											 'chartOptions':{
 												'title':'Visits in USA'
@@ -93,24 +84,76 @@ function addLineChart(){
 };
 
 
-// function addPieChart(){
+function addPieChart(){
+	var ids = TABLE_ID;
+	var div='wrappers2';
+    var metrics='ga:visitBounceRate';
+	var dimensions='ga:source';
+    var cPie = new gadash.GaPieChart( div, ids, metrics, dimensions,
+                                     {'last-n-days': 5,
+                                      'query':{
+                                         'filters':'ga:city==Irvine',
+                                         'sort': '-ga:visitBounceRate'
+                                       },
+                                      'chartOptions':{
+                                         'title':'Bounces Rate per source'
+                                       }
+                                     }
+                                 ).render(); 
+};
 
-// };
+
+function addAreaChart(){
+     var ids = TABLE_ID;
+     var div = 'wrappers3';
+	 var metrics='ga:visitors';
+     var cArea = new gadash.GaAreaChart( div, ids, metrics,
+                                      {'last-n-days': 9,
+                                       'query':{
+                                          'dimensions':'ga:date',
+                                          'filters':'ga:country==United States',
+                                          'sort': '-ga:date'
+                                        },
+                                       'chartOptions':{
+                                          'title':'Average Visit Duration in the United States'
+                                        }
+                                      }
+                                  ).render();
+};
 
 
-// function addAreaChart(){
+function addBarChart(){
+	var ids = TABLE_ID;
+	var div='wrappers4';
+    var metrics='ga:avgTimeOnSite';    
+    var cBar = new gadash.GaBarChart( div, ids, metrics,
+                                     {'last-n-days': 6,
+                                      'query':{
+                                         'filters':'ga:country==United States'
+                                       },
+                                      'chartOptions':{
+                                         'title':'Average Visit Duration in the United States'
+                                       }
+                                     }
+                                 ).render(); 
+};
 
-// };
 
-
-// function addBarChart(){
-
-// };
-
-
-// function addColumnChart(){
-
-// };
+function addColumnChart(){
+    var ids = TABLE_ID;
+    var div = 'wrappers5';
+    var metrics='ga:avgTimeOnSite'; 
+    var cColumn = new gadash.GaColumnChart( div, ids, metrics,
+                                     {'last-n-days': 6,
+                                      'query':{
+                                         'filters':'ga:country==United States'
+                                       },
+                                      'chartOptions':{
+                                         'title':'Average Visit Duration in the United States'
+                                       }
+                                     }
+                                 ).render();
+};
 
 
 // function setMenu(){
@@ -122,12 +165,20 @@ function addLineChart(){
  * Enable to launch or create several events
  */
 function initialisation(){
-	addEvent( id_$('btnAddLine'), 'click', addLineChart);
-	// addEvent( id_$('btnAddPie'), 'click', addPieChart);
-	// addEvent( id_$('btnAddArea'), 'click', addAreaChart);
-	// addEvent( id_$('btnAddBar'), 'click', addBarChart);
-	// addEvent( id_$('btnAddColumn'), 'click', addColumnChart);
+	var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
+	var CLIENT_ID = '678812203795.apps.googleusercontent.com';
+	var TABLE_ID = 'ga:1174';
 
+	gadash.configKeys({
+	    'apiKey': API_KEY,
+	    'clientId': CLIENT_ID
+	});
+
+	addEvent( id_$('btnAddLine'), 'click', addLineChart);
+	addEvent( id_$('btnAddPie'), 'click', addPieChart);
+	addEvent( id_$('btnAddArea'), 'click', addAreaChart);
+	addEvent( id_$('btnAddBar'), 'click', addBarChart);
+	addEvent( id_$('btnAddColumn'), 'click', addColumnChart);
 };
 
 
