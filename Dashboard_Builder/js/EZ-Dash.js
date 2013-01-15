@@ -196,12 +196,12 @@ $("#wrappers6").click(function (e)
 
          addLineChart(); 
 
-         alert("works");
+         alert("Line works");
          console.log(lineMetric);
       });
 
 
- $("#add_area").click(function (e)
+ $("#btnAddArea").click(function (e)
       {
       var lineMetric = $("#lineMetrics").val();
       var lineCompare = $("#lineCompare").val();
@@ -209,11 +209,14 @@ $("#wrappers6").click(function (e)
       var widgetTitleLine = $("#widgetTitleLine").val();
       var linkURLline = $("#linkURLline").val(); 
 
-         addLineChart(); 
+         addAreaChart(); 
+
+         alert("Line works");
+         console.log(lineMetric);
       });
 
 
- $("#add_bar").click(function (e)
+ $("#btnAddBar").click(function (e)
       {
       var lineMetric = $("#lineMetrics").val();
       var lineCompare = $("#lineCompare").val();
@@ -221,11 +224,14 @@ $("#wrappers6").click(function (e)
       var widgetTitleLine = $("#widgetTitleLine").val();
       var linkURLline = $("#linkURLline").val(); 
 
-         addLineChart(); 
+         addBarChart(); 
+
+         alert("Line works");
+         console.log(lineMetric);
       });
 
 
- $("#add_graph").click(function (e)
+ $("#btnAddColumn").click(function (e)
       {
       var lineMetric = $("#lineMetrics").val();
       var lineCompare = $("#lineCompare").val();
@@ -233,11 +239,14 @@ $("#wrappers6").click(function (e)
       var widgetTitleLine = $("#widgetTitleLine").val();
       var linkURLline = $("#linkURLline").val(); 
 
-         addLineChart(); 
+         addColumnChart(); 
+
+         alert("Line works");
+         console.log(lineMetric);
       });
 
 
- $("#add_pie").click(function (e)
+ $("#btnAddPie").click(function (e)
       {
       var lineMetric = $("#lineMetrics").val();
       var lineCompare = $("#lineCompare").val();
@@ -245,12 +254,13 @@ $("#wrappers6").click(function (e)
       var widgetTitleLine = $("#widgetTitleLine").val();
       var linkURLline = $("#linkURLline").val(); 
 
-         addLineChart(); 
+         addPieChart(); 
+
+         alert("Line works");
+         console.log(lineMetric);
       });
 
- /****************
- * for testing
- */
+
 function addLineChart(){
     var ids = TABLE_ID;
     var div='wrappers1';
@@ -265,29 +275,61 @@ function addLineChart(){
 };
 
  
-// function addPieChart(){
-
-// };
-
-
-// function addAreaChart(){
-
-// };
-
-
-// function addBarChart(){
-
-// };
+function addPieChart(){
+    var ids = TABLE_ID;
+    var div='wrappers1';
+    var metrics='ga:visitors';
+    var chart = new gadash.GaPieChart( div, ids, metrics,
+        {'last-n-days': 5,
+         'chartOptions':{
+             'title':'Visits in USA'
+        }
+    }).render();
+};
 
 
-// function addColumnChart(){
+function addAreaChart(){
+    var ids = TABLE_ID;
+    var div='wrappers1';
+    var metrics='ga:visitors';
+    var chart = new gadash.GaAreaChart( div, ids, metrics,
+        {'last-n-days': 5,
+         'chartOptions':{
+             'title':'Visits in USA'
+        }
+    }).render();
+};
 
-// };
+
+function addBarChart(){
+    var ids = TABLE_ID;
+    var div='wrappers1';
+    var metrics='ga:visitors';
+    var chart = new gadash.GaBarChart( div, ids, metrics,
+        {'last-n-days': 5,
+         'chartOptions':{
+             'title':'Visits in USA'
+        }
+    }).render();
+};
 
 
-// function setMenu(){
-//    id_$('#menu').tabs();
-// };
+function addColumnChart(){
+    var ids = TABLE_ID;
+    var div='wrappers1';
+    var metrics='ga:visitors';
+    var chart = new gadash.GaColumnChart( div, ids, metrics,
+        {'last-n-days': 5,
+         'chartOptions':{
+             'title':'Visits in USA'
+        }
+    }).render();
+};
+
+
+function setMenu(){
+   id_$('#menu').tabs();
+};
 
 
 /*
@@ -295,11 +337,11 @@ function addLineChart(){
  */
 function initialisation(){
    addEvent( id_$('btnAddLine'), 'click', addLineChart);
-   // addEvent( id_$('btnAddPie'), 'click', addPieChart);
-   // addEvent( id_$('btnAddArea'), 'click', addAreaChart);
-   // addEvent( id_$('btnAddBar'), 'click', addBarChart);
-   // addEvent( id_$('btnAddColumn'), 'click', addColumnChart);
-
+   addEvent( id_$('btnAddPie'), 'click', addPieChart);
+   addEvent( id_$('btnAddArea'), 'click', addAreaChart);
+   addEvent( id_$('btnAddBar'), 'click', addBarChart);
+   addEvent( id_$('btnAddColumn'), 'click', addColumnChart);
+   addEvent( id_$('menu'), 'load', setMenu);
 };
 
 
