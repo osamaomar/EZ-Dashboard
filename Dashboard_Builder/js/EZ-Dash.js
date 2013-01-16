@@ -181,10 +181,6 @@ $("#wrappers6").click(function (e)
      HideDialog();
       });
 
-
-
-
-
       
  $("#btnAddLine").click(function (e)
       {
@@ -194,10 +190,20 @@ $("#wrappers6").click(function (e)
       var widgetTitleLine = $("#widgetTitleLine").val();
       var linkURLline = $("#linkURLline").val(); 
 
-         addLineChart(); 
+      
+      var metrics;
 
-         alert("Line works");
-         console.log(lineMetric);
+      if( !lineCompare.match(/no_metric/) ) {
+          metrics = lineMetric + ',' + lineCompare ;
+      }
+      else {
+          metrics = lineMetric;
+      }
+      //make an object with lineMetric and lineCompare
+         addLineChart(metrics, widgetTitleLine); 
+
+       //  alert("Line works");
+         console.log(metrics);
       });
 
 
@@ -211,7 +217,7 @@ $("#wrappers6").click(function (e)
 
          addAreaChart(); 
 
-         alert("Line works");
+         alert("Area works");
          console.log(lineMetric);
       });
 
@@ -226,7 +232,7 @@ $("#wrappers6").click(function (e)
 
          addBarChart(); 
 
-         alert("Line works");
+         alert("Bar works");
          console.log(lineMetric);
       });
 
@@ -241,10 +247,10 @@ $("#wrappers6").click(function (e)
 
          addColumnChart(); 
 
-         alert("Line works");
+         alert("Column works");
          console.log(lineMetric);
       });
-
+ 
 
  $("#btnAddPie").click(function (e)
       {
@@ -254,21 +260,20 @@ $("#wrappers6").click(function (e)
       var widgetTitleLine = $("#widgetTitleLine").val();
       var linkURLline = $("#linkURLline").val(); 
 
-         addPieChart(); 
+         addPieChart( lineMetric); 
 
-         alert("Line works");
+         alert("Column works");
          console.log(lineMetric);
       });
 
 
-function addLineChart(){
+function addLineChart( metrics, widgetTitleLine){
     var ids = TABLE_ID;
     var div='wrappers1';
-    var metrics='ga:visitors';
     var chart = new gadash.GaLineChart( div, ids, metrics,
                                             {'last-n-days': 5,
                                   'chartOptions':{
-                                    'title':'Visits in USA'
+                                    'title':widgetTitleLine
                                    }
                                  }
                                         ).render();
@@ -327,9 +332,9 @@ function addColumnChart(){
 };
 
 
-function setMenu(){
-   id_$('#menu').tabs();
-};
+
+   $('#menu').tabs();
+
 
 
 /*
@@ -341,7 +346,6 @@ function initialisation(){
    addEvent( id_$('btnAddArea'), 'click', addAreaChart);
    addEvent( id_$('btnAddBar'), 'click', addBarChart);
    addEvent( id_$('btnAddColumn'), 'click', addColumnChart);
-   addEvent( id_$('menu'), 'load', setMenu);
 };
 
 

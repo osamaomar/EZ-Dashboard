@@ -2,27 +2,18 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>				
-	<script type="text/javascript" src="js/EZ-Dash.js"></script>		
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>				
+			
+	<script type="text/javascript" src="js/EZ-Dash.js"></script>		
 	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
 	<script src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript" src="js/gadash-1.0.js"></script>
 	<script src="https://apis.google.com/js/client.js?onload=gadashInit"></script>	
-	<script type="text/javascript" src="js/general.js"></script>
 
 	
 	<link rel="stylesheet" type="text/css" href="css/EZ-Dash.css" media="screen" />
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/jquery.ui.all.css" media="screen" />
-
-	<script type="text/javascript">
-$(function(){
-		$("#menu").tabs();
-	});
-	</script>
-
 	
 </head>
 
@@ -203,7 +194,7 @@ $(function(){
 							<option value="ga:avgTimeOnSite">Avg. Time on Screen</option>
 							<option value="ga:avgUserTimingValue">Avg. User Timing (sec)</option>
 							<option value="ga:avgTimeOnSite">Avg. Visit Duration</option>
-							<option value="ga:visitBounceRate">Bounce Rate</option>
+							<option value='ga:visitBounceRate'>Bounce Rate</option>
 							<option value="ga:bounces">Bounces</option>
 							<option value="ga:costPerConversion">Cost per Conversion</option>
 							<option value="ga:costPerGoalConversion">Cost per Goal Conversion</option>
@@ -250,7 +241,8 @@ $(function(){
 						</select><br><br>
 						
 						Compare with (optional) <br/>
-						<select>
+						<select id='lineCompare'>
+							<option value="no_metric">Choose a metric</option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
