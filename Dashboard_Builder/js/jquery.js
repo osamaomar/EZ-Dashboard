@@ -175,6 +175,11 @@ $("#wrappers6").click(function (e)
 
 
 
+     
+ $("#btnClose").click(function (e)
+      {
+     HideDialog();
+      });
 
 
 
