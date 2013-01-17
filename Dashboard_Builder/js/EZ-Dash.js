@@ -182,44 +182,40 @@ $("#wrappers6").click(function (e)
       });
 
       
- $("#btnAddLine").click(function (e)
-      {
+ $("#btnAddLine").click(function (e) {
       var lineMetric = $("#lineMetrics").val();
       var lineCompare = $("#lineCompare").val();
       var lineFilter = $("#lineFilter").val();
       var widgetTitleLine = $("#widgetTitleLine").val();
       var linkURLline = $("#linkURLline").val(); 
-
-      
-      var metrics;
-
-      if( !lineCompare.match(/no_metric/) ) {
-          metrics = lineMetric + ',' + lineCompare ;
-      }
-      else {
-          metrics = lineMetric;
-      }
-      //make an object with lineMetric and lineCompare
-         addLineChart(metrics, widgetTitleLine); 
-
-       //  alert("Line works");
-         console.log(metrics);
-      });
+    
+      var metrics = getMetrics( lineMetric, lineCompare);
+      addLineChart(metrics, widgetTitleLine); 
+ });
 
 
- $("#btnAddArea").click(function (e)
-      {
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var lineFilter = $("#lineFilter").val();
-      var widgetTitleLine = $("#widgetTitleLine").val();
-      var linkURLline = $("#linkURLline").val(); 
+ $("#btnAddArea").click(function (e) {
+     var areaMetric = $("#areaMetrics").val();
+     var areaCompare = $("#areaCompare").val();
+     var areaFilter = $("#areaFilter").val();
+     var widgetTitleArea = $("#widgetTitleArea").val();
+     var linkURLline = $("#linkURLarea").val(); 
 
-         addAreaChart(); 
+     var metrics = getMetrics( areaMetric, areaCompare);
 
-         alert("Area works");
-         console.log(lineMetric);
-      });
+     addAreaChart( metrics, widgetTitleArea); 
+ });
+
+
+ $("#btnAddPie").click(function (e) {
+     var pieMetric = $("#pieMetrics").val();
+     var pieDimension = $("#pieGroupBy").val();
+     var pieFilter = $("#lineFilter").val();
+     var widgetTitlePie = $("#widgetTitlePie").val();
+     var linkURLpie = $("#linkURLpie").val(); 
+
+     addPieChart( pieMetric, pieDimension, widgetTitlePie); 
+  });
 
 
  $("#btnAddBar").click(function (e)
@@ -250,57 +246,50 @@ $("#wrappers6").click(function (e)
          alert("Column works");
          console.log(lineMetric);
       });
- 
 
- $("#btnAddPie").click(function (e)
-      {
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var lineFilter = $("#lineFilter").val();
-      var widgetTitleLine = $("#widgetTitleLine").val();
-      var linkURLline = $("#linkURLline").val(); 
 
-         addPieChart( lineMetric); 
-
-         alert("Column works");
-         console.log(lineMetric);
-      });
+function getMetrics( primeMetric, optMetric) {
+    if( !optMetric.match(/none/) ) {
+        return primeMetric + ',' + optMetric;
+    }
+    else {
+        return primeMetric;
+    }
+};
 
 
 function addLineChart( metrics, widgetTitleLine){
     var ids = TABLE_ID;
     var div='wrappers1';
     var chart = new gadash.GaLineChart( div, ids, metrics,
-                                            {'last-n-days': 5,
-                                  'chartOptions':{
-                                    'title':widgetTitleLine
-                                   }
-                                 }
-                                        ).render();
-};
-
- 
-function addPieChart(){
-    var ids = TABLE_ID;
-    var div='wrappers1';
-    var metrics='ga:visitors';
-    var chart = new gadash.GaPieChart( div, ids, metrics,
         {'last-n-days': 5,
          'chartOptions':{
-             'title':'Visits in USA'
+             'title':widgetTitleLine
+          }
+        }
+    ).render();
+};
+
+
+function addAreaChart( metrics, widgetTitleArea){
+    var ids = TABLE_ID;
+    var div='wrappers1';
+    var chart = new gadash.GaAreaChart( div, ids, metrics,
+        {'last-n-days': 5,
+         'chartOptions':{
+             'title':widgetTitleArea
         }
     }).render();
 };
 
 
-function addAreaChart(){
+function addPieChart( metrics, dimensions, widgetTitlePie){
     var ids = TABLE_ID;
     var div='wrappers1';
-    var metrics='ga:visitors';
-    var chart = new gadash.GaAreaChart( div, ids, metrics,
+    var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
         {'last-n-days': 5,
          'chartOptions':{
-             'title':'Visits in USA'
+             'title':widgetTitlePie
         }
     }).render();
 };
@@ -309,7 +298,7 @@ function addAreaChart(){
 function addBarChart(){
     var ids = TABLE_ID;
     var div='wrappers1';
-    var metrics='ga:visitors';
+    var metrics='ga:visitors'; // REMOVE
     var chart = new gadash.GaBarChart( div, ids, metrics,
         {'last-n-days': 5,
          'chartOptions':{
@@ -322,7 +311,7 @@ function addBarChart(){
 function addColumnChart(){
     var ids = TABLE_ID;
     var div='wrappers1';
-    var metrics='ga:visitors';
+    var metrics='ga:visitors'; // REMOVE
     var chart = new gadash.GaColumnChart( div, ids, metrics,
         {'last-n-days': 5,
          'chartOptions':{

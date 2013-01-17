@@ -242,7 +242,7 @@
 						
 						Compare with (optional) <br/>
 						<select id='lineCompare'>
-							<option value="no_metric">Choose a metric</option>
+							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
@@ -323,7 +323,8 @@
 			</div>
 			<div id="tabPie">
 		    	<form>Create a Pie Chart showing:
-						<select>
+					  <select id ="pieMetrics">
+							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
@@ -389,7 +390,7 @@
 						</select>
 						
 						Grouped by:
-						<select>
+						<select id="pieGroupBy">
 							<option value="ga:adContent">Ad Content</value>
 							<option value="ga:adDistributionNetwork">Ad Distribution Network</value>
 							<option value="ga:adGroup">Ad Group</value>
@@ -474,14 +475,15 @@
 							<option value="ga:nthWeek">Week of Year</value>
 						</select><br/><br/>
 
-						Filter this data<br/>
-						<span id ="filter">Add a filter</span><br/><br/>
+                        Filter this data<br/>
+						<span id ="pieFilter">Add a filter</span><br/><br/>
 
 						Widget Title <br/>
-						<input> </input><br/>
+						<input id ="widgetTitlePie"> </input><br/>
 
 						Link to Report or URL <br/>
-						<input> </input>
+						<input id ="linkURLpie"> </input>	
+
 					</form>
 		    	<span id ="add-span" style="float:center; margin:50px;">
 	    			<a href="#" id="btnAddPie" class="add-button">Add</a>
@@ -557,7 +559,8 @@
 		    	<div id="rightdiv">
 					<form>
 						Graph the following metric overtime<br/>
-						<select>
+						<select id ="areaMetrics">
+							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
@@ -623,7 +626,8 @@
 						</select><br><br>
 						
 						Compare with (optional) <br/>
-						<select>
+						<select id='areaCompare'>
+							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
@@ -688,14 +692,15 @@
 							<option value="ga:searchVisits">Visits with Search</option>
 						</select><br><br>
 
-						Filter this data<br/>
-						<span id ="filter">Add a filter</span><br/><br/>
+                        Filter this data<br/>
+						<span id ="areaFilter">Add a filter</span><br/><br/>
 
 						Widget Title <br/>
-						<input> </input><br/>
+						<input id ="widgetTitleArea"> </input><br/>
 
 						Link to Report or URL <br/>
-						<input> </input>
+						<input id ="linkURLarea"> </input>						
+
 					</form>
 	    			<span id ="add-span" style="float:right; margin:50px;">
 	    				<a href="#" id="btnAddArea"class="add-button">Add</a>
