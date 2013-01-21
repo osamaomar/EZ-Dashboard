@@ -4,8 +4,11 @@ $(document).ready(function () {
   var CLIENT_ID = '678812203795.apps.googleusercontent.com';
   var TABLE_ID = 'ga:1174';
 
-  var CHART = "";
-  var LAST_N_DAYS = 30;
+  //Global variables
+  var chartLocation = "";
+  var last_n_days = 20; //Will not be used
+  var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
+  var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
 
   gadash.configKeys({
       'apiKey': API_KEY,
@@ -127,37 +130,37 @@ $(document).ready(function () {
         });
   
   $("#wrappers1").click(function (e) {
-     CHART = "wrappers1";
+     chartLocation = "wrappers1";
      ShowDialog(false);
      e.preventDefault();
   }); 
 
   $("#wrappers2").click(function (e) {
-     CHART = "wrappers2";
+     chartLocation = "wrappers2";
      ShowDialog(false);
      e.preventDefault();
   }); 
 
   $("#wrappers3").click(function (e) {
-     CHART = "wrappers3";
+     chartLocation = "wrappers3";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers4").click(function (e) {
-     CHART = "wrappers4";
+     chartLocation = "wrappers4";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers5").click(function (e) {
-     CHART = "wrappers5";
+     chartLocation = "wrappers5";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers6").click(function (e) {
-     CHART = "wrappers6";
+     chartLocation = "wrappers6";
      ShowDialog(false);
      e.preventDefault();
   });
@@ -267,64 +270,78 @@ $(document).ready(function () {
 
   function addLineChart( metrics, widgetTitleLine){
       var ids = TABLE_ID;
-      var div = CHART;
+      var div = chartLocation;
       var chart = new gadash.GaLineChart( div, ids, metrics,
-          {'last-n-days': LAST_N_DAYS,
+          {'query': {
+             'start-date':start_date,
+             'end-date':end_date
+           },
            'chartOptions':{
                'title':widgetTitleLine
             }
           }
       ).render();
+      HideDialog();
   };
 
 
   function addAreaChart( metrics, widgetTitleArea){
       var ids = TABLE_ID;
-      var div = CHART;
+      var div = chartLocation;
       var chart = new gadash.GaAreaChart( div, ids, metrics,
-          {'last-n-days': LAST_N_DAYS,
+          {'query': {
+             'start-date':start_date,
+             'end-date':end_date
+           },
            'chartOptions':{
                'title':widgetTitleArea
           }
       }).render();
+      HideDialog();
   };
 
 
   function addPieChart( metrics, dimensions, widgetTitlePie){
       var ids = TABLE_ID;
-      var div = CHART;
+      var div = chartLocation;
       var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
-          {'last-n-days': LAST_N_DAYS,
+          {'query': {
+             'start-date':start_date,
+             'end-date':end_date
+           },
            'chartOptions':{
                'title':widgetTitlePie
           }
       }).render();
+      HideDialog();
   };
 
 
   function addBarChart(){
       var ids = TABLE_ID;
-      var div = CHART;
+      var div = chartLocation;
       var metrics='ga:visitors'; // REMOVE
       var chart = new gadash.GaBarChart( div, ids, metrics,
-          {'last-n-days': LAST_N_DAYS,
+          {'last-n-days': last_n_days,
            'chartOptions':{
                'title':'Visits in USA'
           }
       }).render();
+      HideDialog();
   };
 
 
   function addColumnChart(){
       var ids = TABLE_ID;
-      var div = CHART;
+      var div = chartLocation;
       var metrics='ga:visitors'; // REMOVE
       var chart = new gadash.GaColumnChart( div, ids, metrics,
-          {'last-n-days': LAST_N_DAYS,
+          {'last-n-days': last_n_days,
            'chartOptions':{
                'title':'Visits in USA'
           }
       }).render();
+      HideDialog();
   };
 
 
