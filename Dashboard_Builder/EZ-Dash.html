@@ -146,10 +146,19 @@
 	      </tr>
 	   </table>
 	   <br/>
-	   <div id="leftdiv"style="float:left; font-size:25px;"> <center>Preview chart</center> <br/>
-	     	<div id="chartholder" style="float:center;">
+	   
+	  	<div id="menu" style="float:right;width:1000px;height:550px">
+		    <ul>
+		        <li><a href="#tabLine">Line</a></li>
+		        <li><a href="#tabPie">Pie</a></li>
+		        <li><a href="#tabBar">Bar</a></li>
+		        <li><a href="#tabColumn">Column</a></li>
+		        <li><a href="#tabArea">Area</a></li>
+		    </ul>
+		    <div id="leftdiv"style="float:right; font-size:25px;">  <br/>
+	     	<div id="chartholder" style="float:right;">
 	 			<div id="chartholder">
-	 				<div id="wrappersPreview" class="wrappers" >
+	 				<div id="wrappersPreview" class="wrappersPreview" >
 						<div class="wrapperheader">
 							<a id="wrapperlink" href ="#">
 								<img id="edit_chart1" src="images/edit.png"/>
@@ -161,14 +170,6 @@
 				</div>
 	 		</div>
 		</div>
-	  	<div id="menu" style="float:right;width:500px;height:550px">
-		    <ul>
-		        <li><a href="#tabLine">Line</a></li>
-		        <li><a href="#tabPie">Pie</a></li>
-		        <li><a href="#tabBar">Bar</a></li>
-		        <li><a href="#tabColumn">Column</a></li>
-		        <li><a href="#tabArea">Area</a></li>
-		    </ul>
 
 		    <div id="tabLine">
 		    	<div id="rightdiv">
@@ -313,8 +314,7 @@
 						Widget Title <br/>
 						<input id ="widgetTitleLine"> </input><br/>
 
-						Link to Report or URL <br/>
-						<input id ="linkURLline"> </input>
+						
 					</form>
 	    			<span id ="add-span" style="float:right; margin:50px;">
 	    				<a href="#" id="btnAddLine" class="add-button">Add</a>
@@ -322,6 +322,7 @@
 				</div>
 			</div>
 			<div id="tabPie">
+				<div id ="rightdiv">
 		    	<form>Create a Pie Chart showing:
 					  <select id ="pieMetrics">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
@@ -387,7 +388,7 @@
 							<option value="ga:visitors">Visitors</option>
 							<option value="ga:visits">Visits</option>
 							<option value="ga:searchVisits">Visits with Search</option>
-						</select>
+						</select><br/><br/>
 						
 						Grouped by:
 						<select id="pieGroupBy">
@@ -481,13 +482,13 @@
 						Widget Title <br/>
 						<input id ="widgetTitlePie"> </input><br/>
 
-						Link to Report or URL <br/>
-						<input id ="linkURLpie"> </input>	
+						
 
 					</form>
 		    	<span id ="add-span" style="float:center; margin:50px;">
 	    			<a href="#" id="btnAddPie" class="add-button">Add</a>
 	    		</span>
+	    	</div>
 		    </div>
 		    <div id="tabBar">
 		    	<div id="rightdiv">
@@ -557,7 +558,7 @@
 							<option value="ga:visitors">Visitors</option>
 							<option value="ga:visits">Visits</option>
 							<option value="ga:searchVisits">Visits with Search</option>
-						</select><br>
+						</select><br><br/>
 						
 						Compare with (optional) <br/>
 						<select id="barCompare">
@@ -631,8 +632,7 @@
 						Widget Title <br/>
 						<input id="widgetTitleBar"> </input><br/>
 
-						Link to Report or URL <br/>
-						<input id="linkURLbar"> </input>
+						
 					</form>
 	    			<span id ="add-span" style="float:right; margin:50px;">
 	    				<a href="#" id="btnAddBar" class="add-button">Add</a>
@@ -707,7 +707,7 @@
 							<option value="ga:visitors">Visitors</option>
 							<option value="ga:visits">Visits</option>
 							<option value="ga:searchVisits">Visits with Search</option>
-						</select><br>
+						</select><br/><br/>
 						
 						Compare with (optional) <br/>
 						<select id="columnCompare">
@@ -780,9 +780,6 @@
 
 						Widget Title <br/>
 						<input id="widgetTitleColumn"> </input><br/>
-
-						Link to Report or URL <br/>
-						<input id="linkURLcolumn"> </input>
 					</form>
 	    			<span id ="add-span" style="float:right; margin:50px;">
 	    				<a href="#" id="btnAddColumn" class="add-button">Add</a>
@@ -932,8 +929,7 @@
 						Widget Title <br/>
 						<input id ="widgetTitleArea"> </input><br/>
 
-						Link to Report or URL <br/>
-						<input id ="linkURLarea"> </input>						
+											
 
 					</form>
 	    			<span id ="add-span" style="float:right; margin:50px;">
