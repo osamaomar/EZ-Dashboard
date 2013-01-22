@@ -255,6 +255,23 @@ $(document).ready(function () {
   };
 
 
+  function previewLineChart( metrics, widgetTitle){
+      var ids = TABLE_ID;
+      var div = chartLocation;
+      var chart = new gadash.GaLineChart( div, ids, metrics,
+          {'query': {
+             'start-date':start_date,
+             'end-date':end_date
+           },
+           'chartOptions':{
+               'title':widgetTitle
+            }
+          }
+      ).render();
+      HideDialog();
+  };
+
+
   function addLineChart( metrics, widgetTitle){
       var ids = TABLE_ID;
       var div = chartLocation;
