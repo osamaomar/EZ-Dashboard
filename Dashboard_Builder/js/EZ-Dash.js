@@ -198,7 +198,6 @@ $(document).ready(function () {
       var lineCompare = $("#lineCompare").val();
       var lineFilter = $("#lineFilter").val();
       var widgetTitleLine = $("#widgetTitleLine").val();
-      var linkURLline = $("#linkURLline").val(); 
     
       var metrics = getMetrics( lineMetric, lineCompare);
       addLineChart(metrics, widgetTitleLine); 
@@ -210,7 +209,6 @@ $(document).ready(function () {
      var areaCompare = $("#areaCompare").val();
      var areaFilter = $("#areaFilter").val();
      var widgetTitleArea = $("#widgetTitleArea").val();
-     var linkURLline = $("#linkURLarea").val(); 
 
      var metrics = getMetrics( areaMetric, areaCompare);
      addAreaChart( metrics, widgetTitleArea); 
@@ -220,42 +218,31 @@ $(document).ready(function () {
  $("#btnAddPie").click(function (e) {
      var pieMetric = $("#pieMetrics").val();
      var pieDimension = $("#pieGroupBy").val();
-     var pieFilter = $("#lineFilter").val();
+     var pieFilter = $("#pieFilter").val();
      var widgetTitlePie = $("#widgetTitlePie").val();
-     var linkURLpie = $("#linkURLpie").val(); 
 
      addPieChart( pieMetric, pieDimension, widgetTitlePie); 
   });
 
 
- $("#btnAddBar").click(function (e)
-      {
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var lineFilter = $("#lineFilter").val();
-      var widgetTitleLine = $("#widgetTitleLine").val();
-      var linkURLline = $("#linkURLline").val(); 
+ $("#btnAddBar").click(function (e) {
+      var barMetric = $("#barMetrics").val();
+      var barCompare = $("#barCompare").val();
+      var barFilter = $("#barFilter").val();
+      var widgetTitleBar = $("#widgetTitleBar").val();
 
-         addBarChart(); 
-
-         alert("Bar works");
-         console.log(lineMetric);
-      });
+     addBarChart( barMetric, widgetTitleBar); 
+  });
 
 
- $("#btnAddColumn").click(function (e)
-      {
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var lineFilter = $("#lineFilter").val();
-      var widgetTitleLine = $("#widgetTitleLine").val();
-      var linkURLline = $("#linkURLline").val(); 
+ $("#btnAddColumn").click(function (e) {
+      var columnMetric = $("#columnMetrics").val();
+      var columnCompare = $("#columnCompare").val();
+      var columnFilter = $("#columnFilter").val();
+      var widgetTitleColumn = $("#widgetTitleColumn").val();
 
-         addColumnChart(); 
-
-         alert("Column works");
-         console.log(lineMetric);
-      });
+     addColumnChart( columnMetric, widgetTitleColumn); 
+  });
 
 
   function getMetrics( primeMetric, optMetric) {
@@ -268,7 +255,7 @@ $(document).ready(function () {
   };
 
 
-  function addLineChart( metrics, widgetTitleLine){
+  function addLineChart( metrics, widgetTitle){
       var ids = TABLE_ID;
       var div = chartLocation;
       var chart = new gadash.GaLineChart( div, ids, metrics,
@@ -277,7 +264,7 @@ $(document).ready(function () {
              'end-date':end_date
            },
            'chartOptions':{
-               'title':widgetTitleLine
+               'title':widgetTitle
             }
           }
       ).render();
@@ -285,7 +272,7 @@ $(document).ready(function () {
   };
 
 
-  function addAreaChart( metrics, widgetTitleArea){
+  function addAreaChart( metrics, widgetTitle){
       var ids = TABLE_ID;
       var div = chartLocation;
       var chart = new gadash.GaAreaChart( div, ids, metrics,
@@ -294,14 +281,14 @@ $(document).ready(function () {
              'end-date':end_date
            },
            'chartOptions':{
-               'title':widgetTitleArea
+               'title':widgetTitle
           }
       }).render();
       HideDialog();
   };
 
 
-  function addPieChart( metrics, dimensions, widgetTitlePie){
+  function addPieChart( metrics, dimensions, widgetTitle){
       var ids = TABLE_ID;
       var div = chartLocation;
       var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
@@ -310,35 +297,39 @@ $(document).ready(function () {
              'end-date':end_date
            },
            'chartOptions':{
-               'title':widgetTitlePie
+               'title':widgetTitle
           }
       }).render();
       HideDialog();
   };
 
 
-  function addBarChart(){
+  function addBarChart( metrics, widgetTitle){
       var ids = TABLE_ID;
       var div = chartLocation;
-      var metrics='ga:visitors'; // REMOVE
       var chart = new gadash.GaBarChart( div, ids, metrics,
-          {'last-n-days': last_n_days,
+          {'query': {
+             'start-date':start_date,
+             'end-date':end_date
+           },
            'chartOptions':{
-               'title':'Visits in USA'
+               'title':widgetTitle
           }
       }).render();
       HideDialog();
   };
 
 
-  function addColumnChart(){
+  function addColumnChart( metrics, widgetTitle){
       var ids = TABLE_ID;
       var div = chartLocation;
-      var metrics='ga:visitors'; // REMOVE
       var chart = new gadash.GaColumnChart( div, ids, metrics,
-          {'last-n-days': last_n_days,
+          {'query': {
+             'start-date':start_date,
+             'end-date':end_date
+           },
            'chartOptions':{
-               'title':'Visits in USA'
+               'title':widgetTitle
           }
       }).render();
       HideDialog();
