@@ -317,10 +317,9 @@ $(document).ready(function () {
   };
 
 
-  function addBarChart(){
+  function addBarChart( metrics, widgetTitleBar){
       var ids = TABLE_ID;
       var div = chartLocation;
-      var metrics='ga:visitors'; // REMOVE
       var chart = new gadash.GaBarChart( div, ids, metrics,
           {'last-n-days': last_n_days,
            'chartOptions':{
@@ -331,10 +330,9 @@ $(document).ready(function () {
   };
 
 
-  function addColumnChart(){
+  function addColumnChart(metrics, widgetTitleColumn){
       var ids = TABLE_ID;
       var div = chartLocation;
-      var metrics='ga:visitors'; // REMOVE
       var chart = new gadash.GaColumnChart( div, ids, metrics,
           {'last-n-days': last_n_days,
            'chartOptions':{
@@ -343,7 +341,6 @@ $(document).ready(function () {
       }).render();
       HideDialog();
   };
-
 
 
   $('#menu').tabs();
