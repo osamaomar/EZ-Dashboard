@@ -255,10 +255,6 @@ $(document).ready(function () {
   };
 
 
-  function checkMetric() {
-
-  }
-
   $("#lineMetrics").change(function (e) {
       var ids = TABLE_ID;
       var lineMetric = $("#lineMetrics").val();
@@ -266,7 +262,9 @@ $(document).ready(function () {
       var metrics = getMetrics( lineMetric, lineCompare);
       var widgetTitle = $("#widgetTitleLine").val();
 
-  //      if( lineMetric.match("none") ) {
+      var pattern =new RegExp("none");
+
+      if( !pattern.test(lineMetric))  {
         var div = "wrappersPreviewLine";
         var chart = new gadash.GaLineChart( div, ids, metrics,
             {'query': {
@@ -278,8 +276,12 @@ $(document).ready(function () {
               }
             }
         ).render();
- //   }
+     }
+     else {
+         document.getElementById("wrappersPreviewLine").innerHTML = "";
+     }
   }); 
+
 
   $("#lineCompare").change(function (e) {
       var ids = TABLE_ID;
@@ -288,7 +290,9 @@ $(document).ready(function () {
       var metrics = getMetrics( lineMetric, lineCompare);
       var widgetTitle = $("#widgetTitleLine").val();
 
- //       if( $("#lineMetrics").text() != "none" ) {
+      var pattern =new RegExp("none");
+
+      if( !pattern.test(lineMetric))  {
         var div = "wrappersPreviewLine";
         var chart = new gadash.GaLineChart( div, ids, metrics,
             {'query': {
@@ -300,7 +304,10 @@ $(document).ready(function () {
               }
             }
         ).render();
-   // }
+      }
+     else {
+         document.getElementById("wrappersPreviewLine").innerHTML = "";
+     }
   }); 
 
 
