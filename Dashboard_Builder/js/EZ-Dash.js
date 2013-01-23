@@ -255,21 +255,53 @@ $(document).ready(function () {
   };
 
 
-  function previewLineChart( metrics, widgetTitle){
+  function checkMetric() {
+
+  }
+
+  $("#lineMetrics").change(function (e) {
       var ids = TABLE_ID;
-      var div = chartLocation;
-      var chart = new gadash.GaLineChart( div, ids, metrics,
-          {'query': {
-             'start-date':start_date,
-             'end-date':end_date
-           },
-           'chartOptions':{
-               'title':widgetTitle
+      var lineMetric = $("#lineMetrics").val();
+      var lineCompare = $("#lineCompare").val();
+      var metrics = getMetrics( lineMetric, lineCompare);
+      var widgetTitle = $("#widgetTitleLine").val();
+
+  //      if( lineMetric.match("none") ) {
+        var div = "wrappersPreviewLine";
+        var chart = new gadash.GaLineChart( div, ids, metrics,
+            {'query': {
+               'start-date':start_date,
+               'end-date':end_date
+             },
+             'chartOptions':{
+                 'title':widgetTitle
+              }
             }
-          }
-      ).render();
-      HideDialog();
-  };
+        ).render();
+ //   }
+  }); 
+
+  $("#lineCompare").change(function (e) {
+      var ids = TABLE_ID;
+      var lineMetric = $("#lineMetrics").val();
+      var lineCompare = $("#lineCompare").val();
+      var metrics = getMetrics( lineMetric, lineCompare);
+      var widgetTitle = $("#widgetTitleLine").val();
+
+ //       if( $("#lineMetrics").text() != "none" ) {
+        var div = "wrappersPreviewLine";
+        var chart = new gadash.GaLineChart( div, ids, metrics,
+            {'query': {
+               'start-date':start_date,
+               'end-date':end_date
+             },
+             'chartOptions':{
+                 'title':widgetTitle
+              }
+            }
+        ).render();
+   // }
+  }); 
 
 
   function addLineChart( metrics, widgetTitle){
