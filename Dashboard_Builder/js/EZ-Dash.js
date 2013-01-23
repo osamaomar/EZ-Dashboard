@@ -266,7 +266,7 @@ $(document).ready(function () {
       var metrics = getMetrics( lineMetric, lineCompare);
       var widgetTitle = $("#widgetTitleLine").val();
 
-  //      if( lineMetric.match("none") ) {
+        if($("#lineMetrics").val == 'none'){
         var div = "wrappersPreviewLine";
         var chart = new gadash.GaLineChart( div, ids, metrics,
             {'query': {
@@ -278,7 +278,7 @@ $(document).ready(function () {
               }
             }
         ).render();
- //   }
+   }
   }); 
 
   $("#lineCompare").change(function (e) {
