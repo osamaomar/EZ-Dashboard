@@ -192,25 +192,6 @@ $(document).ready(function () {
      HideDialog();
       });
 
-  $(function() {
-    $( "#from" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 3,
-      onClose: function( selectedDate ) {
-        $( "#to" ).datepicker( "option", "minDate", selectedDate );
-      }
-    });
-    $( "#to" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 3,
-      onClose: function( selectedDate ) {
-        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-      }
-    });
-  });
-
       
  $("#btnAddLine").click(function (e) {
       var lineMetric = $("#lineMetrics").val();
@@ -281,7 +262,6 @@ $(document).ready(function () {
       var metrics = getMetrics( lineMetric, lineCompare);
       var widgetTitle = $("#widgetTitleLine").val();
 
-        if($("#lineMetrics").val == 'none'){
       var pattern =new RegExp("none");
 
       if( !pattern.test(lineMetric))  {
@@ -296,7 +276,6 @@ $(document).ready(function () {
               }
             }
         ).render();
-   }
      }
      else {
          document.getElementById("wrappersPreviewLine").innerHTML = "";
