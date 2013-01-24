@@ -192,6 +192,25 @@ $(document).ready(function () {
      HideDialog();
       });
 
+  $(function() {
+    $( "#from" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+
       
  $("#btnAddLine").click(function (e) {
       var lineMetric = $("#lineMetrics").val();
@@ -262,13 +281,10 @@ $(document).ready(function () {
       var metrics = getMetrics( lineMetric, lineCompare);
       var widgetTitle = $("#widgetTitleLine").val();
 
-<<<<<<< HEAD
         if($("#lineMetrics").val == 'none'){
-=======
       var pattern =new RegExp("none");
 
       if( !pattern.test(lineMetric))  {
->>>>>>> 13d3fe38d008897a735caa8d14ca63a098e2a320
         var div = "wrappersPreviewLine";
         var chart = new gadash.GaLineChart( div, ids, metrics,
             {'query': {
@@ -280,14 +296,11 @@ $(document).ready(function () {
               }
             }
         ).render();
-<<<<<<< HEAD
    }
-=======
      }
      else {
          document.getElementById("wrappersPreviewLine").innerHTML = "";
      }
->>>>>>> 13d3fe38d008897a735caa8d14ca63a098e2a320
   }); 
 
 
