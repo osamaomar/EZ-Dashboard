@@ -10,7 +10,7 @@ $(document).ready(function () {
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
   var selectedStartDate; // selected start date from user
-  var selectedEndDat; // selected end date from user
+  var selectedEndDate; // selected end date from user
 
   gadash.configKeys({
       'apiKey': API_KEY,
@@ -174,7 +174,7 @@ $(document).ready(function () {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
-  selectedStartDate = selectedDate; 
+  start_date = selectedDate; 
         alert(selectedStartDate);
       }
     });
@@ -185,6 +185,7 @@ $(document).ready(function () {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+        end_date = selectedDate;
       }
     });
   });
