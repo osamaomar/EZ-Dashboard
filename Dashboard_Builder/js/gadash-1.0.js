@@ -732,8 +732,8 @@ gadash.util.checkDate = function(chart) {
  */
 gadash.gviz.defaultChartOptions = {
   'chartOptions': {
-    height: 300,
-    width: 450,
+    height: 250,
+    width: 350,
     fontSize: 12,
     title: 'Demo',
     curveType: 'function',
