@@ -132,7 +132,7 @@ $(document).ready(function () {
         });
   
   $("#wrappers1").click(function (e) {
-     chartLocation = "wrappers1";
+     chartLocation = "chart1";
      ShowDialog(false);
      e.preventDefault();
   }); 
@@ -170,17 +170,19 @@ $(document).ready(function () {
     $( "#from" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
-      numberOfMonths: 3,
+      dateFormat: 'yy-mm-dd',
+      numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
-	selectedStartDate = selectedDate; 
+  selectedStartDate = selectedDate; 
         alert(selectedStartDate);
       }
     });
     $( "#to" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
-      numberOfMonths: 3,
+  dateFormat: 'yy-mm-dd',
+      numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
       }
@@ -338,12 +340,15 @@ $(document).ready(function () {
       var pieMetric = $("#pieMetrics").val();
       var pieGroupBy = $("#pieGroupBy").val();
       var widgetTitle = $("#widgetTitlePie").val();
+  
+  
 
       var pattern =new RegExp("none");
 
+
       if( !pattern.test(pieMetric) && !pattern.test(pieGroupBy))  {
         var div = "wrappersPreviewPie";
-        var chart = new gadash.GaPieChart( div, ids, metrics,
+        var chart = new gadash.GaPieChart( div, ids, pieMetric,pieGroupBy,
             {'query': {
                'start-date':start_date,
                'end-date':end_date
@@ -365,12 +370,15 @@ $(document).ready(function () {
       var pieMetric = $("#pieMetrics").val();
       var pieGroupBy = $("#pieGroupBy").val();
       var widgetTitle = $("#widgetTitlePie").val();
+  
+
 
       var pattern =new RegExp("none");
 
       if( !pattern.test(pieMetric) && !pattern.test(pieGroupBy))  {
+
         var div = "wrappersPreviewPie";
-        var chart = new gadash.GaPieChart( div, ids, metrics,
+        var chart = new gadash.GaPieChart( div, ids, pieMetric, pieGroupBy,
             {'query': {
                'start-date':start_date,
                'end-date':end_date
