@@ -296,7 +296,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -324,7 +326,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -354,7 +358,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -384,7 +390,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -415,7 +423,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -442,7 +452,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -472,7 +484,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -499,7 +513,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -532,7 +548,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -559,7 +577,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -586,7 +606,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -613,7 +635,9 @@ $(document).ready(function () {
                'end-date':end_date
              },
              'chartOptions':{
-                 'title':widgetTitle
+                 'title':widgetTitle,
+                 'height':250,
+                 'width':350
               }
             }
         ).render();
@@ -637,7 +661,9 @@ $(document).ready(function () {
              'end-date':end_date
            },
            'chartOptions':{
-               'title':widgetTitle
+               'title':widgetTitle,
+               'height':250,
+               'width':350
             }
           }
       ).render();
@@ -654,7 +680,9 @@ $(document).ready(function () {
              'end-date':end_date
            },
            'chartOptions':{
-               'title':widgetTitle
+               'title':widgetTitle,
+               'height':250,
+               'width':350
           }
       }).render();
       HideDialog();
@@ -670,7 +698,9 @@ $(document).ready(function () {
              'end-date':end_date
            },
            'chartOptions':{
-               'title':widgetTitle
+               'title':widgetTitle,
+               'height':250,
+               'width':350
           }
       }).render();
       HideDialog();
@@ -686,7 +716,9 @@ $(document).ready(function () {
              'end-date':end_date
            },
            'chartOptions':{
-               'title':widgetTitle
+               'title':widgetTitle,
+               'height':250,
+               'width':350
           }
       }).render();
       HideDialog();
@@ -702,7 +734,9 @@ $(document).ready(function () {
              'end-date':end_date
            },
            'chartOptions':{
-               'title':widgetTitle
+               'title':widgetTitle,
+               'height':250,
+               'width':350
           }
       }).render();
       HideDialog();
