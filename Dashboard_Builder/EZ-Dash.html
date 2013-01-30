@@ -1,3 +1,4 @@
+
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -56,7 +57,7 @@
 		<tr>
 			<td>
 				<div id="wrappers1" class="wrappers" >
-					<div class="wrapperheader">
+					<div id="wrapperheader1">
 						<a id="wrapperlink" href ="#"> <img id="edit_chart1" src="images/edit.png"/></a>
 					</div>
 					<div id="chart1" class="chartcontainer">
@@ -67,10 +68,10 @@
 	    	</td>
 	    	<td>
 				<div id="wrappers2" class="wrappers" >
-					<div class="wrapperheader">
+					<div id="wrapperheader2">
 						<a id="wrapperlink" href ="#"> <img id="edit_chart2" src="images/edit.png"/></a>
 					</div>
-					<div class="chartcontainer">
+					<div id="chart2" class="chartcontainer">
 						<a href="#" class="plus">+ </a>
 							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
 					</div>
@@ -78,10 +79,10 @@
 			</td>
 			<td>
 				<div id="wrappers3" class="wrappers" >
-					<div class="wrapperheader">
+					<div id="wrapperheader3">
 						<a id="wrapperlink" href ="#"> <img id="edit_chart3" src="images/edit.png"/></a>
 					</div>
-					<div class="chartcontainer">
+					<div id="chart3" class="chartcontainer">
 						<a href="#" class="plus">+ </a>
 							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
 					</div>
@@ -91,37 +92,36 @@
 		<tr>
 			<td>
 				<div id="wrappers4" class="wrappers" >
-					<div class="wrapperheader">
+					<div id="wrapperheader4">
 						<a id="wrapperlink" href ="#"> <img id="edit_chart4" src="images/edit.png"/></a>
 					</div>
-					<div class="chartcontainer">
+					<div  id="chart4" class="chartcontainer">
 						<a href="#" class="plus">+ </a>
 							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
 					</div>
 	       		</div>
 	    	</td>
 	    	<td>
-				<div id="wrappers5" class="wrappers">
-					<div class="wrapperheader">
-						<a id="wrapperlink" href ="#"> <img id="edit_chart5" src="images/edit.png"/></a>
+				<div id="wrappers5" class="wrappers" >
+					<div id="wrapperheader5">
+						<a id="wrapperlink" href ="#"> <img id="edit_chart4" src="images/edit.png"/></a>
 					</div>
-					<div class="chartcontainer">
-						<a href="#" class="plus">+</a>
-							<BR/> <p class="addchart">ADD CHART</p>
-						</a>
-					</div>
-				</div>
-			</td>
-			<td>
-				<div id="wrappers6" class="wrappers" >
-					<div class="wrapperheader">
-						<a id="wrapperlink" href ="#"> <img id="edit_chart6" src="images/edit.png"/></a>
-					</div>
-					<div class="chartcontainer">
+					<div id="chart5" class="chartcontainer">
 						<a href="#" class="plus">+ </a>
 							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
 					</div>
-				</div>
+	       		</div>
+			</td>
+			<td>
+				<div id="wrappers6" class="wrappers" >
+					<div id="wrapperheader6">
+						<a id="wrapperlink" href ="#"> <img id="edit_chart4" src="images/edit.png"/></a>
+					</div>
+					<div id="chart6" class="chartcontainer">
+						<a href="#" class="plus">+ </a>
+							<BR/><a href="#"> <p class="addchart">ADD CHART</p></a>
+					</div>
+	       		</div>
 			</td>
 		</tr>
 	</table>
@@ -582,13 +582,11 @@
 							<option value="ga:nthWeek">Week of Year</value>
 						</select><br/><br/>
 
-	                        Filter this data<br/>
-							<span id ="pieFilter">Add a filter</span><br/><br/>
+                        Filter this data<br/>
+						<span id ="pieFilter">Add a filter</span><br/><br/>
 
-							Widget Title <br/>
-							<input id ="widgetTitlePie"> </input><br/>						
-
-
+						Widget Title <br/>
+						<input id ="widgetTitlePie"> </input><br/>						
 					</form>
 		    	<span id ="add-span" style="float:center; margin:50px;">
 	    			<a href="#" id="btnAddPie" class="add-button">Add</a>
@@ -1073,9 +1071,7 @@
 						<span id ="areaFilter">Add a filter</span><br/><br/>
 
 						Widget Title <br/>
-						<input id ="widgetTitleArea"> </input><br/>
-
-											
+						<input id ="widgetTitleArea"> </input><br/>						
 
 					</form>
 	    			<span id ="add-span" style="float:right; margin:50px;">

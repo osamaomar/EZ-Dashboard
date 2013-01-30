@@ -6,6 +6,8 @@ $(document).ready(function () {
 
   //Global variables
   var chartLocation = "";
+  var editOption = ""; 
+  var widgetTitleGlobal = ""; 
   var last_n_days = 20; //Will not be used
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
@@ -79,42 +81,51 @@ $(document).ready(function () {
            ShowDialog(false);
            e.preventDefault();
         });
+
+
   
   $("#wrappers1").click(function (e) {
      chartLocation = "chart1";
+     editOption ="wrapperheader1";
      ShowDialog(false);
      e.preventDefault();
   }); 
 
   $("#wrappers2").click(function (e) {
-     chartLocation = "wrappers2";
+     chartLocation = "chart2";
+     editOption ="wrapperheader2";
      ShowDialog(false);
      e.preventDefault();
   }); 
 
   $("#wrappers3").click(function (e) {
-     chartLocation = "wrappers3";
+     chartLocation = "chart3";
+     editOption ="wrapperheader3";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers4").click(function (e) {
-     chartLocation = "wrappers4";
+     chartLocation = "chart4";
+     editOption ="wrapperheader4";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers5").click(function (e) {
-     chartLocation = "wrappers5";
+     chartLocation = "chart5";
+     editOption ="wrapperheader5";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers6").click(function (e) {
-     chartLocation = "wrappers6";
+     chartLocation = "chart6";
+     editOption ="wrapperheader6";
      ShowDialog(false);
      e.preventDefault();
   });
+ 
  $(function() {
     $( "#from" ).datepicker({
       defaultDate: "+1w",
@@ -123,14 +134,15 @@ $(document).ready(function () {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
-  selectedStartDate = selectedDate; 
-        alert(selectedStartDate);
+        selectedStartDate = selectedDate; 
+         alert(selectedStartDate);
       }
     });
+    
     $( "#to" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
-  dateFormat: 'yy-mm-dd',
+      dateFormat: 'yy-mm-dd',
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
@@ -394,10 +406,7 @@ $(document).ready(function () {
      }
   }); 
 
-
-
-
-    $("#columnMetrics").change(function (e) {
+  $("#columnMetrics").change(function (e) {
       var ids = TABLE_ID;
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
@@ -420,6 +429,8 @@ $(document).ready(function () {
               }
             }
         ).render();
+  $("#" + editOption ).show(); 
+
      }
      else {
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
@@ -454,11 +465,6 @@ $(document).ready(function () {
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
      }
   }); 
-
-   
-  
-
- 
 
 
    $("#barMetrics").change(function (e) {
@@ -639,6 +645,7 @@ $(document).ready(function () {
           }
       }).render();
       HideDialog();
+      $("#" + editOption ).show(); 
   };
 
 
@@ -656,6 +663,7 @@ $(document).ready(function () {
                'width':350
           }
       }).render();
+      $("#" + editOption ).show(); 
       HideDialog();
   };
 
@@ -674,6 +682,7 @@ $(document).ready(function () {
                'width':350
           }
       }).render();
+      $("#" + editOption ).show(); 
       HideDialog();
   };
 
@@ -692,6 +701,7 @@ $(document).ready(function () {
                'width':350
           }
       }).render();
+      $("#" + editOption ).show(); 
       HideDialog();
   };
 
@@ -706,3 +716,4 @@ $(document).ready(function () {
     });
   })
 });
+
