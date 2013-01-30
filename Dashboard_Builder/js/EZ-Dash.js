@@ -6,11 +6,13 @@ $(document).ready(function () {
 
   //Global variables
   var chartLocation = "";
+  var editOption = ""; 
+  var widgetTitleGlobal = ""; 
   var last_n_days = 20; //Will not be used
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
   var selectedStartDate; // selected start date from user
-  var selectedEndDate; // selected end date from user
+  var selectedEndDat; // selected end date from user
 
   gadash.configKeys({
       'apiKey': API_KEY,
@@ -86,6 +88,17 @@ $(document).ready(function () {
 
   $(".wrapperheader").hide();
 
+  $("#wrapperheader1").hide();
+  $("#wrapperheader2").hide();
+  $("#wrapperheader3").hide();
+  $("#wrapperheader4").hide();
+  $("#wrapperheader5").hide();
+  $("#wrapperheader6").hide();
+
+
+
+
+
 
         
   $("#edit_chart1").click(function (e)
@@ -130,39 +143,47 @@ $(document).ready(function () {
            ShowDialog(false);
            e.preventDefault();
         });
+
+
   
   $("#wrappers1").click(function (e) {
      chartLocation = "chart1";
+     editOption ="wrapperheader1";
      ShowDialog(false);
      e.preventDefault();
   }); 
 
   $("#wrappers2").click(function (e) {
-     chartLocation = "wrappers2";
+     chartLocation = "chart2";
+     editOption ="wrapperheader2";
      ShowDialog(false);
      e.preventDefault();
   }); 
 
   $("#wrappers3").click(function (e) {
-     chartLocation = "wrappers3";
+     chartLocation = "chart3";
+     editOption ="wrapperheader3";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers4").click(function (e) {
-     chartLocation = "wrappers4";
+     chartLocation = "chart4";
+     editOption ="wrapperheader4";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers5").click(function (e) {
-     chartLocation = "wrappers5";
+     chartLocation = "chart5";
+     editOption ="wrapperheader5";
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#wrappers6").click(function (e) {
-     chartLocation = "wrappers6";
+     chartLocation = "chart6";
+     editOption ="wrapperheader6";
      ShowDialog(false);
      e.preventDefault();
   });
@@ -174,7 +195,7 @@ $(document).ready(function () {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
-  start_date = selectedDate; 
+  selectedStartDate = selectedDate; 
         alert(selectedStartDate);
       }
     });
@@ -185,7 +206,6 @@ $(document).ready(function () {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-        end_date = selectedDate;
       }
     });
   });
@@ -491,6 +511,8 @@ $(document).ready(function () {
               }
             }
         ).render();
+  $("#" + editOption ).show(); 
+
      }
      else {
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
@@ -656,6 +678,7 @@ $(document).ready(function () {
   function addLineChart( metrics, widgetTitle){
       var ids = TABLE_ID;
       var div = chartLocation;
+  widgetTitleGlobal = widgetTitle; 
       var chart = new gadash.GaLineChart( div, ids, metrics,
           {'query': {
              'start-date':start_date,
@@ -669,6 +692,8 @@ $(document).ready(function () {
           }
       ).render();
       HideDialog();
+  //$("#" + editOption ).text(widgetTitleGlobal);
+  $("#" + editOption ).show(); 
   };
 
 
@@ -687,6 +712,8 @@ $(document).ready(function () {
           }
       }).render();
       HideDialog();
+  $("#" + editOption ).show(); 
+
   };
 
 
@@ -704,6 +731,8 @@ $(document).ready(function () {
                'width':350
           }
       }).render();
+  $("#" + editOption ).show(); 
+
       HideDialog();
   };
 
@@ -722,6 +751,8 @@ $(document).ready(function () {
                'width':350
           }
       }).render();
+  $("#" + editOption ).show(); 
+
       HideDialog();
   };
 
@@ -740,6 +771,8 @@ $(document).ready(function () {
                'width':350
           }
       }).render();
+  $("#" + editOption ).show(); 
+
       HideDialog();
   };
 
