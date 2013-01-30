@@ -19,18 +19,10 @@ $(document).ready(function () {
       'clientId': CLIENT_ID
   });
 
-
-  /* utility function
-   * alias
-   */
   function tag_$(un_tag){
      return document.getElementsByTagName(un_tag);
   };
 
-
-  /* utility function
-   * alias
-   */
   function id_$(un_id){
      return document.getElementById(un_id);
   };
@@ -39,51 +31,42 @@ $(document).ready(function () {
   $(".wrapperheader").hide();
 
         
-  $("#edit_chart1").click(function (e)
-        {
-           ShowDialog(false);
-           e.preventDefault();
-        });
+  $("#edit_chart1").click(function (e) {
+     ShowDialog(false);
+     e.preventDefault();
+  });
 
-   $("#edit_chart2").click(function (e)
-        {
-           ShowDialog(false);
-           e.preventDefault();
-        }); 
+  $("#edit_chart2").click(function (e) {
+     ShowDialog(false);
+     e.preventDefault();
+  }); 
 
 
-  $("#edit_chart3").click(function (e)
-        {
-           ShowDialog(false);
-           e.preventDefault();
-        }); 
+  $("#edit_chart3").click(function (e) {
+     ShowDialog(false);
+     e.preventDefault();
+  }); 
 
-  $("#edit_chart4").click(function (e)
-        {
-           ShowDialog(false);
-           e.preventDefault();
-        }); 
+  $("#edit_chart4").click(function (e) {
+     ShowDialog(false);
+     e.preventDefault();
+  }); 
 
-  $("#edit_chart4").click(function (e)
-        {
-           ShowDialog(false);
-           e.preventDefault();
-        });
+  $("#edit_chart4").click(function (e) {
+     ShowDialog(false);
+     e.preventDefault();
+  });
 
-   $("#edit_chart5").click(function (e)
-        {
-           ShowDialog(false);
-           e.preventDefault();
-        });
+  $("#edit_chart5").click(function (e) {
+     ShowDialog(false);
+     e.preventDefault();
+  });
 
-   $("#edit_chart6").click(function (e)
-        {
-           ShowDialog(false);
-           e.preventDefault();
-        });
+   $("#edit_chart6").click(function (e) {
+       ShowDialog(false);
+       e.preventDefault();
+    });
 
-
-  
   $("#wrappers1").click(function (e) {
      chartLocation = "chart1";
      editOption ="wrapperheader1";
@@ -151,8 +134,7 @@ $(document).ready(function () {
   });
 
 
-   function ShowDialog(modal)
-   {
+   function ShowDialog(modal) {
       $("#overlay").show();
       $("#dialog").fadeIn(300);
 
@@ -163,72 +145,14 @@ $(document).ready(function () {
       
    }
 
-   function HideDialog()
-   {
+   function HideDialog() {
       $("#overlay").hide();
       $("#dialog").fadeOut(300);
    } 
-
-
-
-     
- $("#btnClose").click(function (e)
-      {
-     HideDialog();
-      });
-
-      
- $("#btnAddLine").click(function (e) {
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var lineFilter = $("#lineFilter").val();
-      var widgetTitleLine = $("#widgetTitleLine").val();
     
-      var metrics = getMetrics( lineMetric, lineCompare);
-      addLineChart(metrics, widgetTitleLine); 
- });
-
-
- $("#btnAddArea").click(function (e) {
-     var areaMetric = $("#areaMetrics").val();
-     var areaCompare = $("#areaCompare").val();
-     var areaFilter = $("#areaFilter").val();
-     var widgetTitleArea = $("#widgetTitleArea").val();
-
-     var metrics = getMetrics( areaMetric, areaCompare);
-     addAreaChart( metrics, widgetTitleArea); 
- });
-
-
- $("#btnAddPie").click(function (e) {
-     var pieMetric = $("#pieMetrics").val();
-     var pieDimension = $("#pieGroupBy").val();
-     var pieFilter = $("#pieFilter").val();
-     var widgetTitlePie = $("#widgetTitlePie").val();
-
-     addPieChart( pieMetric, pieDimension, widgetTitlePie); 
+  $("#btnClose").click(function (e) {
+     HideDialog();
   });
-
-
- $("#btnAddBar").click(function (e) {
-      var barMetric = $("#barMetrics").val();
-      var barCompare = $("#barCompare").val();
-      var barFilter = $("#barFilter").val();
-      var widgetTitleBar = $("#widgetTitleBar").val();
-
-     addBarChart( barMetric, widgetTitleBar); 
-  });
-
-
- $("#btnAddColumn").click(function (e) {
-      var columnMetric = $("#columnMetrics").val();
-      var columnCompare = $("#columnCompare").val();
-      var columnFilter = $("#columnFilter").val();
-      var widgetTitleColumn = $("#widgetTitleColumn").val();
-
-     addColumnChart( columnMetric, widgetTitleColumn); 
-  });
-
 
   function getMetrics( primeMetric, optMetric) {
       if( !optMetric.match(/none/) ) {
@@ -288,301 +212,235 @@ $(document).ready(function () {
      }
   }); 
 
-
-   $("#pieMetrics").change(function (e) {
+  $(".pie_change").change(function (e) {
       var ids = TABLE_ID;
       var pieMetric = $("#pieMetrics").val();
-      var pieGroupBy = $("#pieGroupBy").val();
+      var pieDimension = $("#pieGroupBy").val();
       var widgetTitle = $("#widgetTitlePie").val();
-  
+      var filterDimension = $("#pie_filter_dimension").val();
+      var filterMatching = $("#pie_filter_matching").val();
       var pattern =new RegExp("none");
 
-      if( !pattern.test(pieMetric) && !pattern.test(pieGroupBy))  {
+      if( !pattern.test(pieMetric) && !pattern.test(pieDimension))  {
         var div = "wrappersPreviewPie";
-        var chart = new gadash.GaPieChart( div, ids, pieMetric,pieGroupBy,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaPieChart( div, ids, pieMetric, pieDimension,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
               }
-            }
-        ).render();
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaPieChart( div, ids, pieMetric, pieDimension,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
      }
      else {
          document.getElementById("wrappersPreviewPie").innerHTML = "";
      }
   }); 
 
-
-   $("#pieGroupBy").change(function (e) {
-      var ids = TABLE_ID;
-      var pieMetric = $("#pieMetrics").val();
-      var pieGroupBy = $("#pieGroupBy").val();
-      var widgetTitle = $("#widgetTitlePie").val();
-  
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(pieMetric) && !pattern.test(pieGroupBy))  {
-
-        var div = "wrappersPreviewPie";
-        var chart = new gadash.GaPieChart( div, ids, pieMetric, pieGroupBy,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
-              }
-            }
-        ).render();
-     }
-     else {
-         document.getElementById("wrappersPreviewPie").innerHTML = "";
-     }
-  }); 
-
-
-  $("#areaMetrics").change(function (e) {
-      var ids = TABLE_ID;
-      var areaMetric = $("#areaMetrics").val();
-      var areaCompare = $("#areaCompare").val();
-      var metrics = getMetrics( areaMetric, areaCompare);
-      var widgetTitle = $("#widgetTitleArea").val();
-
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(areaMetric))  {
-        var div = "wrappersPreviewArea";
-        var chart = new gadash.GaAreaChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
-              }
-            }
-        ).render();
-     }
-     else {
-         document.getElementById("wrappersPreviewArea").innerHTML = "";
-     }
-  }); 
-
-  $("#areaCompare").change(function (e) {
-      var ids = TABLE_ID;
-      var areaMetric = $("#areaMetrics").val();
-      var areaCompare = $("#areaCompare").val();
-      var metrics = getMetrics( areaMetric, areaCompare);
-      var widgetTitle = $("#widgetTitleArea").val();
-
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(areaMetric))  {
-        var div = "wrappersPreviewArea";
-        var chart = new gadash.GaAreaChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
-              }
-            }
-        ).render();
-      }
-     else {
-         document.getElementById("wrappersPreviewArea").innerHTML = "";
-     }
-  }); 
-
-  $("#columnMetrics").change(function (e) {
-      var ids = TABLE_ID;
-      var columnMetric = $("#columnMetrics").val();
-      var columnCompare = $("#columnCompare").val();
-      var metrics = getMetrics( columnMetric, columnCompare);
-      var widgetTitle = $("#widgetTitleColumn").val();
-
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(columnMetric))  {
-        var div = "wrappersPreviewColumn";
-        var chart = new gadash.GaColumnChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
-              }
-            }
-        ).render();
-  $("#" + editOption ).show(); 
-
-     }
-     else {
-         document.getElementById("wrappersPreviewColumn").innerHTML = "";
-     }
-  }); 
-
-  $("#columnCompare").change(function (e) {
-      var ids = TABLE_ID;
-      var columnMetric = $("#columnMetrics").val();
-      var columnCompare = $("#columnCompare").val();
-      var metrics = getMetrics( columnMetric, columnCompare);
-      var widgetTitle = $("#widgetTitleColumn").val();
-
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(columnMetric))  {
-        var div = "wrappersPreviewColumn";
-        var chart = new gadash.GaColumnChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
-              }
-            }
-        ).render();
-      }
-     else {
-         document.getElementById("wrappersPreviewColumn").innerHTML = "";
-     }
-  }); 
-
-
-   $("#barMetrics").change(function (e) {
+  $(".bar_change").change(function (e) {
       var ids = TABLE_ID;
       var barMetric = $("#barMetrics").val();
       var barCompare = $("#barCompare").val();
       var metrics = getMetrics( barMetric, barCompare);
       var widgetTitle = $("#widgetTitleBar").val();
-
+      var filterDimension = $("#bar_filter_dimension").val();
+      var filterMatching = $("#bar_filter_matching").val();
       var pattern =new RegExp("none");
 
       if( !pattern.test(barMetric))  {
         var div = "wrappersPreviewBar";
-        var chart = new gadash.GaBarChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaBarChart( div, ids, metrics,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
               }
-            }
-        ).render();
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaBarChart( div, ids, metrics,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
      }
      else {
          document.getElementById("wrappersPreviewBar").innerHTML = "";
      }
   }); 
 
-  $("#barCompare").change(function (e) {
+  $(".column_change").change(function (e) {
       var ids = TABLE_ID;
+      var columnMetric = $("#columnMetrics").val();
+      var columnCompare = $("#columnCompare").val();
+      var metrics = getMetrics( columnMetric, columnCompare);
+      var widgetTitle = $("#widgetTitleColumn").val();
+      var filterDimension = $("#column_filter_dimension").val();
+      var filterMatching = $("#column_filter_matching").val();
+      var pattern =new RegExp("none");
+
+      if( !pattern.test(columnMetric))  {
+        var div = "wrappersPreviewColumn";
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaColumnChart( div, ids, metrics,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaColumnChart( div, ids, metrics,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+     }
+     else {
+         document.getElementById("wrappersPreviewColumn").innerHTML = "";
+     }
+  }); 
+
+  $(".area_change").change(function (e) {
+      var ids = TABLE_ID;
+      var areaMetric = $("#areaMetrics").val();
+      var areaCompare = $("#areaCompare").val();
+      var metrics = getMetrics( areaMetric, areaCompare);
+      var widgetTitle = $("#widgetTitleArea").val();
+      var filterDimension = $("#area_filter_dimension").val();
+      var filterMatching = $("#area_filter_matching").val();
+      var pattern =new RegExp("none");
+
+      if( !pattern.test(areaMetric))  {
+        var div = "wrappersPreviewArea";
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaAreaChart( div, ids, metrics,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaAreaChart( div, ids, metrics,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+     }
+     else {
+         document.getElementById("wrappersPreviewArea").innerHTML = "";
+     }
+  }); 
+
+  $("#btnAddLine").click(function (e) {
+      var lineMetric = $("#lineMetrics").val();
+      var lineCompare = $("#lineCompare").val();
+      var widgetTitleLine = $("#widgetTitleLine").val();    
+      var metrics = getMetrics( lineMetric, lineCompare);
+      addLineChart(metrics, widgetTitleLine); 
+  });
+
+  $("#btnAddPie").click(function (e) {
+     var pieMetric = $("#pieMetrics").val();
+     var pieDimension = $("#pieGroupBy").val();
+     var widgetTitlePie = $("#widgetTitlePie").val();
+     addPieChart( pieMetric, pieDimension, widgetTitlePie); 
+  });
+
+  $("#btnAddBar").click(function (e) {
       var barMetric = $("#barMetrics").val();
       var barCompare = $("#barCompare").val();
+      var widgetTitleBar = $("#widgetTitleBar").val();
       var metrics = getMetrics( barMetric, barCompare);
-      var widgetTitle = $("#widgetTitleBar").val();
+      addBarChart( metrics, widgetTitleBar); 
+  });
 
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(barMetric))  {
-        var div = "wrappersPreviewBar";
-        var chart = new gadash.GaBarChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
-              }
-            }
-        ).render();
-      }
-     else {
-         document.getElementById("wrappersPreviewBar").innerHTML = "";
-     }
-  }); 
-
-    $("#columnMetrics").change(function (e) {
-      var ids = TABLE_ID;
+  $("#btnAddColumn").click(function (e) {
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
+      var widgetTitleColumn = $("#widgetTitleColumn").val();
       var metrics = getMetrics( columnMetric, columnCompare);
-      var widgetTitle = $("#widgetTitleColumn").val();
+      addColumnChart( metrics, widgetTitleColumn); 
+  });
 
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(columnMetric))  {
-        var div = "wrappersPreviewColumn";
-        var chart = new gadash.GaColumnChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
-              }
-            }
-        ).render();
-     }
-     else {
-         document.getElementById("wrappersPreviewColumn").innerHTML = "";
-     }
-  }); 
-
-  $("#columnCompare").change(function (e) {
-      var ids = TABLE_ID;
-      var columnMetric = $("#columnMetrics").val();
-      var columnCompare = $("#columnCompare").val();
-      var metrics = getMetrics( columnMetric, columnCompare);
-      var widgetTitle = $("#widgetTitleColumn").val();
-
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(columnMetric))  {
-        var div = "wrappersPreviewColumn";
-        var chart = new gadash.GaColumnChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
-              }
-            }
-        ).render();
-      }
-     else {
-         document.getElementById("wrappersPreviewColumn").innerHTML = "";
-     }
-  }); 
-
+  $("#btnAddArea").click(function (e) {
+     var areaMetric = $("#areaMetrics").val();
+     var areaCompare = $("#areaCompare").val();
+     var widgetTitleArea = $("#widgetTitleArea").val();
+     var metrics = getMetrics( areaMetric, areaCompare);
+     addAreaChart( metrics, widgetTitleArea); 
+  });
 
   function addLineChart( metrics, widgetTitle){
       var ids = TABLE_ID;
@@ -627,93 +485,237 @@ $(document).ready(function () {
      else {
          document.getElementById("wrappersPreviewLine").innerHTML = "";
      }
+     $("#" + editOption ).show(); 
+     HideDialog();
+  }; 
+
+  function addPieChart( metrics, dimensions, widgetTitle){
+     var ids = TABLE_ID;
+     var filterDimension = $("#pie_filter_dimension").val();
+     var filterMatching = $("#pie_filter_matching").val();
+     var pattern =new RegExp("none");
+
+     if( !pattern.test(metrics) && !pattern.test(dimensions))  {
+        var div = chartLocation;
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+      }
+      else {
+        document.getElementById("wrappersPreviewPie").innerHTML = "";
+      }
+      $("#" + editOption ).show(); 
+      HideDialog();
+  }; 
+
+  function addBarChart( metrics, widgetTitle){
+      var ids = TABLE_ID;
+      var barMetric = $("#barMetrics").val();
+      var barCompare = $("#barCompare").val();
+      var metrics = getMetrics( barMetric, barCompare);
+      var widgetTitle = $("#widgetTitleBar").val();
+      var filterDimension = $("#bar_filter_dimension").val();
+      var filterMatching = $("#bar_filter_matching").val();
+      var pattern =new RegExp("none");
+
+      if( !pattern.test(barMetric))  {
+        var div = chartLocation;
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaBarChart( div, ids, metrics,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaBarChart( div, ids, metrics,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+     }
+     else {
+         document.getElementById("wrappersPreviewBar").innerHTML = "";
+     }
+     $("#" + editOption ).show(); 
+     HideDialog();
+  }; 
+
+  function addColumnChart( metrics, widgetTitle){
+      var ids = TABLE_ID;
+      var columnMetric = $("#columnMetrics").val();
+      var columnCompare = $("#columnCompare").val();
+      var metrics = getMetrics( columnMetric, columnCompare);
+      var widgetTitle = $("#widgetTitleColumn").val();
+      var filterDimension = $("#column_filter_dimension").val();
+      var filterMatching = $("#column_filter_matching").val();
+      var pattern =new RegExp("none");
+
+      if( !pattern.test(columnMetric))  {
+        var div = chartLocation;
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaColumnChart( div, ids, metrics,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaColumnChart( div, ids, metrics,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+     }
+     else {
+         document.getElementById("wrappersPreviewColumn").innerHTML = "";
+     }
+     $("#" + editOption ).show(); 
      HideDialog();
   }; 
 
   function addAreaChart( metrics, widgetTitle){
       var ids = TABLE_ID;
-      var div = chartLocation;
-      var chart = new gadash.GaAreaChart( div, ids, metrics,
-          {'query': {
-             'start-date':start_date,
-             'end-date':end_date
-           },
-           'chartOptions':{
-               'title':widgetTitle,
-               'height':250,
-               'width':350
-          }
-      }).render();
-      HideDialog();
-      $("#" + editOption ).show(); 
-  };
+      var areaMetric = $("#areaMetrics").val();
+      var areaCompare = $("#areaCompare").val();
+      var metrics = getMetrics( areaMetric, areaCompare);
+      var widgetTitle = $("#widgetTitleArea").val();
+      var filterDimension = $("#area_filter_dimension").val();
+      var filterMatching = $("#area_filter_matching").val();
+      var pattern =new RegExp("none");
 
-
-  function addPieChart( metrics, dimensions, widgetTitle){
-      var ids = TABLE_ID;
-      var div = chartLocation;
-      var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
-          {'query': {
-             'start-date':start_date,
-             'end-date':end_date
-           },
-           'chartOptions':{
-               'title':widgetTitle,
-               'height':250,
-               'width':350
-          }
-      }).render();
-      $("#" + editOption ).show(); 
-      HideDialog();
-  };
-
-
-  function addBarChart( metrics, widgetTitle){
-      var ids = TABLE_ID;
-      var div = chartLocation;
-      var chart = new gadash.GaBarChart( div, ids, metrics,
-          {'query': {
-             'start-date':start_date,
-             'end-date':end_date
-           },
-           'chartOptions':{
-               'title':widgetTitle,
-               'height':250,
-               'width':350
-          }
-      }).render();
-      $("#" + editOption ).show(); 
-      HideDialog();
-  };
-
-
-  function addColumnChart( metrics, widgetTitle){
-      var ids = TABLE_ID;
-      var div = chartLocation;
-      var chart = new gadash.GaColumnChart( div, ids, metrics,
-          {'query': {
-             'start-date':start_date,
-             'end-date':end_date
-           },
-           'chartOptions':{
-               'title':widgetTitle,
-               'height':250,
-               'width':350
-          }
-      }).render();
-      $("#" + editOption ).show(); 
-      HideDialog();
-  };
-
+      if( !pattern.test(areaMetric))  {
+        var div = chartLocation;
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaAreaChart( div, ids, metrics,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaAreaChart( div, ids, metrics,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+     }
+     else {
+         document.getElementById("wrappersPreviewColumn").innerHTML = "";
+     }
+     $("#" + editOption ).show(); 
+     HideDialog();
+  }; 
 
   $('#menu').tabs();
 
   $("#line_filter_fields").hide();
+  $("#pie_filter_fields").hide();
+  $("#bar_filter_fields").hide();
+  $("#column_filter_fields").hide();
+  $("#area_filter_fields").hide();
 
   $(function () {
     $('#lineFilter').click(function () {
       $('#line_filter_fields').toggle();
     });
-  })
+    $('#pieFilter').click(function () {
+      $('#pie_filter_fields').toggle();
+    });
+    $('#barFilter').click(function () {
+      $('#bar_filter_fields').toggle();
+    });
+    $('#columnFilter').click(function () {
+      $('#column_filter_fields').toggle();
+    });
+    $('#areaFilter').click(function () {
+      $('#area_filter_fields').toggle();
+    });
+  });
+
 });
+
+
+
+
+
+
 
