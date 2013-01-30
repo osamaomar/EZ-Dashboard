@@ -18,54 +18,6 @@ $(document).ready(function () {
   });
 
 
-  /* 
-   * parameters: element: on which we apply the event
-   *             type: the type of event to apply on the element
-   *             callback: the function or the reference to the function
-   *                       that is called once the event is completed
-   */
-  var addEvent = function(element, type, callback){
-     //for EI. "onclick", "onload", "onresize"
-     if (element.attachEvent) {
-          element.attachEvent("on" + type, callback);
-        addEvent = function(element, type, callback){
-           element.attachEvent("on" + type, callback);
-        }
-      }
-      //for other browsers: juste "click", "load", "resize"
-      else {
-          element.addEventListener(type, callback, false);
-        addEvent = function(element, type, callback){
-           element.addEventListener(type, callback, false);
-        }
-      }
-  };
-
-
-  /* 
-   * inverse function to remove an event
-   * parameters: element: on which we apply the event
-   *             type: the type of event to apply on the element
-   *             callback: the function or the reference to the function
-   *                       that is called once the event is completed
-   */
-   var removeEvent = function(element, type, callback){
-     if (element.detachEvent) {
-          element.detachEvent("on" + type, callback);
-        removeEvent = function(element, type, callback){
-           element.detachEvent("on" + type, callback);
-        }
-      }
-      else {
-          element.removeEventListener(type, callback, false);
-        removeEvent = function(element, type, callback){
-           element.removeEventListener(type, callback, false);
-        }
-      }
-  };
-
-
-
   /* utility function
    * alias
    */
@@ -82,10 +34,7 @@ $(document).ready(function () {
   };
 
 
-
-
   $(".wrapperheader").hide();
-
 
         
   $("#edit_chart1").click(function (e)
@@ -279,60 +228,49 @@ $(document).ready(function () {
   };
 
 
-  $("#lineMetrics").change(function (e) {
+  $(".line_change").change(function (e) {
       var ids = TABLE_ID;
       var lineMetric = $("#lineMetrics").val();
       var lineCompare = $("#lineCompare").val();
       var metrics = getMetrics( lineMetric, lineCompare);
       var widgetTitle = $("#widgetTitleLine").val();
-
+      var filterDimension = $("#line_filter_dimension").val();
+      var filterMatching = $("#line_filter_matching").val();
       var pattern =new RegExp("none");
 
       if( !pattern.test(lineMetric))  {
         var div = "wrappersPreviewLine";
-        var chart = new gadash.GaLineChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaLineChart( div, ids, metrics,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
               }
-            }
-        ).render();
-     }
-     else {
-         document.getElementById("wrappersPreviewLine").innerHTML = "";
-     }
-  }); 
-
-
-  $("#lineCompare").change(function (e) {
-      var ids = TABLE_ID;
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var metrics = getMetrics( lineMetric, lineCompare);
-      var widgetTitle = $("#widgetTitleLine").val();
-
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(lineMetric))  {
-        var div = "wrappersPreviewLine";
-        var chart = new gadash.GaLineChart( div, ids, metrics,
-            {'query': {
-               'start-date':start_date,
-               'end-date':end_date
-             },
-             'chartOptions':{
-                 'title':widgetTitle,
-                 'height':250,
-                 'width':350
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaLineChart( div, ids, metrics,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
               }
-            }
-        ).render();
-      }
+          ).render();
+        }
+     }
      else {
          document.getElementById("wrappersPreviewLine").innerHTML = "";
      }
@@ -345,10 +283,7 @@ $(document).ready(function () {
       var pieGroupBy = $("#pieGroupBy").val();
       var widgetTitle = $("#widgetTitlePie").val();
   
-  
-
       var pattern =new RegExp("none");
-
 
       if( !pattern.test(pieMetric) && !pattern.test(pieGroupBy))  {
         var div = "wrappersPreviewPie";
@@ -377,8 +312,6 @@ $(document).ready(function () {
       var pieGroupBy = $("#pieGroupBy").val();
       var widgetTitle = $("#widgetTitlePie").val();
   
-
-
       var pattern =new RegExp("none");
 
       if( !pattern.test(pieMetric) && !pattern.test(pieGroupBy))  {
@@ -403,10 +336,7 @@ $(document).ready(function () {
   }); 
 
 
-
-   
-
-     $("#areaMetrics").change(function (e) {
+  $("#areaMetrics").change(function (e) {
       var ids = TABLE_ID;
       var areaMetric = $("#areaMetrics").val();
       var areaCompare = $("#areaCompare").val();
@@ -647,29 +577,52 @@ $(document).ready(function () {
      }
   }); 
 
-  
-
-
-
 
   function addLineChart( metrics, widgetTitle){
       var ids = TABLE_ID;
       var div = chartLocation;
-      var chart = new gadash.GaLineChart( div, ids, metrics,
-          {'query': {
-             'start-date':start_date,
-             'end-date':end_date
-           },
-           'chartOptions':{
-               'title':widgetTitle,
-               'height':250,
-               'width':350
-            }
-          }
-      ).render();
-      HideDialog();
-  };
+      var lineMetric = $("#lineMetrics").val();
+      var filterDimension = $("#line_filter_dimension").val();
+      var filterMatching = $("#line_filter_matching").val();
+      var pattern =new RegExp("none");
 
+      if( !pattern.test(lineMetric))  {
+        if( !pattern.test(filterDimension) && filterMatching != ""){
+          var filter = filterDimension + '==' + filterMatching;
+          var chart = new gadash.GaLineChart( div, ids, metrics,
+              {'query': {
+                 'filters':filter,
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+        else {
+           var chart = new gadash.GaLineChart( div, ids, metrics,
+             {'query': {
+                 'start-date':start_date,
+                 'end-date':end_date
+               },
+               'chartOptions':{
+                   'title':widgetTitle,
+                   'height':250,
+                   'width':350
+                }
+              }
+          ).render();
+        }
+     }
+     else {
+         document.getElementById("wrappersPreviewLine").innerHTML = "";
+     }
+     HideDialog();
+  }; 
 
   function addAreaChart( metrics, widgetTitle){
       var ids = TABLE_ID;
@@ -745,22 +698,11 @@ $(document).ready(function () {
 
   $('#menu').tabs();
 
+  $("#line_filter_fields").hide();
 
-
-  /*
-   * Enable to launch or create several events
-   */
-  function initialisation(){
-     addEvent( id_$('btnAddLine'), 'click', addLineChart);
-     addEvent( id_$('btnAddPie'), 'click', addPieChart);
-     addEvent( id_$('btnAddArea'), 'click', addAreaChart);
-     addEvent( id_$('btnAddBar'), 'click', addBarChart);
-     addEvent( id_$('btnAddColumn'), 'click', addColumnChart);
-  };
-
-
-  /*
-   * Create an event that launch the function initialisation when the window is loaded
-   */
-  addEvent(window, 'load', initialisation);
+  $(function () {
+    $('#lineFilter').click(function () {
+      $('#line_filter_fields').toggle();
+    });
+  })
 });

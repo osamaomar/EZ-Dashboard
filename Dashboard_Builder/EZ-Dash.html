@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="js/EZ-Dash.js"></script>		
 	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
 	<script src="https://www.google.com/jsapi"></script>
-	<script type="text/javascript" src="js/gadash-2.0.js"></script>
+	<script type="text/javascript" src="js/gadash-1.0.js"></script>
 	<script src="https://apis.google.com/js/client.js?onload=gadashInit"></script>	
 
 	
@@ -24,6 +24,7 @@
 	</a>
 
 	<div id="header" style="width:100%; background-image:url('images/header BG.png')">
+
 		<table width="100%">
 			<tr>
 				<td align="left">
@@ -50,7 +51,7 @@
 			</tr>
 		</table>
 	</div>
-	
+
 	<table align="center" style="border-spacing: 15px;">
 		<tr>
 			<td>
@@ -176,7 +177,7 @@
 		    	<div id="rightdiv">
 					<form>
 						Graph the following metric overtime<br/>
-						<select id ="lineMetrics">
+						<select id ="lineMetrics" class="line_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -243,7 +244,7 @@
 						</select><br><br>
 						
 						Compare with (optional) <br/>
-						<select id='lineCompare'>
+						<select id='lineCompare' class="line_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -310,9 +311,98 @@
 						</select><br/><br/>
 
 						Filter this data<br/>
-						<span id ="lineFilter">Add a filter</span><br/><br/>
+						<span style ="text-decoration:underline;" id ="lineFilter">Add a filter</span><br/><br/>
 
-						Widget Title <br/>
+						<div id="line_filter_fields" class="line_change" style="height:50px;">
+							<select id="line_filter_dimension">
+								<option value="none">Choose a Dimension</option>
+								<option value="ga:adContent">Ad Content</value>
+								<option value="ga:adDistributionNetwork">Ad Distribution Network</value>
+								<option value="ga:adGroup">Ad Group</value>
+								<option value="ga:adSlot">Ad Slot</value>
+								<option value="ga:adSlotPosition">Ad Slot Position</value>
+								<option value="ga:affiliation">Affiliation</value>
+								<option value="ga:browser">Browser</value>
+								<option value="ga:browserVersion">Browser Version</value>
+								<option value="ga:campaign">Campaign</value>
+								<option value="ga:city">City</value>
+								<option value="ga:continent">Continent</value>
+								<option value="ga:visitCount">Count of Visits</value>
+								<option value="ga:country">Country / Territory</value>
+								<option value="ga:date">Date</value>
+								<option value="ga:dayOfWeek">Day of week</value>
+								<option value="ga:daysSinceLastVisit">Days Since Last Visit</value>
+								<option value="ga:daysToTransaction">Days to Transaction</value>
+								<option value="ga:searchDestinationPage">Destination Page</value>
+								<option value="ga:adDestinationUrl">Destination URL</value>
+								<option value="ga:socialActivityDisplayName">Display Name</value>
+								<option value="ga:networkDomain">Domain</value>
+								<option value="ga:socialActivityEndorsingUrl">Endorsing URL</value>
+								<option value="ga:eventAction">Event Action</value>
+								<option value="ga:eventCategory">Event Category</value>
+								<option value="ga:eventLabel">Event Label</value>
+								<option value="ga:exitPagePath">Exit Page</value>
+								<option value="ga:flashVersion">Flash Version</value>
+								<option value="ga:referralPath">Full Referrer</value>
+								<option value="ga:hostname">Hostname</value>
+								<option value="ga:hour">Hour</value>
+								<option value="ga:javaEnabled">Java Support</value>
+								<option value="ga:keyword">Keyword</value>
+								<option value="ga:landingPagePath">Landing Page</value>
+								<option value="ga:language">Language</value>
+								<option value="ga:adMatchType">Match Type</value>
+								<option value="ga:adMatchedQuery">Matched Search Query</value>
+								<option value="ga:medium">Medium</value>
+								<option value="ga:metro">Metro</value>
+								<option value="ga:isMobile">Mobile (Including Tablet)</value>
+								<option value="ga:mobileDeviceBranding">Mobile Device Branding</value>
+								<option value="ga:mobileDeviceInfo">Mobile Device Info</value>
+								<option value="ga:mobileDeviceModel">Mobile Device Model</value>
+								<option value="ga:mobileInputSelector">Mobile Input Selector</value>
+								<option value="ga:nthMonth">Month of Year</value>
+								<option value="ga:operatingSystem">Operating System</value>
+								<option value="ga:operatingSystemVersion">Operating System Version</value>
+								<option value="ga:socialActivityAction">Originating Social Action</value>
+								<option value="ga:pageDepth">Page Depth</value>
+								<option value="ga:pagePathLevel1">Page path level 1</value>
+								<option value="ga:pagePathLevel2">Page path level 2</value>
+								<option value="ga:pagePathLevel3">Page path level 3</value>
+								<option value="ga:pagePathLevel4">Page path level 4</value>
+								<option value="ga:pageTitle">Page Title</value>
+								<option value="ga:adPlacementDomain">Placement Domain</value>
+								<option value="ga:adPlacementUrl">Placement URL</value>
+								<option value="ga:productName">Product</value>
+								<option value="ga:productCategory">Product Category</value>
+								<option value="ga:productSku">Product SKU</value>
+								<option value="ga:referralPath">Referral Path</value>
+								<option value="ga:searchKeywordRefinement">Refined Keyword</value>
+								<option value="ga:region">Region</value>
+								<option value="ga:screenColors">Screen Colors</value>
+								<option value="ga:screenResolution">Screen Resolution</value>
+								<option value="ga:searchKeyword">Search Term</value>
+								<option value="ga:socialActivityAction">Social Action</value>
+								<option value="ga:socialActivityPost">Social Activity Post</value>
+								<option value="ga:socialActivityTimestamp">Social Activity Timestamp</value>
+								<option value="ga:socialNetwork">Social Network</value>
+								<option value="ga:socialActivityNetworkAction">Social Network and Action</value>
+								<option value="ga:source">Source</value>
+								<option value="ga:searchStartPage">Start Page</value>
+								<option value="ga:subContinent">Sub Continent Region</value>
+								<option value="ga:userTimingCategory">Timing Category</value>
+								<option value="ga:userTimingLabel">Timing Label</value>
+								<option value="ga:userTimingVariable">Timing Variable</value>
+								<option value="ga:transactionId">Transaction</value>
+								<option value="ga:userDefinedValue">User Defined Value</value>
+								<option value="ga:socialActivityUserPhotoUrl">User Photo URL</value>
+								<option value="ga:socialActivityUserProfileUrl">User Profile URL</value>
+								<option value="ga:visitorType">Visitor Type</value>
+								<option value="ga:visitsToTransaction">Visits to Transaction</value>
+								<option value="ga:nthWeek">Week of Year</value>
+							</select><br/>
+							Exactly matching <input type="text" id="line_filter_matching" class="line_change" name="line_filter_matching"><br/>
+						</div>	
+
+						<br/><br/>Widget Title <br/>
 						<input id ="widgetTitleLine"> </input><br/>
 
 						
