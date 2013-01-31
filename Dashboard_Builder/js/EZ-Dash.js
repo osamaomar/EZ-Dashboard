@@ -346,7 +346,6 @@ $(document).ready(function () {
       var pieGroupBy = $("#pieGroupBy").val();
       var widgetTitle = $("#widgetTitlePie").val();
   
-  
 
       var pattern =new RegExp("none");
 
