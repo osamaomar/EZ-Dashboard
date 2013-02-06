@@ -14,9 +14,14 @@ $(document).ready(function () {
   var selectedStartDate; // selected start date from user
   var selectedEndDat; // selected end date from user
 
-  gadash.configKeys({
-      'apiKey': API_KEY,
-      'clientId': CLIENT_ID
+  // gadash.configKeys({
+  //     'apiKey': API_KEY,
+  //     'clientId': CLIENT_ID
+  // });
+
+  gadash.init({
+    'apiKey': API_KEY,
+    'clientId': CLIENT_ID
   });
 
   function tag_$(un_tag){
