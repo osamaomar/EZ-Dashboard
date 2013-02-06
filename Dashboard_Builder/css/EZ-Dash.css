@@ -15,7 +15,7 @@ cursor:pointer;
 
 }
 .wrappersPreview{
-border:5px dashed #DDD;
+border:2px dashed #DDD;
 border-radius:0px;
 -moz-border-radius:25px; /* Firefox 3.6 and earlier */
 height:250px;
@@ -203,6 +203,23 @@ text-decoration:none;
    text-align: right;
 }
 
+.grabcode_dialog {
+	display: none;
+   position: fixed;
+   width: 1100px;
+   height: 100%px;
+   top: 55%;
+   left: 50%;
+   margin-left: -550px;
+   margin-top: -350px;
+   background-color: #ffffff;
+   border: 1px solid #4D90FE;
+   padding: 0px;
+   z-index: 102;
+   font-family: Verdana;
+   font-size: 10pt;
+}
+}
 
 
 #chartholder{

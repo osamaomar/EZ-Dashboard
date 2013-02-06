@@ -13,6 +13,7 @@ $(document).ready(function () {
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
   var selectedStartDate; // selected start date from user
   var selectedEndDat; // selected end date from user
+  var hasChart = false;
 
   gadash.configKeys({
       'apiKey': API_KEY,
@@ -108,6 +109,12 @@ $(document).ready(function () {
      ShowDialog(false);
      e.preventDefault();
   });
+
+  $("#finishbutton").click(function (e) {
+    $("#finishbutton").fadeOut(300);
+     ShowGrabcodeDialog();
+     e.preventDefault();
+  });
  
  $(function() {
     $( "#from" ).datepicker({
@@ -145,13 +152,27 @@ $(document).ready(function () {
       
    }
 
+   function ShowGrabcodeDialog() {
+      $("#overlay").show();
+      $("#gcdialog").fadeIn(300);
+   }
+
    function HideDialog() {
       $("#overlay").hide();
       $("#dialog").fadeOut(300);
    } 
+
+   function HideGrabcodeDialog() {
+      $("#overlay").hide();
+      $("#gcdialog").fadeOut(300);
+      $("#finishbutton").fadeIn(300);
+   } 
     
   $("#btnClose").click(function (e) {
      HideDialog();
+  });
+  $("#btnGC_Close").click(function (e) {
+     HideGrabcodeDialog();
   });
 
   function getMetrics( primeMetric, optMetric) {
@@ -409,6 +430,8 @@ $(document).ready(function () {
       var lineCompare = $("#lineCompare").val();
       var widgetTitleLine = $("#widgetTitleLine").val();    
       var metrics = getMetrics( lineMetric, lineCompare);
+      var hasChart = true;
+
       addLineChart(metrics, widgetTitleLine); 
   });
 
@@ -416,6 +439,8 @@ $(document).ready(function () {
      var pieMetric = $("#pieMetrics").val();
      var pieDimension = $("#pieGroupBy").val();
      var widgetTitlePie = $("#widgetTitlePie").val();
+     var hasChart = true;
+
      addPieChart( pieMetric, pieDimension, widgetTitlePie); 
   });
 
@@ -424,6 +449,8 @@ $(document).ready(function () {
       var barCompare = $("#barCompare").val();
       var widgetTitleBar = $("#widgetTitleBar").val();
       var metrics = getMetrics( barMetric, barCompare);
+      var hasChart = true;
+
       addBarChart( metrics, widgetTitleBar); 
   });
 
@@ -432,6 +459,8 @@ $(document).ready(function () {
       var columnCompare = $("#columnCompare").val();
       var widgetTitleColumn = $("#widgetTitleColumn").val();
       var metrics = getMetrics( columnMetric, columnCompare);
+      var hasChart = true;
+      
       addColumnChart( metrics, widgetTitleColumn); 
   });
 

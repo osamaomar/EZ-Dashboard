@@ -130,14 +130,38 @@
 	<br/>
 
 	<div id="finishbutton" >
-		<a href="EZ-grab.html" class="grabcode">Grab Code</a>
+		<a href="#" class="grabcode">Grab Code</a>
 	</div>
       
     
 	<div id="output"></div>
 	    
 	<div id="overlay" class="web_dialog_overlay"></div>
-    
+
+	<!-- GRAB CODE OVERLAY -->
+	<div id="gcdialog" class="grabcode_dialog">
+		<table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+	      <tr>
+	         <td class="web_dialog_title">Grab Code</td>
+	         <td class="web_dialog_title align_right">
+	            <a href="#" id="btnGC_Close">&nbsp;X&nbsp;</a>
+	         </td>
+	      </tr>
+	   </table>
+	   <br/>
+
+		<div align="center" style="padding: 15px; width:100%;">
+		<textarea name="code_text" id="grabcode_txtarea" style="width: 80%; height: 500px;"></textarea>
+		</div>
+
+		<div id="copybutton" >
+			<a href="#" class="copycode">Copy All</a>
+		</div>
+		<br>
+	</div>
+
+
+	<!-- CHART EDIT OVERLAY -->    
 	<div id="dialog" class="web_dialog">
 	   <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
 	      <tr>
@@ -162,7 +186,6 @@
 		</div>
 
 		    <div id="tabLine">
-		    	<div id="chartholder" style="float:right;">
 	 			<div id="chartholder">
 	 				<div id="wrappersPreviewLine" class="wrappersPreview" >
 						<div class="wrapperheader">
@@ -174,7 +197,7 @@
 					</div>	
 	    			<br/><br/><br/><br/><br/>
 				</div>
-	 		</div>
+	 		
 		    	<div id="rightdiv">
 					<form>
 						Graph the following metric overtime<br/>
