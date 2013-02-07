@@ -161,6 +161,7 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
 
   $("#finishbutton").click(function (e) {
     $("#finishbutton").fadeOut(300);
+     generate_code();
      ShowGrabcodeDialog();
      e.preventDefault();
   });
@@ -1072,4 +1073,178 @@ var ids = TABLE_ID;
 }
 };
 
+function generate_code() {
+    var html_page = document.getElementById("grabcode_txtarea");
+    var part = new Array();
+    
+    part[0] = "<html>" +
+                  "<head>" +
+                    "<meta http-equiv='content-type' content='text/html; charset=UTF-8'>" +      
+                    
+                    "<script src='//www.google.com/jsapi'></script>" +
+                    "<script type='text/javascript' src='js/gadash-2.0.js'></script>" +
+                    "<script src='//apis.google.com/js/client.js?onload=gadashInit_'></script>" +
+
+                    "<style>" +
+                      "#chart1, #chart2, #chart3, #chart4, #chart5, #chart6 {" +
+                        "width:350px,"+
+                        "height:250px" +
+                      "}" +
+                    "</style>" +
+                    "<script>" +
+                       "var API_KEY = " + API_KEY + ";"
+                       "var CLIENT_ID = " + CLIENT_ID + ";"
+                       "var TABLE_ID = " + TABLE_ID + ";"
+
+                        "gadash.init({" +
+                          "'apiKey': API_KEY," +
+                          "'clientId': CLIENT_ID" +
+                        "});";
+
+    var pattern =new RegExp("none");
+
+    // Create all 6 charts (even if empty) and store them in part[1] through part[6]
+    for( var cNum = 0; cNum < 6; cNum++) {
+
+      // For Pie Charts
+      if( chartGlobal[cNum].chartType == "PieChart") {
+          if( !pattern.test(chartGlobal[cNum].chartMetric) && !pattern.test(chartGlobal[cNum].chartDimension)) {
+              if( !pattern.test(chartGlobal[cNum].filterDimension) && chartGlobal[cNum].filterMatching != "") {
+                  var filter = chartGlobal[cNum].filterDimension + '==' + chartGlobal[cNum].filterMatching;
+                  part[cNum + 1] = "var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
+                              "( " + chartGlobal[cNum].position + ", " +
+                                   "TABLE_ID, " +
+                                 + chartGlobal[cNum].chartMetric + ", " +
+                                 + chartGlobal[cNum].chartDimension + ", " +
+
+                                   + "{'query': {" +
+                                            "'filters':" + filter + "," +
+                                            "'start-date':" + start_date + "," +
+                                            "'end-date':" + end_date +
+                                          "}," +
+                                          "'chartOptions':{" +
+                                            "'title':" + chartGlobal[cNum].chartTitle + "," +
+                                            "'height':250," +
+                                            "'width':350" +
+                                          "}" +
+                                        "}" +
+                                      ").render();";
+              }
+              else {
+                  part[cNum + 1] = "var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
+                              "( " + chartGlobal[cNum].position + ", " 
+                                   + "TABLE_ID, "  
+                                   + chartGlobal[cNum].chartMetric + ", " +
+                                   + chartGlobal[cNum].chartDimension + ", " +
+
+                                   + "{'query': {" +
+                                            "'start-date':" + start_date + "," +
+                                            "'end-date':" + end_date + 
+                                          "}," +
+                                          "'chartOptions':{" +
+                                            "'title':" + chartGlobal[cNum].chartTitle + "," +
+                                            "'height':250," +
+                                            "'width':350" +
+                                          "}" +
+                                        "}" +
+                                    ").render();";
+              }
+          }
+          else {
+              part[cNum + 1] = "document.getElementById('" + chartGlobal[cNum].position  + "').innerHTML = '';";
+          }
+      }
+      //For TimeLine, Bar, and Column charts
+      else {
+          if( !pattern.test(chartGlobal[cNum].chartMetric)) {
+              if( !pattern.test(chartGlobal[cNum].filterDimension) && chartGlobal[cNum].filterMatching != ""){
+                var filter = chartGlobal[cNum].filterDimension + '==' + chartGlobal[cNum].filterMatching;
+                part[cNum + 1] = "var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
+                            "( " + chartGlobal[cNum].position + ", "
+                                 + "TABLE_ID,"  
+                                 + chartGlobal[cNum].chartMetric + ", "
+                                 + "{'query': {" +
+                                          "'filters':" + filter + "," +
+                                          "'start-date':" + start_date + "," +
+                                          "'end-date':" + end_date +
+                                        "}," +
+                                        "'chartOptions':{" +
+                                          "'title':" + chartGlobal[cNum].chartTitle + "," +
+                                          "'height':250," +
+                                          "'width':350" +
+                                        "}" +
+                                      "}" +
+                                    ").render();";
+              }
+              else {
+                part[cNum + 1] = "var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
+                            "( " + chartGlobal[cNum].position + ", "
+                                 + "TABLE_ID, "  
+                                 + chartGlobal[cNum].chartMetric + ", "
+
+                                 + "{'query': {" +
+                                          "'start-date':" + start_date + "," +
+                                          "'end-date':" + end_date + 
+                                        "}," +
+                                        "'chartOptions':{" +
+                                          "'title':" + chartGlobal[cNum].chartTitle + "," +
+                                          "'height':250," +
+                                          "'width':350" +
+                                        "}" +
+                                      "}" +
+                                  ").render();";
+              }
+          }
+          else {
+              part[cNum + 1] = "document.getElementById('" + chartGlobal[cNum].position  + "').innerHTML = '';";
+          }
+       }
+    }
+
+    part[7] = "</script>" +
+      "</head>" +
+      
+      "<body>" +
+        "<table>" +
+          "<tr>" +
+            "<td>" +
+              "<div id='chart1'>" +
+              "</div>" +
+            "</td>" +
+            "<td>" +
+              "<div id='chart2'>" +
+              "</div>" +
+            "</td>" +
+            "<td>" +
+              "<div id='chart3'>" +
+              "</div>" +
+            "</td>" +
+          "</tr>" +
+          "<tr>" +
+            "<td>" +
+              "<div id='chart4'>" +
+              "</div>" +
+            "</td>" +
+            "<td>" +
+              "<div id='chart5'>" +
+              "</div>" +
+            "</td>" +
+            "<td>" +
+              "<div id='chart6'>" +
+              "</div>" +
+            "</td>" +
+          "</tr>" +
+        "</table>" +
+      "</body>" +
+    "<html>";
+
+
+    html_page.value += part[0] + part[1] + part[2] + part[3] + part[4] + part[5] + part[6] + part[7]; 
+  };
+
 });
+
+
+
+
+
