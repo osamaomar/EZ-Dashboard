@@ -13,7 +13,6 @@ $(document).ready(function () {
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
   var selectedStartDate; // selected start date from user
   var selectedEndDat; // selected end date from user
-  var hasChart = false;
 
   // gadash.configKeys({
   //     'apiKey': API_KEY,
@@ -35,6 +34,12 @@ $(document).ready(function () {
 
 
   $(".wrapperheader").hide();
+  $("#edit_chart1").hide();
+  $("#edit_chart2").hide();
+  $("#edit_chart3").hide();
+  $("#edit_chart4").hide();
+  $("#edit_chart5").hide();
+  $("#edit_chart6").hide();
 
         
   $("#edit_chart1").click(function (e) {
@@ -435,7 +440,6 @@ $(document).ready(function () {
       var lineCompare = $("#lineCompare").val();
       var widgetTitleLine = $("#widgetTitleLine").val();    
       var metrics = getMetrics( lineMetric, lineCompare);
-      var hasChart = true;
 
       addLineChart(metrics, widgetTitleLine); 
   });
@@ -444,7 +448,6 @@ $(document).ready(function () {
      var pieMetric = $("#pieMetrics").val();
      var pieDimension = $("#pieGroupBy").val();
      var widgetTitlePie = $("#widgetTitlePie").val();
-     var hasChart = true;
 
      addPieChart( pieMetric, pieDimension, widgetTitlePie); 
   });
@@ -454,7 +457,6 @@ $(document).ready(function () {
       var barCompare = $("#barCompare").val();
       var widgetTitleBar = $("#widgetTitleBar").val();
       var metrics = getMetrics( barMetric, barCompare);
-      var hasChart = true;
 
       addBarChart( metrics, widgetTitleBar); 
   });
@@ -464,7 +466,6 @@ $(document).ready(function () {
       var columnCompare = $("#columnCompare").val();
       var widgetTitleColumn = $("#widgetTitleColumn").val();
       var metrics = getMetrics( columnMetric, columnCompare);
-      var hasChart = true;
       
       addColumnChart( metrics, widgetTitleColumn); 
   });
@@ -474,6 +475,7 @@ $(document).ready(function () {
      var areaCompare = $("#areaCompare").val();
      var widgetTitleArea = $("#widgetTitleArea").val();
      var metrics = getMetrics( areaMetric, areaCompare);
+
      addAreaChart( metrics, widgetTitleArea); 
   });
 
@@ -520,7 +522,9 @@ $(document).ready(function () {
      else {
          document.getElementById("wrappersPreviewLine").innerHTML = "";
      }
-     $("#" + editOption ).show(); 
+     $("#edit_" + chartLocation).show();
+     changeChartBorder(chartLocation);
+
      HideDialog();
   }; 
 
@@ -566,7 +570,8 @@ $(document).ready(function () {
       else {
         document.getElementById("wrappersPreviewPie").innerHTML = "";
       }
-      $("#" + editOption ).show(); 
+      $("#edit_" + editOption ).show(); 
+      changeChartBorder(chartLocation);
       HideDialog();
   }; 
 
@@ -616,7 +621,8 @@ $(document).ready(function () {
      else {
          document.getElementById("wrappersPreviewBar").innerHTML = "";
      }
-     $("#" + editOption ).show(); 
+     $("#edit_" + editOption ).show();
+     changeChartBorder(chartLocation); 
      HideDialog();
   }; 
 
@@ -666,7 +672,8 @@ $(document).ready(function () {
      else {
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
      }
-     $("#" + editOption ).show(); 
+     $("#edit_" + editOption ).show(); 
+     changeChartBorder(chartLocation);
      HideDialog();
   }; 
 
@@ -716,9 +723,36 @@ $(document).ready(function () {
      else {
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
      }
-     $("#" + editOption ).show(); 
+     $("#edit_" + editOption ).show(); 
+     changeChartBorder(chartLocation);
      HideDialog();
   }; 
+
+  function changeChartBorder(chartLoc){
+    var chartNum;
+    switch (chartLoc){
+      case 'chart1': 
+        chartNum = 1;
+        break;
+      case 'chart2':
+        chartNum = 2;
+        break;
+      case 'chart3':
+        chartNum = 3;
+        break;
+      case 'chart4':
+        chartNum = 4;
+        break;
+      case 'chart5':
+        chartNum = 5;
+        break;
+      case 'chart6':
+        chartNum = 6;
+        break;
+    }
+
+    $("#wrappers" + chartNum).css("border", "5px solid #DDD");
+  }
 
   $('#menu').tabs();
 
