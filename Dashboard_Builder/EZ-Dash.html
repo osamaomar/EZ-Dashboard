@@ -10,10 +10,12 @@
 	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
 	<script src="//www.google.com/jsapi"></script>
 	<script type="text/javascript" src="js/gadash-2.0.js"></script>
-	<script src="//apis.google.com/js/client.js?onload=gadashInit_"></script>	
+	<script src="//apis.google.com/js/client.js?onload=gadashInit_"></script>
 
-	
-	<link rel="stylesheet" type="text/css" href="css/EZ-Dash.css" media="screen" />
+	<!-- <link href="css/helper.css" media="screen" rel="stylesheet" type="text/css" /> -->
+	<link href="css/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="css/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="css/EZ-Dash.css" media="screen" rel="stylesheet" type="text/css" />
 <!-- 	<link rel="stylesheet" href="//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
  -->	
  	<link rel="stylesheet" href="css/jquery-ui.css" />
@@ -41,7 +43,14 @@
 			<tr>
 				<td align="left">
 					<div>
-						<span id="topname">EZ Dashboard </span>
+						<ul id="nav" class="dropdown dropdown-horizontal">
+							<li><a class="dir">EZ Dashboard <span style="font-size: 10px;">&#8711;</span></a>
+								<ul>
+									<li><a href="#" style="color:white;">New Dashboard</a></li>
+									<li><a href="#" style="color:white;">Help</a></li>
+								</ul>
+							</li>
+						</ul>
 				</td>
 				<td align="center" id='gadash-auth'>
 					<!-- Add Google Analytics authorization button -->
@@ -177,9 +186,9 @@
 		        <li style="width:24%;"><a href="#tabColumn">Column</a></li>
 		        <li style="width:24%;"><a href="#tabArea">Time Line</a></li>
 		    </ul>
-		    <div id="leftdiv"style="float:right; font-size:25px;">  <br/>
-	     	
-		</div>
+		    <div id="leftdiv"style="float:right; font-size:25px;">  
+		    	<br/>  	
+			</div>
 
 		   	<div id="tabPie">
 				<h2>Preview</h2>

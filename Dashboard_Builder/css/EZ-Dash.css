@@ -223,7 +223,7 @@ text-decoration:none;
   width: 300px;
    height: 300px;
    position: absolute;
-   left: 50%;
+   left: 80%;
    top: 50%; 
    margin-left: -290px;
    margin-top: -150px;
@@ -242,7 +242,7 @@ height: 500px;
    top: 50%; 
    margin-left: 600px;
    margin-top: -120px;
-   padding-left: 40px;
+   padding-left: 60px;
    border-left: 1px solid #9f9898;
   
 }
