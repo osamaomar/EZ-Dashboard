@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+
+    <style>
+      #chart1, #chart2, #chart3, #chart4, #chart5, #chart6 {
+         width:350px,
+         height:250px
+      }
+    </style>
+
+    <script src='//www.google.com/jsapi'></script>
+    <script type='text/javascript' src='js/gadash-2.0.js'></script>
+    <script src='//apis.google.com/js/client.js?onload=gadashInit_'></script>
+
+    <script>
+      var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
+      var CLIENT_ID = '678812203795.apps.googleusercontent.com';
+      var TABLE_ID = 'ga:1174';
+      var start_date = '2013-01-13';
+      var end_date = '2013-02-12';
+
+      gadash.init({
+        'apiKey': API_KEY,
+        'clientId': CLIENT_ID
+      });
+
+      var chart1 = new gadash.GaPieChart( 'chart1', 'ga:1174', 'ga:avgTimeOnSite', 'ga:browser',
+        {
+          'query': {
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title':'fsdfsd',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
+
+      var chart2 = new gadash.GaAreaChart( 'chart2', 'ga:1174', 'ga:avgTimeOnSite,ga:avgTimeOnPage',
+        {
+          'query': {
+            'filters':'ga:city==Los Angeles',
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title':'hbk',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
+
+      document.getElementById('chart3').innerHTML = '';
+
+      document.getElementById('chart4').innerHTML = '';
+
+      document.getElementById('chart5').innerHTML = '';
+
+      document.getElementById('chart6').innerHTML = '';
+
+    </script>
+  </head>
+
+  <body>
+    <div id='gadash-auth'>
+      <!-- Add Google Analytics authorization button -->
+    </div>
+    <table>
+      <tr>
+        <td>
+          <div id='chart1'>
+          </div>
+        </td>
+        <td>
+          <div id='chart2'>
+          </div>
+        </td>
+        <td>
+          <div id='chart3'>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id='chart4'>
+          </div>
+        </td>
+        <td>
+          <div id='chart5'>
+          </div>
+        </td>
+        <td>
+          <div id='chart6'>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

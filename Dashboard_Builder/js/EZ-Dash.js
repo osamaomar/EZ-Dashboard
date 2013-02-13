@@ -4,18 +4,14 @@ $(document).ready(function () {
   var CLIENT_ID = '678812203795.apps.googleusercontent.com';
   var TABLE_ID = 'ga:1174';
 
-   // Get curretn Date
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var charts  = new Array();
+  // Get current Date
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var charts  = new Array();
 
-
-
-var yyyy = today.getFullYear();
-if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'-'+mm+'-'+dd;
-//alert(today);
-
+  var yyyy = today.getFullYear();
+  if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'-'+mm+'-'+dd;
 
   //Global variables
   var chartLocation = "";
@@ -27,64 +23,65 @@ if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = yyyy+'-'+mm+'-'+dd;
   var selectedStartDate; // selected start date from user
   var selectedEndDat; // selected end date from user
 
-    $("#from_date").val(start_date); 
-    $("#to_date").val(today); 
-var chartIndex; 
-var chartGlobal = new Array();
+  $("#from_date").val(start_date); 
+  $("#to_date").val(today); 
+  var chartIndex; 
+  var chartGlobal = new Array();
 
-chartGlobal[0] = { chartType:"", chartMetric:"",
-                   metricCompare:"",
-                   chartDimension:"",
-                   chartTitle:"",
-                   filterDimension:"",
-                   filterMatching:"",
-                   position:""};
+  chartGlobal[0] = { chartType:"",
+                     chartMetric:"",
+                     metricCompare:"",
+                     chartDimension:"",
+                     chartTitle:"",
+                     filterDimension:"",
+                     filterMatching:"",
+                     position:""};
 
 
-chartGlobal[1] = { chartType:"", chartMetric:"",
-                   metricCompare:"",
-                   chartDimension:"",
-                   chartTitle:"",
-                   filterDimension:"",
-                   filterMatching:"",
-                   position:""};
+  chartGlobal[1] = { chartType:"",
+                     chartMetric:"",
+                     metricCompare:"",
+                     chartDimension:"",
+                     chartTitle:"",
+                     filterDimension:"",
+                     filterMatching:"",
+                     position:""};
 
-chartGlobal[2] = { chartType:"", chartMetric:"",
-                   metricCompare:"",
-                   chartDimension:"",
-                   chartTitle:"",
-                   filterDimension:"",
-                   filterMatching:"",
-                   position:""};
+  chartGlobal[2] = { chartType:"",
+                     chartMetric:"",
+                     metricCompare:"",
+                     chartDimension:"",
+                     chartTitle:"",
+                     filterDimension:"",
+                     filterMatching:"",
+                     position:""};
 
-chartGlobal[3] = { chartType:"", chartMetric:"",
-                   metricCompare:"",
-                   chartDimension:"",
-                   chartTitle:"",
-                   filterDimension:"",
-                   filterMatching:"",
-                   position:""};
+  chartGlobal[3] = { chartType:"",
+                     chartMetric:"",
+                     metricCompare:"",
+                     chartDimension:"",
+                     chartTitle:"",
+                     filterDimension:"",
+                     filterMatching:"",
+                     position:""};
 
-chartGlobal[4] = { chartType:"", chartMetric:"",
-                   metricCompare:"",
-                   chartDimension:"",
-                   chartTitle:"",
-                   filterDimension:"",
-                   filterMatching:"",
-                   position:""};
+  chartGlobal[4] = { chartType:"",
+                     chartMetric:"",
+                     metricCompare:"",
+                     chartDimension:"",
+                     chartTitle:"",
+                     filterDimension:"",
+                     filterMatching:"",
+                     position:""};
 
-chartGlobal[5] = { chartType:"", chartMetric:"",
-                   metricCompare:"",
-                   chartDimension:"",
-                   chartTitle:"",
-                   filterDimension:"",
-                   filterMatching:"",
-                   position:""};
-
-  // gadash.configKeys({
-  //     'apiKey': API_KEY,
-  //     'clientId': CLIENT_ID
-  // });
+  chartGlobal[5] = { chartType:"",
+                     chartMetric:"",
+                     metricCompare:"",
+                     chartDimension:"",
+                     chartTitle:"",
+                     filterDimension:"",
+                     filterMatching:"",
+                     position:""};
 
   gadash.init({
     'apiKey': API_KEY,
@@ -99,32 +96,23 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
      return document.getElementById(un_id);
   };
 
-
-
-        
-  
-
   $("#wrappers1").click(function (e) {
      chartLocation = "wrappers1";
-  chartIndex = 0; 
+     chartIndex = 0; 
      ShowDialog(false);
      e.preventDefault();
   }); 
 
   $("#wrappers2").click(function (e) {
      chartLocation = "wrappers2";
-  chartIndex = 1; 
-
-
+     chartIndex = 1; 
      ShowDialog(false);
      e.preventDefault();
   }); 
 
   $("#wrappers3").click(function (e) {
      chartLocation = "wrappers3";
-  chartIndex = 2; 
-
-
+     chartIndex = 2; 
      ShowDialog(false);
      e.preventDefault();
   });
@@ -132,9 +120,7 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
   $("#wrappers4").click(function (e) {
      chartLocation = "wrappers4";
      editOption ="wrapperheader4";
-  chartIndex = 3; 
-
-
+     chartIndex = 3; 
      ShowDialog(false);
      e.preventDefault();
   });
@@ -142,9 +128,7 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
   $("#wrappers5").click(function (e) {
      chartLocation = "wrappers5";
      editOption ="wrapperheader5";
-  chartIndex = 4; 
-
-
+     chartIndex = 4; 
      ShowDialog(false);
      e.preventDefault();
   });
@@ -152,22 +136,20 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
   $("#wrappers6").click(function (e) {
      chartLocation = "wrappers6";
      editOption ="wrapperheader6";
-  chartIndex = 5; 
-
-
+     chartIndex = 5; 
      ShowDialog(false);
      e.preventDefault();
   });
 
   $("#finishbutton").click(function (e) {
-    $("#finishbutton").fadeOut(300);
+     $("#finishbutton").fadeOut(300);
      generate_code();
      ShowGrabcodeDialog();
      e.preventDefault();
   });
  
  
- $(function() {
+  $(function() {
     $( "#from_date" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
@@ -176,19 +158,19 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
         start_date = selectedDate; 
-  forLoop();
+        forLoop();
       }
-    });
+  });
     
-    $( "#to_date" ).datepicker({
+  $( "#to_date" ).datepicker({
       defaultDate: "+1w",
       changeMonth: true,
       dateFormat: 'yy-mm-dd',
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-    end_date = selectedDate;
-  forLoop(); 
+        end_date = selectedDate;
+        forLoop(); 
       }
     });
   });
@@ -198,11 +180,9 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
       $("#overlay").show();
       $("#dialog").fadeIn(300);
 
-      if (modal)
-      {
+      if (modal) {
          $("#overlay").unbind("click");
-      }
-      
+      }   
    }
 
    function ShowGrabcodeDialog() {
@@ -224,6 +204,7 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
   $("#btnClose").click(function (e) {
      HideDialog();
   });
+
   $("#btnGC_Close").click(function (e) {
      HideGrabcodeDialog();
   });
@@ -236,18 +217,14 @@ chartGlobal[5] = { chartType:"", chartMetric:"",
           return primeMetric;
       }
   };
-$("#from_date").change(function(e) {
-forLoop(); 
-     
 
-});
+  $("#from_date").change(function(e) {
+     forLoop(); 
+  });
 
-$("#to_date").change(function(e) {
-
-forLoop(); 
-     
-
-});
+  $("#to_date").change(function(e) {
+    forLoop(); 
+  });
 
   $(".line_change").change(function (e) {
       var ids = TABLE_ID;
@@ -514,7 +491,6 @@ forLoop();
       var lineCompare = $("#lineCompare").val();
       var widgetTitleLine = $("#widgetTitleLine").val();    
       var metrics = getMetrics( lineMetric, lineCompare);
-
       addLineChart(metrics, widgetTitleLine); 
   });
 
@@ -522,7 +498,6 @@ forLoop();
      var pieMetric = $("#pieMetrics").val();
      var pieDimension = $("#pieGroupBy").val();
      var widgetTitlePie = $("#widgetTitlePie").val();
-
      addPieChart( pieMetric, pieDimension, widgetTitlePie); 
   });
 
@@ -531,7 +506,6 @@ forLoop();
       var barCompare = $("#barCompare").val();
       var widgetTitleBar = $("#widgetTitleBar").val();
       var metrics = getMetrics( barMetric, barCompare);
-
       addBarChart( metrics, widgetTitleBar); 
   });
 
@@ -539,8 +513,7 @@ forLoop();
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
       var widgetTitleColumn = $("#widgetTitleColumn").val();
-      var metrics = getMetrics( columnMetric, columnCompare);
-      
+      var metrics = getMetrics( columnMetric, columnCompare);    
       addColumnChart( metrics, widgetTitleColumn); 
   });
 
@@ -549,7 +522,6 @@ forLoop();
      var areaCompare = $("#areaCompare").val();
      var widgetTitleArea = $("#widgetTitleArea").val();
      var metrics = getMetrics( areaMetric, areaCompare);
-
      addAreaChart( metrics, widgetTitleArea); 
   });
 
@@ -572,15 +544,15 @@ forLoop();
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   'chartArea': {  
+                      'width': "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
               }
           ).render();
-                $("#"+chartLocation).css("border","2px solid #DDD");
-
+          $("#"+chartLocation).css("border","2px solid #DDD");
         }
         else {
            var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
@@ -590,28 +562,28 @@ forLoop();
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   'chartArea': {  
+                      'width': "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
               }
           ).render();
-                 $("#"+chartLocation).css("border","2px solid #DDD");
-
+          $("#"+chartLocation).css("border","2px solid #DDD");
         }
       }
       else {
         document.getElementById("wrappersPreviewPie").innerHTML = "";
       }
- chartGlobal[chartIndex].chartType = "PieChart";
- chartGlobal[chartIndex].chartMetric = metrics;
- chartGlobal[chartIndex].metricCompare = "none";
- chartGlobal[chartIndex].chartDimension = dimensions;
- chartGlobal[chartIndex].chartTitle = widgetTitle;
- chartGlobal[chartIndex].filterDimension = filterDimension;
- chartGlobal[chartIndex].filterMatching = filterMatching;
- chartGlobal[chartIndex]. position = chartLocation; 
+      chartGlobal[chartIndex].chartType = "PieChart";
+      chartGlobal[chartIndex].chartMetric = metrics;
+      chartGlobal[chartIndex].metricCompare = "none";
+      chartGlobal[chartIndex].chartDimension = dimensions;
+      chartGlobal[chartIndex].chartTitle = widgetTitle;
+      chartGlobal[chartIndex].filterDimension = filterDimension;
+      chartGlobal[chartIndex].filterMatching = filterMatching;
+      chartGlobal[chartIndex].position = chartLocation; 
 
       changeChartBorder(chartLocation);
       HideDialog();
@@ -639,14 +611,15 @@ forLoop();
                },
                'chartOptions':{
                    'title':widgetTitle,
-                     chartArea: {  width: "95%" }, 
+                   'chartArea': {  
+                      'width': "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
               }
           ).render();
-                $("#"+chartLocation).css("border","2px solid #DDD");
-
+          $("#"+chartLocation).css("border","2px solid #DDD");
         }
         else {
            var chart = new gadash.GaBarChart( div, ids, metrics,
@@ -656,26 +629,28 @@ forLoop();
                },
                'chartOptions':{
                    'title':widgetTitle,
-                     chartArea: {  width: "95%" }, 
+                   'chartArea': {  
+                      'width': "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
               }
           ).render();
-                 $("#"+chartLocation).css("border","2px solid #DDD");
-
+          $("#"+chartLocation).css("border","2px solid #DDD");
         }
      }
      else {
          document.getElementById("wrappersPreviewBar").innerHTML = "";
      }
-      chartGlobal[chartIndex].chartType = "BarChart";
- chartGlobal[chartIndex].chartMetric = metrics;
- chartGlobal[chartIndex].metricCompare = barCompare;
- chartGlobal[chartIndex].chartTitle = widgetTitle;
- chartGlobal[chartIndex].filterDimension = filterDimension;
- chartGlobal[chartIndex].filterMatching = filterMatching;
- chartGlobal[chartIndex]. position = div; 
+     chartGlobal[chartIndex].chartType = "BarChart";
+     chartGlobal[chartIndex].chartMetric = metrics;
+     chartGlobal[chartIndex].metricCompare = barCompare;
+     chartGlobal[chartIndex].chartTitle = widgetTitle;
+     chartGlobal[chartIndex].filterDimension = filterDimension;
+     chartGlobal[chartIndex].filterMatching = filterMatching;
+     chartGlobal[chartIndex].position = div; 
+
      changeChartBorder(chartLocation); 
      HideDialog();
   }; 
@@ -702,15 +677,15 @@ forLoop();
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   'chartArea': {  
+                      'width': "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
               }
           ).render();
-                $("#"+chartLocation).css("border","2px solid #DDD");
-
+          $("#"+chartLocation).css("border","2px solid #DDD");
         }
         else {
            var chart = new gadash.GaColumnChart( div, ids, metrics,
@@ -720,27 +695,27 @@ forLoop();
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   'chartArea': {  
+                      'width': "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
               }
           ).render();
-                 $("#"+chartLocation).css("border","2px solid #DDD");
-
+          $("#"+chartLocation).css("border","2px solid #DDD");
         }
      }
      else {
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
      }
-      chartGlobal[chartIndex].chartType = "ColumnChart";
- chartGlobal[chartIndex].chartMetric = metrics;
- chartGlobal[chartIndex].metricCompare = columnCompare;
- chartGlobal[chartIndex].chartTitle = widgetTitle;
- chartGlobal[chartIndex].filterDimension = filterDimension;
- chartGlobal[chartIndex].filterMatching = filterMatching;
- chartGlobal[chartIndex]. position = div; 
+     chartGlobal[chartIndex].chartType = "ColumnChart";
+     chartGlobal[chartIndex].chartMetric = metrics;
+     chartGlobal[chartIndex].metricCompare = columnCompare;
+     chartGlobal[chartIndex].chartTitle = widgetTitle;
+     chartGlobal[chartIndex].filterDimension = filterDimension;
+     chartGlobal[chartIndex].filterMatching = filterMatching;
+     chartGlobal[chartIndex].position = div; 
 
      changeChartBorder(chartLocation);
      HideDialog();
@@ -768,15 +743,15 @@ forLoop();
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   'chartArea': {  
+                      'width': "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
               }
           ).render();
-                $("#"+chartLocation).css("border","2px solid #DDD");
-
+          $("#"+chartLocation).css("border","2px solid #DDD");
         }
         else {
            var chart = new gadash.GaAreaChart( div, ids, metrics,
@@ -786,27 +761,28 @@ forLoop();
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   'chartArea': {  
+                      'width': "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
               }
           ).render();
-                 $("#"+chartLocation).css("border","2px solid #DDD");
-
+          $("#"+chartLocation).css("border","2px solid #DDD");
         }
      }
      else {
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
      }
-       chartGlobal[chartIndex].chartType = "AreaChart";
- chartGlobal[chartIndex].chartMetric = metrics;
- chartGlobal[chartIndex].metricCompare = columnCompare;
- chartGlobal[chartIndex].chartTitle = widgetTitle;
- chartGlobal[chartIndex].filterDimension = filterDimension;
- chartGlobal[chartIndex].filterMatching = filterMatching;
- chartGlobal[chartIndex]. position = div;
+     chartGlobal[chartIndex].chartType = "AreaChart";
+     chartGlobal[chartIndex].chartMetric = metrics;
+     chartGlobal[chartIndex].metricCompare = columnCompare;
+     chartGlobal[chartIndex].chartTitle = widgetTitle;
+     chartGlobal[chartIndex].filterDimension = filterDimension;
+     chartGlobal[chartIndex].filterMatching = filterMatching;
+     chartGlobal[chartIndex].position = div;
+
      changeChartBorder(chartLocation);
      HideDialog();
   }; 
@@ -833,7 +809,6 @@ forLoop();
         chartNum = 6;
         break;
     }
-
     $("#wrappers" + chartNum).css("border", "5px solid #DDD");
   }
 
@@ -863,243 +838,249 @@ forLoop();
     });
   });
 
-   function forLoop (){
+  function forLoop (){
 
   for (chartIndex = 0; chartIndex <=5; chartIndex++){
     
+    switch (chartGlobal[chartIndex].chartType) {
+      case "PieChart": var ids = TABLE_ID;
+                       var metrics =  chartGlobal[chartIndex].chartMetric; 
+                       var dimensions = chartGlobal[chartIndex].chartDimension;
+                       var widgetTitle =  chartGlobal[chartIndex].chartTitle;
+                       var filterDimension = chartGlobal[chartIndex].filterDimension;
+                       var filterMatching =  chartGlobal[chartIndex].filterMatching;
+                       var pattern =new RegExp("none");
+                       if( !pattern.test(metrics) && !pattern.test(dimensions))  {
+                          var div = chartGlobal[chartIndex].position; 
+                          if( !pattern.test(filterDimension) && filterMatching != ""){
+                            var filter = filterDimension + '==' + filterMatching;
+                            var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
+                                {'query': {
+                                   'filters':filter,
+                                   'start-date':start_date,
+                                   'end-date':end_date
+                                 },
+                                 'chartOptions':{
+                                    'title':widgetTitle,
+                                    'chartArea': {  
+                                       'width': "95%" 
+                                     }, 
+                                     'height':250,
+                                     'width':350
+                                  }
+                                }
+                            ).render();
+                            $("#"+chartLocation).css("border","2px solid #DDD");
+                          }
+                          else {
+                             var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
+                               {'query': {
+                                   'start-date':start_date,
+                                   'end-date':end_date
+                                 },
+                                 'chartOptions':{
+                                    'title':widgetTitle,
+                                    'chartArea': {  
+                                       'width': "95%" 
+                                     }, 
+                                     'height':250,
+                                     'width':350
+                                  }
+                                }
+                            ).render();
+                            $("#"+chartLocation).css("border","2px solid #DDD");
+                          }
+                        }
+                        else {
+                          document.getElementById("wrappersPreviewPie").innerHTML = "";
+                        }
 
-  switch (chartGlobal[chartIndex].chartType)
-{
-case "PieChart":
-     var ids = TABLE_ID;
-  var metrics =  chartGlobal[chartIndex].chartMetric; 
-     var dimensions = chartGlobal[chartIndex].chartDimension;
-  var widgetTitle =  chartGlobal[chartIndex].chartTitle;
-     var filterDimension = chartGlobal[chartIndex].filterDimension;
-     var filterMatching =  chartGlobal[chartIndex].filterMatching;
-     var pattern =new RegExp("none");
-     if( !pattern.test(metrics) && !pattern.test(dimensions))  {
-        var div = chartGlobal[chartIndex].position; 
-        if( !pattern.test(filterDimension) && filterMatching != ""){
-          var filter = filterDimension + '==' + filterMatching;
-          var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
-              {'query': {
-                 'filters':filter,
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                     'title':widgetTitle,
-           chartArea: {  width: "95%" }, 
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-      $("#"+chartLocation).css("border","2px solid #DDD");
+                    break;
 
-        }
-        else {
-           var chart = new gadash.GaPieChart( div, ids, metrics, dimensions,
-             {'query': {
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                   'title':widgetTitle,
-           chartArea: {  width: "95%" }, 
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-      $("#"+chartLocation).css("border","2px solid #DDD");
+   case "BarChart": var ids = TABLE_ID;
+                    var metrics =  chartGlobal[chartIndex].chartMetric; 
+                    var widgetTitle =  chartGlobal[chartIndex].chartTitle;
+                    var div  = chartGlobal[chartIndex].position; 
+                    var pattern =new RegExp("none");
+                    var filterDimension = chartGlobal[chartIndex].filterDimension; 
+                    var filterMatching = chartGlobal[chartIndex].filterMatching; 
 
-        }
-      }
-      else {
-        document.getElementById("wrappersPreviewPie").innerHTML = "";
-      }
+                    if( !pattern.test(metrics))  {
+                       if( !pattern.test(filterDimension) && filterMatching != ""){
+                          var filter = filterDimension + '==' + filterMatching;
+                          var chart = new gadash.GaBarChart( div, ids, metrics,
+                             {'query': {
+                              'filters': filter,
+                                 'start-date':start_date,
+                                 'end-date':end_date
+                               },
+                               'chartOptions':{
+                                   'title':widgetTitle,
+                                   'chartArea': {  
+                                      'width': "95%" 
+                                    }, 
+                                   'height':250,
+                                   'width':350
+                                }
+                              }
+                          ).render();
+                        }
+                        else {
+                           var chart = new gadash.GaBarChart( div, ids, metrics,
+                             {'query': {
+                                 'start-date':start_date,
+                                 'end-date':end_date
+                               },
+                               'chartOptions':{
+                                   'chartArea': {  
+                                      'width': "95%" 
+                                    }, 
+                                   'title':widgetTitle,
+                                   'height':250,
+                                   'width':350
+                                }
+                              }
+                          ).render();
+                        }
+                     }
+                     else {
+                         document.getElementById("wrappersPreviewBar").innerHTML = "";
+                     }
+                     break;
+case "ColumnChart": var ids = TABLE_ID;
+                    var metrics =  chartGlobal[chartIndex].chartMetric; 
+                    var widgetTitle =  chartGlobal[chartIndex].chartTitle;
+                    var div  = chartGlobal[chartIndex].position; 
+                    var pattern =new RegExp("none");
+                    var filterDimension = chartGlobal[chartIndex].filterDimension; 
+                    var filterMatching = chartGlobal[chartIndex].filterMatching; 
 
-  break;
+                    if( !pattern.test(metrics))  {
+                        if( !pattern.test(filterDimension) && filterMatching != ""){
+                          var filter = filterDimension + '==' + filterMatching;
+                          var chart = new gadash.GaBarChart( div, ids, metrics,
+                             {'query': {
+                       'filters': filter,
+                                 'start-date':start_date,
+                                 'end-date':end_date
+                               },
+                               'chartOptions':{
+                                  'title':widgetTitle,
+                                  'chartArea': {  
+                                     'width': "95%" 
+                                   }, 
+                                   'height':250,
+                                   'width':350
+                                }
+                              }
+                          ).render();
+                        }
+                        else {
+                           var chart = new gadash.GaColumnChart( div, ids, metrics,
+                             {'query': {
+                                 'start-date':start_date,
+                                 'end-date':end_date
+                               },
+                               'chartOptions':{
+                                   'chartArea': {  
+                                     'width': "95%" 
+                                   }, 
+                                   'title':widgetTitle,
+                                   'height':250,
+                                   'width':350
+                                }
+                              }
+                          ).render();
+                        }
+                     }
+                     else {
+                         document.getElementById("wrappersPreviewBar").innerHTML = "";
+                     }
+                     break;
+case "AreaChart": var ids = TABLE_ID;
+                  var metrics =  chartGlobal[chartIndex].chartMetric; 
+                  var widgetTitle =  chartGlobal[chartIndex].chartTitle;
+                  var div  = chartGlobal[chartIndex].position; 
+                  var pattern =new RegExp("none");
+                  var filterDimension = chartGlobal[chartIndex].filterDimension; 
+                  var filterMatching = chartGlobal[chartIndex].filterMatching; 
 
-   case "BarChart":
+                  if( !pattern.test(metrics))  {
+                    if( !pattern.test(filterDimension) && filterMatching != ""){
+                      var filter = filterDimension + '==' + filterMatching;
+                      var chart = new gadash.GaBarChart( div, ids, metrics,
+                         {'query': {
+                          'filters': filter,
+                             'start-date':start_date,
+                             'end-date':end_date
+                           },
+                           'chartOptions':{
+                               'title':widgetTitle,
+                               'chartArea': {  
+                                  'width': "95%" 
+                               }, 
+                               'height':250,
+                               'width':350
+                            }
+                          }
+                      ).render();
+                      }
+                      else {
+                         var chart = new gadash.GaAreaChart( div, ids, metrics,
+                         {'query': {
+                            'start-date':start_date,
+                            'end-date':end_date
+                          },
+                          'chartOptions':{
+                                 'title':widgetTitle,
+                                 'chartArea': {  
+                                    'width': "95%" 
+                                  }, 
+                                 'height':250,
+                                 'width':350
+                              }
+                            }
+                        ).render();
+                      }
+                   }
+                   else {
+                       document.getElementById("wrappersPreviewBar").innerHTML = "";
+                   }
+                break;
 
-       var ids = TABLE_ID;
-  var metrics =  chartGlobal[chartIndex].chartMetric; 
-  var widgetTitle =  chartGlobal[chartIndex].chartTitle;
-  var div  = chartGlobal[chartIndex].position; 
-      var pattern =new RegExp("none");
-      var filterDimension = chartGlobal[chartIndex].filterDimension; 
-      var filterMatching = chartGlobal[chartIndex].filterMatching; 
-
- if( !pattern.test(metrics))  {
-        if( !pattern.test(filterDimension) && filterMatching != ""){
-          var filter = filterDimension + '==' + filterMatching;
-          var chart = new gadash.GaBarChart( div, ids, metrics,
-             {'query': {
-       'filters': filter,
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                   'title':widgetTitle,
-           chartArea: {  width: "95%" }, 
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-
-        }
-        else {
-           var chart = new gadash.GaBarChart( div, ids, metrics,
-             {'query': {
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-    chartArea: {  width: "95%" }, 
-                   'title':widgetTitle,
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-        }
-     }
-     else {
-         document.getElementById("wrappersPreviewBar").innerHTML = "";
-     }
-  break;
-case "ColumnChart":
-       var ids = TABLE_ID;
-  var metrics =  chartGlobal[chartIndex].chartMetric; 
-  var widgetTitle =  chartGlobal[chartIndex].chartTitle;
-  var div  = chartGlobal[chartIndex].position; 
-      var pattern =new RegExp("none");
-      var filterDimension = chartGlobal[chartIndex].filterDimension; 
-      var filterMatching = chartGlobal[chartIndex].filterMatching; 
-
- if( !pattern.test(metrics))  {
-        if( !pattern.test(filterDimension) && filterMatching != ""){
-          var filter = filterDimension + '==' + filterMatching;
-          var chart = new gadash.GaBarChart( div, ids, metrics,
-             {'query': {
-       'filters': filter,
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                   'title':widgetTitle,
-           chartArea: {  width: "95%" }, 
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-
-        }
-        else {
-           var chart = new gadash.GaColumnChart( div, ids, metrics,
-             {'query': {
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-    chartArea: {  width: "95%" }, 
-                   'title':widgetTitle,
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-        }
-     }
-     else {
-         document.getElementById("wrappersPreviewBar").innerHTML = "";
-     }
-  break;
-case "AreaChart":
-var ids = TABLE_ID;
-  var metrics =  chartGlobal[chartIndex].chartMetric; 
-  var widgetTitle =  chartGlobal[chartIndex].chartTitle;
-  var div  = chartGlobal[chartIndex].position; 
-      var pattern =new RegExp("none");
-      var filterDimension = chartGlobal[chartIndex].filterDimension; 
-      var filterMatching = chartGlobal[chartIndex].filterMatching; 
-
- if( !pattern.test(metrics))  {
-        if( !pattern.test(filterDimension) && filterMatching != ""){
-          var filter = filterDimension + '==' + filterMatching;
-          var chart = new gadash.GaBarChart( div, ids, metrics,
-             {'query': {
-       'filters': filter,
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                   'title':widgetTitle,
-           chartArea: {  width: "95%" }, 
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-
-        }
-        else {
-           var chart = new gadash.GaAreaChart( div, ids, metrics,
-             {'query': {
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-    chartArea: {  width: "95%" }, 
-                   'title':widgetTitle,
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-        }
-     }
-     else {
-         document.getElementById("wrappersPreviewBar").innerHTML = "";
-     }
-  break;
-
-} 
-}
-};
+        } 
+    }
+ };
 
 function generate_code() {
     var html_page = document.getElementById("grabcode_txtarea");
     var part = new Array();
     
-    part[0] = "<html>" +
-                  "<head>" +
-                    "<meta http-equiv='content-type' content='text/html; charset=UTF-8'>" +      
-                    
-                    "<script src='//www.google.com/jsapi'></script>" +
-                    "<script type='text/javascript' src='js/gadash-2.0.js'></script>" +
-                    "<script src='//apis.google.com/js/client.js?onload=gadashInit_'></script>" +
+    part[0] = "<html>\r\n" +
+              "  <head>\r\n" +
+              "    <meta http-equiv='content-type' content='text/html; charset=UTF-8'>\r\n\r\n" +  
 
-                    "<style>" +
-                      "#chart1, #chart2, #chart3, #chart4, #chart5, #chart6 {" +
-                        "width:350px,"+
-                        "height:250px" +
-                      "}" +
-                    "</style>" +
-                    "<script>" +
-                       "var API_KEY = " + API_KEY + ";"
-                       "var CLIENT_ID = " + CLIENT_ID + ";"
-                       "var TABLE_ID = " + TABLE_ID + ";"
+              "    <style>\r\n" +
+              "      #chart1, #chart2, #chart3, #chart4, #chart5, #chart6 {\r\n" +
+              "         width:350px,\r\n"+
+              "         height:250px\r\n" +
+              "      }\r\n" +
+              "    </style>\r\n\r\n" +
 
-                        "gadash.init({" +
-                          "'apiKey': API_KEY," +
-                          "'clientId': CLIENT_ID" +
-                        "});";
+              "    <script src='//www.google.com/jsapi'></script>\r\n" +
+              "    <script type='text/javascript' src='js/gadash-2.0.js'></script>\r\n" +
+              "    <script src='//apis.google.com/js/client.js?onload=gadashInit_'></script>\r\n\r\n" +
+              "    <script>\r\n" +
+              "      var API_KEY = '" + API_KEY + "';\r\n" +
+              "      var CLIENT_ID = '" + CLIENT_ID + "';\r\n" +
+              "      var TABLE_ID = '" + TABLE_ID + "';\r\n" +
+              "      var start_date = '" + start_date + "';\r\n" +
+              "      var end_date = '" + end_date + "';\r\n\r\n" +
+
+              "      gadash.init({\r\n" +
+              "        'apiKey': API_KEY,\r\n" +
+              "        'clientId': CLIENT_ID\r\n" +
+              "      });\r\n\r\n";
 
     var pattern =new RegExp("none");
 
@@ -1111,137 +1092,154 @@ function generate_code() {
           if( !pattern.test(chartGlobal[cNum].chartMetric) && !pattern.test(chartGlobal[cNum].chartDimension)) {
               if( !pattern.test(chartGlobal[cNum].filterDimension) && chartGlobal[cNum].filterMatching != "") {
                   var filter = chartGlobal[cNum].filterDimension + '==' + chartGlobal[cNum].filterMatching;
-                  part[cNum + 1] = "var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                              "( " + chartGlobal[cNum].position + ", " +
-                                   "TABLE_ID, " +
-                                 + chartGlobal[cNum].chartMetric + ", " +
-                                 + chartGlobal[cNum].chartDimension + ", " +
-
-                                   + "{'query': {" +
-                                            "'filters':" + filter + "," +
-                                            "'start-date':" + start_date + "," +
-                                            "'end-date':" + end_date +
-                                          "}," +
-                                          "'chartOptions':{" +
-                                            "'title':" + chartGlobal[cNum].chartTitle + "," +
-                                            "'height':250," +
-                                            "'width':350" +
-                                          "}" +
-                                        "}" +
-                                      ").render();";
+                  part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
+                              "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
+                                      TABLE_ID + "', '" +
+                                      chartGlobal[cNum].chartMetric + "', '" +
+                                      chartGlobal[cNum].chartDimension + "',\r\n" +
+                                      "        {\r\n" +
+                                      "          'query': {\r\n" +
+                                      "            'filters':'" + filter + "',\r\n" +
+                                      "            'start-date': start_date,\r\n" +
+                                      "            'end-date': end_date\r\n" +
+                                      "          },\r\n" +
+                                      "          'chartOptions':{\r\n" +
+                                      "            'title':'" + chartGlobal[cNum].chartTitle + "',\r\n" +
+                                      "            'chartArea': {\r\n" +
+                                      "              'width': '95%'\r\n" + 
+                                      "             },\r\n" +
+                                      "            'height':250,\r\n" +
+                                      "            'width':350\r\n" +
+                                      "          }\r\n" +   
+                                      "        }\r\n" +
+                                      "      ).render();\r\n\r\n";
               }
               else {
-                  part[cNum + 1] = "var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                              "( " + chartGlobal[cNum].position + ", " 
-                                   + "TABLE_ID, "  
-                                   + chartGlobal[cNum].chartMetric + ", " +
-                                   + chartGlobal[cNum].chartDimension + ", " +
-
-                                   + "{'query': {" +
-                                            "'start-date':" + start_date + "," +
-                                            "'end-date':" + end_date + 
-                                          "}," +
-                                          "'chartOptions':{" +
-                                            "'title':" + chartGlobal[cNum].chartTitle + "," +
-                                            "'height':250," +
-                                            "'width':350" +
-                                          "}" +
-                                        "}" +
-                                    ").render();";
+                  part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
+                              "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
+                                      TABLE_ID + "', '" +
+                                      chartGlobal[cNum].chartMetric + "', '" +
+                                      chartGlobal[cNum].chartDimension + "',\r\n" +
+                                      "        {\r\n" +
+                                      "          'query': {\r\n" +
+                                      "            'start-date': start_date,\r\n" +
+                                      "            'end-date': end_date\r\n" +
+                                      "          },\r\n" +
+                                      "          'chartOptions':{\r\n" +
+                                      "            'title':'" + chartGlobal[cNum].chartTitle + "',\r\n" +
+                                      "            'chartArea': {\r\n" +
+                                      "              'width': '95%'\r\n" + 
+                                      "             },\r\n" +
+                                      "            'height':250,\r\n" +
+                                      "            'width':350\r\n" +
+                                      "          }\r\n" +   
+                                      "        }\r\n" +
+                                      "      ).render();\r\n\r\n";
               }
-          }
-          else {
-              part[cNum + 1] = "document.getElementById('" + chartGlobal[cNum].position  + "').innerHTML = '';";
           }
       }
       //For TimeLine, Bar, and Column charts
-      else {
+      else if( chartGlobal[cNum].chartType == "BarChart" ||
+               chartGlobal[cNum].chartType == "ColumnChart" ||
+               chartGlobal[cNum].chartType == "AreaChart"){
           if( !pattern.test(chartGlobal[cNum].chartMetric)) {
               if( !pattern.test(chartGlobal[cNum].filterDimension) && chartGlobal[cNum].filterMatching != ""){
                 var filter = chartGlobal[cNum].filterDimension + '==' + chartGlobal[cNum].filterMatching;
-                part[cNum + 1] = "var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                            "( " + chartGlobal[cNum].position + ", "
-                                 + "TABLE_ID,"  
-                                 + chartGlobal[cNum].chartMetric + ", "
-                                 + "{'query': {" +
-                                          "'filters':" + filter + "," +
-                                          "'start-date':" + start_date + "," +
-                                          "'end-date':" + end_date +
-                                        "}," +
-                                        "'chartOptions':{" +
-                                          "'title':" + chartGlobal[cNum].chartTitle + "," +
-                                          "'height':250," +
-                                          "'width':350" +
-                                        "}" +
-                                      "}" +
-                                    ").render();";
+                part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
+                            "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
+                                    TABLE_ID + "', '"  +
+                                    chartGlobal[cNum].chartMetric + "',\r\n" +
+                                      "        {\r\n" +
+                                      "          'query': {\r\n" +
+                                      "            'filters':'" + filter + "',\r\n" +
+                                      "            'start-date': start_date,\r\n" +
+                                      "            'end-date': end_date\r\n" +
+                                      "          },\r\n" +
+                                      "          'chartOptions':{\r\n" +
+                                      "            'title':'" + chartGlobal[cNum].chartTitle + "',\r\n" +
+                                      "            'chartArea': {\r\n" +
+                                      "              'width': '95%'\r\n" + 
+                                      "             },\r\n" +
+                                      "            'height':250,\r\n" +
+                                      "            'width':350\r\n" +
+                                      "          }\r\n" +   
+                                      "        }\r\n" +
+                                      "      ).render();\r\n\r\n";
               }
               else {
-                part[cNum + 1] = "var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                            "( " + chartGlobal[cNum].position + ", "
-                                 + "TABLE_ID, "  
-                                 + chartGlobal[cNum].chartMetric + ", "
-
-                                 + "{'query': {" +
-                                          "'start-date':" + start_date + "," +
-                                          "'end-date':" + end_date + 
-                                        "}," +
-                                        "'chartOptions':{" +
-                                          "'title':" + chartGlobal[cNum].chartTitle + "," +
-                                          "'height':250," +
-                                          "'width':350" +
-                                        "}" +
-                                      "}" +
-                                  ").render();";
+                part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
+                            "( '" + changeDivName( chartGlobal[cNum].position)+ "', '" +
+                                    TABLE_ID + "', '" +
+                                    chartGlobal[cNum].chartMetric + "',\r\n" +
+                                      "        {\r\n" +
+                                      "          'query': {\r\n" +
+                                      "            'start-date': start_date,\r\n" +
+                                      "            'end-date': end_date\r\n" +
+                                      "          },\r\n" +
+                                      "          'chartOptions':{\r\n" +
+                                      "            'title':'" + chartGlobal[cNum].chartTitle + "',\r\n" +
+                                      "            'chartArea': {\r\n" +
+                                      "              'width': '95%'\r\n" + 
+                                      "             },\r\n" +
+                                      "            'height':250,\r\n" +
+                                      "            'width':350\r\n" +
+                                      "          }\r\n" +   
+                                      "        }\r\n" +
+                                      "      ).render();\r\n\r\n";
               }
           }
-          else {
-              part[cNum + 1] = "document.getElementById('" + chartGlobal[cNum].position  + "').innerHTML = '';";
-          }
+       }
+       else {
+           part[cNum + 1] = "      document.getElementById('chart" + (cNum + 1) + "').innerHTML = '';\r\n\r\n";
        }
     }
 
-    part[7] = "</script>" +
-      "</head>" +
+    part[7] = "    </script>\r\n" +
+      "  </head>\r\n\r\n" +
       
-      "<body>" +
-        "<table>" +
-          "<tr>" +
-            "<td>" +
-              "<div id='chart1'>" +
-              "</div>" +
-            "</td>" +
-            "<td>" +
-              "<div id='chart2'>" +
-              "</div>" +
-            "</td>" +
-            "<td>" +
-              "<div id='chart3'>" +
-              "</div>" +
-            "</td>" +
-          "</tr>" +
-          "<tr>" +
-            "<td>" +
-              "<div id='chart4'>" +
-              "</div>" +
-            "</td>" +
-            "<td>" +
-              "<div id='chart5'>" +
-              "</div>" +
-            "</td>" +
-            "<td>" +
-              "<div id='chart6'>" +
-              "</div>" +
-            "</td>" +
-          "</tr>" +
-        "</table>" +
-      "</body>" +
-    "<html>";
+      "  <body>\r\n" +
+      "    <div id='gadash-auth'>\r\n" +
+      "      <!-- Add Google Analytics authorization button -->\r\n" +
+      "    </div>\r\n" +
+      "    <table>\r\n" +
+      "      <tr>\r\n" +
+      "        <td>\r\n" +
+      "          <div id='chart1'>\r\n" +
+      "          </div>\r\n" +
+      "        </td>\r\n" +
+      "        <td>\r\n" +
+      "          <div id='chart2'>\r\n" +
+      "          </div>\r\n" +
+      "        </td>\r\n" +
+      "        <td>\r\n" +
+      "          <div id='chart3'>\r\n" +
+      "          </div>\r\n" +
+      "        </td>\r\n" +
+      "      </tr>\r\n" +
+      "      <tr>\r\n" +
+      "        <td>\r\n" +
+      "          <div id='chart4'>\r\n" +
+      "          </div>\r\n" +
+      "        </td>\r\n" +
+      "        <td>\r\n" +
+      "          <div id='chart5'>\r\n" +
+      "          </div>\r\n" +
+      "        </td>\r\n" +
+      "        <td>\r\n" +
+      "          <div id='chart6'>\r\n" +
+      "          </div>\r\n" +
+      "        </td>\r\n" +
+      "      </tr>\r\n" +
+      "    </table>\r\n" +
+      "  </body>\r\n" +
+      "</html>\r\n";
 
-
-    html_page.value += part[0] + part[1] + part[2] + part[3] + part[4] + part[5] + part[6] + part[7]; 
+    html_page.value = part[0] + part[1] + part[2] + part[3] + part[4] + part[5] + part[6] + part[7]; 
   };
 
+  function changeDivName( divName) {
+    return divName.replace("wrappers","chart");
+  };
 });
 
 

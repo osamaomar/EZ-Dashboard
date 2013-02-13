@@ -377,7 +377,7 @@ gadash.CoreQuery.prototype.render = function() {
 gadash.CoreQuery.prototype.renderFunction = function() {
   this.setDefaultDates(this.config);
 
-  alert("Before ga get, config: " + this.config.query);
+  //alert("Before ga get, config: " + this.config.query);
 
   var request = gapi.client.analytics.data.ga.get(this.config.query);
   request.execute(gadash.util.bindMethod(this, this.callback));
