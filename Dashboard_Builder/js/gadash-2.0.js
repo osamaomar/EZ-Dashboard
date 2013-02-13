@@ -125,7 +125,7 @@ gadash.init = function(authConfig) {
  */
 gadash.auth.onUnAuthorizedDefault = function() {
   document.getElementById('gadash-auth').innerHTML =
-      '<button id="authorize-button">Authorize Analytics</button>';
+      '<button id="authorize-button">Sign In</button>';
   document.getElementById('authorize-button').onclick = gadash.auth.authorize;
 };
 
@@ -143,7 +143,7 @@ gadash.auth.onAuthorizedDefault = function() {
   }
 
   document.getElementById('gadash-auth').innerHTML =
-      status + ' <button id="authorize-button">Logout</button>';
+      status + ' <button id="authorize-button">Sign Out</button>';
 
   document.getElementById('authorize-button').onclick =
       gadash.auth.accountLogout;

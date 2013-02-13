@@ -15,7 +15,7 @@ cursor:pointer;
 
 }
 .wrappersPreview{
-border:2px dashed #DDD;
+border:2px solid #DDD;
 border-radius:0px;
 -moz-border-radius:25px; /* Firefox 3.6 and earlier */
 height:250px;
@@ -242,6 +242,8 @@ height: 500px;
    top: 50%; 
    margin-left: 600px;
    margin-top: -120px;
+   padding-left: 40px;
+   border-left: 1px solid #9f9898;
   
 }
 #filter{
@@ -270,6 +272,11 @@ font-size: 10px;
 	font-weight:bold;
 	text-decoration:none;
 	text-shadow:1px 1px 0px #ffffff;
+	width: 150px;
+	height: 35px;
+	text-align: center;
+	padding-top: 15px;
+
 }.add-button:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
 	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
