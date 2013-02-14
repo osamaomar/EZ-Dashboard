@@ -53,6 +53,6 @@ ul.dropdown ul a {
 ul.dropdown ul a:hover {
  padding: 3px 5px 3px 11px;
  border: solid 1px #ddd;
- background-color: #eee;
+ background-color: #73A2EF; /* formerly #eee, #0d4cd6*/
  font-weight: bold;
 }

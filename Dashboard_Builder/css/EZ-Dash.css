@@ -242,7 +242,7 @@ height: 500px;
    top: 50%; 
    margin-left: 600px;
    margin-top: -120px;
-   padding-left: 60px;
+   padding-left: 70px;
    border-left: 1px solid #9f9898;
   
 }
@@ -306,9 +306,9 @@ input{
 }
 
 button{
-	color:black;   
-	font: bold 84% 'trebuchet ms',helvetica,sans-serif;   
-	background-color:#fed;   
+	color:white;   
+	font: bold 95% 'trebuchet ms',helvetica,sans-serif;   
+	background-color:#73A2EF;   
 	border:1px solid;   
 	border-color: rgb(200,200,200);
 }

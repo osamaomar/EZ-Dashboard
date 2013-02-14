@@ -24,12 +24,16 @@ ul.dropdown {
 
 	ul.dropdown li {
 	 padding: 7px 12px;
-	 color: white;
+	 color: #fff;
 	}
 
 	ul.dropdown li.hover,
 	ul.dropdown li:hover {
 	 /*background-color: #222;*/
+	 background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
+	 background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
+	 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	 background-color:#fb9e25;
 	}
 
 	ul.dropdown a:link,
@@ -41,7 +45,7 @@ ul.dropdown {
 
 	ul.dropdown ul {
 	 margin-left: -3px;
-	 width: 170px;
+	 width: 165px;
 	 padding-bottom: 9px;
 	 background-color: orange;
 	 font-size: 12px;
@@ -51,7 +55,7 @@ ul.dropdown {
 
 		ul.dropdown ul li {
 		 background-color: transparent;
-		 color: white;
+		 color: #000;
 		}
 
 		ul.dropdown ul li.hover,
@@ -66,7 +70,7 @@ ul.dropdown {
 
 		ul.dropdown ul,
 		ul.dropdown ul a:visited { color: #000; }
-		ul.dropdown ul a:hover { color: #000; text-decoration: none; }
+		ul.dropdown ul a:hover { color: #141414; text-decoration: none; }
 		ul.dropdown ul a:active { color: #000; }
 
 		/* -- level mark -- */
