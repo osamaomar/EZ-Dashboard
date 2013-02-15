@@ -533,22 +533,6 @@ $(document).ready(function () {
      addAreaChart( metrics, widgetTitleArea); 
   });
 
-  $("#pieTabImg").click(function (e) {
-      changeImage('pie');
-  });
-
-  $("#barTabImg").click(function (e) {
-      changeImage('bar');
-  });
-
-  $("#columnTabImg").click(function (e) {
-      changeImage('column');
-  });
-
-  $("#timelineTabImg").click(function (e) {
-      changeImage('timeline');
-  });
-
 
   function addPieChart( metrics, dimensions, widgetTitle){
      var ids = TABLE_ID;
@@ -1083,59 +1067,6 @@ case "AreaChart": var ids = TABLE_ID;
         } 
     }
  };
-
- function changeImage(tab) {
-    switch (tab){
-      case 'pie':
-        if(document.getElementById("pieTabImg").src == "images/Pie Tab2 - White.png")
-          break;
-        else {
-          document.getElementById("pieTabImg").src = "images/Pie Tab2 - White.png";
-
-          document.getElementById("barTabImg").src = "images/Bar Tab2 - Grey.png";
-          document.getElementById("columnTabImg").src = "images/Column Tab2 - Grey.png";
-          document.getElementById("timelineTabImg").src = "images/Timeline Tab2 - Grey.png";
-          break;
-        }
-        
-      case 'bar':
-        if(document.getElementById("barTabImg").src == "images/Bar Tab2 - White.png")
-          break;
-        else {
-          document.getElementById("barTabImg").src = "images/Bar Tab2 - White.png";
-
-          document.getElementById("pieTabImg").src = "images/Pie Tab2 - Grey.png";
-          document.getElementById("columnTabImg").src = "images/Column Tab2 - Grey.png";
-          document.getElementById("timelineTabImg").src = "images/Timeline Tab2 - Grey.png";
-          break;
-        }
-        
-      case 'column':
-        if(document.getElementById("columnTabImg").src == "images/Column Tab2 - White.png")
-          break;
-        else {
-          document.getElementById("columnTabImg").src = "images/Column Tab2 - White.png";
-
-          document.getElementById("pieTabImg").src = "images/Pie Tab2 - Grey.png";
-          document.getElementById("barTabImg").src = "images/Bar Tab2 - Grey.png";
-          document.getElementById("timelineTabImg").src = "images/Timeline Tab2 - Grey.png";
-          break;
-        }
-        
-      case 'timeline':
-        if(document.getElementById("timelineTabImg").src == "images/Timeline Tab2 - White.png")
-          break;
-        else {
-          document.getElementById("timelineTabImg").src = "images/Timeline Tab2 - White.png";
-
-          document.getElementById("pieTabImg").src = "images/Pie Tab2 - Grey.png";
-          document.getElementById("columnTabImg").src = "images/Column Tab2 - Grey.png";
-          document.getElementById("barTabImg").src = "images/Bar Tab2 - Grey.png";
-          break;
-        }
-        
-    }
-};
 
 function generate_code() {
     var html_page = document.getElementById("grabcode_txtarea");
