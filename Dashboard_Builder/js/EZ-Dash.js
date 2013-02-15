@@ -1146,9 +1146,17 @@ function generate_code() {
               "    <meta http-equiv='content-type' content='text/html; charset=UTF-8'>\r\n\r\n" +  
 
               "    <style>\r\n" +
+              "      html {\r\n" +
+              "        width: 100%;\r\n" +
+              "      }\r\n" +
+              "      table {\r\n" +
+              "        vertical-align:center;\r\n" +
+              "        margin: 50px auto;\r\n" +
+              "      }\r\n" +
               "      #chart1, #chart2, #chart3, #chart4, #chart5, #chart6 {\r\n" +
-              "         width:350px,\r\n"+
-              "         height:250px\r\n" +
+              "         width:350px;\r\n" +
+              "         height:250px;\r\n" +
+              "         border:2px solid #DDD;\r\n" +
               "      }\r\n" +
               "    </style>\r\n\r\n" +
 
@@ -1156,9 +1164,10 @@ function generate_code() {
               "    <script type='text/javascript' src='js/gadash-2.0.js'></script>\r\n" +
               "    <script src='//apis.google.com/js/client.js?onload=gadashInit_'></script>\r\n\r\n" +
               "    <script>\r\n" +
-              "      var API_KEY = '" + API_KEY + "';\r\n" +
-              "      var CLIENT_ID = '" + CLIENT_ID + "';\r\n" +
-              "      var TABLE_ID = '" + TABLE_ID + "';\r\n" +
+              "      // These parameters needs to be configured before you start.\r\n" +
+              "      var API_KEY = '" + API_KEY + "'; //Your API Key Here\r\n" +
+              "      var CLIENT_ID = '" + CLIENT_ID + "'; //Your Client ID Here\r\n" +
+              "      var TABLE_ID = '" + TABLE_ID + "'; // Your Table ID here\r\n" +
               "      var start_date = '" + start_date + "';\r\n" +
               "      var end_date = '" + end_date + "';\r\n\r\n" +
 
@@ -1325,6 +1334,25 @@ function generate_code() {
   function changeDivName( divName) {
     return divName.replace("wrappers","chart");
   };
+
+  $("#copybutton").click(function (e) {
+    document.CodeToCopy.grabcode_txtarea.focus();
+    document.CodeToCopy.grabcode_txtarea.select();
+    var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
+    // codeFromTextarea = document.selection.createRange();
+    console.log( codeFromTextarea);
+    // codeFromTextarea.execCommand("Copy");
+    if (window.clipboardData) // Internet Explorer
+    {  
+        window.clipboardData.setData("Text", codeFromTextarea);
+    }
+    else
+    {  
+        unsafeWindow.netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");  
+        const clipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);  
+        clipboardHelper.copyString(codeFromTextarea);
+    }
+  });
 });
 
 
