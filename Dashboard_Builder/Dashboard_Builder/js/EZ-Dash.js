@@ -161,25 +161,33 @@ if (terms == "days"){
 
 	date = gadash.util.lastNdays(number); 
 	start_date = date; 
+  $("#from_date").val(start_date); 
 
-	$("#from_date").val(date); 
-forLoop(); 
+
+	forLoop(); 
+	return;
 }
 	if (terms == "weeks"){
 	 date = gadash.util.lastNweeks(number); 
-	$("#from_date").val(date); 
 	start_date = date; 
+  $("#from_date").val(start_date); 
+
+
 	forLoop(); 
+		return;
+
 }
 
 if (terms == "months") {	
 
 	 date = gadash.util.lastNmonths(number);
 	 
-	$("#from_date").val(date); 
 	start_date = date; 
+  $("#from_date").val(start_date); 
 
 	forLoop(); 
+		return;
+
 }
 else {
 		$("#from_date").val(gadash.util.lastNdays(20)); 

@@ -679,11 +679,17 @@ gadash.util.lastNmonths = function(n) {
         } else {
             date.setMonth(date.getMonth() - months);
         }
-    }
+    
 	
 }
+		var day = date.getDate();
+		  day = day < 10 ? '0' + day : day;
 
-    return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-');
+		var month = date.getMonth() + 1; 
+ 		 month = month < 10 ? '0' + month : month;
+
+	//console.log([date.getFullYear(), month, day].join('-')); 
+   return [date.getFullYear(), month, date.getDate()].join('-');
 };
 
 
