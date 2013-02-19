@@ -157,11 +157,33 @@ $("#selectTerm").change(function() {
 function checkTerm(number,terms)
 {
 	var date =""; 
+	var currentDate=""; 
 if (terms == "days"){
 
 	date = gadash.util.lastNdays(number); 
-	start_date = date; 
+	currentDate = new Date();
+	var year = currentDate.getFullYear(); 
+	var month = currentDate.getMonth() + 1; 
+	var day = currentDate.getDate(); 
+
+	start_date = date;
+
+
+	if (month <10){
+	month = "0" + month;
+
+} 
+if (day <10){
+	day = "0" + day;
+
+} 
+end_date = year + "-" + month +"-" + day;
+
+
+ 
   $("#from_date").val(start_date); 
+  $("#to_date").val(end_date); 
+
 
 
 	forLoop(); 
@@ -190,7 +212,7 @@ if (terms == "months") {
 
 }
 else {
-		$("#from_date").val(gadash.util.lastNdays(20)); 
+$("#from_date").val(gadash.util.lastNdays(20)); 
 
 }
 	
@@ -216,7 +238,7 @@ else {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
-		end_date = selectedDate;
+		start_date = selectedDate;
 
         forLoop();
       }
@@ -229,7 +251,7 @@ else {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-
+	end_date = selectedDate; 
         forLoop(); 
       }
     });
