@@ -451,13 +451,14 @@ gadash.CoreQuery.prototype.defaultOnError = function(message) {
       errorDiv = document.createElement('div');
       errorDiv.style.color = 'red';
       errorDiv.setAttribute('id', 'errors');
-      errorDiv.innerHTML = 'ERRORS:' + '<br />';
+      //errorDiv.innerHTML = 'ERRORS:' + '<br />';
       document.body.appendChild(errorDiv);
     }
 
     // TODO(nm): Need better error handling.
     // Prints CoreQuery divContainer and message to error div.
-    errorDiv.innerHTML += ' error: ' + message + '<br />';
+	alert(message); 
+    //errorDiv.innerHTML += ' error: ' + message + '<br />';
     //errorDiv.innerHTML += this.config.divContainer + ' error: ' +
     //    message + '<br />';
   }
