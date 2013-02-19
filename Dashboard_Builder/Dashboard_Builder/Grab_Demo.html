@@ -26,33 +26,17 @@
       var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms'; //Your API Key Here
       var CLIENT_ID = '678812203795.apps.googleusercontent.com'; //Your Client ID Here
       var TABLE_ID = 'ga:1174'; // Your Table ID here
-      var start_date = '2013-01-16';
-      var end_date = '2013-02-15';
+      var start_date = '2013-02-09';
+      var end_date = '2013-02-12';
 
       gadash.init({
         'apiKey': API_KEY,
         'clientId': CLIENT_ID
       });
 
-      var chart1 = new gadash.GaAreaChart( 'chart1', 'ga:1174', 'ga:avgTimeOnPage',
-        {
-          'query': {
-            'filters':'ga:city==Irvine',
-            'start-date': start_date,
-            'end-date': end_date
-          },
-          'chartOptions':{
-            'title':'Irvine',
-            'chartArea': {
-              'width': '95%'
-             },
-            'height':250,
-            'width':350
-          }
-        }
-      ).render();
+      document.getElementById('chart1').innerHTML = '';
 
-      var chart2 = new gadash.GaPieChart( 'chart2', 'ga:1174', 'ga:avgTimeOnPage', 'ga:continent',
+      var chart2 = new gadash.GaAreaChart( 'chart2', 'ga:1174', 'ga:exitRate',
         {
           'query': {
             'start-date': start_date,
@@ -69,7 +53,7 @@
         }
       ).render();
 
-      var chart3 = new gadash.GaBarChart( 'chart3', 'ga:1174', 'ga:avgTimeOnPage',
+      var chart3 = new gadash.GaPieChart( 'chart3', 'ga:1174', 'ga:percentNewVisits', 'ga:adContent',
         {
           'query': {
             'start-date': start_date,
@@ -86,40 +70,9 @@
         }
       ).render();
 
-      var chart4 = new gadash.GaColumnChart( 'chart4', 'ga:1174', 'ga:avgTimeOnSite',
-        {
-          'query': {
-            'start-date': start_date,
-            'end-date': end_date
-          },
-          'chartOptions':{
-            'title':'Time on Screen',
-            'chartArea': {
-              'width': '95%'
-             },
-            'height':250,
-            'width':350
-          }
-        }
-      ).render();
+      document.getElementById('chart4').innerHTML = '';
 
-      var chart5 = new gadash.GaAreaChart( 'chart5', 'ga:1174', 'ga:avgTimeOnSite',
-        {
-          'query': {
-            'filters':'ga:city==Los Angeles',
-            'start-date': start_date,
-            'end-date': end_date
-          },
-          'chartOptions':{
-            'title':'Los Angeles',
-            'chartArea': {
-              'width': '95%'
-             },
-            'height':250,
-            'width':350
-          }
-        }
-      ).render();
+      document.getElementById('chart5').innerHTML = '';
 
       document.getElementById('chart6').innerHTML = '';
 
