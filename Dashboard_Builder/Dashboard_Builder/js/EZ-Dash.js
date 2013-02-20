@@ -568,14 +568,6 @@ $("#from_date").val(gadash.util.lastNdays(20));
      }
   }); 
 
-  $("#btnAddLine").click(function (e) {
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var widgetTitleLine = $("#widgetTitleLine").val();    
-      var metrics = getMetrics( lineMetric, lineCompare);
-      addLineChart(metrics, widgetTitleLine); 
-  });
-
   $("#btnAddPie").click(function (e) {
      var pieMetric = $("#pieMetrics").val();
      var pieDimension = $("#pieGroupBy").val();
@@ -606,7 +598,6 @@ $("#from_date").val(gadash.util.lastNdays(20));
      var metrics = getMetrics( areaMetric, areaCompare);
      addAreaChart( metrics, widgetTitleArea); 
   });
-
 
   function addPieChart( metrics, dimensions, widgetTitle){
      var ids = TABLE_ID;
@@ -669,7 +660,6 @@ $("#from_date").val(gadash.util.lastNdays(20));
       chartGlobal[chartIndex].filterMatching = filterMatching;
       chartGlobal[chartIndex].position = chartLocation; 
 
-      changeChartBorder(chartLocation);
       HideDialog();
   }; 
 
@@ -737,7 +727,6 @@ $("#from_date").val(gadash.util.lastNdays(20));
      chartGlobal[chartIndex].filterMatching = filterMatching;
      chartGlobal[chartIndex].position = div; 
 
-     changeChartBorder(chartLocation); 
      HideDialog();
   }; 
 
@@ -805,7 +794,6 @@ $("#from_date").val(gadash.util.lastNdays(20));
      chartGlobal[chartIndex].filterMatching = filterMatching;
      chartGlobal[chartIndex].position = div; 
 
-     changeChartBorder(chartLocation);
      HideDialog();
   }; 
 
@@ -873,47 +861,27 @@ $("#from_date").val(gadash.util.lastNdays(20));
      chartGlobal[chartIndex].filterMatching = filterMatching;
      chartGlobal[chartIndex].position = div;
 
-     changeChartBorder(chartLocation);
      HideDialog();
   }; 
 
-  function changeChartBorder(chartLoc){
-    var chartNum;
-    switch (chartLoc){
-      case 'chart1': 
-        chartNum = 1;
-        break;
-      case 'chart2':
-        chartNum = 2;
-        break;
-      case 'chart3':
-        chartNum = 3;
-        break;
-      case 'chart4':
-        chartNum = 4;
-        break;
-      case 'chart5':
-        chartNum = 5;
-        break;
-      case 'chart6':
-        chartNum = 6;
-        break;
-    }
-    $("#wrappers" + chartNum).css("border", "5px solid #DDD");
-  }
+  $(".btnDelete").click(function (e) {
+      document.getElementById( chartLocation).innerHTML = 
+         "<div id='" + changeDivName( chartLocation) + "' class='chartcontainer'>" +
+            "<a href='#'' class='plus'>+ </a>" +
+              "<BR/><p class='addchart'>ADD CHART</p></a>" +
+          "</div>";
+      $("#"+chartLocation).css("border","5px dashed #DDD");
+      HideDialog();
+  });
 
   $('#menu').tabs();
 
-  $("#line_filter_fields").hide();
   $("#pie_filter_fields").hide();
   $("#bar_filter_fields").hide();
   $("#column_filter_fields").hide();
   $("#area_filter_fields").hide();
 
   $(function () {
-    $('#lineFilter').click(function () {
-      $('#line_filter_fields').toggle();
-    });
     $('#pieFilter').click(function () {
       $('#pie_filter_fields').toggle();
     });
@@ -1341,22 +1309,14 @@ function generate_code() {
   };
 
   $("#copybutton").click(function (e) {
-    document.CodeToCopy.grabcode_txtarea.focus();
-    document.CodeToCopy.grabcode_txtarea.select();
+    ZeroClipboard.setDefaults({ moviePath: "js/ZeroClipboard.swf" });
     var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
-    // codeFromTextarea = document.selection.createRange();
-    console.log( codeFromTextarea);
-    // codeFromTextarea.execCommand("Copy");
-    if (window.clipboardData) // Internet Explorer
-    {  
-        window.clipboardData.setData("Text", codeFromTextarea);
-    }
-    else
-    {  
-        unsafeWindow.netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");  
-        const clipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);  
-        clipboardHelper.copyString(codeFromTextarea);
-    }
+    document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
+    var clip = new ZeroClipboard( document.getElementById("copycode"));
+  
+    // For user feedback
+    document.getElementById('grabcode_txtarea').focus();
+    document.getElementById('grabcode_txtarea').select();
   });
 
 $("#account").hover(function()
