@@ -871,6 +871,16 @@ $("#from_date").val(gadash.util.lastNdays(20));
               "<BR/><p class='addchart'>ADD CHART</p></a>" +
           "</div>";
       $("#"+chartLocation).css("border","5px dashed #DDD");
+
+      chartGlobal[chartIndex].chartType = "";
+      chartGlobal[chartIndex].chartMetric = "";
+      chartGlobal[chartIndex].metricCompare = "";
+      chartGlobal[chartIndex].chartDimension = "";
+      chartGlobal[chartIndex].chartTitle = "";
+      chartGlobal[chartIndex].filterDimension = "";
+      chartGlobal[chartIndex].filterMatching = "";
+      chartGlobal[chartIndex].position = "";
+      
       HideDialog();
   });
 
