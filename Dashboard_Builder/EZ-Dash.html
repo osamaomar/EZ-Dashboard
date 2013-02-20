@@ -23,17 +23,19 @@
 <!-- 	<link rel="stylesheet" href="//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
  -->	
  	<link rel="stylesheet" href="css/jquery-ui.css" />
+	<link rel="icon" href="images/favicon.ico" type="image/ico" >
+
+<title>EZ Dashboard</title>
 </head>
 
 <body>
 	<!-- TOPMOST PART :: images + authorization/logout -->
-	<table width="100%">
+	<table width="80%" style="margin:auto; border-bottom: 1px solid #e8e8e8; ">
 		<tr>
 			<td align="left">
-				<a href="#">
+				
 					<img src="images/google.png"/>
-					<img src="images/ez-image.png"/>
-				</a>
+				
 			</td>
 			<td align="right">
 				<div id='gadash-auth'></div>
@@ -41,31 +43,71 @@
 		</tr>
 	</table>
 		
-	<div id="header" style="width:100%; background-image:url('images/header BG.png')">
+	<div id="header" style="width:80%;margin:auto;">
 
 		<table width="100%">
 			<tr>
 				<td align="left">
 					<div>
-						<ul id="nav" class="dropdown dropdown-horizontal">
-							<li><a class="dir">EZ Dashboard <span style="font-size: 10px;">&#8711;</span></a>
-								<ul>
-									<li><a href="#" style="color:white;" onClick="window.document.location.reload(true);">Clear Dashboard</a></li>
-									<li><a href="help.html" target="_blank" style="color:white;">Help</a></li>
-								</ul>
-							</li>
-						</ul>
+
+<div class="dropdown" id="dropdown" style="float:left;">
+<a class="account" id="account" >EZ DASHBOARD <span style="font-size:10px; ">&#8711;<span></a>
+
+<div class="submenu" id="submenu">
+<ul class="root" id="root">
+<li ><a href="#Dashboard" onClick="window.document.location.reload(true);">Clear Dashboard</a></li>
+<li ><a href="help.html">Help</a></li>
+</ul>
+
+
+</div> 
+
+
+
+
+</div>
+
+
+<div class="dropdown" id="tableDropdown" style="float:right; margin-left:-150px; width:150px;">
+<a class="account" id="tableAccount" style="width:200px" >SELECT YOUR TABLE ID<span style="font-size:10px; ">&#8711;<span></a>
+
+<div class="submenu" id ="tableSubmenu"style="width:205px">
+<ul class="root" id="tableRoot" style="width:205px">
+<li ><a href="#Dashboard" >TABLE ID NAME</a></li>
+<li ><a href="#Profile" >TABLE ID NAME</a></li>
+<li ><a href="#settings">TABLE ID NAME</a></li>
+<li ><a href="#feedback">TABLE ID NAME</a></li>
+</ul>
+
+
+</div> 
+
+
+
+</div>
+
+
 				</td>
 				<td align="center" id='gadash-auth'>
 					<!-- Add Google Analytics authorization button -->
     			</td>
 				<td align="right" style="padding-right:15px">
+
 						<!--		 Date Picker 		-->
 
 						<div align="right">
-							<label for="from" style="color:white;font:Arial;">Date range:</label>
+										<span style="color:black; font-family:arial,sans-serif;;font-size:15px"></span> 
+									<input type="text" size="3" id ="numberOfX" >
+
+
+
+<select style="margin-right:20px;" id="selectTerm">
+  <option value="days">Days</option>
+  <option value="weeks">Weeks</option>
+  <option value="months">Months</option>
+</select> 
 							<input type="text" id="from_date" name="from" size="13" value="Start date"/>
-							<label for="to"><span style="color:white; font-family:'Arial';font-size:80%"><b>to</b></span></label>
+							<label for="to"><span style="color:black; font-family:arial,sans-serif;;font-size:15px">to</span></label>
 							<input type="text" id="to_date" name="to" size="13" value="End date"/>
 						</div>
 
@@ -76,7 +118,8 @@
 		</table>
 	</div>
 
-	<table align="center" style="border-spacing: 15px;">
+	<table align="center" style="border-spacing: 15px; ">
+	<div style="position: absolute;">
 		<tr>
 			<td>
 				<div id="wrappers1" class="wrappers" >
@@ -135,12 +178,13 @@
 	       		</div>
 			</td>
 		</tr>
+</div>
 	</table>
 	<br/>
 	<br/>
 
-	<div id="finishbutton" >
-		<a href="#" class="grabcode">Grab Code</a>
+	<div id="finishbutton" style="font-family: 'Open Sans',arial,sans-serif;" >
+		<a href="#" class="grabcode" style="font-size:15px; font-weight:bold; ">Grab Code</a>
 	</div>
       
     
@@ -187,10 +231,10 @@
 	   
 	  	<div id="menu" style="float:right;width:1000px;height:550px">
 		    <ul>
-		        <li style="width:24%;"><a href="#tabArea"><img src="images/Tab Timeline-01.png"></a></li>
-		        <li style="width:24%;"><a href="#tabPie"><img src="images/Tab Pie-01.png"></a></li>
-		        <li style="width:24%;"><a href="#tabBar"><img src="images/Tab Bar-01.png"></a></li>
-		        <li style="width:24%;"><a href="#tabColumn"><img src="images/Tab Column-01.png"></a></li>
+		        <li style=" width:180px; height:64px"><a href="#tabArea"><img src="images/Timeline Tab2 - Grey.png"></a></li>
+		        <li style="width:24%;"><a href="#tabPie"><img src="images/Pie Tab2 - Grey.png"></a></li>
+		        <li style="width:24%;"><a href="#tabBar"><img src="images/Bar Tab2 - Grey.png"></a></li>
+		        <li style="width:24%;"><a href="#tabColumn"><img src="images/Column Tab2 - Grey.png"></a></li>
 		    </ul>
 		    <div id="leftdiv"style="float:right; font-size:25px;">  
 		    	<br/>  	
@@ -200,14 +244,16 @@
 		    	<h2>Preview</h2>
 		    	<div id="chartholder" style="float:left;">
 	 			<div id="chartholder">
-	 				<div id="wrappersPreviewPie" class="wrappersPreview" >	
 	 				<div id="wrappersPreviewArea" class="wrappersPreview" >
+						
 					</div>
+	    			<br/><br/><br/><br/><br/>
+	    			<a href="#">DELETE</a>	
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
 					<form>
-						Graph the following metric overtime<br/>
+						<span style="color:red;">*</span>Graph the following metric overtime<br/>
 						<select id ="areaMetrics" class="area_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
@@ -434,13 +480,6 @@
 						</div>	
 
 						Widget Title <br/>
-						<input id ="widgetTitlePie"> </input><br/>						
-					</form>
-					<br>
-		    		<span id ="add-span" style="float:right; margin:50px;">
-	    				<a href="#" id="btnAddPie" class="add-button">Add</a>
-	    			</span>
-	    	</div>
 						<input id ="widgetTitleArea"> </input><br/>						
 
 					</form>
@@ -461,7 +500,7 @@
 				</div>
 	 		</div>
 				<div id ="rightdiv">
-		    	<form>Create a Pie Chart showing:
+		    	<form><span style="color:red;">*</span>Create a Pie Chart showing:
 					  <select id ="pieMetrics" class="pie_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
@@ -528,7 +567,7 @@
 							<option value="ga:searchVisits">Visits with Search</option>
 						</select><br/><br/>
 						
-						Grouped by:
+						<span style="color:red;">*</span>Grouped by:
 						<select id="pieGroupBy" class="pie_change">
 							<option value="none">Add a Dimension</option>
 
@@ -705,6 +744,7 @@
 							Exactly matching <input type="text" id="pie_filter_matching" class="pie_change" name="pie_filter_matching"><br/>
 						</div>	
 
+
 						Widget Title <br/>
 						<input id ="widgetTitlePie"> </input><br/>						
 					</form>
@@ -725,7 +765,7 @@
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
-					<form>
+					<form><span style="color:red;">*</span>
 						Graph the following metric overtime<br/>
 						<select id="barMetrics" class="bar_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
@@ -969,7 +1009,7 @@
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
-					<form>
+					<form><span style="color:red;">*</span>
 						Graph the following metric overtime<br/>
 						<select id="columnMetrics" class="column_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
