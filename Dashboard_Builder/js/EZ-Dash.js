@@ -20,16 +20,18 @@ $(document).ready(function () {
   var last_n_days = 20; //Will not be used
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
-  var selectedStartDate; // selected start date from user
-  var selectedEndDat; // selected end date from user
-
+/** 
+$("#header").hide(); 
+$("#grabCodeButton").hide();
+$("#mainTable").hide(); 
+  
+**/
   var noCharts = true; //If the dashboard has any charts on it
-
-
   $("#from_date").val(start_date); 
   $("#to_date").val(today); 
   var chartIndex; 
   var chartGlobal = new Array();
+
 
   chartGlobal[0] = { chartType:"",
                      chartMetric:"",
@@ -143,6 +145,81 @@ $(document).ready(function () {
      ShowDialog(false);
      e.preventDefault();
   });
+$("#numberOfX").change(function() {
+	var number = $("#numberOfX").val();
+	var terms = $("#selectTerm").val(); 
+	checkTerm(number, terms); 
+});
+
+$("#selectTerm").change(function() {
+	var number = $("#numberOfX").val();
+	var terms = $("#selectTerm").val(); 
+	checkTerm(number, terms); 
+});
+
+function checkTerm(number,terms)
+{
+	var date =""; 
+	var currentDate=""; 
+if (terms == "days"){
+
+	date = gadash.util.lastNdays(number); 
+	currentDate = new Date();
+	var year = currentDate.getFullYear(); 
+	var month = currentDate.getMonth() + 1; 
+	var day = currentDate.getDate(); 
+
+	start_date = date;
+
+
+	if (month <10){
+	month = "0" + month;
+
+} 
+if (day <10){
+	day = "0" + day;
+
+} 
+end_date = year + "-" + month +"-" + day;
+
+
+ 
+  $("#from_date").val(start_date); 
+  $("#to_date").val(end_date); 
+
+
+
+	forLoop(); 
+	return;
+}
+	if (terms == "weeks"){
+	 date = gadash.util.lastNweeks(number); 
+	start_date = date; 
+  $("#from_date").val(start_date); 
+
+
+	forLoop(); 
+		return;
+
+}
+
+if (terms == "months") {	
+
+	 date = gadash.util.lastNmonths(number);
+	 
+	start_date = date; 
+  $("#from_date").val(start_date); 
+
+	forLoop(); 
+		return;
+
+}
+else {
+$("#from_date").val(gadash.util.lastNdays(20)); 
+
+}
+	
+}
 
   $("#finishbutton").click(function (e) {
      if(!noCharts){
@@ -156,7 +233,6 @@ $(document).ready(function () {
      }
   });
  
- 
   $(function() {
     $( "#from_date" ).datepicker({
       defaultDate: "+1w",
@@ -165,7 +241,8 @@ $(document).ready(function () {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
-        start_date = selectedDate; 
+		start_date = selectedDate;
+
         forLoop();
       }
   });
@@ -177,7 +254,7 @@ $(document).ready(function () {
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-        end_date = selectedDate;
+	end_date = selectedDate; 
         forLoop(); 
       }
     });
@@ -1284,6 +1361,82 @@ function generate_code() {
         clipboardHelper.copyString(codeFromTextarea);
     }
   });
+
+$("#account").hover(function()
+{
+var X=$(this).attr('id');
+if(X==1)
+{
+$("#submenu").hide();
+$(this).attr('id', '0'); 
+}
+else
+{
+$("#submenu").toggle();
+$(this).attr('id', '1');
+}
+
+});
+
+//Mouse click on sub menu
+$("#submenu").hover(function()
+{
+$("#submenu").toggle();});
+
+//Mouse click on my account link
+$("#account").hover(function()
+{
+return false
+});
+
+
+
+
+//Document Click
+$(document).click(function()
+{
+$("#submenu").hide();
+$("#account").attr('id', '');
+});
+
+
+
+$("#tableAccount").hover(function()
+{
+var X=$(this).attr('id');
+if(X==1)
+{
+$("#tableSubmenu").hide();
+$(this).attr('id', '0'); 
+}
+else
+{
+$("#tableSubmenu").toggle();
+$(this).attr('id', '1');
+}
+
+});
+
+//Mouse click on sub menu
+$("#tableSubmenu").hover(function()
+{
+$("#tableSubmenu").toggle();});
+
+//Mouse click on my account link
+$("#tableAccount").hover(function()
+{
+return false
+});
+
+
+
+
+//Document Click
+$(document).click(function()
+{
+$("#tableSubmenu").hide();
+$("#tableAccount").attr('id', '');
+});
 });
 
 

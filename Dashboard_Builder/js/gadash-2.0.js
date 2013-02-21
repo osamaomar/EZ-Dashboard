@@ -451,13 +451,14 @@ gadash.CoreQuery.prototype.defaultOnError = function(message) {
       errorDiv = document.createElement('div');
       errorDiv.style.color = 'red';
       errorDiv.setAttribute('id', 'errors');
-      errorDiv.innerHTML = 'ERRORS:' + '<br />';
+      //errorDiv.innerHTML = 'ERRORS:' + '<br />';
       document.body.appendChild(errorDiv);
     }
 
     // TODO(nm): Need better error handling.
     // Prints CoreQuery divContainer and message to error div.
-    errorDiv.innerHTML += ' error: ' + message + '<br />';
+	alert(message); 
+    //errorDiv.innerHTML += ' error: ' + message + '<br />';
     //errorDiv.innerHTML += this.config.divContainer + ' error: ' +
     //    message + '<br />';
   }
@@ -619,6 +620,77 @@ gadash.util.lastNdays = function(n) {
   }
 
   return [year, month, day].join('-');
+};
+/**
+ * Utility method to return the lastNweeks from today in the format yyyy-MM-dd.
+ * @param {Number} n The number of weeks in the past from today that we should
+ *     return a date. Value of 0 returns today.
+ * @return {String} date - The adjusted date value represented as a String.
+ */
+gadash.util.lastNweeks = function(n) {
+  var today = new Date();
+  var before = new Date();
+  n = n * 7; 
+    
+  before.setDate(today.getDate() - n);
+
+  var year = before.getFullYear();
+
+  var month = before.getMonth() + 1;
+  if (month < 10) {
+    month = '0' + month;
+  }
+
+  var day = before.getDate();
+  if (day < 10) {
+    day = '0' + day;
+  }
+
+return [year, month, day].join('-');
+    
+    
+};
+
+/**
+ * Utility method to return the lastNmonths from today in the format yyyy-MM-dd.
+ * @param {Number} n The number of months in the past from today that we should
+ *     return a date. Value of 0 returns today.
+ * @return {String} date - The adjusted date value represented as a String.
+ */
+
+gadash.util.lastNmonths = function(n) {
+    var date = new Date();
+
+    if (n <= 0)
+        return [date.getFullYear(), date.getMonth() + 1 , date.getDate()].join('-');
+	var years = Math.floor(n/12); 
+	
+
+   var months = n % 12;
+    
+
+    if (years > 0)
+        date.setFullYear(date.getFullYear() - years);
+
+    if (months > 0) {
+        if (months >= date.getMonth()) {
+            date.setFullYear(date.getFullYear()-1 );
+            months = 12 - months; 
+            date.setMonth(date.getMonth() + months );
+        } else {
+            date.setMonth(date.getMonth() - months);
+        }
+    
+	
+}
+		var day = date.getDate();
+		  day = day < 10 ? '0' + day : day;
+
+		var month = date.getMonth() + 1; 
+ 		 month = month < 10 ? '0' + month : month;
+
+	//console.log([date.getFullYear(), month, day].join('-')); 
+   return [date.getFullYear(), month, date.getDate()].join('-');
 };
 
 
