@@ -20,12 +20,12 @@ $(document).ready(function () {
   var last_n_days = 20; //Will not be used
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
- 
+/** 
 $("#header").hide(); 
 $("#grabCodeButton").hide();
 $("#mainTable").hide(); 
   
-
+**/
   var noCharts = true; //If the dashboard has any charts on it
   $("#from_date").val(start_date); 
   $("#to_date").val(today); 
