@@ -1,0 +1,444 @@
+
+<!DOCTYPE>
+<html>
+<head>
+  <title>Google Analytics EZ Dashboard </title>
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      font-family: Helvetica, sans-serif, arial;
+      margin: 0 20px;
+    }
+    h1, h2, h3 {
+      margin-top: 20px;
+      font-family: 'Cantarell', arial, serif;
+    }
+    h1 {
+      background-color: #000080;
+      color: #FFA500;
+      margin-top: 0;
+      margin: 0 -20px;
+      padding: 20px 0 10px 20px;
+      border-bottom: 1px solid #FF5000;
+    }
+    tr, td, th {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    th {
+      background-color: #ccc;
+    }
+    .example {
+      border: 2px black solid;
+      padding: 10px;
+    }
+    .note {
+      padding: 5px 12px;
+      border-style: solid none solid none;
+      border-color: #000080;
+      border-width: 1px;
+      background-color: #eee;
+    }
+    img {
+      border: 1px solid #CCC;
+    }
+    code {
+      color: green;
+    }
+    #gu {
+      text-align: right;
+      padding-right: 10px;
+    }
+    .row {
+      overflow: hidden;
+      zoom: 1;
+    }
+    .toc {
+      width: 275px;
+    }
+    .toc > li {
+      list-style-type: none;
+    }
+    .left {
+      float: left;
+    }
+    li {
+      padding: 3px 0;
+    }
+    pre.prettyprint {
+      width: 650px;
+      padding: 10px !important;
+
+    .scrollup{
+      width:40px;
+      height:40px;
+      opacity:0.3;
+      position:fixed;
+      bottom:50px;
+      right:100px;
+      display:none;
+      text-indent:-9999px;
+      background: url('icon_top.png') no-repeat;
+}
+    }
+  </style>
+  <link href="prettify.css" type="text/css" rel="stylesheet" />
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
+    $(document).ready(function(){ 
+ 
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup').fadeIn();
+            } else {
+                $('.scrollup').fadeOut();
+            }
+        }); 
+ 
+        $('.scrollup').click(function(){
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+        });
+ 
+    });
+</script>
+
+
+</head>
+<body onload="prettyPrint()">
+<h1>Google Analytics EZ Dashboard</h1>
+<p>This document describes how to use the GA EZ Dashboard</a> version 1.0.</p>
+
+<h2>Table of Contents</h2>
+<div class="row">
+  <ul class="toc left">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#started">Step 1: Getting Started</a> 
+        <ol><li><a href="#register">Register</a></li>
+          <li><a href="#gettingID">Getting your Client ID and API Key</a></li></ol>
+
+    <li><a href="#customize">Step 2: Customize Your Dashboard</a>
+        <ol><li><a href="#addchart">Adding/Editting Charts</a></li>
+        <li><a href="#dateselector">Date Selector</a></li>
+        <li><a href="#metndim">Metrics & Dimensions</a></li></ol>
+    </li>
+  
+ 
+    <li><a href="#grabcode">Step 3: Grab Code</a></li>
+      <ol><li><a href="#ftp">FTP into a server</a></li></ol>
+    <li><a href="#advance">Advance Customizations</a></li>
+  </ul>
+</div>
+
+<h2 id="overview">Overview</h2>
+<p>This dashboard is designed to create an easy way to build a custom
+   Google Analytics Dashboard on your own page. The Dashboard is built on
+   top of the
+ <a href="http://analytics-api-samples.googlecode.com/svn/trunk/src/reporting/javascript/ez-ga-dash/docs/user-documentation.html">
+      Google Analytics Easy Dashboard Javascript Library.</a></p>
+
+<p class="note"><strong>Note</strong>: At this time, each user who views a dashboard
+   must have access to the Google Analytics account from which the dashboard
+   data is generated. Currently you can not create a dashboard for users who do not
+   have access to your Google Analytics data. </p>
+
+
+  <p> Visit the  <a href="http://www.google.com/analytics/"> Google Analytics website</a> to sign up for a new account if you do not have one. Click the <b>Create an account</b> button and follow the on-screen instructions.</p>
+
+<hr>
+<h2 id="started">Step 1: Getting Started</h2>
+
+<h3 id="register">Register</h3>
+<p>All applications that use the Google Analytics API must be registered
+   through the <a href="https://code.google.com/apis/console">
+   Google APIs Console</a>. When you register in the console, you will create
+   a new project and configure the settings to work with this library. Once
+   configured, the console will provide you with a few values that you need
+   in the configuration step. Here's exactly what you need to do:</p>
+
+<ol>
+  <li>Go to the <a href="https://code.google.com/apis/console">
+      Google APIs Console</a></li>
+  <li>Navigate to the left panel to <code>Services -> Analytics API</code></li>
+  <li>And switch service to <strong>ON</strong></li>
+</ol>
+
+<p>Next you will need to configure this project to use OAuth 2.0 authentication.
+   Just like you need to login to your Google Analytics account to view your
+   data, you will need to authorize this dashboard application to view your data.
+   Authorization is handled through the OAuth2.0 protocol.</p>
+
+<p>This dashboard library implements most of the OAuth functionality.
+   As a user, all you need to do is configure your project in the APIs to use
+   OAuth2.0, then use the <code>Client ID</code> and <code>API Key</code>
+   provided in the console as parameters when you configure the library.</p>
+
+<h3 id="gettingID">Getting your Client ID and API Key</h3>
+<p>In the Google APIs Console, for the project you just created:</p>
+<ol>
+  <li>Navigate on the left panel to <code>API Access</code></li>
+  <li>Click the big blue <code>Create An OAuth 2.0 Client ID</code> button<br><br>
+      <img width="400px" src="images/oAuth.gif"
+           alt="Create OAuth 2.0 button in google apis console"><br><br></li>
+  <li>Add a cool product name and logo, then click <code>Next</code></li>
+  <li>Under:
+    <ul>
+      <li>Application Type &ndash; select <code>Web Application</code></li>
+      <li>Your site or hostname &ndash; add the domain name or host name from
+          where this script will be served.</li>
+    </ul>
+  </li>
+  <li>Click <code>Create Client ID</code></li>
+</ol>
+
+<p class="note"><strong>Note</strong>: This dashboard library will only work if the script the page
+   is on is hosted from a web server. The domain (hostname) of the web server must match
+   the values in the JavaScript origins field. This library will not work if it is hosted
+   from a file.</p>
+
+<p>Once complete, your project should have values where the red arrows are in this image.</p>
+<img src="images/apiclientid.gif"
+     width="80%"
+     alt="image of Google APIs Cosole APIs access page pointing out Client ID and API Key locations">
+
+<p>Copy or write down the <code>Client ID</code> and <code>API Key</code> values. You will use both later.</p>
+<hr>
+<h2 id="customize">Step 2: Customize Your Dashboard</h2>
+
+<p> Go to the www.Gaezdashboard.com to start creating the charts for your dashboard. </p>
+
+<h3 id="signin">Signing In</h3>
+<p> First, you must sign in on the top right of the dashboard with your google account. After signing in, the website that the dashboard is pulling the analytics data from will be displayed on the top.</p>
+
+  <img width="400px" src="images/tableID.gif"
+           alt="Select the table ID from the drop down">
+
+<p> If you have more than one website registered on your google account, you can choose the specific website you want to pull the analytics from by clicking on the <b> table ID drop down </b>. </p>
+
+<h3 id="addchart">Adding/Editting Charts</h3>
+<p> The dashboard currently only supports a maximum of 6 charts for this version </p>
+
+<p>To add charts:</p>
+<ol>
+  <li>Click on any <b>box</b> to add the chart at that specific location of the dashboard, the chart editor opens</li>
+  <li>Select the chart format: Timeline, Pie, Bar, or Column.</li>
+  <li>Select the data for the chart you chose:</li>
+  
+        <ul><li> <b>Timeline Chart </b>: Select the primary metric, and optionally a comparative metric.</li>
+        <li> <b>Pie Chart </b>: Select the metric and dimension.</li>
+        <li> <b>Bar Char </b>: Select the primary metric, and optionally a comparative metric.</li>
+        <li> <b>Column Chart</b>: Select the primary metric, and optionally a comparative metric. </li></ul>
+  <p> Lean more about <a href="#metndim">metrics and dimensions</a>.</p>
+  <li>Optionally, click <b>Filter</b> to filter the data of the chart.</li>
+  <li>Enter a title for the chart.</li>
+  <li>Check if it is the chart you want by reviewing the chart preview on the left side of the window.</li>
+  <li>Click <b>Add</b>.</li>
+  </ol>
+
+<img src="images/editChart.gif"
+     alt="Chart Editor window is used to edit the chart">
+
+  <p>To edit charts:</p>
+<ol>
+  <li>Click the box of an existing chart.</li>
+  <li>Change the chart type, dimension, metric, and/or title. </li>
+  <li>Click <b>Add</b>.</li></ol>
+
+   <p>To delete the chart:</p>
+<ol>
+  <li>Click the box of an existing chart, then click delete at the bottom left of the screen</li>
+  <li>Click <b>Yes</b> when asked &quot;Are you sure you want to delete the chart&quot;.  </li></ol>
+
+
+<h3 id="dateselector">Date Selector</h3>
+<p> With the date selector at the top right of the dashboard, you can easily view data of all your charts for any data range.</p>
+
+<p> To select the date range, click on the date range box to open the calendar, and follow the instructions below.</p>
+
+<p><b>To select a single date</b></p>
+  <ul><li>Click any date on the calendar.</li></ul>
+<p><b>To select a specific week</b></p>
+  <ul><li>Click the first and last days of the week on the calendar.</li></ul>
+<p><b>To select a range of dates</b></p>
+  <ul><li>In the calendar, click the desired start date, then click the end date. The selected days are highlighted.</li></ul>
+
+  <img src="images/dateCalendar.gif"
+     alt="the date selector allows you to select the date range of the charts">
+
+<p>Alternatively, you can input the last n days, weeks, and months from the current day as your date range. To do follow the instructions below.</p>
+<p><b>To select last n days</b></p>
+  <ul><li>Input the specified last n days into the text box.</li></ul>
+  <ul><li>Select <b>days</b> from the drop down next to the text box.</li></ul>
+<p><b>To select last n weeks</b></p>
+  <ul><li>Input the specified last n weeks into the text box.</li></ul>
+  <ul><li>Select <b>weeks</b> from the drop down next to the text box.</li></ul>
+<p><b>To select last n months</b></p>
+  <ul><li>Input the specified last n months into the text box.</li></ul>
+  <ul><li>Select <b>months</b> from the drop down next to the text box.</li></ul>
+
+  <img src="images/lastndays.gif"
+     alt="input and pick from the drop down the specify the last n days, weeks, or months">
+
+<p class="note"><strong>Note</strong>: The last n days, weeks, and/or months will always be from the current day and not the day you created the dashboard.</p>
+
+
+<h3 id="metndim">Metrics & Dimensions</h3>
+<p> Metrics measure data and are individual elements of a dimension that can be measured as a sum or a ratio. For example, the dimension City can be associated with a metrics like Population, which would have a sum value of all the residents of the specific city. <p>
+
+<p>A dimension is an descriptive attribute or characteristic of an object that can be given different values. For example, a geographic location could have dimensions called Latitude, Longitude, or City Name. Values for the City Name dimension could be San Francisco, Berlin, or Singapore.</P> 
+
+<p>Although dimensions and metrics can stand alone, they usually are used in conjunction with one another. The values of dimensions and metrics and the relationships between those values is what creates meaning in your data. For the greatest insights, dimensions are often associated with one or more metric.</p>
+
+<hr>
+<h2 id="grabcode">Step 3: Grab Code</h2>
+<p>Once you have customized your dashboard, it is time to see your dashboard on your own website.</p>
+
+<ol><li>Click the <b>Grab Code</b> button to generate the code for the charts, the grab code window will pop-up.</li>
+<li>Click on the <b>Copy All</b> button to copy all the code into your clipboard.</li>
+<li>Open up any text/html editor (Example: notepad, sublime, etc.) </li>
+<li>Copy and paste the dashboard code into the text/html editor you opened up</li>
+<li>Replace the <code>API_KEY</code> and <code>CLIENT_ID</code> values in the code with the
+   respective API Key and Client ID that you created in the Google APIs console
+   during the first step.</li>
+<li>Replace the <code>TABLE_ID</code> parameter in the code with Table ID of the specified website you are gathering the data from. This can be found at the top bar of the dashboard. </li>
+<li>Save the file.</li>
+<li>FTP into your desired server you want the dashboard to exist.</li>
+<p> Learn more about how to <a href="#ftp">FTP into a server</a>.</p>
+<li>Transfer the saved dashboard file into your desired website location in the server.</li>
+<li>Go to the URL of the dashboard to view it.</li>
+</ol>
+
+<p class="note"><strong>Note</strong>: You can only view the dashboard if the file is hosted from a web server and signed in with specific google account of the data.</p>
+
+<h3 id="ftp">FTP into a server</h3>
+<p> A File Transfer Protocol (FTP) is a standard network protocol used to transfer files from one host or to another host over a TCP-based network, such as the Internet. In this case from your computer to your server where your website is hosted.</p>
+
+<p> There are many different software you can use to FTP into your server. One such software is <a href="http://filezilla-project.org/">
+   Filezilla</a>, a free FTP solution.</p> 
+
+<p> If you choose to Filezilla, you want to install the <b> FileZilla Client </b> for your specific OS (Windows, Mac OS X, etc.). To learn more about Filezilla and how to use it please go <a href="http://wiki.filezilla-project.org/Using">here</a>.</p>
+
+
+<hr>
+<h2 id="advance">Advance Customizations</h2>
+
+<p> If you wish to customize the dashboard even further customize your charts, just back into the code and change the specified areas. </p>
+
+<p>The following is example of a dashboard code for the dashboard image below. The following highlighted areas are for you to change if needed.<p>
+
+ <img src="images/sampleCodeChart.gif"
+     alt="a sample dashboard for the sample code">
+
+<pre class="prettyprint lang-html">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv='content-type' content='text/html; charset=UTF-8'&gt;
+
+    &lt;style&gt;
+      html {
+        width: 100%;
+      }
+      table {
+        vertical-align:center;
+        margin: 50px auto;
+      }
+      #chart1, #chart2, #chart3, #chart4, #chart5, #chart6 {
+         width:350px;
+         height:250px;
+         border:2px solid #DDD;
+      }
+    &lt;/style&gt;
+
+    &lt;script src='//www.google.com/jsapi'&gt;&lt;/script&gt;
+    &lt;script type='text/javascript' src='js/gadash-2.0.js'&gt;&lt;/script&gt;
+    &lt;script src='//apis.google.com/js/client.js?onload=gadashInit_'&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+      // These parameters needs to be configured before you start.
+      var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms'; //Your API Key Here
+      var CLIENT_ID = '678812203795.apps.googleusercontent.com'; //Your Client ID Here
+      var TABLE_ID = 'ga:1174'; // Your Table ID here
+      var start_date = <SPAN style="BACKGROUND-COLOR: #ffff00">'2013-01-22';</SPAN>
+      var end_date =  <SPAN style="BACKGROUND-COLOR: #ffff00">'2013-02-21'; </SPAN>
+
+      gadash.init({
+        'apiKey': API_KEY,
+        'clientId': CLIENT_ID
+      });
+
+      var chart1 = new gadash.<SPAN style="BACKGROUND-COLOR: #ffff00">GaBarChart </SPAN>( 'chart1', 'ga:1174', <SPAN style="BACKGROUND-COLOR: #ffff00">'ga:exitRate,ga:percentNewVisits'</SPAN>,
+        {
+          'query': {
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title': <SPAN style="BACKGROUND-COLOR: #ffff00">'Exit Rate Chart'</SPAN>,
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':<SPAN style="BACKGROUND-COLOR: #ffff00">250</SPAN>,
+            'width':<SPAN style="BACKGROUND-COLOR: #ffff00">350</SPAN>
+          }
+        }
+      ).render();
+
+      document.getElementById('chart2').innerHTML = '';
+
+      document.getElementById('chart3').innerHTML = '';
+
+      document.getElementById('chart4').innerHTML = '';
+
+      document.getElementById('chart5').innerHTML = '';
+
+      document.getElementById('chart6').innerHTML = '';
+
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id='gadash-auth'&gt;
+      <!-- Add Google Analytics authorization button -->
+    &lt;/div&gt;
+    &lt;table&gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+          &lt;div id='chart1'&gt;
+          &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+          &lt;div id='chart2'&gt;
+          &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+          &lt;div id='chart3'&gt;
+          &lt;/div&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+          &lt;div id='chart4'&gt;
+          &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+          &lt;div id='chart5'&gt;
+          &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+          &lt;div id='chart6'&gt;
+          &lt;/div&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</pre>
+
+
+<a href="#" class="scrollup">Scroll to top</a>
+
+<p> Team Five Guys </p>
+</body>
+</html>
