@@ -16,7 +16,6 @@ $(document).ready(function () {
   //Global variables
   var chartLocation = "";
   var editOption = ""; 
-  var widgetTitleGlobal = ""; 
   var last_n_days = 20; //Will not be used
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
@@ -34,7 +33,7 @@ $(document).ready(function () {
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #1",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -44,7 +43,7 @@ $(document).ready(function () {
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #2",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -53,7 +52,7 @@ $(document).ready(function () {
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #3",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -62,7 +61,7 @@ $(document).ready(function () {
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #4",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -71,7 +70,7 @@ $(document).ready(function () {
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #5",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -80,7 +79,7 @@ $(document).ready(function () {
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #6",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -308,63 +307,12 @@ $("#from_date").val(gadash.util.lastNdays(20));
     forLoop(); 
   });
 
-  $(".line_change").change(function (e) {
-      var ids = TABLE_ID;
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var metrics = getMetrics( lineMetric, lineCompare);
-      var widgetTitle = $("#widgetTitleLine").val();
-      var filterDimension = $("#line_filter_dimension").val();
-      var filterMatching = $("#line_filter_matching").val();
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(lineMetric))  {
-        var div = "wrappersPreviewLine";
-        if( !pattern.test(filterDimension) && filterMatching != ""){
-          var filter = filterDimension + '==' + filterMatching;
-          var chart = new gadash.GaLineChart( div, ids, metrics,
-              {'query': {
-                 'filters':filter,
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                   'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-        }
-        else {
-           var chart = new gadash.GaLineChart( div, ids, metrics,
-             {'query': {
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                   'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-        }
-     }
-     else {
-         document.getElementById("wrappersPreviewLine").innerHTML = "";
-     }
-  }); 
-
   $(".pie_change").change(function (e) {
       var ids = TABLE_ID;
       var pieMetric = $("#pieMetrics").val();
       var pieDimension = $("#pieGroupBy").val();
       var widgetTitle = $("#widgetTitlePie").val();
+
       var filterDimension = $("#pie_filter_dimension").val();
       var filterMatching = $("#pie_filter_matching").val();
 
@@ -382,8 +330,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                    chartArea: {  
+                      width: "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
@@ -398,8 +347,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                    chartArea: {
+                      width: "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
@@ -434,8 +384,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {
+                     width: "95%"
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -450,8 +401,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {  
+                     width: "95%" 
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -486,8 +438,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                    chartArea: {
+                      width: "95%"
+                    }, 
                    'height':250,
                    'width':350
                 }
@@ -502,8 +455,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {
+                     width: "95%" 
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -538,8 +492,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {
+                     width: "95%"
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -554,8 +509,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {
+                     width: "95%"
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -602,6 +558,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
   function addPieChart( metrics, dimensions, widgetTitle){
      var ids = TABLE_ID;
      var filterDimension = $("#pie_filter_dimension").val();
+     if( widgetTitle == "") {
+       widgetTitle = createDefaultTitle(chartLocation);
+     }
      var filterMatching = $("#pie_filter_matching").val();
      var pattern =new RegExp("none");
 
@@ -655,7 +614,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
       chartGlobal[chartIndex].chartMetric = metrics;
       chartGlobal[chartIndex].metricCompare = "none";
       chartGlobal[chartIndex].chartDimension = dimensions;
-      chartGlobal[chartIndex].chartTitle = widgetTitle;
+      if( widgetTitle != "") {
+         chartGlobal[chartIndex].chartTitle = widgetTitle;
+      }
       chartGlobal[chartIndex].filterDimension = filterDimension;
       chartGlobal[chartIndex].filterMatching = filterMatching;
       chartGlobal[chartIndex].position = chartLocation; 
@@ -668,7 +629,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var barMetric = $("#barMetrics").val();
       var barCompare = $("#barCompare").val();
       var metrics = getMetrics( barMetric, barCompare);
-      var widgetTitle = $("#widgetTitleBar").val();
+      if( widgetTitle == "") {
+        widgetTitle = createDefaultTitle(chartLocation);
+      }
       var filterDimension = $("#bar_filter_dimension").val();
       var filterMatching = $("#bar_filter_matching").val();
       var pattern =new RegExp("none");
@@ -722,7 +685,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
      chartGlobal[chartIndex].chartType = "BarChart";
      chartGlobal[chartIndex].chartMetric = metrics;
      chartGlobal[chartIndex].metricCompare = barCompare;
-     chartGlobal[chartIndex].chartTitle = widgetTitle;
+     if( widgetTitle != "") {
+         chartGlobal[chartIndex].chartTitle = widgetTitle;
+     }
      chartGlobal[chartIndex].filterDimension = filterDimension;
      chartGlobal[chartIndex].filterMatching = filterMatching;
      chartGlobal[chartIndex].position = div; 
@@ -735,7 +700,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
       var metrics = getMetrics( columnMetric, columnCompare);
-      var widgetTitle = $("#widgetTitleColumn").val();
+      if( widgetTitle == "") {
+        widgetTitle = createDefaultTitle(chartLocation);
+      }
       var filterDimension = $("#column_filter_dimension").val();
       var filterMatching = $("#column_filter_matching").val();
       var pattern =new RegExp("none");
@@ -802,7 +769,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var areaMetric = $("#areaMetrics").val();
       var areaCompare = $("#areaCompare").val();
       var metrics = getMetrics( areaMetric, areaCompare);
-      var widgetTitle = $("#widgetTitleArea").val();
+      if( widgetTitle == "") {
+        widgetTitle = createDefaultTitle(chartLocation);
+      }
       var filterDimension = $("#area_filter_dimension").val();
       var filterMatching = $("#area_filter_matching").val();
       var pattern =new RegExp("none");
@@ -882,6 +851,28 @@ $("#from_date").val(gadash.util.lastNdays(20));
       chartGlobal[chartIndex].position = "";
       
       HideDialog();
+  });
+
+  $("#resetDashboard").click(function (e) {
+      for( var chartNum = 1; chartNum <= 6; chartNum++) {
+        document.getElementById( "wrappers" + chartNum).innerHTML = 
+           "<div id='chart" + chartNum + "' class='chartcontainer'>" +
+              "<a href='#'' class='plus'>+ </a>" +
+                "<BR/><p class='addchart'>ADD CHART</p></a>" +
+            "</div>";
+        $("#wrappers" + chartNum).css("border","5px dashed #DDD");
+
+        chartGlobal[chartNum].chartType = "";
+        chartGlobal[chartNum].chartMetric = "";
+        chartGlobal[chartNum].metricCompare = "";
+        chartGlobal[chartNum].chartDimension = "";
+        chartGlobal[chartNum].chartTitle = "Chart #" + chartNum;
+        chartGlobal[chartNum].filterDimension = "";
+        chartGlobal[chartNum].filterMatching = "";
+        chartGlobal[chartNum].position = "";
+        
+        HideDialog();
+      }
   });
 
   $('#menu').tabs();
@@ -1316,6 +1307,10 @@ function generate_code() {
 
   function changeDivName( divName) {
     return divName.replace("wrappers","chart");
+  };
+
+  function createDefaultTitle( divLocation) {
+    return divLocation.replace("wrappers","Chart #");
   };
 
   $("#copybutton").click(function (e) {
