@@ -202,7 +202,7 @@
 			</div>
 
 			<div id="copybutton" >
-				<div id="copycode" data-clipboard-text="Copy To Clipboard">Copy All</div>
+				<div id="copycode" style="font-family: 'Open Sans', arial, sans-serif;" data-clipboard-text="Copy To Clipboard">Copy All</div>
 			</div>
 	    </form>
 	   <br>
@@ -240,12 +240,12 @@
 						
 					</div>
 	    			<br/><br/><br/><br/><br/>
-	       			<a href="#" class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
+	       			<a href="#" class="btnDelete" id="areaDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
 					<form>Widget Title <br/>
-						<input id ="widgetTitlePie"> </input><br/><br/>
+						<input id ="widgetTitleArea"> </input><br/><br/>
 						<span style="color:red;">*</span>Graph the following metric overtime<br/>
 						<select id ="areaMetrics" class="area_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
@@ -381,7 +381,7 @@
 						</select><br><br>
 
                         Filter this data<br/>
-						<span style ="text-decoration:underline;" id ="areaFilter">Add a filter</span><br/><br/>
+						<span  id ="areaFilter">Add a filter <a id="arrow" href="#">&#8711;</a></span><br/><br/>
 
 						<div id="area_filter_fields" style="height:50px;">
 							<select id="area_filter_dimension" class="area_change">
@@ -488,7 +488,7 @@
 						
 					</div>	
 	    			<br/><br/><br/><br/><br/>
-	       			<a href="#" class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
+	       			<a href="#"   id="pieDelete" class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
 				</div>
 	 		</div>
 				<div id ="rightdiv">
@@ -650,7 +650,7 @@
 
 
 						Filter this data<br/>
-						<span style ="text-decoration:underline;" id ="pieFilter">Add a filter</span><br/><br/>
+						<span  id ="pieFilter">Add a filter <a id="arrow" href="#">&#8711;</a></span><br/><br/>
 
 						<div id="pie_filter_fields" class="pie_change" style="height:50px;">
 							<select id="pie_filter_dimension">
@@ -754,12 +754,12 @@
 						
 					</div>	
 	    			<br/><br/><br/><br/><br/>
-	       			<a href="#" class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
+	       			<a href="#" id="barDelete"class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
 					<form>Widget Title <br/>
-						<input id ="widgetTitlePie"> </input><br/><br/><span style="color:red;">*</span>
+						<input id ="widgetTitleBar"> </input><br/><br/><span style="color:red;">*</span>
 						Graph the following metric overtime<br/>
 						<select id="barMetrics" class="bar_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
@@ -890,7 +890,7 @@
 						</select><br/><br/>
 
 						Filter this data<br/>
-						<span style ="text-decoration:underline;" id ="barFilter">Add a filter</span><br/><br/>
+						<span id ="barFilter">Add a filter <a id="arrow" href="#">&#8711;</a></span><br/><br/>
 
 						<div id="bar_filter_fields" class="bar_change" style="height:50px;">
 							<select id="bar_filter_dimension">
@@ -997,12 +997,12 @@
 						
 					</div>	
 	    			<br/><br/><br/><br/><br/>
-	       			<a href="#" class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
+	       			<a href="#" id="columnDelete" class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
 					<form>Widget Title <br/>
-						<input id ="widgetTitlePie"> </input><br/><br/><span style="color:red;">*</span>
+						<input id ="widgetTitleColumn"> </input><br/><br/><span style="color:red;">*</span>
 						Graph the following metric overtime<br/>
 						<select id="columnMetrics" class="column_change">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
@@ -1132,7 +1132,7 @@
 						</select><br/><br/>
 
 						Filter this data<br/>
-						<span style ="text-decoration:underline;" id ="columnFilter">Add a filter</span><br/><br/>
+						<span id ="columnFilter">Add a filter <a id="arrow" href="#">&#8711;</a></span><br/><br/>
 
 						<div id="column_filter_fields" style="height:50px;">
 							<select id="column_filter_dimension" class="column_change">

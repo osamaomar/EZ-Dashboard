@@ -20,6 +20,10 @@ $(document).ready(function () {
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
 
+$("#finishbutton").hide();
+$(".btnDelete").hide();
+
+
 $('#lastNFunctionRadio').prop("checked",true); 
 $("#from_date").fadeTo(100,.2);
 $("#from_date").prop('disabled', true);
@@ -387,11 +391,12 @@ $("#from_date").val(gadash.util.lastNdays(20));
 
       var filterDimension = $("#pie_filter_dimension").val();
       var filterMatching = $("#pie_filter_matching").val();
-
       var pattern =new RegExp("none");
 
       if( !pattern.test(pieMetric) && !pattern.test(pieDimension))  {
         var div = "wrappersPreviewPie";
+		$("#pieDelete").show();
+
         if( !pattern.test(filterDimension) && filterMatching != ""){
           var filter = filterDimension + '==' + filterMatching;
           var chart = new gadash.GaPieChart( div, ids, pieMetric, pieDimension,
@@ -438,6 +443,8 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var ids = TABLE_ID;
       var barMetric = $("#barMetrics").val();
       var barCompare = $("#barCompare").val();
+	$("#barDelete").show();
+
       var metrics = getMetrics( barMetric, barCompare);
       var widgetTitle = $("#widgetTitleBar").val();
       var filterDimension = $("#bar_filter_dimension").val();
@@ -492,6 +499,8 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var ids = TABLE_ID;
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
+	$("#columnDelete").show();
+
       var metrics = getMetrics( columnMetric, columnCompare);
       var widgetTitle = $("#widgetTitleColumn").val();
       var filterDimension = $("#column_filter_dimension").val();
@@ -546,6 +555,8 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var ids = TABLE_ID;
       var areaMetric = $("#areaMetrics").val();
       var areaCompare = $("#areaCompare").val();
+	$("#areaDelete").show();
+
       var metrics = getMetrics( areaMetric, areaCompare);
       var widgetTitle = $("#widgetTitleArea").val();
       var filterDimension = $("#area_filter_dimension").val();
@@ -600,6 +611,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
      var pieMetric = $("#pieMetrics").val();
      var pieDimension = $("#pieGroupBy").val();
      var widgetTitlePie = $("#widgetTitlePie").val();
+	$("#finishbutton").show();
      addPieChart( pieMetric, pieDimension, widgetTitlePie); 
   });
 
@@ -607,6 +619,8 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var barMetric = $("#barMetrics").val();
       var barCompare = $("#barCompare").val();
       var widgetTitleBar = $("#widgetTitleBar").val();
+	$("#finishbutton").show();
+
       var metrics = getMetrics( barMetric, barCompare);
       addBarChart( metrics, widgetTitleBar); 
   });
@@ -615,6 +629,8 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
       var widgetTitleColumn = $("#widgetTitleColumn").val();
+	$("#finishbutton").show();
+
       var metrics = getMetrics( columnMetric, columnCompare);    
       addColumnChart( metrics, widgetTitleColumn); 
   });
@@ -623,6 +639,8 @@ $("#from_date").val(gadash.util.lastNdays(20));
      var areaMetric = $("#areaMetrics").val();
      var areaCompare = $("#areaCompare").val();
      var widgetTitleArea = $("#widgetTitleArea").val();
+	$("#finishbutton").show();
+
      var metrics = getMetrics( areaMetric, areaCompare);
      addAreaChart( metrics, widgetTitleArea); 
   });
@@ -630,6 +648,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
   function addPieChart( metrics, dimensions, widgetTitle){
      var ids = TABLE_ID;
      var filterDimension = $("#pie_filter_dimension").val();
+
      if( widgetTitle == "") {
        widgetTitle = createDefaultTitle(chartLocation);
      }
@@ -970,6 +989,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
   });
 
   function forLoop (){
+
 
   for (chartIndex = 0; chartIndex <=5; chartIndex++){
     
@@ -1385,7 +1405,7 @@ function generate_code() {
     return divLocation.replace("wrappers","Chart #");
   };
 
-  $("#copybutton").click(function (e) {
+  $("#copycode").click(function (e) {
     ZeroClipboard.setDefaults({ moviePath: "js/ZeroClipboard.swf" });
     var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
     document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);

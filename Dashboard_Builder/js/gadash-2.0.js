@@ -1387,7 +1387,7 @@ gadash.gviz.lineChart = {
       position: 'top',
       alignment: 'start'
     },
-    colors: ['#058dc7','red'],
+    colors: ['#058dc7','#d14836'],
     hAxis: {
       format: 'MMM d',
       gridlines: {color: 'transparent'},
@@ -1418,7 +1418,7 @@ gadash.gviz.areaChart = {
       position: 'top',
       alignment: 'start'
     },
-    colors: ['#058dc7','red'],
+    colors: ['#058dc7','#d14836'],
     hAxis: {
       format: 'MMM d',
       gridlines: {
@@ -1468,7 +1468,7 @@ gadash.gviz.barChart = {
       position: 'top',
       alignment: 'start'
     },
-    colors: ['#058dc7','red'],
+    colors: ['#058dc7','#d14836'],
     hAxis: {
       gridlines: {
         count: 3,
@@ -1498,7 +1498,7 @@ gadash.gviz.columnChart = {
       position: 'top',
       alignment: 'start'
     },
-    colors: ['#058dc7','red'],
+    colors: ['#058dc7','#d14836'],
     hAxis: {
       gridlines: {
         count: 3,
