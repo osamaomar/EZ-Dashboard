@@ -87,8 +87,8 @@
 
 						<!--		 Date Picker 		-->
 
-						<div align="right">
-										<span style="color:black; font-family:arial,sans-serif;;font-size:15px">Last:</span> 
+						<div align="right"><input type="radio" id="lastNFunctionRadio" name="date" value="date"> 
+										<span id="LastText" style="color:black; font-family:arial,sans-serif;;font-size:15px">Last:</span> 
 									<input type="text" size="3" id ="numberOfX" >
 
 
@@ -97,9 +97,9 @@
   <option value="days">Days</option>
   <option value="weeks">Weeks</option>
   <option value="months">Months</option>
-</select>
+</select>						<input type="radio" id="datePickerRadio" name="date" value="lastN"> 
 							<input type="text" id="from_date" name="from" size="13" value="Start date"/>
-							<label for="to"><span style="color:black; font-family:arial,sans-serif;;font-size:15px">to</span></label>
+							<label for="to"><span id="toSpan"style="color:black; font-family:arial,sans-serif;;font-size:15px">to</span></label>
 							<input type="text" id="to_date" name="to" size="13" value="End date"/>
 						</div>
 
