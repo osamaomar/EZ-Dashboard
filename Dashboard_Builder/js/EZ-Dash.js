@@ -16,16 +16,12 @@ $(document).ready(function () {
   //Global variables
   var chartLocation = "";
   var editOption = ""; 
-  var widgetTitleGlobal = ""; 
   var last_n_days = 20; //Will not be used
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
-/** 
-$("#header").hide(); 
-$("#grabCodeButton").hide();
-$("#mainTable").hide(); 
+ 
   
-**/
+
   var noCharts = true; //If the dashboard has any charts on it
   $("#from_date").val(start_date); 
   $("#to_date").val(today); 
@@ -37,7 +33,7 @@ $("#mainTable").hide();
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #1",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -47,7 +43,7 @@ $("#mainTable").hide();
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #2",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -56,7 +52,7 @@ $("#mainTable").hide();
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #3",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -65,7 +61,7 @@ $("#mainTable").hide();
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #4",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -74,7 +70,7 @@ $("#mainTable").hide();
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #5",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -83,7 +79,7 @@ $("#mainTable").hide();
                      chartMetric:"",
                      metricCompare:"",
                      chartDimension:"",
-                     chartTitle:"",
+                     chartTitle:"Chart #6",
                      filterDimension:"",
                      filterMatching:"",
                      position:""};
@@ -311,63 +307,12 @@ $("#from_date").val(gadash.util.lastNdays(20));
     forLoop(); 
   });
 
-  $(".line_change").change(function (e) {
-      var ids = TABLE_ID;
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var metrics = getMetrics( lineMetric, lineCompare);
-      var widgetTitle = $("#widgetTitleLine").val();
-      var filterDimension = $("#line_filter_dimension").val();
-      var filterMatching = $("#line_filter_matching").val();
-      var pattern =new RegExp("none");
-
-      if( !pattern.test(lineMetric))  {
-        var div = "wrappersPreviewLine";
-        if( !pattern.test(filterDimension) && filterMatching != ""){
-          var filter = filterDimension + '==' + filterMatching;
-          var chart = new gadash.GaLineChart( div, ids, metrics,
-              {'query': {
-                 'filters':filter,
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                   'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-        }
-        else {
-           var chart = new gadash.GaLineChart( div, ids, metrics,
-             {'query': {
-                 'start-date':start_date,
-                 'end-date':end_date
-               },
-               'chartOptions':{
-                   'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
-                   'height':250,
-                   'width':350
-                }
-              }
-          ).render();
-        }
-     }
-     else {
-         document.getElementById("wrappersPreviewLine").innerHTML = "";
-     }
-  }); 
-
   $(".pie_change").change(function (e) {
       var ids = TABLE_ID;
       var pieMetric = $("#pieMetrics").val();
       var pieDimension = $("#pieGroupBy").val();
       var widgetTitle = $("#widgetTitlePie").val();
+
       var filterDimension = $("#pie_filter_dimension").val();
       var filterMatching = $("#pie_filter_matching").val();
 
@@ -385,8 +330,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                    chartArea: {  
+                      width: "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
@@ -401,8 +347,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                    chartArea: {
+                      width: "95%" 
+                    }, 
                    'height':250,
                    'width':350
                 }
@@ -437,8 +384,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {
+                     width: "95%"
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -453,8 +401,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {  
+                     width: "95%" 
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -489,8 +438,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                    chartArea: {
+                      width: "95%"
+                    }, 
                    'height':250,
                    'width':350
                 }
@@ -505,8 +455,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {
+                     width: "95%" 
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -541,8 +492,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {
+                     width: "95%"
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -557,8 +509,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                },
                'chartOptions':{
                    'title':widgetTitle,
-                              chartArea: {  width: "95%" }, 
-
+                   chartArea: {
+                     width: "95%"
+                   }, 
                    'height':250,
                    'width':350
                 }
@@ -570,14 +523,6 @@ $("#from_date").val(gadash.util.lastNdays(20));
          document.getElementById("wrappersPreviewArea").innerHTML = "";
      }
   }); 
-
-  $("#btnAddLine").click(function (e) {
-      var lineMetric = $("#lineMetrics").val();
-      var lineCompare = $("#lineCompare").val();
-      var widgetTitleLine = $("#widgetTitleLine").val();    
-      var metrics = getMetrics( lineMetric, lineCompare);
-      addLineChart(metrics, widgetTitleLine); 
-  });
 
   $("#btnAddPie").click(function (e) {
      var pieMetric = $("#pieMetrics").val();
@@ -610,10 +555,12 @@ $("#from_date").val(gadash.util.lastNdays(20));
      addAreaChart( metrics, widgetTitleArea); 
   });
 
-
   function addPieChart( metrics, dimensions, widgetTitle){
      var ids = TABLE_ID;
      var filterDimension = $("#pie_filter_dimension").val();
+     if( widgetTitle == "") {
+       widgetTitle = createDefaultTitle(chartLocation);
+     }
      var filterMatching = $("#pie_filter_matching").val();
      var pattern =new RegExp("none");
 
@@ -667,12 +614,13 @@ $("#from_date").val(gadash.util.lastNdays(20));
       chartGlobal[chartIndex].chartMetric = metrics;
       chartGlobal[chartIndex].metricCompare = "none";
       chartGlobal[chartIndex].chartDimension = dimensions;
-      chartGlobal[chartIndex].chartTitle = widgetTitle;
+      if( widgetTitle != "") {
+         chartGlobal[chartIndex].chartTitle = widgetTitle;
+      }
       chartGlobal[chartIndex].filterDimension = filterDimension;
       chartGlobal[chartIndex].filterMatching = filterMatching;
       chartGlobal[chartIndex].position = chartLocation; 
 
-      changeChartBorder(chartLocation);
       HideDialog();
   }; 
 
@@ -681,7 +629,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var barMetric = $("#barMetrics").val();
       var barCompare = $("#barCompare").val();
       var metrics = getMetrics( barMetric, barCompare);
-      var widgetTitle = $("#widgetTitleBar").val();
+      if( widgetTitle == "") {
+        widgetTitle = createDefaultTitle(chartLocation);
+      }
       var filterDimension = $("#bar_filter_dimension").val();
       var filterMatching = $("#bar_filter_matching").val();
       var pattern =new RegExp("none");
@@ -735,12 +685,13 @@ $("#from_date").val(gadash.util.lastNdays(20));
      chartGlobal[chartIndex].chartType = "BarChart";
      chartGlobal[chartIndex].chartMetric = metrics;
      chartGlobal[chartIndex].metricCompare = barCompare;
-     chartGlobal[chartIndex].chartTitle = widgetTitle;
+     if( widgetTitle != "") {
+         chartGlobal[chartIndex].chartTitle = widgetTitle;
+     }
      chartGlobal[chartIndex].filterDimension = filterDimension;
      chartGlobal[chartIndex].filterMatching = filterMatching;
      chartGlobal[chartIndex].position = div; 
 
-     changeChartBorder(chartLocation); 
      HideDialog();
   }; 
 
@@ -749,7 +700,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
       var metrics = getMetrics( columnMetric, columnCompare);
-      var widgetTitle = $("#widgetTitleColumn").val();
+      if( widgetTitle == "") {
+        widgetTitle = createDefaultTitle(chartLocation);
+      }
       var filterDimension = $("#column_filter_dimension").val();
       var filterMatching = $("#column_filter_matching").val();
       var pattern =new RegExp("none");
@@ -808,7 +761,6 @@ $("#from_date").val(gadash.util.lastNdays(20));
      chartGlobal[chartIndex].filterMatching = filterMatching;
      chartGlobal[chartIndex].position = div; 
 
-     changeChartBorder(chartLocation);
      HideDialog();
   }; 
 
@@ -817,7 +769,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var areaMetric = $("#areaMetrics").val();
       var areaCompare = $("#areaCompare").val();
       var metrics = getMetrics( areaMetric, areaCompare);
-      var widgetTitle = $("#widgetTitleArea").val();
+      if( widgetTitle == "") {
+        widgetTitle = createDefaultTitle(chartLocation);
+      }
       var filterDimension = $("#area_filter_dimension").val();
       var filterMatching = $("#area_filter_matching").val();
       var pattern =new RegExp("none");
@@ -876,58 +830,70 @@ $("#from_date").val(gadash.util.lastNdays(20));
      chartGlobal[chartIndex].filterMatching = filterMatching;
      chartGlobal[chartIndex].position = div;
 
-     changeChartBorder(chartLocation);
      HideDialog();
   }; 
 
-  function changeChartBorder(chartLoc){
-    var chartNum;
-    switch (chartLoc){
-      case 'chart1': 
-        chartNum = 1;
-        break;
-      case 'chart2':
-        chartNum = 2;
-        break;
-      case 'chart3':
-        chartNum = 3;
-        break;
-      case 'chart4':
-        chartNum = 4;
-        break;
-      case 'chart5':
-        chartNum = 5;
-        break;
-      case 'chart6':
-        chartNum = 6;
-        break;
-    }
-    $("#wrappers" + chartNum).css("border", "5px solid #DDD");
-  }
+  $(".btnDelete").click(function (e) {
+      document.getElementById( chartLocation).innerHTML = 
+         "<div id='" + changeDivName( chartLocation) + "' class='chartcontainer'>" +
+            "<a href='#'' class='plus'>+ </a>" +
+              "<BR/><p class='addchart'>ADD CHART</p></a>" +
+          "</div>";
+      $("#"+chartLocation).css("border","5px dashed #DDD");
+
+      chartGlobal[chartIndex].chartType = "";
+      chartGlobal[chartIndex].chartMetric = "";
+      chartGlobal[chartIndex].metricCompare = "";
+      chartGlobal[chartIndex].chartDimension = "";
+      chartGlobal[chartIndex].chartTitle = "";
+      chartGlobal[chartIndex].filterDimension = "";
+      chartGlobal[chartIndex].filterMatching = "";
+      chartGlobal[chartIndex].position = "";
+      
+      HideDialog();
+  });
+
+  $("#resetDashboard").click(function (e) {
+      for( var chartNum = 1; chartNum <= 6; chartNum++) {
+        document.getElementById( "wrappers" + chartNum).innerHTML = 
+           "<div id='chart" + chartNum + "' class='chartcontainer'>" +
+              "<a href='#'' class='plus'>+ </a>" +
+                "<BR/><p class='addchart'>ADD CHART</p></a>" +
+            "</div>";
+        $("#wrappers" + chartNum).css("border","5px dashed #DDD");
+
+        chartGlobal[chartNum].chartType = "";
+        chartGlobal[chartNum].chartMetric = "";
+        chartGlobal[chartNum].metricCompare = "";
+        chartGlobal[chartNum].chartDimension = "";
+        chartGlobal[chartNum].chartTitle = "Chart #" + chartNum;
+        chartGlobal[chartNum].filterDimension = "";
+        chartGlobal[chartNum].filterMatching = "";
+        chartGlobal[chartNum].position = "";
+        
+        HideDialog();
+      }
+  });
 
   $('#menu').tabs();
 
-  $("#line_filter_fields").hide();
   $("#pie_filter_fields").hide();
   $("#bar_filter_fields").hide();
   $("#column_filter_fields").hide();
   $("#area_filter_fields").hide();
 
   $(function () {
-    $('#lineFilter').click(function () {
-      $('#line_filter_fields').toggle();
-    });
     $('#pieFilter').click(function () {
-      $('#pie_filter_fields').toggle();
+      $('#pie_filter_fields').slideDown("fast");
     });
     $('#barFilter').click(function () {
-      $('#bar_filter_fields').toggle();
+      $('#bar_filter_fields').slideDown("fast");
     });
     $('#columnFilter').click(function () {
-      $('#column_filter_fields').toggle();
+      $('#column_filter_fields').slideDown("fast");
     });
     $('#areaFilter').click(function () {
-      $('#area_filter_fields').toggle();
+      $('#area_filter_fields').slideDown("fast");
     });
   });
 
@@ -1343,23 +1309,19 @@ function generate_code() {
     return divName.replace("wrappers","chart");
   };
 
+  function createDefaultTitle( divLocation) {
+    return divLocation.replace("wrappers","Chart #");
+  };
+
   $("#copybutton").click(function (e) {
-    document.CodeToCopy.grabcode_txtarea.focus();
-    document.CodeToCopy.grabcode_txtarea.select();
+    ZeroClipboard.setDefaults({ moviePath: "js/ZeroClipboard.swf" });
     var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
-    // codeFromTextarea = document.selection.createRange();
-    console.log( codeFromTextarea);
-    // codeFromTextarea.execCommand("Copy");
-    if (window.clipboardData) // Internet Explorer
-    {  
-        window.clipboardData.setData("Text", codeFromTextarea);
-    }
-    else
-    {  
-        unsafeWindow.netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");  
-        const clipboardHelper = Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper);  
-        clipboardHelper.copyString(codeFromTextarea);
-    }
+    document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
+    var clip = new ZeroClipboard( document.getElementById("copycode"));
+  
+    // For user feedback
+    document.getElementById('grabcode_txtarea').focus();
+    document.getElementById('grabcode_txtarea').select();
   });
 
 $("#account").hover(function()
