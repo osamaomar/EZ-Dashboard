@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+
+    <style>
+      html {
+        width: 100%;
+      }
+      table {
+        vertical-align:center;
+        margin: 50px auto;
+      }
+      #chart1, #chart2, #chart3, #chart4, #chart5, #chart6 {
+         width:350px;
+         height:250px;
+         border:2px solid #DDD;
+      }
+    </style>
+
+    <script src='//www.google.com/jsapi'></script>
+    <script type='text/javascript' src='js/gadash-2.0.js'></script>
+    <script src='//apis.google.com/js/client.js?onload=gadashInit_'></script>
+
+    <script>
+      // These parameters needs to be configured before you start.
+      var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms'; //Your API Key Here
+      var CLIENT_ID = '678812203795.apps.googleusercontent.com'; //Your Client ID Here
+      var TABLE_ID = 'ga:1174'; // Your Table ID here
+      var start_date = '2013-02-09';
+      var end_date = '2013-02-12';
+
+      gadash.init({
+        'apiKey': API_KEY,
+        'clientId': CLIENT_ID
+      });
+
+      document.getElementById('chart1').innerHTML = '';
+
+      var chart2 = new gadash.GaAreaChart( 'chart2', 'ga:1174', 'ga:exitRate',
+        {
+          'query': {
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title':'',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
+
+      var chart3 = new gadash.GaPieChart( 'chart3', 'ga:1174', 'ga:percentNewVisits', 'ga:adContent',
+        {
+          'query': {
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title':'',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
+
+      document.getElementById('chart4').innerHTML = '';
+
+      document.getElementById('chart5').innerHTML = '';
+
+      document.getElementById('chart6').innerHTML = '';
+
+    </script>
+  </head>
+
+  <body>
+    <div id='gadash-auth'>
+      <!-- Add Google Analytics authorization button -->
+    </div>
+    <table>
+      <tr>
+        <td>
+          <div id='chart1'>
+          </div>
+        </td>
+        <td>
+          <div id='chart2'>
+          </div>
+        </td>
+        <td>
+          <div id='chart3'>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id='chart4'>
+          </div>
+        </td>
+        <td>
+          <div id='chart5'>
+          </div>
+        </td>
+        <td>
+          <div id='chart6'>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
