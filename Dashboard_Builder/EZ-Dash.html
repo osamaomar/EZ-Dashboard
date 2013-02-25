@@ -9,14 +9,16 @@
 	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
 	<script src="//www.google.com/jsapi"></script>
 	<script type="text/javascript" src="js/gadash-2.0.js"></script>
-	<script src="//apis.google.com/js/client.js?onload=gadashInit_"></script>
 	<script type="text/javascript" src="js/ZeroClipboard.js"></script>
-	
+    	
+	<script src="//apis.google.com/js/client.js?onload=gadashInit_"></script>
+
 	<link href="css/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/EZ-Dash.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<script src="//apis.google.com/js/client.js?onload=gadashInit_"></script>	
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
 	
 	<link rel="stylesheet" type="text/css" href="css/EZ-Dash.css" media="screen" />
 
@@ -47,8 +49,8 @@
 
 		<table width="100%">
 			<tr>
-				<td align="left">
-					<div>
+				<td align="left"><div id="osama"></div>
+					<div>  
 <table cellpadding="7">
 	<tr>
 		<td>
@@ -62,19 +64,13 @@
 				</div> 
 			</div>
 		</td>
-		<td>
-			<div class="dropdown" id="tableDropdown" style="width:150px;">
-				<a class="account" id="tableAccount" style="width:200px" >SELECT YOUR TABLE ID <span style="font-size:10px; ">&#8711;<span></a>
-				<div class="submenu" id ="tableSubmenu"style="width:205px">
-					<ul class="root" id="tableRoot" style="width:205px">
-						<li ><a href="#Dashboard" >TABLE ID NAME</a></li>
-						<li ><a href="#Profile" >TABLE ID NAME</a></li>
-						<li ><a href="#settings">TABLE ID NAME</a></li>
-						<li ><a href="#feedback">TABLE ID NAME</a></li>
-					</ul>
-				</div> 
-			</div>
-		</td>
+		
+			<td>
+<label id="idLabel">					
+<select style="margin-left:20px;" id="selectTableID">
+  
+</select></label>
+			</td>
 	</tr>
 </table>
 
