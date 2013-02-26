@@ -1,0 +1,175 @@
+
+<!DOCTYPE>
+<html>
+<head>
+  <title>Google Analytics EZ Dashboard </title>
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      font-family: Helvetica, sans-serif, arial;
+      margin: 0 20px;
+    }
+    h1, h2, h3 {
+      margin-top: 20px;
+      font-family: 'Cantarell', arial, serif;
+    }
+    h1 {
+      background-color: #000080;
+      color: #FFA500;
+      margin-top: 0;
+      margin: 0 -20px;
+      padding: 20px 0 10px 20px;
+      border-bottom: 1px solid #FF5000;
+    }
+    tr, td, th {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    th {
+      background-color: #ccc;
+    }
+    .example {
+      border: 2px black solid;
+      padding: 10px;
+    }
+    .note {
+      padding: 5px 12px;
+      border-style: solid none solid none;
+      border-color: #000080;
+      border-width: 1px;
+      background-color: #eee;
+    }
+    img {
+      border: 1px solid #CCC;
+    }
+    code {
+      color: green;
+    }
+    #gu {
+      text-align: right;
+      padding-right: 10px;
+    }
+    .row {
+      overflow: hidden;
+      zoom: 1;
+    }
+    .toc {
+      width: 275px;
+    }
+    .toc > li {
+      list-style-type: none;
+    }
+    .left {
+      float: left;
+    }
+    li {
+      padding: 3px 0;
+    }
+    pre.prettyprint {
+      width: 650px;
+      padding: 10px !important;
+    }
+  </style>
+  <link href="prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="prettify.js"></script>
+</head>
+<body onload="prettyPrint()">
+<h1>Google Analytics EZ Dashboard</h1>
+<p>This document describes how to use the GA EZ Dashboard</a> version 1.0.</p>
+
+<h2>Table of Contents</h2>
+<div class="row">
+  <ul class="toc left">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#started">Getting Started</a>
+    <li><a href="#customize">Customize Your Dashboard</a>
+        <ol><li><a href="#addchart">Adding Charts</a></li>
+        <li><a href="#editchart">Editting Charts</a></li>
+        <li><a href="#dateeditor">Date Editor</a></li></ol>
+    </li>
+  </ul>
+  <ul class="toc left">
+    <li><a href="#grabcode">Grab Code</a></li>
+    <li><a href="#advance">Advance Customizations</a></li>
+    <li><a href="#changelog">Changelog</a></li>
+  </ul>
+</div>
+
+<h2 id="overview">Overview</h2>
+<p>This dashboard is designed to create an easy way to build a custom
+   Google Analytics Dashboard on your own page. The Dashboard is built on
+   top of the
+ <a href="http://analytics-api-samples.googlecode.com/svn/trunk/src/reporting/javascript/ez-ga-dash/docs/user-documentation.html">
+      Google Analytics Easy Dashboard Javascript Library.</a></p>
+
+<p class="note"><strong>Note</strong>: At this time, each user who views a dashboard
+   must have access to the Google Analytics account from which the dashboard
+   data is generated. Currently you can not create a dashboard for users who do not
+   have access to your Google Analytics data.
+
+
+  Visit the  <a href="http://www.google.com/analytics/"> Google Analytics website</a> to sign up for a new account if you do not have one. Click the Create an account button and follow the on-screen instructions.</p>
+
+
+
+<h2 id="started">Step 1: Getting Started</h2>
+
+<h3>Signing In</h3>
+<p> First, you must sign in on the top right of the dashboard. Sign in with your current google account to access your Google Analtics data. After signing in, choose the table ID of your desired analytics data. </p>
+
+<p> Note: Visit the  <a href="http://www.google.com/analytics/"> Google Analytics website</a> to sign up for a new account if you do not have one. Click the Create an account button and follow the on-screen instructions. <p> 
+
+
+
+<h2 id="customize">Step 2: Customize Your Dashboard</h2>
+
+<h3 id="addchart">Adding Charts</h3>
+<p> You can start adding a chart by clicking on the dotted box with the + signs. Where you click on the dotted box will determine where the chart will show up on the dashboard. Once you choose where you want to place the chart, the edit chart window will pop up.</p>
+
+<p class="note"><strong>Note</strong>: The dashboard only supports a maximum of 6 charts for this version.</p>
+
+
+<h3 id="editchart">Editting Charts</h3>
+To edit any of the charts, click on the gear icon on the top right of each chart. Once clicked, the edit window will pop up for you to customize your chart. 
+
+<h3>Chart Types</h3>
+
+<p> Select the display format for your: </p>
+<li> Timeline Chart: Select the primary metric, and optionally a comparative metric.</li>
+<li> Pie Chart: Select the metric and dimension.</li>
+<li> Bar Char: Select the primary metric, and optionally a comparative metric.</li>
+<li> Column Chart: Select the primary metric, and optionally a comparative metric. </li>
+
+
+<h3>Metrics & Dimensions</h3>
+<p> Metrics are individual elements of a dimension that can be measured as a sum or a ratio. For example, the dimension City can be associated with a metrics like Population, which would have a sum value of all the residents of the specific city. <p>
+
+<p>A dimension is an descriptive attribute or characteristic of an object that can be given different values. For example, a geographic location could have dimensions called Latitude, Longitude, or City Name. Values for the City Name dimension could be San Francisco, Berlin, or Singapore.</P> 
+
+
+<h3>Preview Chart</h3>
+
+<p> When creating or editing charts on the  chart menu, you will see that the charts are previewed real-time as you charge your chart / metric / dimensions.
+A loading notification will be shown as the charts are loading to the preview. Once loaded, the chart will be shown on the left side of the chart menu.
+The preview reflects how the chart will look like once you insert it on the EZ Dashboard. </p>
+
+<h3>Delete Chart</h3>
+
+<p> Undesired charts can be deleted from the EZ Dashboard.
+You are able to find the delete option on the chart menu.
+When you try to delete, you will be asked Are you sure you want to delete the chart? This is to make sure that you will not completely lose your chart(s) by accidentally clicking on the delete menu. </p>
+
+<h3 id="dateeditor">Date Editor</h3>
+<p> With the date editor, you are able to pick specific dates you want to gather data from. First you can either select or type from what day you want your data to start from. Then you can type or select which date you want the data to end from. After that, the data in all the charts of the EZ Dashboard will reflect the specified time period you chose.
+
+
+<h2 id="grabcode">Step 3: Grab Code</h2>
+
+<h2 id="advance">Advance Customizations</h2>
+
+<h3>Going into the code</h3>
+
+
+<p> Team Five Guys </p>
+</body>
+</html>
