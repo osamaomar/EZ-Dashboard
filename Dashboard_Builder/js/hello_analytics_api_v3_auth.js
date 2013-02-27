@@ -1,11 +1,9 @@
-var apiKey = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
-var clientId = '678812203795.apps.googleusercontent.com';
 var scopes = 'https://www.googleapis.com/auth/analytics.readonly';
 
 // This function is called after the Client Library has finished loading
 function handleClientLoad() {
   // 1. Set the API Key
-  gapi.client.setApiKey(apiKey);
+  gapi.client.setApiKey(API_KEY);
 
   // 2. Call the function that checks if the user is Authenticated. This is defined in the next section
   window.setTimeout(checkAuth,1);
@@ -14,7 +12,7 @@ function handleClientLoad() {
 function checkAuth() {
   // Call the Google Accounts Service to determine the current user's auth status.
   // Pass the response to the handleAuthResult callback function
-  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+  gapi.auth.authorize({client_id:CLIENT_ID, scope: scopes, immediate: true}, handleAuthResult);
 }
 
 function handleAuthResult(authResult) {
@@ -58,4 +56,3 @@ function loadAnalyticsClient() {
   // Load the Analytics client and set handleAuthorized as the callback function
   gapi.client.load('analytics', 'v3', handleAuthorized);
 }
-

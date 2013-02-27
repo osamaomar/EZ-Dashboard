@@ -5,19 +5,29 @@
 
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 	<script type="text/javascript" src="js/EZ-Dash.js"></script>		
 	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
 	<script src="//www.google.com/jsapi"></script>
 	<script type="text/javascript" src="js/gadash-2.0.js"></script>
 	<script type="text/javascript" src="js/ZeroClipboard.js"></script>
-    	
 	<script src="//apis.google.com/js/client.js?onload=gadashInit_"></script>
+	
+
+    <!-- These JavaScript files will be created later on in the tutorial -->
+    <script src="js/hello_analytics_api_v3_auth.js"></script>
+    <script src="js/hello_analytics_api_v3.js"></script>
+
+    <!-- Load the Client Library. Use the onload parameter to specify a callback function -->
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+
+
 
 	<link href="css/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/EZ-Dash.css" media="screen" rel="stylesheet" type="text/css" />
 
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 
 	
 	<link rel="stylesheet" type="text/css" href="css/EZ-Dash.css" media="screen" />
@@ -88,12 +98,14 @@
 									<input type="text" size="3" id ="numberOfX" >
 
 
-
 <select style="margin-right:20px;" id="selectTerm">
-  <option value="days">Days</option>
-  <option value="weeks">Weeks</option>
-  <option value="months">Months</option>
-</select>						<input type="radio" id="datePickerRadio" name="date" value="lastN"> 
+  <option value="days">Day(s)</option>
+  <option value="weeks">Week(s)</option>
+  <option value="months">Month(s)</option>
+  <option value="quarters">Quarter(s)</option>
+
+</select>	
+					<input type="radio" id="datePickerRadio" name="date" value="lastN"> 
 							<input type="text" id="from_date" name="from" size="13" value="Start date"/>
 							<label for="to"><span id="toSpan"style="color:black; font-family:arial,sans-serif;;font-size:15px">to</span></label>
 							<input type="text" id="to_date" name="to" size="13" value="End date"/>
@@ -229,14 +241,14 @@
 			</div>
 
 			<div id="tabArea">
-		    	<h2>Preview</h2>
+		    	<h2 style="margin-left: 90px";>Preview</h2>
 		    	<div id="chartholder" style="float:left;">
 	 			<div id="chartholder">
 	 				<div id="wrappersPreviewArea" class="wrappersPreview" >
 						
 					</div>
 	    			<br/><br/><br/><br/><br/>
-	       			<a href="#" class="btnDelete" id="areaDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
+	       			<a href="#" class="btnDelete" id="areaDelete" ><img src="images/Trash.png" height="30px" width="25px"></a>	
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
@@ -248,7 +260,6 @@
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
-							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
 							<option value="ga:adClicks">AdSense Ads Clicked</option>
 							<option value="ga:CTR">AdSense CTR</option>
 							<option value="ga:CPM">AdSense eCPM</option>
@@ -315,7 +326,6 @@
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
-							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
 							<option value="ga:adClicks">AdSense Ads Clicked</option>
 							<option value="ga:CTR">AdSense CTR</option>
 							<option value="ga:CPM">AdSense eCPM</option>
@@ -477,14 +487,14 @@
 		    </div>
 
 		   	<div id="tabPie">
-				<h2>Preview</h2>
+		    	<h2 style="margin-left: 90px";>Preview</h2>
 				<div id="chartholder" style="float:middle;">
 	 			<div id="chartholder">
 	 				<div id="wrappersPreviewPie" class="wrappersPreview" >
 						
 					</div>	
 	    			<br/><br/><br/><br/><br/>
-	       			<a href="#"   id="pieDelete" class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
+	       			<a href="#"   id="pieDelete" class="btnDelete" ><img src="images/Trash.png" height="30px" width="25px"></a>	
 				</div>
 	 		</div>
 				<div id ="rightdiv">
@@ -495,7 +505,6 @@
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
-							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
 							<option value="ga:adClicks">AdSense Ads Clicked</option>
 							<option value="ga:CTR">AdSense CTR</option>
 							<option value="ga:CPM">AdSense eCPM</option>
@@ -742,14 +751,14 @@
 
 		    </div>
 		    <div id="tabBar">
-		    	<h2>Preview</h2>
+		    	<h2 style="margin-left: 90px";>Preview</h2>
 		    	<div id="chartholder" style="float:left;">
 	 			<div id="chartholder">
 	 				<div id="wrappersPreviewBar" class="wrappersPreview" >
 						
 					</div>	
 	    			<br/><br/><br/><br/><br/>
-	       			<a href="#" id="barDelete"class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
+	       			<a href="#" id="barDelete"class="btnDelete" ><img src="images/Trash.png" height="30px" width="25px"></a>	
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
@@ -983,14 +992,14 @@
 				</div>
 		    </div>
 		    <div id="tabColumn">
-		    	<h2>Preview</h2>
+		    	<h2 style="margin-left: 90px";>Preview</h2>
 		    	<div id="chartholder" style="float:left;">
 	 			<div id="chartholder">
 	 				<div id="wrappersPreviewColumn" class="wrappersPreview" >
 						
 					</div>	
 	    			<br/><br/><br/><br/><br/>
-	       			<a href="#" id="columnDelete" class="btnDelete" ><img src="images/Trash.png" height="20px" width="15px"></a>	
+	       			<a href="#" id="columnDelete" class="btnDelete" ><img src="images/Trash.png" height="30px" width="25px"></a>	
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
@@ -1064,7 +1073,6 @@
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
-							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
 							<option value="ga:adClicks">AdSense Ads Clicked</option>
 							<option value="ga:CTR">AdSense CTR</option>
 							<option value="ga:CPM">AdSense eCPM</option>
