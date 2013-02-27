@@ -350,7 +350,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
         reinitializeTabs(); 
         $("#overlay").unbind("click");
       }   
-   }
+   };
 
    function reinitializeTabs() {
      switch (chartGlobal[chartIndex].chartType) {
@@ -358,13 +358,13 @@ $("#from_date").val(gadash.util.lastNdays(20));
                            break;
        case "PieChart":    editPieChart();
                            break;
-       case "ColumnChart": editBarChart();
+       case "BarChart": editBarChart();
                            break;
-       case "BarChart":    editColumnChart();
+       case "ColumnChart":    editColumnChart();
                            break;
-       case "":            createNewChart();
-       }  
-   }
+       default:            createNewChart();
+     }  
+   };
 
    function createNewChart() {
      $('#menu').tabs('select', '#tabArea');
@@ -372,10 +372,16 @@ $("#from_date").val(gadash.util.lastNdays(20));
      resetPieTab();
      resetBarTab();
      resetColumnTab();
-   }
+   };
 
    function editAreaChart() {
      $('#menu').tabs('select', '#tabArea');
+     $('#areaMetrics').val(chartGlobal[chartIndex].chartMetric);
+     $('#areaCompare').val(chartGlobal[chartIndex].metricCompare);
+     $('#widgetTitleArea').val(chartGlobal[chartIndex].chartTitle);
+     $('#area_filter_dimension').val(chartGlobal[chartIndex].filterDimension);
+     $('#area_filter_matching').val(chartGlobal[chartIndex].filterMatching);
+     updateAreaPreview();
      resetPieTab();
      resetBarTab();
      resetColumnTab();
@@ -383,20 +389,38 @@ $("#from_date").val(gadash.util.lastNdays(20));
 
    function editPieChart() {
      $('#menu').tabs('select', '#tabPie');
+     $('#pieMetrics').val(chartGlobal[chartIndex].chartMetric);
+     $('#pieGroupBy').val(chartGlobal[chartIndex].chartDimension);
+     $('#widgetTitlePie').val(chartGlobal[chartIndex].chartTitle);
+     $('#pie_filter_dimension').val(chartGlobal[chartIndex].filterDimension);
+     $('#pie_filter_matching').val(chartGlobal[chartIndex].filterMatching);
+     updatePiePreview();
      resetAreaTab();
      resetBarTab();
      resetColumnTab();
    };
 
    function editBarChart() {
-     $('#menu').tabs('select', '#tabColumn');
+     $('#menu').tabs('select', '#tabBar');
+     $('#barMetrics').val(chartGlobal[chartIndex].chartMetric);
+     $('#barCompare').val(chartGlobal[chartIndex].metricCompare);
+     $('#widgetTitleBar').val(chartGlobal[chartIndex].chartTitle);
+     $('#bar_filter_dimension').val(chartGlobal[chartIndex].filterDimension);
+     $('#bar_filter_matching').val(chartGlobal[chartIndex].filterMatching); 
+     updateBarPreview();
      resetAreaTab();
      resetPieTab();
      resetColumnTab();
    };
 
    function editColumnChart() {
-     $('#menu').tabs('select', '#tabBar');
+     $('#menu').tabs('select', '#tabColumn');
+     $('#columnMetrics').val(chartGlobal[chartIndex].chartMetric);
+     $('#columnCompare').val(chartGlobal[chartIndex].metricCompare);
+     $('#widgetTitleColumn').val(chartGlobal[chartIndex].chartTitle);
+     $('#column_filter_dimension').val(chartGlobal[chartIndex].filterDimension);
+     $('#column_filter_matching').val(chartGlobal[chartIndex].filterMatching);
+     updateColumnPreview();
      resetAreaTab();
      resetPieTab();
      resetBarTab();
@@ -468,6 +492,22 @@ $("#from_date").val(gadash.util.lastNdays(20));
   });
 
   $(".pie_change").change(function (e) {
+    updatePiePreview();
+  }); 
+
+  $(".bar_change").change(function (e) {
+    updateBarPreview();
+  });
+
+  $(".column_change").change(function (e) {
+    updateColumnPreview();
+  });
+
+  $(".area_change").change(function (e) {
+    updateAreaPreview();      
+  }); 
+
+  function updatePiePreview() {
       var ids = TABLE_ID;
       var pieMetric = $("#pieMetrics").val();
       var pieDimension = $("#pieGroupBy").val();
@@ -479,7 +519,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
 
       if( !pattern.test(pieMetric) && !pattern.test(pieDimension))  {
         var div = "wrappersPreviewPie";
-		$("#pieDelete").show();
+        $("#pieDelete").show();
 
         if( !pattern.test(filterDimension) && filterMatching != ""){
           var filter = filterDimension + '==' + filterMatching;
@@ -521,19 +561,18 @@ $("#from_date").val(gadash.util.lastNdays(20));
      else {
          document.getElementById("wrappersPreviewPie").innerHTML = "";
      }
-  }); 
+  };
 
-  $(".bar_change").change(function (e) {
+  function updateBarPreview() {
       var ids = TABLE_ID;
       var barMetric = $("#barMetrics").val();
       var barCompare = $("#barCompare").val();
-	$("#barDelete").show();
-
       var metrics = getMetrics( barMetric, barCompare);
       var widgetTitle = $("#widgetTitleBar").val();
       var filterDimension = $("#bar_filter_dimension").val();
       var filterMatching = $("#bar_filter_matching").val();
       var pattern =new RegExp("none");
+      $("#barDelete").show();
 
       if( !pattern.test(barMetric))  {
         var div = "wrappersPreviewBar";
@@ -575,21 +614,20 @@ $("#from_date").val(gadash.util.lastNdays(20));
         }
      }
      else {
-         document.getElementById("wrappersPreviewBar").innerHTML = "";
-     }
-  }); 
+       document.getElementById("wrappersPreviewBar").innerHTML = "";
+     }  
+  }; 
 
-  $(".column_change").change(function (e) {
+  function updateColumnPreview() {
       var ids = TABLE_ID;
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
-	$("#columnDelete").show();
-
       var metrics = getMetrics( columnMetric, columnCompare);
       var widgetTitle = $("#widgetTitleColumn").val();
       var filterDimension = $("#column_filter_dimension").val();
       var filterMatching = $("#column_filter_matching").val();
       var pattern =new RegExp("none");
+      $("#columnDelete").show();
 
       if( !pattern.test(columnMetric))  {
         var div = "wrappersPreviewColumn";
@@ -633,19 +671,18 @@ $("#from_date").val(gadash.util.lastNdays(20));
      else {
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
      }
-  }); 
+  };
 
-  $(".area_change").change(function (e) {
+  function updateAreaPreview() {
       var ids = TABLE_ID;
       var areaMetric = $("#areaMetrics").val();
       var areaCompare = $("#areaCompare").val();
-	$("#areaDelete").show();
-
       var metrics = getMetrics( areaMetric, areaCompare);
       var widgetTitle = $("#widgetTitleArea").val();
       var filterDimension = $("#area_filter_dimension").val();
       var filterMatching = $("#area_filter_matching").val();
       var pattern =new RegExp("none");
+      $("#areaDelete").show();
 
       if( !pattern.test(areaMetric))  {
         var div = "wrappersPreviewArea";
@@ -689,13 +726,13 @@ $("#from_date").val(gadash.util.lastNdays(20));
      else {
          document.getElementById("wrappersPreviewArea").innerHTML = "";
      }
-  }); 
+  };
 
   $("#btnAddPie").click(function (e) {
      var pieMetric = $("#pieMetrics").val();
      var pieDimension = $("#pieGroupBy").val();
      var widgetTitlePie = $("#widgetTitlePie").val();
-	$("#finishbutton").show();
+	   $("#finishbutton").show();
      addPieChart( pieMetric, pieDimension, widgetTitlePie); 
   });
 
@@ -703,8 +740,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var barMetric = $("#barMetrics").val();
       var barCompare = $("#barCompare").val();
       var widgetTitleBar = $("#widgetTitleBar").val();
-	$("#finishbutton").show();
-
+	    $("#finishbutton").show();
       var metrics = getMetrics( barMetric, barCompare);
       addBarChart( metrics, widgetTitleBar); 
   });
@@ -713,8 +749,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
       var columnMetric = $("#columnMetrics").val();
       var columnCompare = $("#columnCompare").val();
       var widgetTitleColumn = $("#widgetTitleColumn").val();
-	$("#finishbutton").show();
-
+	    $("#finishbutton").show();
       var metrics = getMetrics( columnMetric, columnCompare);    
       addColumnChart( metrics, widgetTitleColumn); 
   });
@@ -723,8 +758,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
      var areaMetric = $("#areaMetrics").val();
      var areaCompare = $("#areaCompare").val();
      var widgetTitleArea = $("#widgetTitleArea").val();
-	$("#finishbutton").show();
-
+	   $("#finishbutton").show();
      var metrics = getMetrics( areaMetric, areaCompare);
      addAreaChart( metrics, widgetTitleArea); 
   });
@@ -858,7 +892,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
          document.getElementById("wrappersPreviewBar").innerHTML = "";
      }
      chartGlobal[chartIndex].chartType = "BarChart";
-     chartGlobal[chartIndex].chartMetric = metrics;
+     chartGlobal[chartIndex].chartMetric = barMetric;
      chartGlobal[chartIndex].metricCompare = barCompare;
      if( widgetTitle != "") {
          chartGlobal[chartIndex].chartTitle = widgetTitle;
@@ -930,7 +964,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
      }
      chartGlobal[chartIndex].chartType = "ColumnChart";
-     chartGlobal[chartIndex].chartMetric = metrics;
+     chartGlobal[chartIndex].chartMetric = columnMetric;
      chartGlobal[chartIndex].metricCompare = columnCompare;
      chartGlobal[chartIndex].chartTitle = widgetTitle;
      chartGlobal[chartIndex].filterDimension = filterDimension;
@@ -999,8 +1033,8 @@ $("#from_date").val(gadash.util.lastNdays(20));
          document.getElementById("wrappersPreviewColumn").innerHTML = "";
      }
      chartGlobal[chartIndex].chartType = "AreaChart";
-     chartGlobal[chartIndex].chartMetric = metrics;
-     chartGlobal[chartIndex].metricCompare = columnCompare;
+     chartGlobal[chartIndex].chartMetric = areaMetric;
+     chartGlobal[chartIndex].metricCompare = areaCompare;
      chartGlobal[chartIndex].chartTitle = widgetTitle;
      chartGlobal[chartIndex].filterDimension = filterDimension;
      chartGlobal[chartIndex].filterMatching = filterMatching;
