@@ -621,6 +621,7 @@ gadash.util.lastNdays = function(n) {
 
   return [year, month, day].join('-');
 };
+
 /**
  * Utility method to return the lastNweeks from today in the format yyyy-MM-dd.
  * @param {Number} n The number of weeks in the past from today that we should

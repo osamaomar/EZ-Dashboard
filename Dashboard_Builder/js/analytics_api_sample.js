@@ -1,4 +1,64 @@
 
+
+var scopes = 'https://www.googleapis.com/auth/analytics.readonly';
+
+  
+// This function is called after the Client Library has finished loading
+$(document).ready(function () {function handleClientLoad() {
+  // 1. Set the API Key
+  gapi.client.setApiKey(API_KEY);
+
+  // 2. Call the function that checks if the user is Authenticated. This is defined in the next section
+  window.setTimeout(checkAuth,1);
+}
+
+function checkAuth() {
+  // Call the Google Accounts Service to determine the current user's auth status.
+  // Pass the response to the handleAuthResult callback function
+  gapi.auth.authorize({client_id: CLIENT_ID, scope: scopes, immediate: true}, handleAuthResult);
+}
+
+function handleAuthResult(authResult) {
+  if (authResult) {
+    // The user has authorized access
+    // Load the Analytics Client. This function is defined in the next section.
+    loadAnalyticsClient();
+  } else {
+    // User has not Authenticated and Authorized
+    handleUnAuthorized();
+  }
+}
+
+
+// Authorized user
+function handleAuthorized() {
+makeApiCall();
+}
+
+
+// Unauthorized user
+function handleUnAuthorized() {
+  var authorizeButton = document.getElementById('authorize-button');
+  var makeApiCallButton = document.getElementById('make-api-call-button');
+
+  // Show the 'Authorize Button' and hide the 'Get Visits' button
+  makeApiCallButton.style.visibility = 'hidden';
+  authorizeButton.style.visibility = '';
+
+  // When the 'Authorize' button is clicked, call the handleAuthClick function
+  authorizeButton.onclick = handleAuthClick;
+}
+
+function handleAuthClick(event) {
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+  return false;
+}
+
+
+function loadAnalyticsClient() {
+  // Load the Analytics client and set handleAuthorized as the callback function
+  gapi.client.load('analytics', 'v3', handleAuthorized);
+}
 var count; 
 var index = 0; 
 var newElement = {};
@@ -97,6 +157,7 @@ function handleProfiles(results) {
 		var name = results.items[0].name;
 		var url = results.items[0].websiteUrl;
 
+		console.log(url+ name + url); 
 		data.push(id);
 		data.push(url);
 		data.push(name);
@@ -122,6 +183,7 @@ function handleCoreReportingResults(results) {
 	index ++;
 
 		if (index == count) {
+					console.log(data); 
 					console.log(data.length);
 					arrayToObject(data); 
 
@@ -159,6 +221,7 @@ function arrayToObject (data) {
 		createJSON(id,url,name);
 
 		length = data.length;
+		console.log(length); 
   }
 					
 
@@ -175,10 +238,4 @@ function arrayToObject (data) {
 
     }
 
-		$("#selectTableID").change(function() {
-	var tableId = $("#selectTableID").val();
-	      TABLE_ID = 'ga:'+tableId;
-			forLoop();
-
-	
 });

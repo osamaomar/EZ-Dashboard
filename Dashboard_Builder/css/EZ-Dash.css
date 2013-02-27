@@ -499,7 +499,7 @@ height:23px;
 
 #selectTerm{
 color: #666;
-width:75px; 
+width:95px; 
 font-family: 'Open Sans',arial,sans-serif;
 font-size:15px; 
 height:23px;
@@ -518,6 +518,7 @@ height:25px;
 #selectTableID{
     padding:3px;
     margin: 0;
+	width: 250px;
 	font-family:'Open Sans',arial,sans-serif;
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
@@ -554,7 +555,8 @@ position: absolute;
 #idLabel {position:relative}
 #idLabel:after {
     content:'<>';
-    font:11px "Consolas", monospace;
+    font:13px "Consolas", monospace;
+
     color:#39c;
     -webkit-transform:rotate(90deg);
     -moz-transform:rotate(90deg);

@@ -5,19 +5,29 @@
 
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 	<script type="text/javascript" src="js/EZ-Dash.js"></script>		
 	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
 	<script src="//www.google.com/jsapi"></script>
 	<script type="text/javascript" src="js/gadash-2.0.js"></script>
 	<script type="text/javascript" src="js/ZeroClipboard.js"></script>
-    	
 	<script src="//apis.google.com/js/client.js?onload=gadashInit_"></script>
+	
+
+    <!-- These JavaScript files will be created later on in the tutorial -->
+    <script src="js/hello_analytics_api_v3_auth.js"></script>
+    <script src="js/hello_analytics_api_v3.js"></script>
+
+    <!-- Load the Client Library. Use the onload parameter to specify a callback function -->
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+
+
 
 	<link href="css/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/EZ-Dash.css" media="screen" rel="stylesheet" type="text/css" />
 
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 
 	
 	<link rel="stylesheet" type="text/css" href="css/EZ-Dash.css" media="screen" />
@@ -89,9 +99,11 @@
 
 
 <select style="margin-right:20px;" id="selectTerm">
-  <option value="days">Days</option>
-  <option value="weeks">Weeks</option>
-  <option value="months">Months</option>
+  <option value="days">Day(s)</option>
+  <option value="weeks">Week(s)</option>
+  <option value="months">Month(s)</option>
+  <option value="quarters">Quarter(s)</option>
+
 </select>	
 					<input type="radio" id="datePickerRadio" name="date" value="lastN"> 
 							<input type="text" id="from_date" name="from" size="13" value="Start date"/>
@@ -248,7 +260,6 @@
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
-							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
 							<option value="ga:adClicks">AdSense Ads Clicked</option>
 							<option value="ga:CTR">AdSense CTR</option>
 							<option value="ga:CPM">AdSense eCPM</option>
@@ -315,7 +326,6 @@
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
-							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
 							<option value="ga:adClicks">AdSense Ads Clicked</option>
 							<option value="ga:CTR">AdSense CTR</option>
 							<option value="ga:CPM">AdSense eCPM</option>
@@ -495,7 +505,6 @@
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
-							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
 							<option value="ga:adClicks">AdSense Ads Clicked</option>
 							<option value="ga:CTR">AdSense CTR</option>
 							<option value="ga:CPM">AdSense eCPM</option>
@@ -1067,7 +1076,6 @@
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
-							<option value="ga:socialActivityAction">Actions Per Social Visit</option>
 							<option value="ga:adClicks">AdSense Ads Clicked</option>
 							<option value="ga:CTR">AdSense CTR</option>
 							<option value="ga:CPM">AdSense eCPM</option>
