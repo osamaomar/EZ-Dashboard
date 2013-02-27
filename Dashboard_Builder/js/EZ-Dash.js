@@ -337,26 +337,101 @@ $("#from_date").val(gadash.util.lastNdays(20));
       $("#overlay").show();
       $("#dialog").fadeIn(300);
 
-      if (modal) {
-         $("#overlay").unbind("click");
+      if (modal == false) {
+        reinitializeTabs(); 
+        $("#overlay").unbind("click");
       }   
    }
+
+   function reinitializeTabs() {
+     switch (chartGlobal[chartIndex].chartType) {
+       case "AreaChart":   editAreaChart();
+                           break;
+       case "PieChart":    editPieChart();
+                           break;
+       case "ColumnChart": editBarChart();
+                           break;
+       case "BarChart":    editColumnChart();
+                           break;
+       case "":            createNewChart();
+       }  
+   }
+
+   function createNewChart() {
+     $('#menu').tabs('select', '#tabArea');
+     resetAreaTab();
+     resetPieTab();
+     resetBarTab();
+     resetColumnTab();
+   }
+
+   function editAreaChart() {
+     $('#menu').tabs('select', '#tabArea');
+     resetPieTab();
+     resetBarTab();
+     resetColumnTab();
+   };
+
+   function editPieChart() {
+     $('#menu').tabs('select', '#tabPie');
+     resetAreaTab();
+     resetBarTab();
+     resetColumnTab();
+   };
+
+   function editBarChart() {
+     $('#menu').tabs('select', '#tabColumn');
+     resetAreaTab();
+     resetPieTab();
+     resetColumnTab();
+   };
+
+   function editColumnChart() {
+     $('#menu').tabs('select', '#tabBar');
+     resetAreaTab();
+     resetPieTab();
+     resetBarTab();
+   };
+
+   function resetAreaTab() {
+     document.getElementById("wrappersPreviewArea").innerHTML = "";
+     $('.area_reset_text').val('');
+     $('.area_reset_option').val('none');
+   };
+
+   function resetPieTab() {
+     document.getElementById("wrappersPreviewPie").innerHTML = "";
+     $('.pie_reset_text').val('');
+     $('.pie_reset_option').val('none');
+   };
+
+   function resetBarTab() {
+     document.getElementById("wrappersPreviewBar").innerHTML = "";
+     $('.bar_reset_text').val('');
+     $('.bar_reset_option').val('none');
+   };
+
+   function resetColumnTab() {
+     document.getElementById("wrappersPreviewColumn").innerHTML = "";
+     $('.column_reset_text').val('');
+     $('.column_reset_option').val('none');
+   };
 
    function ShowGrabcodeDialog() {
       $("#overlay").show();
       $("#gcdialog").fadeIn(300);
-   }
+   };
 
    function HideDialog() {
       $("#overlay").hide();
       $("#dialog").fadeOut(300);
-   } 
+   }; 
 
    function HideGrabcodeDialog() {
       $("#overlay").hide();
       $("#gcdialog").fadeOut(300);
       $("#finishbutton").fadeIn(300);
-   } 
+   };
     
   $("#btnClose").click(function (e) {
      HideDialog();

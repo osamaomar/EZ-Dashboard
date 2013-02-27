@@ -241,10 +241,10 @@
 	 		</div>
 		    	<div id="rightdiv">
 					<form>Widget Title <br/>
-						<input id ="widgetTitleArea"> </input><br/><br/>
+						<input id ="widgetTitleArea" class='area_reset_text'> </input><br/><br/>
 						<span style="color:red;">*</span>Graph the following metric overtime<br/>
-						<select id ="areaMetrics" class="area_change">
-							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
+						<select name='area_metric' id ="areaMetrics" class="area_change area_reset_option">
+							<option value="none" >Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
 							<option value="ga:searchExitRate">% Search Exits</option>
@@ -310,7 +310,7 @@
 						</select><br><br>
 						
 						Compare with (optional) <br/>
-						<select id='areaCompare' class="area_change">
+						<select id='areaCompare' class="area_change area_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -380,7 +380,7 @@
 						<span  id ="areaFilter">Add a filter <a id="arrow" href="#">&#8711;</a></span><br/><br/>
 
 						<div id="area_filter_fields" style="height:50px;">
-							<select id="area_filter_dimension" class="area_change">
+							<select id="area_filter_dimension" class="area_change area_reset_option">
 								<option value="none">Choose a Dimension</option>
 								<option value="ga:adContent">Ad Content</value>
 								<option value="ga:adDistributionNetwork">Ad Distribution Network</value>
@@ -465,7 +465,7 @@
 								<option value="ga:visitsToTransaction">Visits to Transaction</value>
 								<option value="ga:nthWeek">Week of Year</value>
 							</select><br/>
-							Exactly matching <input type="text" id="area_filter_matching" class="area_change" name="area_filter_matching"><br/>
+							Exactly matching <input type="text" id="area_filter_matching" class="area_change area_reset_text" name="area_filter_matching"><br/>
 						</div>	
 
 					
@@ -489,8 +489,8 @@
 	 		</div>
 				<div id ="rightdiv">
 		    	<form>Widget Title <br/>
-						<input id ="widgetTitlePie"> </input><br/><br/><span style="color:red;">*</span>Create a Pie Chart showing:
-					  <select id ="pieMetrics" class="pie_change">
+						<input id ="widgetTitlePie" class='pie_reset_text'> </input><br/><br/><span style="color:red;">*</span>Create a Pie Chart showing:
+					  <select id ="pieMetrics" class="pie_change pie_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -557,9 +557,8 @@
 						</select><br/><br/>
 						
 						<span style="color:red;">*</span>Grouped by:
-						<select id="pieGroupBy" class="pie_change">
+						<select id="pieGroupBy" class="pie_change pie_reset_option">
 							<option value="none">Add a Dimension</option>
-
 							<option value="ga:adContent">Ad Content</value>
 							<option value="ga:adDistributionNetwork">Ad Distribution Network</value>
 							<option value="ga:adGroup">Ad Group</value>
@@ -648,8 +647,8 @@
 						Filter this data<br/>
 						<span  id ="pieFilter">Add a filter <a id="arrow" href="#">&#8711;</a></span><br/><br/>
 
-						<div id="pie_filter_fields" class="pie_change" style="height:50px;">
-							<select id="pie_filter_dimension">
+						<div id="pie_filter_fields" style="height:50px;">
+							<select id="pie_filter_dimension" class="pie_change pie_reset_option">
 								<option value="none">Choose a Dimension</option>
 								<option value="ga:adContent">Ad Content</value>
 								<option value="ga:adDistributionNetwork">Ad Distribution Network</value>
@@ -730,7 +729,7 @@
 								<option value="ga:visitsToTransaction">Visits to Transaction</value>
 								<option value="ga:nthWeek">Week of Year</value>
 							</select><br/>
-							Exactly matching <input type="text" id="pie_filter_matching" class="pie_change" name="pie_filter_matching"><br/>
+							Exactly matching <input type="text" id="pie_filter_matching" class="pie_change pie_reset_text" name="pie_filter_matching"><br/>
 						</div>	
 
 
@@ -755,9 +754,9 @@
 	 		</div>
 		    	<div id="rightdiv">
 					<form>Widget Title <br/>
-						<input id ="widgetTitleBar"> </input><br/><br/><span style="color:red;">*</span>
+						<input id ="widgetTitleBar" class='bar_reset_text'> </input><br/><br/><span style="color:red;">*</span>
 						Graph the following metric overtime<br/>
-						<select id="barMetrics" class="bar_change">
+						<select id="barMetrics" class="bar_change bar_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -820,7 +819,7 @@
 
 						
 						Compare with (optional) <br/>
-						<select id="barCompare" class="bar_change">
+						<select id="barCompare" class="bar_change bar_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -888,8 +887,8 @@
 						Filter this data<br/>
 						<span id ="barFilter">Add a filter <a id="arrow" href="#">&#8711;</a></span><br/><br/>
 
-						<div id="bar_filter_fields" class="bar_change" style="height:50px;">
-							<select id="bar_filter_dimension">
+						<div id="bar_filter_fields" style="height:50px;">
+							<select id="bar_filter_dimension" class="bar_change bar_reset_option">
 								<option value="none">Choose a Dimension</option>
 								<option value="ga:adContent">Ad Content</value>
 								<option value="ga:adDistributionNetwork">Ad Distribution Network</value>
@@ -974,11 +973,9 @@
 								<option value="ga:visitsToTransaction">Visits to Transaction</value>
 								<option value="ga:nthWeek">Week of Year</value>
 							</select><br/>
-							Exactly matching <input type="text" id="bar_filter_matching" class="bar_change" name="bar_filter_matching"><br/>
+							Exactly matching <input type="text" id="bar_filter_matching" class="bar_change bar_reset_text" name="bar_filter_matching"><br/>
 						</div>	
 
-
-						
 					</form>
 	    			<span id ="add-span" style="float:right; margin:50px;">
 	    				<a href="#" id="btnAddBar" class="add-button">Add</a>
@@ -998,9 +995,9 @@
 	 		</div>
 		    	<div id="rightdiv">
 					<form>Widget Title <br/>
-						<input id ="widgetTitleColumn"> </input><br/><br/><span style="color:red;">*</span>
+						<input id ="widgetTitleColumn" class='column_reset_text'> </input><br/><br/><span style="color:red;">*</span>
 						Graph the following metric overtime<br/>
-						<select id="columnMetrics" class="column_change">
+						<select id="columnMetrics" class="column_change column_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -1062,7 +1059,7 @@
 						</select><br/><br/>
 						
 						Compare with (optional) <br/>
-						<select id="columnCompare" class="column_change">
+						<select id="columnCompare" class="column_change column_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -1131,7 +1128,7 @@
 						<span id ="columnFilter">Add a filter <a id="arrow" href="#">&#8711;</a></span><br/><br/>
 
 						<div id="column_filter_fields" style="height:50px;">
-							<select id="column_filter_dimension" class="column_change">
+							<select id="column_filter_dimension" class="column_change column_reset_option">
 								<option value="none">Choose a Dimension</option>
 								<option value="ga:adContent">Ad Content</value>
 								<option value="ga:adDistributionNetwork">Ad Distribution Network</value>
@@ -1216,7 +1213,7 @@
 								<option value="ga:visitsToTransaction">Visits to Transaction</value>
 								<option value="ga:nthWeek">Week of Year</value>
 							</select><br/>
-							Exactly matching <input type="text" id="column_filter_matching" class="column_change" name="column_filter_matching"><br/>
+							Exactly matching <input type="text" id="column_filter_matching" class="column_change column_reset_text" name="column_filter_matching"><br/>
 						</div>	
 
 				
