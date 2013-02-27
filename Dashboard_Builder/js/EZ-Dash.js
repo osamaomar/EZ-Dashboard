@@ -962,6 +962,7 @@ $("#from_date").val(gadash.util.lastNdays(20));
         chartGlobal[chartNum].filterMatching = "";
         chartGlobal[chartNum].position = "";
         
+        $("#finishbutton").hide();
         HideDialog();
       }
   });
