@@ -234,8 +234,11 @@ function arrayToObject (data) {
 		//Creates the item
 			var itemval= '<option id='+"selectedId"+' value='+id+'>'+name+'</option>';
 				//Appends it within your select element
-			$("#selectTableID").append(itemval);			
+			$("#selectTableID").append(itemval);
+	
+				
 
     }
+
 
 });

@@ -1081,7 +1081,6 @@ $("#from_date").val(gadash.util.lastNdays(20));
         chartGlobal[chartNum].filterMatching = "";
         chartGlobal[chartNum].position = "";
         
-        $("#finishbutton").hide();
         HideDialog();
       }
   });
@@ -1616,6 +1615,16 @@ $("#tableAccount").attr('id', '');
 });
 
 
+ 	 	
+  $("#selectTableID").change(function() {
+ 	 	
+   TABLE_ID  = $("#selectTableID").val();
+ 	 	
+       TABLE_ID = 'ga:'+TABLE_ID;
+	
+      forLoop();
+ 	
+});
 
 
 	
