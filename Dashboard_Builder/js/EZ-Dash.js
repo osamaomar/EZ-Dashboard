@@ -1372,8 +1372,7 @@ function generate_code() {
               if( !pattern.test(chartGlobal[cNum].filterDimension) && chartGlobal[cNum].filterMatching != "") {
                   var filter = chartGlobal[cNum].filterDimension + '==' + chartGlobal[cNum].filterMatching;
                   part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                              "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
-                                      TABLE_ID + "', '" +
+                              "( '" + changeDivName( chartGlobal[cNum].position) + "', TABLE_ID, '" +
                                       chartGlobal[cNum].chartMetric + "', '" +
                                       chartGlobal[cNum].chartDimension + "',\r\n" +
                                       "        {\r\n" +
@@ -1395,8 +1394,7 @@ function generate_code() {
               }
               else {
                   part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                              "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
-                                      TABLE_ID + "', '" +
+                              "( '" + changeDivName( chartGlobal[cNum].position) + "', TABLE_ID, '" +
                                       chartGlobal[cNum].chartMetric + "', '" +
                                       chartGlobal[cNum].chartDimension + "',\r\n" +
                                       "        {\r\n" +
@@ -1425,8 +1423,7 @@ function generate_code() {
               if( !pattern.test(chartGlobal[cNum].filterDimension) && chartGlobal[cNum].filterMatching != ""){
                 var filter = chartGlobal[cNum].filterDimension + '==' + chartGlobal[cNum].filterMatching;
                 part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                            "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
-                                    TABLE_ID + "', '"  +
+                            "( '" + changeDivName( chartGlobal[cNum].position) + "', TABLE_ID, '" +
                                     chartGlobal[cNum].chartMetric + "',\r\n" +
                                       "        {\r\n" +
                                       "          'query': {\r\n" +
@@ -1447,8 +1444,7 @@ function generate_code() {
               }
               else {
                 part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                            "( '" + changeDivName( chartGlobal[cNum].position)+ "', '" +
-                                    TABLE_ID + "', '" +
+                            "( '" + changeDivName( chartGlobal[cNum].position)+ "', TABLE_ID, '" +
                                     chartGlobal[cNum].chartMetric + "',\r\n" +
                                       "        {\r\n" +
                                       "          'query': {\r\n" +
