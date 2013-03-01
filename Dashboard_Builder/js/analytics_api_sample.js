@@ -38,15 +38,8 @@ makeApiCall();
 
 // Unauthorized user
 function handleUnAuthorized() {
-  var authorizeButton = document.getElementById('authorize-button');
-  var makeApiCallButton = document.getElementById('make-api-call-button');
+alert(You don't have authorized access");
 
-  // Show the 'Authorize Button' and hide the 'Get Visits' button
-  makeApiCallButton.style.visibility = 'hidden';
-  authorizeButton.style.visibility = '';
-
-  // When the 'Authorize' button is clicked, call the handleAuthClick function
-  authorizeButton.onclick = handleAuthClick;
 }
 
 function handleAuthClick(event) {
@@ -212,7 +205,8 @@ function arrayToObject (data) {
 	
 	for (var i =0; i<length; i++){
 		
-		 
+		 data.sort()
+			console.log(data);
 		var id = data[i];
 		data.splice(i, 1);
 		var url = data[i];
@@ -221,7 +215,6 @@ function arrayToObject (data) {
 		createJSON(id,url,name);
 
 		length = data.length;
-		console.log(length); 
   }
 					
 
@@ -230,11 +223,12 @@ function arrayToObject (data) {
 
 
 		function createJSON (id,url,name){
-			
 		//Creates the item
 			var itemval= '<option id='+"selectedId"+' value='+id+'>'+name+'</option>';
+				
 				//Appends it within your select element
 			$("#selectTableID").append(itemval);
+				
 	
 				
 

@@ -122,7 +122,6 @@ function handleCoreReportingResults(results) {
 	index ++;
 
 		if (index == count) {
-					console.log(data.length);
 					arrayToObject(data); 
 
 				return;
@@ -143,14 +142,13 @@ function printResults(results) {
   }
 }
 
-
 function arrayToObject (data) {
 
 	var length = data.length;
 	
 	for (var i =0; i<length; i++){
 		
-		 
+		
 		var id = data[i];
 		data.splice(i, 1);
 		var url = data[i];
@@ -160,8 +158,7 @@ function arrayToObject (data) {
 
 		length = data.length;
   }
-					
-
+		sortList();
 }
 	
 
@@ -170,11 +167,41 @@ function arrayToObject (data) {
 			
 		//Creates the item
 			var itemval= '<option id='+"selectedId"+' value='+id+'>'+name+'</option>';
+			
 				//Appends it within your select element
-			$("#selectTableID").append(itemval);			
-
+			$("#selectTableID").append(itemval);	
     }
 
+function sortList() 
+{ 
+var lb = document.getElementById('selectTableID'); 
+arrTexts = new Array(); 
+arrValues = new Array(); 
+arrOldTexts = new Array(); 
+
+for(i=0; i<lb.length; i++) 
+{ 
+arrTexts[i] = lb.options[i].text; 
+arrValues[i] = lb.options[i].value; 
+
+arrOldTexts[i] = lb.options[i].text; 
+} 
+
+arrTexts.sort(); 
+
+for(i=0; i<lb.length; i++) 
+{ 
+lb.options[i].text = arrTexts[i]; 
+for(j=0; j<lb.length; j++) 
+{ 
+if (arrTexts[i] == arrOldTexts[j]) 
+{ 
+lb.options[i].value = arrValues[j]; 
+j = lb.length; 
+   } 
+} 
+} 
+}
 		$("#selectTableID").change(function() {
 	var tableId = $("#selectTableID").val();
 	      TABLE_ID = 'ga:'+tableId;
