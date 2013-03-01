@@ -20,6 +20,30 @@ $(document).ready(function () {
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
 
+//this code will hide the front page and make a splash page
+
+$("#header").hide();
+$("#mainTable").hide();
+$(".grabcode").hide();
+
+$(".startbutton").click(function(){
+
+ $("#firstPage").hide('slide', {direction: 'left'}, "fast");
+$("#explain").hide()
+ $("#startDiv").hide('slide', {direction: 'left'}, "fast");
+$("#lowerTable").hide('slide', {direction:'left'}, "fast");
+
+$(".startbutton").hide();
+ $("#imageDiv").hide('slide', {direction: 'left'}, "fast");
+
+
+
+$("#header").show('slide', {direction :'right'},"fast");
+$("#mainTable").show('slide', {direction :'right'},"fast");
+$(".grabcode").show();
+
+});
+
 $(".btnDelete").hide();
 
 
@@ -47,7 +71,6 @@ $("#to_date").prop('disabled', true);
 $("#LastText").fadeTo(100,1);
 $("#LastText").prop('disabled', false);
 $("#numberOfX").fadeTo(100,1);
-
 $("#numberOfX").prop('disabled', false);
 
 
@@ -1168,7 +1191,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                     break;
 
    case "BarChart": var ids = TABLE_ID;
-                    var metrics =  chartGlobal[chartIndex].chartMetric; 
+                    var chartMetric =  chartGlobal[chartIndex].chartMetric; 
+			var metricCompare = chartGlobal[chartIndex].metricCompare;
+			var metrics = getMetrics(chartMetric, metricCompare);
                     var widgetTitle =  chartGlobal[chartIndex].chartTitle;
                     var div  = chartGlobal[chartIndex].position; 
                     var pattern =new RegExp("none");
@@ -1218,7 +1243,9 @@ $("#from_date").val(gadash.util.lastNdays(20));
                      }
                      break;
 case "ColumnChart": var ids = TABLE_ID;
-                    var metrics =  chartGlobal[chartIndex].chartMetric; 
+                    var chartMetric =  chartGlobal[chartIndex].chartMetric; 
+			var columnCompare =    chartGlobal[chartIndex].metricCompare;
+			var metrics = getMetrics(chartMetric, columnCompare);
                     var widgetTitle =  chartGlobal[chartIndex].chartTitle;
                     var div  = chartGlobal[chartIndex].position; 
                     var pattern =new RegExp("none");
@@ -1268,7 +1295,9 @@ case "ColumnChart": var ids = TABLE_ID;
                      }
                      break;
 case "AreaChart": var ids = TABLE_ID;
-                  var metrics =  chartGlobal[chartIndex].chartMetric; 
+                  var chartMetric =  chartGlobal[chartIndex].chartMetric; 
+			var areaCompare =    chartGlobal[chartIndex].metricCompare;
+		var metrics = getMetrics(chartMetric, areaCompare);
                   var widgetTitle =  chartGlobal[chartIndex].chartTitle;
                   var div  = chartGlobal[chartIndex].position; 
                   var pattern =new RegExp("none");
@@ -1621,6 +1650,7 @@ $("#tableAccount").attr('id', '');
       forLoop();
  	
 });
+
 
 
 	
