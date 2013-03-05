@@ -35,15 +35,7 @@ makeApiCall();
 
 // Unauthorized user
 function handleUnAuthorized() {
-  var authorizeButton = document.getElementById('authorize-button');
-  var makeApiCallButton = document.getElementById('make-api-call-button');
 
-  // Show the 'Authorize Button' and hide the 'Get Visits' button
-  makeApiCallButton.style.visibility = 'hidden';
-  authorizeButton.style.visibility = '';
-
-  // When the 'Authorize' button is clicked, call the handleAuthClick function
-  authorizeButton.onclick = handleAuthClick;
 }
 
 function handleAuthClick(event) {

@@ -1,4 +1,3 @@
-
 var count; 
 var index = 0; 
 var newElement = {};
@@ -19,10 +18,10 @@ function handleAccounts(results) {
     if (results && results.items && results.items.length) {
 
       // Get the first Google Analytics account
-	
 	count = results.items.length; 
+		console.log(count);
       var firstAccountId = results.items[index].id;
-
+	console.log(firstAccountId);
       // Query for Web Properties
       queryWebproperties(firstAccountId);
 
@@ -115,32 +114,22 @@ function queryCoreReportingApi(profileId) {
 }
 
 function handleCoreReportingResults(results) {
-  if (results.error) {
-    console.log('There was an error querying core reporting API: ' + results.message);
-  } else {
+ 
 	
 	index ++;
-
+		
 		if (index == count) {
 					arrayToObject(data); 
 
-				return;
+				return "";
 				}
+else {
 
-    printResults(results);
-  }
-}
-
-function printResults(results) {
-  if (results.rows && results.rows.length) {
 	  queryAccounts();
-
-
-  } else {
- 
-	
-  }
 }
+  
+}
+
 
 function arrayToObject (data) {
 

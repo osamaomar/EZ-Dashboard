@@ -21,7 +21,6 @@ $(document).ready(function () {
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
 
 //this code will hide the front page and make a splash page
-
 $("#header").hide();
 $("#mainTable").hide();
 $(".grabcode").hide();
@@ -98,7 +97,6 @@ $('#datePickerRadio').click(function(){
 $("#from_date").fadeTo(100,1);
 $("#from_date").prop('disabled', false);
 $("#toSpan").fadeTo(100,1);
-
 $("#to_date").fadeTo(100,1);
 $("#to_date").prop('disabled', false);
 
@@ -111,7 +109,6 @@ $("#numberOfX").prop('disabled', true);
 
 $("#selectTerm").fadeTo(100,.2);
 $("#selectTerm").prop('disabled', true);
-
 first_date = $("#from_date").val();
 start_date = first_date; 
 
@@ -286,15 +283,17 @@ if (terms == "days"){
 	start_date = gadash.util.lastNdays(number); 
 	
 	end_date = getCurrentDate(); 
+			$("#from_date").val(start_date); 
 
 	forLoop(); 
 	return;
 }
 	if (terms == "weeks"){
 	 start_date = gadash.util.lastNweeks(number); 
+		
 		end_date = getCurrentDate(); 
 
-
+		$("#from_date").val(start_date); 
 	forLoop(); 
 		return;
 
@@ -305,6 +304,7 @@ if (terms == "months") {
 	 start_date = gadash.util.lastNmonths(number);
 	 	end_date = getCurrentDate(); 
 
+		$("#from_date").val(start_date); 
 
 	forLoop(); 
 		return;
@@ -315,6 +315,8 @@ if (terms == "quarters"){
 number = number*3;
  start_date = gadash.util.lastNmonths(number);
 	 	end_date = getCurrentDate(); 
+			$("#from_date").val(start_date); 
+
 	forLoop(); 
 		return;
 }
@@ -1401,7 +1403,8 @@ function generate_code() {
               if( !pattern.test(chartGlobal[cNum].filterDimension) && chartGlobal[cNum].filterMatching != "") {
                   var filter = chartGlobal[cNum].filterDimension + '==' + chartGlobal[cNum].filterMatching;
                   part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                              "( '" + changeDivName( chartGlobal[cNum].position) + "', TABLE_ID, '" +
+                              "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
+                                      TABLE_ID + "', '" +
                                       chartGlobal[cNum].chartMetric + "', '" +
                                       chartGlobal[cNum].chartDimension + "',\r\n" +
                                       "        {\r\n" +
@@ -1423,7 +1426,8 @@ function generate_code() {
               }
               else {
                   part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                              "( '" + changeDivName( chartGlobal[cNum].position) + "', TABLE_ID, '" +
+                              "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
+                                      TABLE_ID + "', '" +
                                       chartGlobal[cNum].chartMetric + "', '" +
                                       chartGlobal[cNum].chartDimension + "',\r\n" +
                                       "        {\r\n" +
@@ -1452,7 +1456,8 @@ function generate_code() {
               if( !pattern.test(chartGlobal[cNum].filterDimension) && chartGlobal[cNum].filterMatching != ""){
                 var filter = chartGlobal[cNum].filterDimension + '==' + chartGlobal[cNum].filterMatching;
                 part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                            "( '" + changeDivName( chartGlobal[cNum].position) + "', TABLE_ID, '" +
+                            "( '" + changeDivName( chartGlobal[cNum].position) + "', '" +
+                                    TABLE_ID + "', '"  +
                                     chartGlobal[cNum].chartMetric + "',\r\n" +
                                       "        {\r\n" +
                                       "          'query': {\r\n" +
@@ -1473,7 +1478,8 @@ function generate_code() {
               }
               else {
                 part[cNum + 1] = "      var chart" + (cNum + 1) + " = new gadash.Ga" + chartGlobal[cNum].chartType + 
-                            "( '" + changeDivName( chartGlobal[cNum].position)+ "', TABLE_ID, '" +
+                            "( '" + changeDivName( chartGlobal[cNum].position)+ "', '" +
+                                    TABLE_ID + "', '" +
                                     chartGlobal[cNum].chartMetric + "',\r\n" +
                                       "        {\r\n" +
                                       "          'query': {\r\n" +
