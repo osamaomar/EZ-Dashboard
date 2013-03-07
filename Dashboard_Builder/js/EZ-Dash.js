@@ -39,7 +39,10 @@ $(".startbutton").hide();
 
 $("#header").show('slide', {direction :'right'},"fast");
 $("#mainTable").show('slide', {direction :'right'},"fast");
+
+$(".grabcode").css("width", "175px");
 $(".grabcode").show();
+
 
 });
 
