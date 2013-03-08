@@ -1554,17 +1554,72 @@ function generate_code() {
   function createDefaultTitle( divLocation) {
     return divLocation.replace("wrappers","Chart #");
   };
+  
+  ZeroClipboard.setDefaults({ moviePath: "js/ZeroClipboard.swf" });
 
   $("#copycode").click(function (e) {
-    ZeroClipboard.setDefaults({ moviePath: "js/ZeroClipboard.swf" });
+    // ZeroClipboard.destroy();
     var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
     document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
     var clip = new ZeroClipboard( document.getElementById("copycode"));
-  
+
     // For user feedback
     document.getElementById('grabcode_txtarea').focus();
     document.getElementById('grabcode_txtarea').select();
   });
+
+  // $("#copycode").mouseout(function (e) {
+  //       ZeroClipboard.resetBridge();
+  // });
+
+  //  $("#embed_copy").mouseout(function (e) {
+  //       ZeroClipboard.resetBridge();
+  // });
+
+  // $("global-zeroclipboard-flash-bridge").mousedown(function (e) {
+  //   // ZeroClipboard.destroy();
+  //   var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
+  //   document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
+  //   var clip = new ZeroClipboard( document.getElementById("copycode"));
+
+  //   // For user feedback
+  //   document.getElementById('grabcode_txtarea').focus();
+  //   document.getElementById('grabcode_txtarea').select();
+  // });
+
+  // $("#embed_copy").mousedown(function (e) {
+  //   // ZeroClipboard.destroy();
+  //   var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
+  //   document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
+  //   var clip = new ZeroClipboard( document.getElementById("copycode"));
+  
+  //   // For user feedback
+  //   document.getElementById('grabcode_txtarea').focus();
+  //   document.getElementById('grabcode_txtarea').select();
+  // });
+
+  // $("#global-zeroclipboard-flash-bridge").click(function (e) {
+  //   // ZeroClipboard.destroy();
+  //   var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
+  //   document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
+  //   var clip = new ZeroClipboard( document.getElementById("copycode"));
+  
+  //   // For user feedback
+  //   document.getElementById('grabcode_txtarea').focus();
+  //   document.getElementById('grabcode_txtarea').select();
+  // });
+
+  // $(".global-zeroclipboard-container").click(function (e) {
+  //   // ZeroClipboard.destroy();
+  //   var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
+  //   document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
+  //   var clip = new ZeroClipboard( document.getElementById("copycode"));
+  
+  //   // For user feedback
+  //   document.getElementById('grabcode_txtarea').focus();
+  //   document.getElementById('grabcode_txtarea').select();
+  // });
+
 
 $("#account").hover(function()
 {
