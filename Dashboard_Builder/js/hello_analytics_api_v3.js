@@ -1,6 +1,7 @@
 var count; 
 var index = 0; 
 var newElement = {};
+var allDup = 0;
 
 function makeApiCall() {
   queryAccounts();
@@ -96,9 +97,17 @@ function handleProfiles(results) {
 		var name = results.items[0].name;
 		var url = results.items[0].websiteUrl;
 
+    if(allDup > 0 && name == 'All Web Site Data'){
+      return;
+    }
+    else{
 		data.push(id);
 		data.push(url);
 		data.push(name);
+    }
+
+    if(name == 'All Web Site Data')
+      allDup++;
 }
 
 
@@ -114,19 +123,17 @@ function queryCoreReportingApi(profileId) {
 }
 
 function handleCoreReportingResults(results) {
- 
-	
 	index ++;
 		
 		if (index == count) {
 					arrayToObject(data); 
 
 				return "";
-				}
-else {
+		}
+    else {
 
-	  queryAccounts();
-}
+    	  queryAccounts();
+    }
   
 }
 

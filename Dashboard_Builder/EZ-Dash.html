@@ -65,11 +65,11 @@
 	<tr>
 		<td>
 			<div class="dropdown" id="dropdown">
-				<a class="account" id="account" >EZ DASHBOARD <span style="font-size:10px; ">&#8711;<span></a>
+				<a class="account" id="account" >EZ DASHBOARD <span style="font-size:10px;">&#8711;<span></a>
 				<div class="submenu" id="submenu">
 					<ul class="root" id="root">
 						<li ><a href="#" id="resetDashboard" >Reset Dashboard</a></li>
-						<li ><a href="help.html">Help</a></li>
+						<li ><a href="help.html" target="_new">Help</a></li>
 					</ul>
 				</div> 
 			</div>
@@ -93,16 +93,16 @@
 
 						<div align="right"><input type="radio" id="lastNFunctionRadio" name="date" value="date"> 
 										<span id="LastText" style="color:black; font-family:arial,sans-serif;;font-size:15px">Last:</span> 
-									<input type="text" size="3" id ="numberOfX" >
+									<input type="text" size="3" id ="numberOfX" value="30">
 
 
-<select style="margin-right:20px;" id="selectTerm">
-  <option value="days">Day(s)</option>
-  <option value="weeks">Week(s)</option>
-  <option value="months">Month(s)</option>
-  <option value="quarters">Quarter(s)</option>
+					<select style="margin-right:20px;" id="selectTerm">
+					  <option value="days">Day(s)</option>
+					  <option value="weeks">Week(s)</option>
+					  <option value="months">Month(s)</option>
+					  <option value="quarters">Quarter(s)</option>
 
-</select>	
+					</select>	
 					<input type="radio" id="datePickerRadio" name="date" value="lastN"> 
 							<input type="text" id="from_date" name="from" size="13" value="Start date"/>
 							<label for="to"><span id="toSpan"style="color:black; font-family:arial,sans-serif;;font-size:15px">to</span></label>
