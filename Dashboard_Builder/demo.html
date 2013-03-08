@@ -26,17 +26,33 @@
       var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms'; //Your API Key Here
       var CLIENT_ID = '678812203795.apps.googleusercontent.com'; //Your Client ID Here
       var TABLE_ID = 'ga:1174'; // Your Table ID here
-      var start_date = '2013-01-29';
-      var end_date = '2013-02-14';
+      var start_date = '2013-02-05';
+      var end_date = '2013-03-07';
 
       gadash.init({
         'apiKey': API_KEY,
         'clientId': CLIENT_ID
       });
 
-      document.getElementById('chart1').innerHTML = '';
+      var chart1 = new gadash.GaAreaChart( 'chart1', 'ga:1174', 'ga:avgTimeOnPage',
+        {
+          'query': {
+            'filters':'ga:continent==Europe',
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title':'Chart #1',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
 
-      var chart2 = new gadash.GaAreaChart( 'chart2', 'ga:1174', 'ga:percentNewVisits',
+      var chart2 = new gadash.GaPieChart( 'chart2', 'ga:1174', 'ga:avgTimeOnPage', 'ga:continent',
         {
           'query': {
             'start-date': start_date,
