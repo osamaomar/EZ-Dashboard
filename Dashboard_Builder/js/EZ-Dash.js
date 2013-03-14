@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
-  CLIENT_ID = '678812203795.apps.googleusercontent.com';
+  CLIENT_ID = '994811546802-0suifp6gqtiflfr152n41kgsfahm2osh.apps.googleusercontent.com';
   TABLE_ID = 'ga:1174';
 
   // Get current Date
