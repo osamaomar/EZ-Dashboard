@@ -1,8 +1,7 @@
 $(document).ready(function () {
-
-  API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
+  API_KEY = 'AIzaSyAuTqO2CoAY2yFcVFc3vEXAR1ekoGYv8f8';
   CLIENT_ID = '994811546802-0suifp6gqtiflfr152n41kgsfahm2osh.apps.googleusercontent.com';
-  TABLE_ID = 'ga:1174';
+  TABLE_ID = '';
 
   // Get current Date
   var today = new Date();
@@ -20,19 +19,56 @@ $(document).ready(function () {
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
 
+  var pieFilterActive = false; // for sliding the filter up and down
+  var areaFilterActive = false;
+  var columnFilterActive = false;
+  var barFilterActive = false;
+
 //this code will hide the front page and make a splash page
 $("#header").hide();
 $("#mainTable").hide();
 $(".grabcode").hide();
+$("#consoleDiv").hide(); 
+
 
 $(".startbutton").click(function(){
+$("#consoleDiv").show(); 
+ $("#imageDiv").hide();
+$(".startbutton").hide();
 
- $("#firstPage").hide('slide', {direction: 'left'}, "fast");
+$(".videobutton").hide();
+$("#firstPage").hide();
+$("#explain").hide();
+
+enterMainPage();
+});
+/**
+$(".letsgo").click(function() {
+ if($("#APIKeyInput").val() == "") {
+    alert("You must enter an API Key!");
+    return false;
+}
+ if($("#clientIdInput").val() == "") {
+    alert("You must enter a CLIENT ID!");
+    return false;
+}
+
+API_KEY = $("#APIKeyInput").val();
+CLIENT_ID = $("#clientIdInput").val();
+$("#consoleDiv").hide();
+enterMainPage(); 
+
+});
+*/
+
+function enterMainPage () {
+$("#firstPage").hide('slide', {direction: 'left'}, "fast");
 $("#explain").hide()
  $("#startDiv").hide('slide', {direction: 'left'}, "fast");
 $("#lowerTable").hide('slide', {direction:'left'}, "fast");
 
 $(".startbutton").hide();
+$(".videobutton").hide();
  $("#imageDiv").hide('slide', {direction: 'left'}, "fast");
 
 
@@ -43,8 +79,16 @@ $("#mainTable").show('slide', {direction :'right'},"fast");
 $(".grabcode").css("width", "175px");
 $(".grabcode").show();
 
+loadTableIDs();
+}
 
-});
+function loadTableIDs () {
+	
+    $.getScript("js/hello_analytics_api_v3_auth.js");
+    $.getScript("js/hello_analytics_api_v3.js");
+	$.getScript("https://apis.google.com/js/client.js?onload=handleClientLoad"); 
+
+}
 
 $(".btnDelete").hide();
 
@@ -1122,16 +1166,44 @@ $("#from_date").val(gadash.util.lastNdays(20));
 
   $(function () {
     $('#pieFilter').click(function () {
-      $('#pie_filter_fields').slideDown("fast");
+        if(!pieFilterActive){
+          $('#pie_filter_fields').slideDown("fast");
+          pieFilterActive = true;
+        }
+        else{
+          $('#pie_filter_fields').slideUp("fast");
+          pieFilterActive = false;
+        }
     });
     $('#barFilter').click(function () {
-      $('#bar_filter_fields').slideDown("fast");
+      if(!barFilterActive){
+          $('#bar_filter_fields').slideDown("fast");
+          barFilterActive = true;
+        }
+        else{
+          $('#bar_filter_fields').slideUp("fast");
+          barFilterActive = false;
+        }
     });
     $('#columnFilter').click(function () {
-      $('#column_filter_fields').slideDown("fast");
+      if(!columnFilterActive){
+          $('#column_filter_fields').slideDown("fast");
+          columnFilterActive = true;
+        }
+        else{
+          $('#column_filter_fields').slideUp("fast");
+          columnFilterActive = false;
+        }
     });
     $('#areaFilter').click(function () {
-      $('#area_filter_fields').slideDown("fast");
+      if(!areaFilterActive){
+          $('#area_filter_fields').slideDown("fast");
+          areaFilterActive = true;
+        }
+        else{
+          $('#area_filter_fields').slideUp("fast");
+          areaFilterActive = false;
+        }
     });
   });
 
@@ -1712,7 +1784,6 @@ $("#tableAccount").attr('id', '');
        TABLE_ID = 'ga:'+TABLE_ID;
 	
       forLoop();
- 	
 });
 
 
