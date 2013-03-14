@@ -19,6 +19,11 @@ $(document).ready(function () {
   var start_date = gadash.util.lastNdays(30);  // will be overridden by the date picker. Maybe use lastNmonth(1)
   var end_date = gadash.util.lastNdays(0);     // return foramt "YYYY-MM-DD";
 
+  var pieFilterActive = false; // for sliding the filter up and down
+  var areaFilterActive = false;
+  var columnFilterActive = false;
+  var barFilterActive = false;
+
 //this code will hide the front page and make a splash page
 $("#header").hide();
 $("#mainTable").hide();
@@ -1161,16 +1166,44 @@ $("#from_date").val(gadash.util.lastNdays(20));
 
   $(function () {
     $('#pieFilter').click(function () {
-      $('#pie_filter_fields').slideDown("fast");
+        if(!pieFilterActive){
+          $('#pie_filter_fields').slideDown("fast");
+          pieFilterActive = true;
+        }
+        else{
+          $('#pie_filter_fields').slideUp("fast");
+          pieFilterActive = false;
+        }
     });
     $('#barFilter').click(function () {
-      $('#bar_filter_fields').slideDown("fast");
+      if(!barFilterActive){
+          $('#bar_filter_fields').slideDown("fast");
+          barFilterActive = true;
+        }
+        else{
+          $('#bar_filter_fields').slideUp("fast");
+          barFilterActive = false;
+        }
     });
     $('#columnFilter').click(function () {
-      $('#column_filter_fields').slideDown("fast");
+      if(!columnFilterActive){
+          $('#column_filter_fields').slideDown("fast");
+          columnFilterActive = true;
+        }
+        else{
+          $('#column_filter_fields').slideUp("fast");
+          columnFilterActive = false;
+        }
     });
     $('#areaFilter').click(function () {
-      $('#area_filter_fields').slideDown("fast");
+      if(!areaFilterActive){
+          $('#area_filter_fields').slideDown("fast");
+          areaFilterActive = true;
+        }
+        else{
+          $('#area_filter_fields').slideUp("fast");
+          areaFilterActive = false;
+        }
     });
   });
 
