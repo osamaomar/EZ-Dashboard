@@ -1,8 +1,7 @@
 $(document).ready(function () {
-
-  API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
-  CLIENT_ID = '678812203795.apps.googleusercontent.com';
-  TABLE_ID = 'ga:1174';
+  API_KEY = 'AIzaSyAuTqO2CoAY2yFcVFc3vEXAR1ekoGYv8f8';
+  CLIENT_ID = '994811546802-0suifp6gqtiflfr152n41kgsfahm2osh.apps.googleusercontent.com';
+  TABLE_ID = '';
 
   // Get current Date
   var today = new Date();
@@ -24,15 +23,47 @@ $(document).ready(function () {
 $("#header").hide();
 $("#mainTable").hide();
 $(".grabcode").hide();
+$("#consoleDiv").hide(); 
+
 
 $(".startbutton").click(function(){
+$("#consoleDiv").show(); 
+ $("#imageDiv").hide();
+$(".startbutton").hide();
 
- $("#firstPage").hide('slide', {direction: 'left'}, "fast");
+$(".videobutton").hide();
+$("#firstPage").hide();
+$("#explain").hide();
+
+enterMainPage();
+});
+/**
+$(".letsgo").click(function() {
+ if($("#APIKeyInput").val() == "") {
+    alert("You must enter an API Key!");
+    return false;
+}
+ if($("#clientIdInput").val() == "") {
+    alert("You must enter a CLIENT ID!");
+    return false;
+}
+
+API_KEY = $("#APIKeyInput").val();
+CLIENT_ID = $("#clientIdInput").val();
+$("#consoleDiv").hide();
+enterMainPage(); 
+
+});
+*/
+
+function enterMainPage () {
+$("#firstPage").hide('slide', {direction: 'left'}, "fast");
 $("#explain").hide()
  $("#startDiv").hide('slide', {direction: 'left'}, "fast");
 $("#lowerTable").hide('slide', {direction:'left'}, "fast");
 
 $(".startbutton").hide();
+$(".videobutton").hide();
  $("#imageDiv").hide('slide', {direction: 'left'}, "fast");
 
 
@@ -43,8 +74,16 @@ $("#mainTable").show('slide', {direction :'right'},"fast");
 $(".grabcode").css("width", "175px");
 $(".grabcode").show();
 
+loadTableIDs();
+}
 
-});
+function loadTableIDs () {
+	
+    $.getScript("js/hello_analytics_api_v3_auth.js");
+    $.getScript("js/hello_analytics_api_v3.js");
+	$.getScript("https://apis.google.com/js/client.js?onload=handleClientLoad"); 
+
+}
 
 $(".btnDelete").hide();
 
@@ -1712,7 +1751,6 @@ $("#tableAccount").attr('id', '');
        TABLE_ID = 'ga:'+TABLE_ID;
 	
       forLoop();
- 	
 });
 
 
