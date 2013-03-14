@@ -1,13 +1,12 @@
 $(document).ready(function () {
-
-  API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms';
-  CLIENT_ID = '678812203795.apps.googleusercontent.com';
-  TABLE_ID = 'ga:1174';
+  API_KEY = 'AIzaSyAuTqO2CoAY2yFcVFc3vEXAR1ekoGYv8f8';
+  CLIENT_ID = '994811546802-0suifp6gqtiflfr152n41kgsfahm2osh.apps.googleusercontent.com';
+  TABLE_ID = '';
 
   // Get current Date
   var today = new Date();
   var dd = today.getDate();
-  var mm = today.getMonth()+1; //January is 0!
+  var mm = today.getMonth()+1;
   var charts  = new Array();
 
   var yyyy = today.getFullYear();
@@ -38,107 +37,120 @@ $("#header").hide();
 $("#mainTable").hide();
 $(".grabcode").hide();
 
-$(".startbutton").click(function(){
-
- $("#firstPage").hide('slide', {direction: 'left'}, "fast");
-$("#explain").hide()
- $("#startDiv").hide('slide', {direction: 'left'}, "fast");
-$("#lowerTable").hide('slide', {direction:'left'}, "fast");
-
-$(".startbutton").hide();
- $("#imageDiv").hide('slide', {direction: 'left'}, "fast");
+  //this code will hide the front page and make a splash page
+  $("#header").hide();
+  $("#mainTable").hide();
+  $(".grabcode").hide();
+  $("#consoleDiv").hide(); 
 
 
+  $(".startbutton").click(function(){
+  $("#consoleDiv").show(); 
+   $("#imageDiv").hide();
+  $(".startbutton").hide();
 
-$("#header").show('slide', {direction :'right'},"fast");
-$("#mainTable").show('slide', {direction :'right'},"fast");
+  $(".videobutton").hide();
+  $("#firstPage").hide();
+  $("#explain").hide();
 
-$(".grabcode").css("width", "175px");
-$(".grabcode").show();
-
-
+  enterMainPage();
 });
 
+function enterMainPage () {
+  $("#firstPage").hide('slide', {direction: 'left'}, "fast");
+  $("#explain").hide()
+  $("#startDiv").hide('slide', {direction: 'left'}, "fast");
+  $("#lowerTable").hide('slide', {direction:'left'}, "fast");
+
+  $(".startbutton").hide();
+  $(".videobutton").hide();
+  $("#imageDiv").hide('slide', {direction: 'left'}, "fast");
+
+
+
+  $("#header").show('slide', {direction :'right'},"fast");
+  $("#mainTable").show('slide', {direction :'right'},"fast");
+
+  $(".grabcode").css("width", "175px");
+  $(".grabcode").show();
+
+  loadTableIDs();
+}
+
+function loadTableIDs () {
+  $.getScript("js/hello_analytics_api_v3_auth.js");
+  $.getScript("js/hello_analytics_api_v3.js");
+	$.getScript("https://apis.google.com/js/client.js?onload=handleClientLoad"); 
+}
+
 $(".btnDelete").hide();
-
-
 $('#lastNFunctionRadio').prop("checked",true); 
 $("#from_date").fadeTo(100,.2);
 $("#from_date").prop('disabled',true );
 $("#toSpan").fadeTo(100,.2);
-
 $("#to_date").fadeTo(100,.2);
 $("#to_date").prop('disabled', true);
-
 
 $('#lastNFunctionRadio').click(function(){
-    var _this = $(this);
+  var _this = $(this);
 
-    if( _this.is(':checked') ){
-	
-$("#from_date").fadeTo(100,.2);
-$("#from_date").prop('disabled', true);
-$("#toSpan").fadeTo(100,.2);
+  if( _this.is(':checked') ){
+    $("#from_date").fadeTo(100,.2);
+    $("#from_date").prop('disabled', true);
+    $("#toSpan").fadeTo(100,.2);
 
-$("#to_date").fadeTo(100,.2);
-$("#to_date").prop('disabled', true);
+    $("#to_date").fadeTo(100,.2);
+    $("#to_date").prop('disabled', true);
 
-$("#LastText").fadeTo(100,1);
-$("#LastText").prop('disabled', false);
-$("#numberOfX").fadeTo(100,1);
-$("#numberOfX").prop('disabled', false);
-
-
-$("#selectTerm").fadeTo(100,1);
-$("#selectTerm").prop('disabled', false);
+    $("#LastText").fadeTo(100,1);
+    $("#LastText").prop('disabled', false);
+    $("#numberOfX").fadeTo(100,1);
+    $("#numberOfX").prop('disabled', false);
 
 
-var date = $("#numberOfX").val(); 
-var terms = $("#selectTerm").val();
-
-checkTerm(date,terms); 
-		
+    $("#selectTerm").fadeTo(100,1);
+    $("#selectTerm").prop('disabled', false);
 
 
-	}
-    
+    var date = $("#numberOfX").val(); 
+    var terms = $("#selectTerm").val();
+
+    checkTerm(date,terms); 
+	} 
 });
 
 
 $('#datePickerRadio').click(function(){
-    var _this = $(this);
+  var _this = $(this);
 
-    if( _this.is(':checked') ){
+  if( _this.is(':checked') ){
 	
-$("#from_date").fadeTo(100,1);
-$("#from_date").prop('disabled', false);
-$("#toSpan").fadeTo(100,1);
-$("#to_date").fadeTo(100,1);
-$("#to_date").prop('disabled', false);
+    $("#from_date").fadeTo(100,1);
+    $("#from_date").prop('disabled', false);
+    $("#toSpan").fadeTo(100,1);
+    $("#to_date").fadeTo(100,1);
+    $("#to_date").prop('disabled', false);
 
-$("#LastText").fadeTo(100,.2);
-$("#LastText").prop('disabled', true);
-$("#numberOfX").fadeTo(100,.2);
+    $("#LastText").fadeTo(100,.2);
+    $("#LastText").prop('disabled', true);
+    $("#numberOfX").fadeTo(100,.2);
 
-$("#numberOfX").prop('disabled', true);
-
-
-$("#selectTerm").fadeTo(100,.2);
-$("#selectTerm").prop('disabled', true);
-first_date = $("#from_date").val();
-start_date = first_date; 
-
-last_date = $("#to_date").val();
-end_date = last_date; 
-forLoop();
+    $("#numberOfX").prop('disabled', true);
 
 
+    $("#selectTerm").fadeTo(100,.2);
+    $("#selectTerm").prop('disabled', true);
+    first_date = $("#from_date").val();
+    start_date = first_date; 
+
+    last_date = $("#to_date").val();
+    end_date = last_date; 
+    forLoop();
 	}
-    
 });
 
  
-   var noCharts = true; //If the dashboard has any charts on it
+  var noCharts = true; //If the dashboard has any charts on it
   $("#from_date").val(start_date); 
   $("#to_date").val(today); 
   var chartIndex; 
@@ -257,116 +269,97 @@ forLoop();
      ShowDialog(false);
      e.preventDefault();
   });
-$("#numberOfX").change(function() {
-	var number = $("#numberOfX").val();
-	var terms = $("#selectTerm").val(); 
-	checkTerm(number, terms); 
-});
+
+  $("#numberOfX").change(function() {
+  	var number = $("#numberOfX").val();
+  	var terms = $("#selectTerm").val(); 
+  	checkTerm(number, terms); 
+  });
+
+  $("#selectTerm").change(function() {
+  	var number = $("#numberOfX").val();
+  	var terms = $("#selectTerm").val(); 
+  	checkTerm(number, terms); 
+  });
 
 
+  function getCurrentDate() {
+    var currentDate = new Date();
+	  var year = currentDate.getFullYear(); 
+	  var month = currentDate.getMonth() + 1; 
+	  var day = currentDate.getDate();
+    if (month <10){
+	    month = "0" + month;
+    } 
+    if (day <10){
+	    day = "0" + day;
+    } 
+    var date = year + "-" + month +"-" + day;
 
-$("#selectTerm").change(function() {
-	var number = $("#numberOfX").val();
-	var terms = $("#selectTerm").val(); 
-	checkTerm(number, terms); 
-});
-
-
-function getCurrentDate() {
-var currentDate = new Date();
-	var year = currentDate.getFullYear(); 
-	var month = currentDate.getMonth() + 1; 
-	var day = currentDate.getDate();
-if (month <10){
-	month = "0" + month;
-
-} 
-if (day <10){
-	day = "0" + day;
-
-} 
-var date = year + "-" + month +"-" + day;
-
-return date;
-
+    return date;
 }
 
 
-function checkTerm(number,terms)
-{
-if (terms == "days"){
-
-	start_date = gadash.util.lastNdays(number); 
-	
-	end_date = getCurrentDate(); 
+  function checkTerm(number,terms) {
+    if (terms == "days"){
+     	start_date = gadash.util.lastNdays(number); 
+    	end_date = getCurrentDate(); 
 			$("#from_date").val(start_date); 
+	    forLoop(); 
+	    return;
+    }
+	  if (terms == "weeks"){
+	    start_date = gadash.util.lastNweeks(number); 
+  		end_date = getCurrentDate(); 
+	  	$("#from_date").val(start_date); 
+	    forLoop(); 
+		  return;
+    }
 
-	forLoop(); 
-	return;
-}
-	if (terms == "weeks"){
-	 start_date = gadash.util.lastNweeks(number); 
-		
-		end_date = getCurrentDate(); 
+    if (terms == "months") {	
+  	  start_date = gadash.util.lastNmonths(number);
+  	 	end_date = getCurrentDate(); 
+  		$("#from_date").val(start_date); 
+  	  forLoop(); 
+  		return;
+    }
 
-		$("#from_date").val(start_date); 
-	forLoop(); 
-		return;
-
-}
-
-if (terms == "months") {	
-
-	 start_date = gadash.util.lastNmonths(number);
-	 	end_date = getCurrentDate(); 
-
-		$("#from_date").val(start_date); 
-
-	forLoop(); 
-		return;
-
-}
-
-if (terms == "quarters"){
-number = number*3;
- start_date = gadash.util.lastNmonths(number);
-	 	end_date = getCurrentDate(); 
-			$("#from_date").val(start_date); 
-
-	forLoop(); 
-		return;
-}
-else {
-$("#from_date").val(gadash.util.lastNdays(20)); 
-
-}
-	
-}
+    if (terms == "quarters"){
+      number = number*3;
+      start_date = gadash.util.lastNmonths(number);
+  	 	end_date = getCurrentDate(); 
+  		$("#from_date").val(start_date); 
+  	  forLoop(); 
+  		return;
+    }
+    else {
+      $("#from_date").val(gadash.util.lastNdays(20)); 
+    }
+  }
 
   $("#finishbutton").click(function (e) {
      if(!noCharts){
-        $("#finishbutton").fadeOut(300);
-        generate_code();
-        ShowGrabcodeDialog();
-        e.preventDefault();
+       $("#finishbutton").fadeOut(300);
+       generate_code();
+       ShowGrabcodeDialog();
+       e.preventDefault();
      }
      else{
-      alert(" You must add at least 1 chart to grab code.");
+       alert(" You must add at least 1 chart to grab code.");
      }
   });
  
   $(function() {
     $( "#from_date" ).datepicker({
-      defaultDate: "+1w",
-      changeMonth: true,
-      dateFormat: 'yy-mm-dd',
-      numberOfMonths: 2,
-      onClose: function( selectedDate ) {
-        $( "#to" ).datepicker( "option", "minDate", selectedDate );
-		start_date = selectedDate;
-
-        forLoop();
-      }
+    defaultDate: "+1w",
+    changeMonth: true,
+    dateFormat: 'yy-mm-dd',
+    numberOfMonths: 2,
+    onClose: function( selectedDate ) {
+      $( "#to" ).datepicker( "option", "minDate", selectedDate );
+	  	start_date = selectedDate;
+      forLoop();
+    }
   });
     
   $( "#to_date" ).datepicker({
@@ -376,36 +369,36 @@ $("#from_date").val(gadash.util.lastNdays(20));
       numberOfMonths: 2,
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-	end_date = selectedDate; 
+	      end_date = selectedDate; 
         forLoop(); 
       }
     });
   });
 
 
-   function ShowDialog(modal) {
-      $("#overlay").show();
-      $("#dialog").fadeIn(300);
+  function ShowDialog(modal) {
+    $("#overlay").show();
+    $("#dialog").fadeIn(300);
 
-      if (modal == false) {
-        reinitializeTabs(); 
-        $("#overlay").unbind("click");
-      }   
-   };
+    if (modal == false) {
+      reinitializeTabs(); 
+      $("#overlay").unbind("click");
+    }   
+  };
 
-   function reinitializeTabs() {
-     switch (chartGlobal[chartIndex].chartType) {
-       case "AreaChart":   editAreaChart();
+  function reinitializeTabs() {
+    switch (chartGlobal[chartIndex].chartType) {
+      case "AreaChart":   editAreaChart();
                            break;
-       case "PieChart":    editPieChart();
+      case "PieChart":    editPieChart();
                            break;
-       case "BarChart": editBarChart();
+      case "BarChart": editBarChart();
                            break;
-       case "ColumnChart":    editColumnChart();
+      case "ColumnChart":    editColumnChart();
                            break;
-       default:            createNewChart();
-     }  
-   };
+      default:            createNewChart();
+    }  
+  };
 
    function createNewChart() {
      $('#menu').tabs('select', '#tabArea');
@@ -1599,143 +1592,52 @@ function generate_code() {
     return divLocation.replace("wrappers","Chart #");
   };
   
-  ZeroClipboard.setDefaults({ moviePath: "js/ZeroClipboard.swf" });
-
-  $("#copycode").click(function (e) {
-    // ZeroClipboard.destroy();
-    var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
-    document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
-    var clip = new ZeroClipboard( document.getElementById("copycode"));
-
-    // For user feedback
-    document.getElementById('grabcode_txtarea').focus();
-    document.getElementById('grabcode_txtarea').select();
+  $("#account").hover(function() {
+    var X=$(this).attr('id');
+    if(X==1) {
+      $("#submenu").hide();
+      $(this).attr('id', '0'); 
+    }
+    else {
+      $("#submenu").toggle();
+      $(this).attr('id', '1');
+    }
   });
 
-  // $("#copycode").mouseout(function (e) {
-  //       ZeroClipboard.resetBridge();
-  // });
+  //Mouse click on sub menu
+  $("#submenu").hover(function() {
+    $("#submenu").toggle();
+  });
 
-  //  $("#embed_copy").mouseout(function (e) {
-  //       ZeroClipboard.resetBridge();
-  // });
+  //Mouse click on my account link
+  $("#account").hover(function() {
+    return false
+  });
 
-  // $("global-zeroclipboard-flash-bridge").mousedown(function (e) {
-  //   // ZeroClipboard.destroy();
-  //   var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
-  //   document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
-  //   var clip = new ZeroClipboard( document.getElementById("copycode"));
+  //Document Click
+  $(document).click(function() {
+    $("#submenu").hide();
+    $("#account").attr('id', '');
+  });
 
-  //   // For user feedback
-  //   document.getElementById('grabcode_txtarea').focus();
-  //   document.getElementById('grabcode_txtarea').select();
-  // });
+  $("#tableAccount").hover(function() {
+    var X=$(this).attr('id');
+    if(X==1) {
+      $("#tableSubmenu").hide();
+      $(this).attr('id', '0'); 
+    }
+    else {
+      $("#tableSubmenu").toggle();
+      $(this).attr('id', '1');
+    }
+  });
 
-  // $("#embed_copy").mousedown(function (e) {
-  //   // ZeroClipboard.destroy();
-  //   var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
-  //   document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
-  //   var clip = new ZeroClipboard( document.getElementById("copycode"));
-  
-  //   // For user feedback
-  //   document.getElementById('grabcode_txtarea').focus();
-  //   document.getElementById('grabcode_txtarea').select();
-  // });
+  //Mouse click on sub menu
+  $("#tableSubmenu").hover(function() {
+    $("#tableSubmenu").toggle();
+  });
 
-  // $("#global-zeroclipboard-flash-bridge").click(function (e) {
-  //   // ZeroClipboard.destroy();
-  //   var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
-  //   document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
-  //   var clip = new ZeroClipboard( document.getElementById("copycode"));
-  
-  //   // For user feedback
-  //   document.getElementById('grabcode_txtarea').focus();
-  //   document.getElementById('grabcode_txtarea').select();
-  // });
-
-  // $(".global-zeroclipboard-container").click(function (e) {
-  //   // ZeroClipboard.destroy();
-  //   var codeFromTextarea = document.getElementById('grabcode_txtarea').value;
-  //   document.getElementById("copycode").setAttribute("data-clipboard-text", codeFromTextarea);
-  //   var clip = new ZeroClipboard( document.getElementById("copycode"));
-  
-  //   // For user feedback
-  //   document.getElementById('grabcode_txtarea').focus();
-  //   document.getElementById('grabcode_txtarea').select();
-  // });
-
-
-$("#account").hover(function()
-{
-var X=$(this).attr('id');
-if(X==1)
-{
-$("#submenu").hide();
-$(this).attr('id', '0'); 
-}
-else
-{
-$("#submenu").toggle();
-$(this).attr('id', '1');
-}
-
-});
-
-//Mouse click on sub menu
-$("#submenu").hover(function()
-{
-$("#submenu").toggle();});
-
-//Mouse click on my account link
-$("#account").hover(function()
-{
-return false
-});
-
-
-
-
-//Document Click
-$(document).click(function()
-{
-$("#submenu").hide();
-$("#account").attr('id', '');
-});
-
-
-
-$("#tableAccount").hover(function()
-{
-var X=$(this).attr('id');
-if(X==1)
-{
-$("#tableSubmenu").hide();
-$(this).attr('id', '0'); 
-}
-else
-{
-$("#tableSubmenu").toggle();
-$(this).attr('id', '1');
-}
-
-});
-
-//Mouse click on sub menu
-$("#tableSubmenu").hover(function()
-{
-$("#tableSubmenu").toggle();});
-
-//Mouse click on my account link
-$("#tableAccount").hover(function()
-{
-return false
-});
-
-
-$("#root").click(function()
-{
-$("#tableSubmenu").toggle();});
-
+<<<<<<< HEAD
 // function makeDisabled(id){
 //   var x = document.getElementById(id);
 //   x.disabled = true;
@@ -1760,31 +1662,26 @@ $("#areaMetric").change(function() {
   areaCompareDrop.disabled = false;
 });
 
+  //Mouse click on my account link
+  $("#tableAccount").hover(function() {
+    return false
+  });
 
-//Document Click
-$(document).click(function()
-{
-$("#tableSubmenu").hide();
-$("#tableAccount").attr('id', '');
-});
+  $("#root").click(function() {
+    $("#tableSubmenu").toggle();
+  });
 
+  //Document Click
+  $(document).click(function() {
+    $("#tableSubmenu").hide();
+    $("#tableAccount").attr('id', '');
+  });
 
- 	 	
   $("#selectTableID").change(function() {
- 	 	
-   TABLE_ID  = $("#selectTableID").val();
- 	 	
-       TABLE_ID = 'ga:'+TABLE_ID;
-	
-      forLoop();
- 	
-});
-
-
-
-	
-
-
+    TABLE_ID  = $("#selectTableID").val();	 	
+    TABLE_ID = 'ga:'+TABLE_ID;
+    forLoop();
+  });
 });
 
 
