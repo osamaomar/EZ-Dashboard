@@ -25,56 +25,39 @@
       // These parameters needs to be configured before you start.
       var API_KEY = 'AIzaSyAuTqO2CoAY2yFcVFc3vEXAR1ekoGYv8f8'; //Your API Key Here
       var CLIENT_ID = '994811546802-0suifp6gqtiflfr152n41kgsfahm2osh.apps.googleusercontent.com'; //Your Client ID Here
-
-      var TABLE_ID = 'ga:1174'; // Your Table ID here
-      var start_date = '2013-02-13';
-      var end_date = '2013-03-13';
-
+      var TABLE_ID = 'ga:69687610'; // Your Table ID here
+      var start_date = '2013-02-12';
+      var end_date = '2013-03-14';
 
       gadash.init({
         'apiKey': API_KEY,
         'clientId': CLIENT_ID
       });
 
-      var chart1 = new gadash.GaAreaChart( 'chart1', 'ga:1174', 'ga:bounces',
-        {
-          'query': {
-            'start-date': start_date,
-            'end-date': end_date
-          },
-          'chartOptions':{
-            'title':'Chart #1',
-            'chartArea': {
-              'width': '95%'
-             },
-            'height':250,
-            'width':350
-          }
-        }
-      ).render();
+      document.getElementById('chart1').innerHTML = '';
 
-      var chart2 = new gadash.GaPieChart( 'chart2', 'ga:1174', 'ga:visitBounceRate', 'ga:continent',
-        {
-          'query': {
-            'start-date': start_date,
-            'end-date': end_date
-          },
-          'chartOptions':{
-            'title':'Content',
-            'chartArea': {
-              'width': '95%'
-             },
-            'height':250,
-            'width':350
-          }
-        }
-      ).render();
+      document.getElementById('chart2').innerHTML = '';
 
       document.getElementById('chart3').innerHTML = '';
 
       document.getElementById('chart4').innerHTML = '';
 
-      document.getElementById('chart5').innerHTML = '';
+      var chart5 = new gadash.GaAreaChart( 'chart5', 'ga:69687610', 'ga:CTR',
+        {
+          'query': {
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title':'Chart #5',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
 
       document.getElementById('chart6').innerHTML = '';
 

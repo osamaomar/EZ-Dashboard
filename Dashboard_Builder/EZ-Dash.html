@@ -13,11 +13,8 @@
 	<script type="text/javascript" src="js/gadash-2.0.js"></script>
 	<script type="text/javascript" src="js/ZeroClipboard.js"></script>
 	<script src="//apis.google.com/js/client.js?o"></script>
+	<script type="text/javascript" src="js/jquery.zclip.js"></script>
 	
-
-
-
-
 	<link href="css/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/EZ-Dash.css" media="screen" rel="stylesheet" type="text/css" />
@@ -220,16 +217,14 @@ CLIENT ID:<br/> <input type="text" name="clientId" id="clientIdInput"><br/><br/>
 	      </tr>
 	   </table>
 	   <br/>
+		<div align="center" style="padding: 15px; width:100%;">
+			<textarea name="code_text" id="grabcode_txtarea" style="width: 80%; height: 500px;"></textarea>
+		</div>
 
-		<form name="CodeToCopy">
-			<div align="center" style="padding: 15px; width:100%;">
-				<textarea name="code_text" id="grabcode_txtarea" style="width: 80%; height: 500px;"></textarea>
-			</div>
-
-			<div id="copybutton" >
-				<div id="copycode" style="font-family: 'Open Sans', arial, sans-serif;" data-clipboard-text="Copy To Clipboard">Copy All</div>
-			</div>
-	    </form>
+		<div id="copybutton" >
+			<h2>You can now copy the code and past it into a copy editor</h2>
+			<p>Click on the text area and use CTRL + A followed by CTRL + C to copy the code to the clipboard</p>
+		</div>
 	   <br>
 	</div>
 
