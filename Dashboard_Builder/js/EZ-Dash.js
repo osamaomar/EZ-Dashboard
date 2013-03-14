@@ -25,6 +25,14 @@ $(document).ready(function () {
   var columnFilterActive = false;
   var barFilterActive = false;
 
+  // Disable compare dropdowns until a metric is chosen first
+  var areaCompareDrop = document.getElementById("areaCompare");
+  areaCompareDrop.disabled = true
+  var barCompareDrop = document.getElementById("barCompare");
+  barCompareDrop.disabled = true;
+  var columnCompareDrop = document.getElementById("columnCompare");
+  columnCompareDrop.disabled = true;
+
 //this code will hide the front page and make a splash page
 $("#header").hide();
 $("#mainTable").hide();
@@ -1727,6 +1735,30 @@ return false
 $("#root").click(function()
 {
 $("#tableSubmenu").toggle();});
+
+// function makeDisabled(id){
+//   var x = document.getElementById(id);
+//   x.disabled = true;
+// }
+
+// function changeCheck(metricID, compareID){
+//   if(metricID.value == 'none' && compareID.disabled == false){
+//     makeDisabled(compareID);
+//   }
+//   else
+//     makeEnabled(compareID);
+// }
+
+// function makeEnabled(id){
+//   var x = document.getElementById(id);
+//   console.log("after id, id = " +id);
+//   x.disabled = false;
+// }
+
+$("#areaMetric").change(function() {
+  console.log("WTF");
+  areaCompareDrop.disabled = false;
+});
 
 
 //Document Click
