@@ -24,13 +24,19 @@ $(document).ready(function () {
   var columnFilterActive = false;
   var barFilterActive = false;
 
-  // Disable compare dropdowns until a metric is chosen first
+  // Disable compare dropdowns until a metric is chosen first. Set as variables for easy future manipulation
   var areaCompareDrop = document.getElementById("areaCompare");
   areaCompareDrop.disabled = true
   var barCompareDrop = document.getElementById("barCompare");
   barCompareDrop.disabled = true;
   var columnCompareDrop = document.getElementById("columnCompare");
   columnCompareDrop.disabled = true;
+
+  //Hide all add buttons until metric dropdowns are changed
+  $("#btnAddArea").hide();
+  $("#btnAddColumn").hide();
+  $("#btnAddBar").hide();
+  $("#btnAddPie").hide();
 
 //this code will hide the front page and make a splash page
 $("#header").hide();
@@ -1637,15 +1643,17 @@ function generate_code() {
     $("#tableSubmenu").toggle();
   });
 
-<<<<<<< HEAD
 // function makeDisabled(id){
 //   var x = document.getElementById(id);
 //   x.disabled = true;
 // }
 
 // function changeCheck(metricID, compareID){
+//   console.log("inside changecheck");
 //   if(metricID.value == 'none' && compareID.disabled == false){
+//     console.log("before makeDisabled");
 //     makeDisabled(compareID);
+//     console.log("after makeDisabled");
 //   }
 //   else
 //     makeEnabled(compareID);
@@ -1656,11 +1664,6 @@ function generate_code() {
 //   console.log("after id, id = " +id);
 //   x.disabled = false;
 // }
-
-$("#areaMetric").change(function() {
-  console.log("WTF");
-  areaCompareDrop.disabled = false;
-});
 
   //Mouse click on my account link
   $("#tableAccount").hover(function() {
