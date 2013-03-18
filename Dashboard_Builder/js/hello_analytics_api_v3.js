@@ -22,6 +22,7 @@ function handleAccounts(results) {
 	count = results.items.length; 
       var firstAccountId = results.items[index].id;
 	index++; 
+
       // Query for Web Properties
       queryWebproperties(firstAccountId);
 
@@ -96,17 +97,11 @@ function handleProfiles(results) {
 		var name = results.items[0].name;
 		var url = results.items[0].websiteUrl;
 
-    if(allDup > 0 && name == 'All Web Site Data'){
-      return;
-    }
-    else{
+ 
 		data.push(id);
 		data.push(url);
 		data.push(name);
-    }
-
-    if(name == 'All Web Site Data')
-      allDup++;
+   
 }
 
 

@@ -41,25 +41,10 @@ $("#firstPage").hide();
 $("#explain").hide();
 
 enterMainPage();
-});
-/**
-$(".letsgo").click(function() {
- if($("#APIKeyInput").val() == "") {
-    alert("You must enter an API Key!");
-    return false;
-}
- if($("#clientIdInput").val() == "") {
-    alert("You must enter a CLIENT ID!");
-    return false;
-}
-
-API_KEY = $("#APIKeyInput").val();
-CLIENT_ID = $("#clientIdInput").val();
-$("#consoleDiv").hide();
-enterMainPage(); 
+loadTableIDs();
 
 });
-*/
+
 
 function enterMainPage () {
 $("#firstPage").hide('slide', {direction: 'left'}, "fast");
@@ -78,16 +63,11 @@ $("#mainTable").show('slide', {direction :'right'},"fast");
 
 $(".grabcode").css("width", "175px");
 $(".grabcode").show();
-
-loadTableIDs();
 }
 
 function loadTableIDs () {
-	
-    $.getScript("js/hello_analytics_api_v3_auth.js");
-    $.getScript("js/hello_analytics_api_v3.js");
-	$.getScript("https://apis.google.com/js/client.js?onload=handleClientLoad"); 
 
+    jQuery.getScript('https://apis.google.com/js/client.js?onload=handleClientLoad'); 
 }
 
 $(".btnDelete").hide();
