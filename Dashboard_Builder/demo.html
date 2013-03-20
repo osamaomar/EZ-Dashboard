@@ -16,29 +16,47 @@
          border:2px solid #DDD;
       }
     </style>
-	
+
     <script src='//www.google.com/jsapi'></script>
     <script type='text/javascript' src='js/gadash-2.0.js'></script>
     <script src='//apis.google.com/js/client.js?onload=gadashInit_'></script>
 
     <script>
-	start_date = gadash.util.lastNdays(9);
       // These parameters needs to be configured before you start.
-      var API_KEY = 'AIzaSyAV3Y3a1eOpFTPiobtzOs3lKBIMhhqDDgo'; //Your API Key Here
-      var CLIENT_ID = '678812203795-jv5bup9tpid6vgh3b7cpvdu722umjmcp.apps.googleusercontent.com'; //Your Client ID Here
-      var TABLE_ID = 'ga:70012741'; // Your Table ID here
-      var start_date = start_date;
-      var end_date = '2013-03-18';
+      var API_KEY = 'AIzaSyAuTqO2CoAY2yFcVFc3vEXAR1ekoGYv8f8'; //Your API Key Here
+      var CLIENT_ID = '994811546802-0suifp6gqtiflfr152n41kgsfahm2osh.apps.googleusercontent.com'; //Your Client ID Here
+      var TABLE_ID = 'ga:1174'; // Your Table ID here
+      var start_date = '2013-03-12';
+      var end_date = '2013-03-19';
+
 
       gadash.init({
         'apiKey': API_KEY,
         'clientId': CLIENT_ID
       });
 
-
-      var chart2 = new gadash.GaAreaChart( 'chart2', 'ga:70012741', 'ga:percentNewVisits',
+      var chart1 = new gadash.GaPieChart( 'chart1', 'ga:1174', 'ga:avgTimeOnPage', 'ga:browser',
         {
           'query': {
+            'filters':'ga:city==Irvine',
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title':'Chart #1',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
+
+      var chart2 = new gadash.GaAreaChart( 'chart2', 'ga:1174', 'ga:avgTimeOnPage',
+        {
+          'query': {
+            'filters':'ga:city==Irvine',
             'start-date': start_date,
             'end-date': end_date
           },
@@ -53,9 +71,41 @@
         }
       ).render();
 
+       var chart4 = new gadash.GaPieChart( 'chart4', 'ga:1174', 'ga:avgTimeOnSite', 'ga:browser',
+        {
+          'query': {
+            'start-date': start_date,
+            'end-date': end_date
+          },
+          'chartOptions':{
+            'title':'Chart #4',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
 
+      var chart5 = new gadash.GaAreaChart( 'chart5', 'ga:1174', 'ga:avgRedirectionTime',
+        {
+          'query': {
+             'start-date': start_date,
+             'end-date': end_date
+           },
+          'chartOptions':{
+            'title':'Chart #5',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
 
-    </script>
+     </script>
   </head>
 
   <body>

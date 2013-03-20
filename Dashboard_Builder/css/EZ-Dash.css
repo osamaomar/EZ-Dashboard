@@ -2,7 +2,6 @@ html{
 width: 100%;
 }
 
-
 .wrappers{
 border:5px dashed #DDD;
 border-radius:0px;
@@ -508,7 +507,6 @@ display: block;
 height: 20px;
 width: 135px;
 text-decoration: none;
-background: url(icons/arrow.png) 116px 17px no-repeat;
 cursor:pointer;
 font-family: 'Open Sans',arial,sans-serif;
 }
@@ -572,7 +570,6 @@ display: block;
 height: 20px;
 width: 135px;
 text-decoration: none;
-background: url(icons/arrow.png) 116px 17px no-repeat;
 cursor:pointer;
 font-family: 'Open Sans',arial,sans-serif;
 }
