@@ -1473,6 +1473,8 @@ function generate_code() {
                                       TABLE_ID + "', '" +
                                       chartGlobal[cNum].chartMetric + "', '" +
                                       chartGlobal[cNum].chartDimension + "',\r\n" +
+
+
                                       "        {\r\n" +
                                       "          'query': {\r\n" +
                                       "            'filters':'" + filter + "',\r\n" +
@@ -1566,7 +1568,7 @@ function generate_code() {
           }
        }
        else {
-           part[cNum + 1] = "      document.getElementById('chart" + (cNum + 1) + "').innerHTML = '';\r\n\r\n";
+           part[cNum + 1] = " ";
        }
     }
 
