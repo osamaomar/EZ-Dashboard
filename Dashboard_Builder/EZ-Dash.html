@@ -13,15 +13,15 @@
 	<script type="text/javascript" src="js/gadash-2.0.js"></script>
 	<script type="text/javascript" src="js/ZeroClipboard.js"></script>
 	<script src="//apis.google.com/js/client.js?o"></script>
-<<<<<<< HEAD
 
 	<script type="text/javascript" src="js/hello_analytics_api_v3_auth.js"></script>
 	<script type="text/javascript" src="js/hello_analytics_api_v3.js"></script>
 
-=======
-	<script type="text/javascript" src="js/jquery.zclip.js"></script>
->>>>>>> 10ea9d122fff7a7253c2da9b81283874498734d1
 	
+
+
+
+
 	<link href="css/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="css/EZ-Dash.css" media="screen" rel="stylesheet" type="text/css" />
@@ -69,6 +69,7 @@
 				<div class="submenu" id="submenu">
 					<ul class="root" id="root">
 						<li ><a href="#" id="resetDashboard" >Reset Dashboard</a></li>
+<li ><a href="#" id="backHome" >Back</a></li>
 						<li ><a href="help.html">Help</a></li>
 					</ul>
 				</div> 
@@ -122,23 +123,10 @@
 	</div><div id="startDiv" style="font-family: 'Open Sans',arial,sans-serif;" >
 		<a href="#" class="startbutton" style="font-size:15px; font-weight:bold; float:right;">Get Started</a><br/><br/></div></div><br/></center>
 
-	<!--<center> <div id="consoleDiv" class="" >
 	
-		<div align="center" style="font-size:15px; font-family:arial; line-height:1.5;">In order for us to start, you must visit the Google Console API website first to obtain your API and CLIENT ID keys.<br/>
-		Click <a href="" style="color: #CC0000">here</a> to do so.  <br/><br/></div>
-
-		<div align="center" style="font-size:15px; font-family:arial; line-height:1.5;">
-		<form name="">
-			API KEY:<br/> <input type="text" name="APIKey" id="APIKeyInput"><br><br>
-CLIENT ID:<br/> <input type="text" name="clientId" id="clientIdInput"><br/><br/>
-<a href="#" class="letsGo" style="font-size:15px; font-weight:bold; ">Lets Go!</a>
-
-	    </form></div>
-	   <br>
-	</div></center>-->
 	<center> <div id="imageDiv"><img src="images/mockup.jpg"/></div></center>
-      
-
+      <center><div id=""><iframe id="videoDivPlayer"  width="640" height="480" src="http://www.youtube.com/embed/yRYP9vXMfog?wmode=opaque" frameborder="0" allowfullscreen></iframe>
+</div></center>
 	<table align="center" id="mainTable"style="border-spacing: 15px; ">
 	<div style="position: absolute;">
 		<tr>
@@ -224,14 +212,16 @@ CLIENT ID:<br/> <input type="text" name="clientId" id="clientIdInput"><br/><br/>
 	      </tr>
 	   </table>
 	   <br/>
-		<div align="center" style="padding: 15px; width:100%;">
-			<textarea name="code_text" id="grabcode_txtarea" style="width: 80%; height: 500px;"></textarea>
-		</div>
 
-		<div id="copybutton" >
-			<h2>You can now copy the code and past it into a copy editor</h2>
-			<p>Click on the text area and use CTRL + A followed by CTRL + C to copy the code to the clipboard</p>
-		</div>
+		<form name="CodeToCopy">
+			<div align="center" style="padding: 15px; width:100%;">
+				<textarea name="code_text" id="grabcode_txtarea" style="width: 80%; height: 500px;"></textarea>
+			</div>
+
+			<div id="copybutton" >
+				<div id="copycode" style="font-family: 'Open Sans', arial, sans-serif;" data-clipboard-text="Copy To Clipboard">Copy All</div>
+			</div>
+	    </form>
 	   <br>
 	</div>
 
@@ -271,10 +261,10 @@ CLIENT ID:<br/> <input type="text" name="clientId" id="clientIdInput"><br/><br/>
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
-					<form>Chart Title <br/>
+					<form>Widget Title <br/>
 						<input id ="widgetTitleArea" class='area_reset_text'> </input><br/><br/>
 						<span style="color:red;">*</span>Graph the following metric overtime<br/>
-						<select name="area_metric" id ="areaMetrics" class="area_change area_reset_option" onchange="areaCompare.disabled=false, $('#btnAddArea').show();">
+						<select name="area_metric" id ="areaMetrics" class="area_change area_reset_option">
 							<option value="none" >Add a <span style:"text-color:blue"> metric</span></option>
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -518,9 +508,9 @@ CLIENT ID:<br/> <input type="text" name="clientId" id="clientIdInput"><br/><br/>
 				</div>
 	 		</div>
 				<div id ="rightdiv">
-		    	<form>Chart Title <br/>
+		    	<form>Widget Title <br/>
 						<input id ="widgetTitlePie" class='pie_reset_text'> </input><br/><br/><span style="color:red;">*</span>Create a Pie Chart showing:
-					  <select id ="pieMetrics" class="pie_change pie_reset_option" onchange="$('#btnAddPie').show();">
+					  <select id ="pieMetrics" class="pie_change pie_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -782,10 +772,10 @@ CLIENT ID:<br/> <input type="text" name="clientId" id="clientIdInput"><br/><br/>
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
-					<form>Chart Title <br/>
+					<form>Widget Title <br/>
 						<input id ="widgetTitleBar" class='bar_reset_text'> </input><br/><br/><span style="color:red;">*</span>
 						Graph the following metric overtime<br/>
-						<select id="barMetrics" class="bar_change bar_reset_option" onchange="barCompare.disabled=false, $('#btnAddBar').show();">
+						<select id="barMetrics" class="bar_change bar_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>
@@ -1023,10 +1013,10 @@ CLIENT ID:<br/> <input type="text" name="clientId" id="clientIdInput"><br/><br/>
 				</div>
 	 		</div>
 		    	<div id="rightdiv">
-					<form>Chart Title <br/>
+					<form>Widget Title <br/>
 						<input id ="widgetTitleColumn" class='column_reset_text'> </input><br/><br/><span style="color:red;">*</span>
 						Graph the following metric overtime<br/>
-						<select id="columnMetrics" class="column_change column_reset_option" onchange="columnCompare.disabled=false, $('#btnAddColumn').show();">
+						<select id="columnMetrics" class="column_change column_reset_option">
 							<option value="none">Add a <span style:"text-color:blue"> metric</span></option>	
 							<option value="ga:exitRate">% Exit</option>
 							<option value="ga:percentNewVisits">% New Visits</option>

@@ -23,27 +23,33 @@
 
     <script>
       // These parameters needs to be configured before you start.
-      var API_KEY = 'AIzaSyBHdmGxfoKdVdKAb9hQJbqNJnlKYZ-Mwms'; //Your API Key Here
-      var CLIENT_ID = '678812203795.apps.googleusercontent.com'; //Your Client ID Here
+      var API_KEY = 'AIzaSyAV3Y3a1eOpFTPiobtzOs3lKBIMhhqDDgo'; //Your API Key Here
+      var CLIENT_ID = '678812203795-jv5bup9tpid6vgh3b7cpvdu722umjmcp.apps.googleusercontent.com'; //Your Client ID Here
       var TABLE_ID = 'ga:1174'; // Your Table ID here
-      var start_date = '2013-02-09';
-      var end_date = '2013-02-12';
+      var start_date = '2013-03-09';
+
+      var end_date = '2013-03-19';
+
+      var dynamicStartDate = gadash.util.lastNdays(number);
+
+      var dynamicEndDate = 2013-03-19;
+
+
+      var number = 10;
 
       gadash.init({
         'apiKey': API_KEY,
         'clientId': CLIENT_ID
       });
 
-      document.getElementById('chart1').innerHTML = '';
-
-      var chart2 = new gadash.GaAreaChart( 'chart2', 'ga:1174', 'ga:exitRate',
+      var chart1 = new gadash.GaPieChart( 'chart1', 'ga:1174', 'ga:percentNewVisits', 'ga:continent',
         {
           'query': {
             'start-date': start_date,
             'end-date': end_date
           },
           'chartOptions':{
-            'title':'',
+            'title':'Chart #1',
             'chartArea': {
               'width': '95%'
              },
@@ -53,14 +59,15 @@
         }
       ).render();
 
-      var chart3 = new gadash.GaPieChart( 'chart3', 'ga:1174', 'ga:percentNewVisits', 'ga:adContent',
+      var chart2 = new gadash.GaAreaChart( 'chart2', 'ga:1174', 'ga:searchExitRate',
         {
           'query': {
+            'filters':'ga:dayOfWeek==monday',
             'start-date': start_date,
             'end-date': end_date
           },
           'chartOptions':{
-            'title':'',
+            'title':'Chart #2',
             'chartArea': {
               'width': '95%'
              },
@@ -70,11 +77,22 @@
         }
       ).render();
 
-      document.getElementById('chart4').innerHTML = '';
-
-      document.getElementById('chart5').innerHTML = '';
-
-      document.getElementById('chart6').innerHTML = '';
+      var chart3 = new gadash.GaColumnChart( 'chart3', 'ga:1174', 'ga:percentNewVisits',
+        {
+          'query': {
+             'start-date': start_date,
+             'end-date': end_date
+           },
+          'chartOptions':{
+            'title':'Chart #3',
+            'chartArea': {
+              'width': '95%'
+             },
+            'height':250,
+            'width':350
+          }
+        }
+      ).render();
 
     </script>
   </head>
